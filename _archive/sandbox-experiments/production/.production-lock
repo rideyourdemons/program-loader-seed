@@ -1,0 +1,38 @@
+# Production Lock File
+
+This file indicates that the production directory is locked and finalized.
+
+## Lock Date
+2024-01-31
+
+## Locked Components
+- Core systems (ethics-guard, matrix-engine, analytics-guard, numerology-engine)
+- State registry and weight table
+- Region profiles
+- Audit log schema
+- Production shell (index-integrated-ryd.html)
+- Tools directory
+- Numerology directory (SEO doorway)
+- Store directory
+
+## Lock Rules
+- No mock, test, or sandbox code in production
+- No user-facing matrix references
+- Ethics guard has absolute veto
+- All systems are bounded, logged, reversible
+- Numerology is symbolic only, isolated from matrix
+- GA4 is aggregate only, governed by analytics-guard
+- Store is passive only
+
+## Modification Policy
+- Core systems: Human approval required
+- Content: Human approval required
+- Weights: Bounded, logged, reversible
+- Audit log: Append-only
+
+## Testing
+See TESTING.md for test procedures.
+
+## Deployment
+Production is ready for deployment when all tests pass.
+

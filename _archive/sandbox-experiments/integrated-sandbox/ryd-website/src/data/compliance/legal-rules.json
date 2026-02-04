@@ -1,0 +1,200 @@
+{
+  "US": {
+    "countryCode": "US",
+    "region": "United States",
+    "allowsHealthClaims": false,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only",
+        "title": "Educational Purposes Only",
+        "text": "For educational purposes only. Not a replacement for medical or mental health treatment.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      },
+      {
+        "id": "not-medical-advice",
+        "title": "Not Medical Advice",
+        "text": "Always seek the advice of your physician or qualified mental health provider with any questions regarding a medical or mental health condition.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      },
+      {
+        "id": "emergency-contact",
+        "title": "Emergency Contact",
+        "text": "If you are experiencing a medical or mental health emergency, please contact your local emergency services immediately or call 911.",
+        "required": true,
+        "placement": ["footer"]
+      }
+    ],
+    "dataProtection": {
+      "gdprCompliant": false,
+      "ccpaCompliant": true,
+      "otherLaws": ["HIPAA (if collecting health data)"]
+    },
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "cure", "medical advice"],
+      "mustAvoid": ["FDA regulated claims", "therapeutic claims without evidence"]
+    },
+    "liabilityRequirements": "Standard business liability insurance recommended"
+  },
+  "EU": {
+    "countryCode": "EU",
+    "region": "European Union",
+    "allowsHealthClaims": false,
+    "gdprCompliant": true,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-eu",
+        "title": "Informational Purposes Only",
+        "text": "For informational purposes only. Not a substitute for professional medical advice.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      },
+      {
+        "id": "gdpr-notice",
+        "title": "GDPR Notice",
+        "text": "We comply with GDPR data protection regulations.",
+        "required": true,
+        "placement": ["privacy-policy"]
+      }
+    ],
+    "dataProtection": {
+      "gdprCompliant": true,
+      "cookieConsent": true,
+      "dataProcessingBasis": "Legitimate interest / Consent"
+    },
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "cure"],
+      "mustAvoid": ["EU health claims regulation violations"]
+    }
+  },
+  "UK": {
+    "countryCode": "UK",
+    "region": "United Kingdom",
+    "allowsHealthClaims": false,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-uk",
+        "title": "Educational Content Only",
+        "text": "Educational content only. Consult your GP or healthcare provider.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      }
+    ],
+    "dataProtection": {
+      "gdprCompliant": true,
+      "ukGdprCompliant": true
+    },
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "regulated healthcare services"],
+      "mustAvoid": ["HCPC regulation violations"]
+    }
+  },
+  "CA": {
+    "countryCode": "CA",
+    "region": "Canada",
+    "allowsHealthClaims": false,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-ca",
+        "title": "Educational Purposes Only",
+        "text": "Educational purposes only. Not regulated healthcare.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      }
+    ],
+    "dataProtection": {
+      "pipedaCompliant": true
+    },
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "regulated healthcare"],
+      "mustAvoid": ["Health Canada regulation violations"]
+    }
+  },
+  "DE": {
+    "countryCode": "DE",
+    "region": "Germany",
+    "allowsHealthClaims": false,
+    "gdprCompliant": true,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-de",
+        "title": "Educational Content Only",
+        "text": "Informationszwecke nur. Kein Ersatz für professionelle medizinische Beratung.",
+        "required": true,
+        "placement": ["footer", "each-page"],
+        "language": "de"
+      }
+    ],
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis"],
+      "mustAvoid": ["Heilmittelwerbegesetz violations"],
+      "note": "Very strict on health claims"
+    }
+  },
+  "FR": {
+    "countryCode": "FR",
+    "region": "France",
+    "allowsHealthClaims": false,
+    "gdprCompliant": true,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-fr",
+        "title": "Educational Content Only",
+        "text": "À des fins d'information uniquement. Ne remplace pas un avis médical professionnel.",
+        "required": true,
+        "placement": ["footer", "each-page"],
+        "language": "fr"
+      }
+    ],
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "medical/therapeutic benefits"],
+      "mustAvoid": ["Code de la Santé Publique violations"],
+      "note": "Very strict on health claims"
+    }
+  },
+  "JP": {
+    "countryCode": "JP",
+    "region": "Japan",
+    "allowsHealthClaims": false,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-jp",
+        "title": "Educational Content Only",
+        "text": "情報提供のみを目的としています。専門的な医療アドバイスの代替ではありません。",
+        "required": true,
+        "placement": ["footer", "each-page"],
+        "language": "ja"
+      }
+    ],
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "medical advice"],
+      "mustAvoid": ["Medical Practitioner's Act violations"],
+      "note": "Use indirect communication style"
+    },
+    "culturalNotes": {
+      "communicationStyle": "indirect",
+      "formalityLevel": "high"
+    }
+  },
+  "AU": {
+    "countryCode": "AU",
+    "region": "Australia",
+    "allowsHealthClaims": false,
+    "requiredDisclaimers": [
+      {
+        "id": "educational-only-au",
+        "title": "Educational Content Only",
+        "text": "For educational purposes only. Not a replacement for professional healthcare.",
+        "required": true,
+        "placement": ["footer", "each-page"]
+      }
+    ],
+    "restrictions": {
+      "cannotClaim": ["treatment", "diagnosis", "regulated healthcare services"],
+      "mustAvoid": ["AHPRA regulation violations"]
+    }
+  }
+}
+
+

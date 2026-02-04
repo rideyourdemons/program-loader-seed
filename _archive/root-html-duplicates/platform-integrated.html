@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Your Demons - Mental Resilience Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Live site color palette */
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666;
+            --color-border: #e0e0e0;
+            --color-bg: #ffffff;
+            --color-bg-secondary: #fafafa;
+            --color-button: #1a1a1a;
+            --color-button-hover: #333333;
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-xxl: 48px;
+            
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-size-base: 16px;
+            --font-size-h1: 32px;
+            --font-size-h2: 24px;
+            --font-size-h3: 20px;
+            
+            /* Breakpoints */
+            --breakpoint-mobile: 768px;
+            --breakpoint-tablet: 1024px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        header h1 {
+            font-size: var(--font-size-h2);
+            font-weight: 600;
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .tour-button {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .tour-button:hover {
+            background: var(--color-bg-secondary);
+            border-color: #d0d0d0;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .search-section h2 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-h2);
+            font-weight: 600;
+        }
+
+        .search-bar-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-form {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .search-form:focus-within {
+            border-color: var(--color-text);
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px var(--spacing-md);
+            border: none;
+            outline: none;
+            font-size: var(--font-size-base);
+            background: transparent;
+        }
+
+        .search-clear-button {
+            background: none;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .search-clear-button:hover {
+            color: var(--color-text);
+        }
+
+        .search-submit-button {
+            background: var(--color-button);
+            border: none;
+            padding: 12px var(--spacing-lg);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 0 6px 6px 0;
+            transition: background 0.2s;
+        }
+
+        .search-submit-button:hover:not(:disabled) {
+            background: var(--color-button-hover);
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-suggestions.show {
+            display: block;
+        }
+
+        .search-suggestion-item {
+            padding: 12px var(--spacing-md);
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid var(--color-bg-secondary);
+        }
+
+        .search-suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestion-item:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        /* Tool of the Day */
+        .tool-of-day {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .tool-of-day h2 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-h2);
+            font-weight: 600;
+        }
+
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-text);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+        }
+
+        .tool-title {
+            font-size: var(--font-size-h2);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .tool-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-advanced {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Pain Point Page */
+        .pain-point-page {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            display: none;
+        }
+
+        .pain-point-page.show {
+            display: block;
+        }
+
+        .back-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px var(--spacing-lg);
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+        }
+
+        .pain-point-header h2 {
+            font-size: var(--font-size-h1);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .pain-point-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tools-section h3 {
+            font-size: var(--font-size-h2);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            transition: box-shadow 0.2s;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-text);
+            color: white;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: var(--spacing-md);
+        }
+
+        .start-tool-button {
+            background: var(--color-button);
+            color: white;
+            border: none;
+            padding: 10px var(--spacing-lg);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: var(--spacing-md);
+        }
+
+        .start-tool-button:hover {
+            background: var(--color-button-hover);
+        }
+
+        /* Tour Guide Overlay */
+        .tour-overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+
+        .tour-overlay-backdrop.active {
+            display: block;
+        }
+
+        .tour-tooltip {
+            position: fixed;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            width: 400px;
+            max-width: 90vw;
+            display: none;
+            animation: tourFadeIn 0.3s ease;
+            border: 1px solid var(--color-border);
+        }
+
+        .tour-tooltip.active {
+            display: block;
+        }
+
+        @keyframes tourFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tour-tooltip-header {
+            background: var(--color-bg-secondary);
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tour-tooltip-header h3 {
+            margin: 0;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .tour-close {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tour-close:hover {
+            background: var(--color-bg-secondary);
+            color: var(--color-text);
+        }
+
+        .tour-tooltip-content {
+            padding: var(--spacing-lg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .tour-tooltip-content h3 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .tour-tooltip-content p {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-secondary);
+            font-size: 0.95em;
+        }
+
+        .tour-progress {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .tour-progress-bar {
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .tour-progress-fill {
+            height: 100%;
+            background: var(--color-text);
+            transition: width 0.3s ease;
+        }
+
+        .tour-progress-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .tour-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            justify-content: space-between;
+        }
+
+        .tour-button-primary {
+            background: var(--color-button);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tour-button-primary:hover {
+            background: var(--color-button-hover);
+        }
+
+        .tour-button-secondary {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .tour-button-secondary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .tour-button-link {
+            background: transparent;
+            border: none;
+            color: var(--color-text-secondary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .tour-button-link:hover {
+            color: var(--color-text);
+        }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 9997;
+            outline: 2px solid var(--color-text);
+            outline-offset: 3px;
+            border-radius: 4px;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .header-content {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .tour-button {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 12px;
+            }
+
+            .search-section {
+                padding: var(--spacing-lg);
+            }
+
+            .search-section h2 {
+                font-size: var(--font-size-h3);
+            }
+
+            .tool-of-day {
+                padding: var(--spacing-lg);
+            }
+
+            .pain-point-page {
+                padding: var(--spacing-lg);
+            }
+
+            .pain-point-header h2 {
+                font-size: var(--font-size-h2);
+            }
+
+            .tool-title {
+                font-size: var(--font-size-h3);
+            }
+
+            .tour-tooltip {
+                width: calc(100vw - 32px);
+                left: var(--spacing-md) !important;
+                right: var(--spacing-md) !important;
+                transform: none !important;
+            }
+
+            .tool-meta {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+
+            .tour-controls {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Device Detection Classes */
+        .mobile-only {
+            display: none;
+        }
+
+        .desktop-only {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-only {
+                display: block;
+            }
+            .desktop-only {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Ride Your Demons</h1>
+                <div class="header-actions">
+                    <button onclick="startTour()" id="startTourButton" class="tour-button">
+                        <span class="desktop-only">Take a Tour</span>
+                        <span class="mobile-only">Tour</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section" id="searchSection" data-tour="search">
+            <h2>Search for Help</h2>
+            <div class="search-bar-container">
+                <form class="search-form" id="searchForm" onsubmit="handleSearch(event)">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search for depression, anxiety, stress..."
+                        autocomplete="off"
+                        oninput="handleSearchInput(event)"
+                    />
+                    <button
+                        type="button"
+                        id="clearButton"
+                        class="search-clear-button"
+                        onclick="clearSearch()"
+                        style="display: none;"
+                    >
+                        Ãƒâ€”
+                    </button>
+                    <button
+                        type="submit"
+                        class="search-submit-button"
+                        id="searchButton"
+                    >
+                        Ã°Å¸â€Â
+                    </button>
+                </form>
+                <ul class="search-suggestions" id="suggestions"></ul>
+            </div>
+        </section>
+
+        <!-- Pain Point Page (hidden by default) -->
+        <section class="pain-point-page" id="painPointPage">
+            <button class="back-button" onclick="showSearchSection()">Ã¢â€ Â Back to Search</button>
+            <div class="pain-point-header">
+                <h2 id="painPointTitle"></h2>
+                <p class="pain-point-description" id="painPointDescription"></p>
+                <p class="disclaimer-brief">
+                    <small>Educational purposes only. Not a replacement for professional treatment.</small>
+                </p>
+            </div>
+
+            <div class="tools-section">
+                <h3>Three Free Self-Help Tools</h3>
+                <p class="section-intro">
+                    We offer <strong>three proven self-help techniques</strong> completely free, 
+                    backed by peer-reviewed research. No signup required. Start immediately.
+                </p>
+                <div class="tools-grid" id="toolsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Tool of the Day Section -->
+        <section class="tool-of-day" id="toolOfDaySection" data-tour="tool-of-day">
+            <h2>Tool of the Day</h2>
+            <div class="tool-card">
+                <div class="tool-title" id="toolTitle">Loading...</div>
+                <div class="tool-description" id="toolDescription">Loading...</div>
+                <div class="tool-meta">
+                    <div class="tool-meta-item">
+                        <span>Ã¢ÂÂ±</span>
+                        <span id="toolDuration">Loading...</span>
+                    </div>
+                    <div class="tool-meta-item">
+                        <span>Ã°Å¸â€œÅ </span>
+                        <span class="badge badge-beginner" id="toolDifficulty">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tour Guide Overlay -->
+    <div class="tour-overlay-backdrop" id="tourBackdrop" onclick="skipTour()"></div>
+    <div class="tour-tooltip" id="tourTooltip">
+        <div class="tour-tooltip-header">
+            <h3 id="tourTitle">Welcome</h3>
+            <button class="tour-close" onclick="skipTour()" aria-label="Skip tour">Ãƒâ€”</button>
+        </div>
+        <div class="tour-tooltip-content" id="tourContent"></div>
+        <div class="tour-progress">
+            <div class="tour-progress-bar">
+                <div class="tour-progress-fill" id="tourProgressFill"></div>
+            </div>
+            <span class="tour-progress-text" id="tourProgressText">Step 0 of 0</span>
+        </div>
+        <div class="tour-controls">
+            <button class="tour-button-secondary" id="tourPrev" onclick="prevTourStep()">Previous</button>
+            <button class="tour-button-primary" id="tourNext" onclick="nextTourStep()">Next</button>
+            <button class="tour-button-link" onclick="skipTour()">Skip Tour</button>
+        </div>
+    </div>
+
+    <script>
+        // Device Detection
+        function detectDevice() {
+            const width = window.innerWidth;
+            const isMobile = width <= 768;
+            document.body.classList.toggle('mobile', isMobile);
+            document.body.classList.toggle('desktop', !isMobile);
+            return { isMobile, width };
+        }
+
+        // Initialize device detection
+        detectDevice();
+        window.addEventListener('resize', detectDevice);
+
+        // Mock Data (Replace with Firebase in production)
+        const mockPainPoints = [
+            {
+                id: 'depression',
+                title: 'Depression',
+                slug: 'depression',
+                description: 'Depression is more than feeling sad. It affects how you think, feel, and handle daily activities. We offer free, research-backed tools to help you cope.',
+                keywords: ['depression', 'depressed', 'sadness', 'major depressive disorder'],
+                tools: ['tool-1', 'tool-2', 'tool-3'],
+                research: []
+            },
+            {
+                id: 'anxiety',
+                title: 'Anxiety',
+                slug: 'anxiety',
+                description: 'Anxiety can feel overwhelming. These free tools help you manage anxious thoughts and feelings with proven techniques.',
+                keywords: ['anxiety', 'anxious', 'worry', 'panic'],
+                tools: ['tool-1', 'tool-2', 'tool-5'],
+                research: []
+            },
+            {
+                id: 'anxiety-attacks',
+                title: 'Anxiety Attacks',
+                slug: 'anxiety-attacks',
+                description: 'Panic and anxiety attacks can be frightening. Learn immediate techniques to help you regain control.',
+                keywords: ['anxiety attacks', 'panic attack', 'panic', 'anxiety episode'],
+                tools: ['tool-1', 'tool-2', 'tool-4'],
+                research: []
+            },
+            {
+                id: 'stress',
+                title: 'Stress',
+                slug: 'stress',
+                description: 'Chronic stress impacts your health and wellbeing. These tools help you manage and reduce stress effectively.',
+                keywords: ['stress', 'stressed', 'overwhelmed', 'burnout'],
+                tools: ['tool-2', 'tool-3', 'tool-5'],
+                research: []
+            }
+        ];
+
+        const mockTools = [
+            {
+                id: 'tool-1',
+                title: 'Mindful Breathing',
+                description: 'A simple breathing technique to help you center yourself and reduce immediate stress.',
+                duration: '5-10 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-2',
+                title: 'Cognitive Reframing',
+                description: 'Learn to identify and challenge negative thought patterns that contribute to distress.',
+                duration: '15-20 minutes',
+                difficulty: 'intermediate'
+            },
+            {
+                id: 'tool-3',
+                title: 'Progressive Muscle Relaxation',
+                description: 'A systematic technique to release physical tension and promote relaxation.',
+                duration: '15-20 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-4',
+                title: 'Grounding Techniques',
+                description: 'Use your five senses to anchor yourself in the present moment during difficult times.',
+                duration: '5 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-5',
+                title: 'Values Clarification',
+                description: 'Identify what truly matters to you to guide decision-making and reduce conflict.',
+                duration: '30 minutes',
+                difficulty: 'intermediate'
+            }
+        ];
+
+        // Tool Rotation System (simplified version)
+        function getToolOfTheDay() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const index = dayOfYear % mockTools.length;
+            return mockTools[index];
+        }
+
+        function updateToolOfDay() {
+            const tool = getToolOfTheDay();
+            document.getElementById('toolTitle').textContent = tool.title;
+            document.getElementById('toolDescription').textContent = tool.description;
+            document.getElementById('toolDuration').textContent = tool.duration;
+            
+            const difficultyEl = document.getElementById('toolDifficulty');
+            difficultyEl.textContent = tool.difficulty;
+            difficultyEl.className = `badge badge-${tool.difficulty}`;
+        }
+
+        // Search Functionality
+        function handleSearchInput(event) {
+            const query = event.target.value.trim();
+            const clearButton = document.getElementById('clearButton');
+            const suggestions = document.getElementById('suggestions');
+
+            if (query.length > 0) {
+                clearButton.style.display = 'block';
+                showSuggestions(query);
+            } else {
+                clearButton.style.display = 'none';
+                suggestions.classList.remove('show');
+            }
+        }
+
+        function showSuggestions(query) {
+            const results = mockPainPoints.filter(pp => 
+                pp.title.toLowerCase().includes(query.toLowerCase()) ||
+                pp.keywords.some(kw => kw.toLowerCase().includes(query.toLowerCase()))
+            ).slice(0, 5);
+
+            const suggestionsEl = document.getElementById('suggestions');
+            if (results.length > 0) {
+                suggestionsEl.innerHTML = results.map(pp => 
+                    `<li class="search-suggestion-item" onclick="selectPainPoint('${pp.id}')">${pp.title}</li>`
+                ).join('');
+                suggestionsEl.classList.add('show');
+            } else {
+                suggestionsEl.classList.remove('show');
+            }
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                const results = mockPainPoints.filter(pp => 
+                    pp.title.toLowerCase().includes(query.toLowerCase()) ||
+                    pp.keywords.some(kw => kw.toLowerCase().includes(query.toLowerCase()))
+                );
+                if (results.length > 0) {
+                    selectPainPoint(results[0].id);
+                } else {
+                    alert(`No results found for "${query}"`);
+                }
+            }
+        }
+
+        function selectPainPoint(painPointId) {
+            const painPoint = mockPainPoints.find(pp => pp.id === painPointId);
+            if (!painPoint) return;
+            showPainPointPage(painPoint);
+        }
+
+        function showPainPointPage(painPoint) {
+            document.getElementById('searchSection').style.display = 'none';
+            document.getElementById('toolOfDaySection').style.display = 'none';
+            
+            const page = document.getElementById('painPointPage');
+            page.classList.add('show');
+            
+            document.getElementById('painPointTitle').textContent = painPoint.title;
+            document.getElementById('painPointDescription').textContent = painPoint.description;
+            
+            const tools = painPoint.tools.map(toolId => 
+                mockTools.find(t => t.id === toolId)
+            ).filter(Boolean);
+            
+            const toolsGrid = document.getElementById('toolsGrid');
+            toolsGrid.innerHTML = tools.map((tool, index) => `
+                <div class="tool-card">
+                    <span class="tool-number">${index + 1}</span>
+                    <div style="display: inline-block; width: calc(100% - 50px); vertical-align: top;">
+                        <div class="tool-title">${tool.title}</div>
+                        <div class="tool-description">${tool.description}</div>
+                        <div class="tool-meta">
+                            <span>Ã¢ÂÂ± ${tool.duration}</span>
+                            <span>Ã°Å¸â€œÅ  <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
+                        </div>
+                        <button class="start-tool-button" onclick="alert('Tool: ${tool.title}\\n\\nThis is a preview. In production, this would start the tool workthrough.')">Start Tool</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('searchInput').value = '';
+            document.getElementById('suggestions').classList.remove('show');
+        }
+
+        function showSearchSection() {
+            document.getElementById('painPointPage').classList.remove('show');
+            document.getElementById('searchSection').style.display = 'block';
+            document.getElementById('toolOfDaySection').style.display = 'block';
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearButton').style.display = 'none';
+            document.getElementById('suggestions').classList.remove('show');
+            document.getElementById('searchInput').focus();
+        }
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.querySelector('.search-bar-container');
+            if (!container.contains(e.target)) {
+                document.getElementById('suggestions').classList.remove('show');
+            }
+        });
+
+        // Tour Guide System
+        const tourSteps = [
+            {
+                id: 'welcome',
+                title: 'Welcome to Ride Your Demons',
+                content: '<h3>Welcome!</h3><p>This brief tour will help you navigate our platform and discover tools that can support your journey.</p><p>You can skip or pause at any time and return later.</p>',
+                targetElement: null,
+                position: 'center'
+            },
+            {
+                id: 'search',
+                title: 'Search for What You Need',
+                content: '<h3>Find Support</h3><p>Use the search to find specific challenges or pain points you\'re experiencing.</p><p>We have tools and resources for a wide range of topics like depression, anxiety, stress, and more.</p>',
+                targetElement: '#searchSection',
+                position: 'bottom'
+            },
+            {
+                id: 'tool-of-day',
+                title: 'Tool of the Day',
+                content: '<h3>Daily Inspiration</h3><p>We feature a different tool every day to help you discover new resources.</p><p>Come back daily to explore something new!</p>',
+                targetElement: '#toolOfDaySection',
+                position: 'bottom'
+            },
+            {
+                id: 'complete',
+                title: 'You\'re All Set!',
+                content: '<h3>Ready to Begin</h3><p>You now know the basics of navigating our platform.</p><p>Start by searching for something you\'re dealing with, or explore the tool of the day!</p>',
+                targetElement: null,
+                position: 'center'
+            }
+        ];
+
+        let currentTourStep = -1;
+        let tourActive = false;
+        let tourTargetElement = null;
+
+        function startTour() {
+            tourActive = true;
+            currentTourStep = 0;
+            document.getElementById('startTourButton').style.display = 'none';
+            showTourStep(0);
+        }
+
+        function showTourStep(stepIndex) {
+            if (stepIndex < 0 || stepIndex >= tourSteps.length) {
+                endTour();
+                return;
+            }
+
+            const step = tourSteps[stepIndex];
+            const backdrop = document.getElementById('tourBackdrop');
+            const tooltip = document.getElementById('tourTooltip');
+            const titleEl = document.getElementById('tourTitle');
+            const contentEl = document.getElementById('tourContent');
+            const progressFill = document.getElementById('tourProgressFill');
+            const progressText = document.getElementById('tourProgressText');
+            const prevBtn = document.getElementById('tourPrev');
+            const nextBtn = document.getElementById('tourNext');
+
+            // Remove previous highlight
+            if (tourTargetElement) {
+                tourTargetElement.classList.remove('tour-highlight');
+                tourTargetElement = null;
+            }
+
+            backdrop.classList.add('active');
+
+            // Set content
+            titleEl.textContent = step.title;
+            contentEl.innerHTML = step.content;
+
+            // Update progress
+            const progress = ((stepIndex + 1) / tourSteps.length) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `Step ${stepIndex + 1} of ${tourSteps.length}`;
+
+            // Update buttons
+            prevBtn.disabled = stepIndex === 0;
+            nextBtn.textContent = stepIndex === tourSteps.length - 1 ? 'Finish' : 'Next';
+
+            // Position tooltip
+            if (step.targetElement) {
+                const element = document.querySelector(step.targetElement);
+                if (element) {
+                    element.classList.add('tour-highlight');
+                    tourTargetElement = element;
+                    const rect = element.getBoundingClientRect();
+                    const positions = calculateTourPosition(rect, step.position);
+                    tooltip.style.top = positions.top + 'px';
+                    tooltip.style.left = positions.left + 'px';
+                    tooltip.style.transform = '';
+                } else {
+                    centerTooltip(tooltip);
+                }
+            } else {
+                centerTooltip(tooltip);
+            }
+
+            tooltip.classList.add('active');
+            currentTourStep = stepIndex;
+        }
+
+        function calculateTourPosition(rect, position) {
+            const tooltip = document.getElementById('tourTooltip');
+            const tooltipWidth = 400;
+            const tooltipHeight = 300;
+            const spacing = 20;
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                return {
+                    top: window.innerHeight / 2 - tooltipHeight / 2,
+                    left: window.innerWidth / 2 - tooltipWidth / 2
+                };
+            }
+
+            let top, left;
+
+            switch (position) {
+                case 'top':
+                    top = rect.top - tooltipHeight - spacing;
+                    left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+                    break;
+                case 'bottom':
+                    top = rect.bottom + spacing;
+                    left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+                    break;
+                case 'left':
+                    top = rect.top + (rect.height / 2) - (tooltipHeight / 2);
+                    left = rect.left - tooltipWidth - spacing;
+                    break;
+                case 'right':
+                    top = rect.top + (rect.height / 2) - (tooltipHeight / 2);
+                    left = rect.right + spacing;
+                    break;
+                default:
+                    return centerTooltip(tooltip);
+            }
+
+            // Keep within viewport
+            top = Math.max(spacing, Math.min(top, window.innerHeight - tooltipHeight - spacing));
+            left = Math.max(spacing, Math.min(left, window.innerWidth - tooltipWidth - spacing));
+
+            return { top, left };
+        }
+
+        function centerTooltip(tooltip) {
+            tooltip.style.top = '50%';
+            tooltip.style.left = '50%';
+            tooltip.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function nextTourStep() {
+            if (currentTourStep < tourSteps.length - 1) {
+                showTourStep(currentTourStep + 1);
+            } else {
+                endTour();
+            }
+        }
+
+        function prevTourStep() {
+            if (currentTourStep > 0) {
+                showTourStep(currentTourStep - 1);
+            }
+        }
+
+        function skipTour() {
+            endTour();
+        }
+
+        function endTour() {
+            tourActive = false;
+            document.getElementById('tourBackdrop').classList.remove('active');
+            document.getElementById('tourTooltip').classList.remove('active');
+            document.getElementById('startTourButton').style.display = 'block';
+            
+            if (tourTargetElement) {
+                tourTargetElement.classList.remove('tour-highlight');
+                tourTargetElement = null;
+            }
+
+            // Save tour completion
+            localStorage.setItem('ryd_tour_completed', 'true');
+        }
+
+        // Initialize
+        updateToolOfDay();
+
+        // Check if tour should auto-start (first visit)
+        if (!localStorage.getItem('ryd_tour_completed')) {
+            // Auto-start tour on first visit (optional - can be removed)
+            // setTimeout(() => startTour(), 1000);
+        }
+    </script>
+</body>
+</html>
+

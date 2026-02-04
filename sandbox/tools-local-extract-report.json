@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-02-01T21:00:00Z",
+  "extractionMethod": "local-file-analysis",
+  "sourceFile": "public/store/tools.canonical.json",
+  "sourceFileSize": "~1.5MB",
+  "counts": {
+    "raw": 2259,
+    "normalized": 2259,
+    "duplicates": 0
+  },
+  "candidatesAnalyzed": [
+    {
+      "file": "public/store/tools.canonical.json",
+      "count": 2259,
+      "status": "SELECTED - Largest tool dataset",
+      "sampleIds": [
+        "how-do-i-address-the-underlying-issues-that-led-to-addiction",
+        "how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+        "how-do-i-build-a-new-life-without-my-addiction"
+      ]
+    },
+    {
+      "file": "public/data/tools.json",
+      "count": 8,
+      "status": "Fallback - Base tools only",
+      "sampleIds": [
+        "grounding-reset",
+        "thought-unhook",
+        "energy-check"
+      ]
+    }
+  ],
+  "duplicates": [],
+  "parseFailures": [],
+  "notes": [
+    "tools.canonical.json is the canonical source (2,259 tools from live site crawl)",
+    "tools.json (8 tools) kept as fallback for app loader"
+  ]
+}
+

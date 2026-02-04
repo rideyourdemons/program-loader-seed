@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYD Platform - Integrated Sandbox Preview (All Systems Active)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .tool-of-day {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tool-of-day h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .tool-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tool-description {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .rotation-info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .rotation-info strong {
+            color: #1976D2;
+        }
+
+        .schedule-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .schedule-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .schedule-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .schedule-day {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .schedule-day:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .schedule-day.today {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .date-label {
+            font-weight: 500;
+            min-width: 150px;
+        }
+
+        .tool-name {
+            flex: 1;
+            text-align: right;
+        }
+
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .controls h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: #6c757d;
+        }
+
+        button.success {
+            background: #28a745;
+        }
+
+        input[type="date"], select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        input[type="date"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-preview {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-live {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .compliance-controls {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .compliance-controls h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .compliance-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .compliance-result.active {
+            display: block;
+        }
+
+        .compliance-result.compliant {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .compliance-result.non-compliant {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .compliance-result h3 {
+            margin-bottom: 15px;
+        }
+
+        .compliance-issue {
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #dc3545;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <header>
+            <h1>Ride Your Demons</h1>
+            <p>Integrated Sandbox Preview <span class="status-badge status-preview">ALL SYSTEMS ACTIVE</span></p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Compliance Ã¢â‚¬Â¢ Guardrails Ã¢â‚¬Â¢ Disclaimers</p>
+        </header>
+
+        <section class="tool-of-day">
+            <h2>Ã°Å¸â€â€ž Tool of the Day</h2>
+            <div class="tool-card" id="toolOfDayCard">
+                <div class="tool-title" id="toolTitle">Loading...</div>
+                <div class="tool-description" id="toolDescription"></div>
+                <div class="tool-meta">
+                    <div class="tool-meta-item">
+                        <strong>Duration:</strong> <span id="toolDuration"></span>
+                    </div>
+                    <div class="tool-meta-item">
+                        <strong>Difficulty:</strong> <span id="toolDifficulty"></span>
+                    </div>
+                </div>
+                <div class="rotation-info">
+                    <strong>Next rotation:</strong> <span id="rotationTime"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="compliance-controls">
+            <h2>Ã°Å¸â€â€™ Compliance Testing</h2>
+            <div class="control-group">
+                <select id="regionSelect">
+                    <option value="US">United States</option>
+                    <option value="EU">European Union</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="CA">Canada</option>
+                    <option value="DE">Germany</option>
+                    <option value="FR">France</option>
+                    <option value="JP">Japan</option>
+                    <option value="AU">Australia</option>
+                </select>
+                <button onclick="checkCompliance()" class="success">Check Compliance</button>
+                <button onclick="testContent()" class="secondary">Test Sample Content</button>
+            </div>
+            <div id="complianceResult" class="compliance-result"></div>
+        </section>
+
+        <section class="schedule-section">
+            <h2>Ã°Å¸â€œâ€¦ Upcoming Rotation Schedule</h2>
+            <div class="schedule-list" id="scheduleList">
+                <div>Loading schedule...</div>
+            </div>
+        </section>
+
+        <section class="controls">
+            <h2>Ã°Å¸Â§Âª Test Controls</h2>
+            <div class="control-group">
+                <input type="date" id="testDate" />
+                <button onclick="testWithDate()">Test Date</button>
+                <button onclick="refreshTool()">Refresh Tool</button>
+                <button onclick="showFullSchedule()">Show Full Schedule</button>
+            </div>
+            <div id="testResult"></div>
+        </section>
+
+        <footer>
+            <p><strong>Ã°Å¸â€â€™ Sandbox Environment</strong></p>
+            <p>All compliance systems are active and being tested.</p>
+            <p>This is a safe testing environment - changes do not affect production.</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        // Mock tools data
+        const mockTools = [
+            {
+                id: 'tool-1',
+                title: 'Breathing Exercise',
+                description: 'A simple breathing technique to reduce anxiety and promote relaxation',
+                duration: '5 minutes',
+                difficulty: 'beginner',
+                steps: [
+                    'Sit comfortably',
+                    'Inhale for 4 counts',
+                    'Hold for 4 counts',
+                    'Exhale for 4 counts',
+                    'Repeat 5 times'
+                ]
+            },
+            {
+                id: 'tool-2',
+                title: 'Grounding Technique',
+                description: '5-4-3-2-1 grounding method to bring you back to the present moment',
+                duration: '3 minutes',
+                difficulty: 'beginner',
+                steps: [
+                    'Name 5 things you can see',
+                    'Name 4 things you can touch',
+                    'Name 3 things you can hear',
+                    'Name 2 things you can smell',
+                    'Name 1 thing you can taste'
+                ]
+            },
+            {
+                id: 'tool-3',
+                title: 'Progressive Muscle Relaxation',
+                description: 'Release tension through systematic muscle relaxation',
+                duration: '10 minutes',
+                difficulty: 'intermediate',
+                steps: [
+                    'Tense and hold each muscle group',
+                    'Release and feel the relaxation',
+                    'Move through all major muscle groups',
+                    'Focus on the contrast between tension and relaxation'
+                ]
+            },
+            {
+                id: 'tool-4',
+                title: 'Cognitive Reframing',
+                description: 'Change your perspective on challenging thoughts',
+                duration: '10-15 minutes',
+                difficulty: 'intermediate',
+                steps: [
+                    'Identify the negative thought',
+                    'Question its validity',
+                    'Consider alternative perspectives',
+                    'Reframe the thought positively'
+                ]
+            },
+            {
+                id: 'tool-5',
+                title: 'Mindful Meditation',
+                description: 'Practice present-moment awareness and acceptance',
+                duration: '10 minutes',
+                difficulty: 'beginner',
+                steps: [
+                    'Find a quiet space',
+                    'Focus on your breath',
+                    'Notice thoughts without judgment',
+                    'Return focus to breath when distracted'
+                ]
+            }
+        ];
+
+        // Tool rotation logic
+        function getToolIndexForDate(date, toolCount) {
+            const year = date.getFullYear();
+            const startOfYear = new Date(year, 0, 1);
+            const dayOfYear = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24));
+            const seed = year * 366 + dayOfYear;
+            return seed % toolCount;
+        }
+
+        function getToolOfTheDay(tools, targetDate = null) {
+            const today = targetDate || new Date();
+            const toolIndex = getToolIndexForDate(today, tools.length);
+            return tools[toolIndex];
+        }
+
+        function getRotationSchedule(tools, daysAhead = 7) {
+            const schedule = [];
+            const today = new Date();
+            
+            for (let i = 0; i < daysAhead; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                const toolIndex = getToolIndexForDate(date, tools.length);
+                const tool = tools[toolIndex];
+                
+                schedule.push({
+                    date: date.toISOString().split('T')[0],
+                    dateObj: date,
+                    tool: tool,
+                    toolIndex: toolIndex,
+                    isToday: i === 0
+                });
+            }
+            
+            return schedule;
+        }
+
+        function getNextRotationInfo() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(now.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const msUntilMidnight = tomorrow - now;
+            const hoursUntil = Math.floor(msUntilMidnight / (1000 * 60 * 60));
+            const minutesUntil = Math.floor((msUntilMidnight % (1000 * 60 * 60)) / (1000 * 60));
+            
+            return {
+                hoursUntil: hoursUntil,
+                minutesUntil: minutesUntil,
+                formatted: `${hoursUntil}h ${minutesUntil}m`
+            };
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function formatShortDate(date) {
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'short', 
+                month: 'short', 
+                day: 'numeric'
+            });
+        }
+
+        function updateToolOfDay(targetDate = null) {
+            const tool = getToolOfTheDay(mockTools, targetDate);
+            const rotationInfo = getNextRotationInfo();
+            
+            document.getElementById('toolTitle').textContent = tool.title;
+            document.getElementById('toolDescription').textContent = tool.description;
+            document.getElementById('toolDuration').textContent = tool.duration;
+            
+            const difficultySpan = document.getElementById('toolDifficulty');
+            difficultySpan.textContent = tool.difficulty;
+            difficultySpan.className = `badge badge-${tool.difficulty}`;
+            
+            document.getElementById('rotationTime').textContent = rotationInfo.formatted;
+        }
+
+        function updateSchedule(days = 7) {
+            const schedule = getRotationSchedule(mockTools, days);
+            const scheduleList = document.getElementById('scheduleList');
+            
+            scheduleList.innerHTML = schedule.map(day => {
+                const dateStr = formatShortDate(day.dateObj);
+                const dayClass = day.isToday ? 'schedule-day today' : 'schedule-day';
+                return `
+                    <div class="${dayClass}">
+                        <span class="date-label">${dateStr}</span>
+                        <span class="tool-name">${day.tool.title}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Compliance checking functions
+        window.checkCompliance = async function() {
+            const region = document.getElementById('regionSelect').value;
+            const resultDiv = document.getElementById('complianceResult');
+            
+            resultDiv.innerHTML = '<p>Checking compliance...</p>';
+            resultDiv.className = 'compliance-result active';
+            
+            try {
+                const response = await fetch(`/api/compliance/status?region=${region}`);
+                const data = await response.json();
+                
+                const isCompliant = data.compliant;
+                resultDiv.className = `compliance-result active ${isCompliant ? 'compliant' : 'non-compliant'}`;
+                
+                let html = `
+                    <h3>${isCompliant ? 'Ã¢Å“â€¦ Compliant' : 'Ã¢Å¡Â Ã¯Â¸Â Non-Compliant'}</h3>
+                    <p><strong>Region:</strong> ${region}</p>
+                `;
+                
+                if (data.blockers && data.blockers.length > 0) {
+                    html += `<h4>Blockers (${data.blockers.length}):</h4>`;
+                    data.blockers.forEach(blocker => {
+                        html += `<div class="compliance-issue">${blocker.issue || blocker}</div>`;
+                    });
+                }
+                
+                if (data.warnings && data.warnings.length > 0) {
+                    html += `<h4>Warnings (${data.warnings.length}):</h4>`;
+                    data.warnings.forEach(warning => {
+                        html += `<div class="compliance-issue" style="border-left-color: #ffc107;">${warning.issue || warning}</div>`;
+                    });
+                }
+                
+                if (isCompliant && (!data.blockers || data.blockers.length === 0) && (!data.warnings || data.warnings.length === 0)) {
+                    html += '<p style="margin-top: 15px;">Ã¢Å“â€¦ All compliance checks passed!</p>';
+                }
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.className = 'compliance-result active non-compliant';
+                resultDiv.innerHTML = `<h3>Error</h3><p>${error.message}</p>`;
+            }
+        };
+
+        window.testContent = async function() {
+            const region = document.getElementById('regionSelect').value;
+            const resultDiv = document.getElementById('complianceResult');
+            
+            const testContent = {
+                text: 'This is a test content that needs compliance checking',
+                disclaimers: []
+            };
+            
+            resultDiv.innerHTML = '<p>Testing content...</p>';
+            resultDiv.className = 'compliance-result active';
+            
+            try {
+                const response = await fetch(`/api/compliance/check?region=${region}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testContent)
+                });
+                const data = await response.json();
+                
+                const isCompliant = data.compliant;
+                resultDiv.className = `compliance-result active ${isCompliant ? 'compliant' : 'non-compliant'}`;
+                
+                let html = `
+                    <h3>Content Test Results</h3>
+                    <p><strong>Status:</strong> ${isCompliant ? 'Ã¢Å“â€¦ Compliant' : 'Ã¢Å¡Â Ã¯Â¸Â Issues Found'}</p>
+                    <p><strong>Region:</strong> ${region}</p>
+                `;
+                
+                if (data.blockers && data.blockers.length > 0) {
+                    html += `<h4>Blockers:</h4>`;
+                    data.blockers.forEach(blocker => {
+                        html += `<div class="compliance-issue">${JSON.stringify(blocker, null, 2)}</div>`;
+                    });
+                }
+                
+                if (data.warnings && data.warnings.length > 0) {
+                    html += `<h4>Warnings:</h4>`;
+                    data.warnings.forEach(warning => {
+                        html += `<div class="compliance-issue" style="border-left-color: #ffc107;">${JSON.stringify(warning, null, 2)}</div>`;
+                    });
+                }
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.className = 'compliance-result active non-compliant';
+                resultDiv.innerHTML = `<h3>Error</h3><p>${error.message}</p>`;
+            }
+        };
+
+        // Make functions available globally
+        window.testWithDate = function() {
+            const dateInput = document.getElementById('testDate');
+            const testResult = document.getElementById('testResult');
+            
+            if (!dateInput.value) {
+                testResult.innerHTML = '<p style="color: #856404; padding: 10px; background: #fff3cd; border-radius: 6px;">Please select a date first</p>';
+                return;
+            }
+            
+            const testDate = new Date(dateInput.value + 'T00:00:00');
+            const tool = getToolOfTheDay(mockTools, testDate);
+            
+            testResult.innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: #d4edda; border-radius: 6px; border-left: 4px solid #28a745;">
+                    <strong>Test Result:</strong><br>
+                    Date: ${formatDate(testDate)}<br>
+                    Tool: ${tool.title}<br>
+                    ${tool.description}
+                </div>
+            `;
+            
+            updateToolOfDay(testDate);
+        };
+
+        window.refreshTool = function() {
+            updateToolOfDay();
+            updateSchedule();
+            document.getElementById('testResult').innerHTML = '';
+        };
+
+        window.showFullSchedule = function() {
+            updateSchedule(30);
+            document.getElementById('testResult').innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: #d1ecf1; border-radius: 6px; border-left: 4px solid #0c5460;">
+                    Showing 30-day rotation schedule
+                </div>
+            `;
+        };
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateToolOfDay();
+            updateSchedule();
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('testDate').value = today;
+            
+            // Check compliance on load
+            checkCompliance();
+        });
+    </script>
+</body>
+</html>
+

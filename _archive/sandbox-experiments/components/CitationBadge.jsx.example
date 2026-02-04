@@ -1,0 +1,117 @@
+/**
+ * Citation Badge Component (React Example)
+ * Displays research citations with expandable details
+ */
+
+import React, { useState } from 'react';
+import './CitationBadge.css';
+
+export default function CitationBadge({ citation, compact = false }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (!citation) {
+    return null;
+  }
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  if (compact) {
+    return (
+      <span className="citation-badge-compact">
+        <span className="citation-icon" aria-label="Research-backed">📚</span>
+        <button 
+          className="citation-link"
+          onClick={toggleExpand}
+          aria-expanded={isExpanded}
+        >
+          Research-backed
+        </button>
+      </span>
+    );
+  }
+
+  return (
+    <div className="citation-badge">
+      <button
+        className="citation-trigger"
+        onClick={toggleExpand}
+        aria-expanded={isExpanded}
+      >
+        <span className="citation-icon">📚</span>
+        <span className="citation-label">Research-Backed</span>
+        <span className="citation-arrow">{isExpanded ? '▼' : '▶'}</span>
+      </button>
+      
+      {isExpanded && (
+        <div className="citation-details">
+          <div className="citation-content">
+            <h4 className="citation-title">{citation.title}</h4>
+            
+            {citation.authors && citation.authors.length > 0 && (
+              <div className="citation-author">
+                <strong>Authors:</strong> {citation.authors.join(', ')}
+              </div>
+            )}
+            
+            {citation.publication && (
+              <div className="citation-publication">
+                <strong>Publication:</strong> {citation.publication}
+              </div>
+            )}
+            
+            {citation.year && (
+              <div className="citation-year">
+                <strong>Year:</strong> {citation.year}
+              </div>
+            )}
+            
+            {citation.citationText && (
+              <div className="citation-text">
+                <em>{citation.citationText}</em>
+              </div>
+            )}
+            
+            {citation.url && (
+              <a
+                href={citation.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="citation-link"
+              >
+                View Source ↗
+              </a>
+            )}
+            
+            {citation.doi && (
+              <a
+                href={`https://doi.org/${citation.doi}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="citation-doi"
+              >
+                DOI: {citation.doi}
+              </a>
+            )}
+            
+            {citation.keyFindings && citation.keyFindings.length > 0 && (
+              <div className="citation-findings">
+                <strong>Key Findings:</strong>
+                <ul>
+                  {citation.keyFindings.map((finding, index) => (
+                    <li key={index}>{finding}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
+

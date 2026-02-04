@@ -1,0 +1,40 @@
+{
+  "insights": [
+    {
+      "id": "insight-1",
+      "title": "Understanding Anxiety",
+      "summary": "Anxiety is a natural response to stress, but when it becomes overwhelming, it can interfere with daily life.",
+      "category": "anxiety",
+      "readTime": "5 min"
+    },
+    {
+      "id": "insight-2",
+      "title": "The Science of Breathing",
+      "summary": "Deep breathing activates the parasympathetic nervous system, helping to calm the body's stress response.",
+      "category": "stress",
+      "readTime": "4 min"
+    },
+    {
+      "id": "insight-3",
+      "title": "Building Resilience",
+      "summary": "Resilience is the ability to bounce back from adversity. It's a skill that can be developed over time.",
+      "category": "general",
+      "readTime": "6 min"
+    },
+    {
+      "id": "insight-4",
+      "title": "Mindfulness Basics",
+      "summary": "Mindfulness is the practice of paying attention to the present moment without judgment.",
+      "category": "stress",
+      "readTime": "5 min"
+    },
+    {
+      "id": "insight-5",
+      "title": "Sleep and Mental Health",
+      "summary": "Quality sleep is essential for emotional regulation and cognitive function.",
+      "category": "general",
+      "readTime": "7 min"
+    }
+  ]
+}
+

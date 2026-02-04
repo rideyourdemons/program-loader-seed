@@ -1,0 +1,113 @@
+# Verification Checklist - Firebase Hosting Sandbox
+
+## Quick Start
+
+### 1. Start Firebase Emulator
+```bash
+firebase emulators:start --only hosting
+```
+
+### 2. Open URLs in Browser
+
+Test these URLs (replace port if different):
+- `http://127.0.0.1:5000/` (or port shown in terminal)
+- `http://127.0.0.1:5000/tools`
+- `http://127.0.0.1:5000/tools.html`
+- `http://127.0.0.1:5000/insights`
+- `http://127.0.0.1:5000/insights.html`
+- `http://127.0.0.1:5000/about/`
+- `http://127.0.0.1:5000/store/`
+- `http://127.0.0.1:5000/disclosures/`
+- `http://127.0.0.1:5000/ethics/`
+- `http://127.0.0.1:5000/analytics/`
+- `http://127.0.0.1:5000/terms/`
+
+## Chrome DevTools Verification
+
+### Network Tab → Filter by "CSS"
+
+**Expected Results:**
+- ✅ `main.css` → Status 200
+- ✅ `integrated.css` → Status 200
+- ❌ No 404 errors for CSS files
+
+### Console Tab
+
+**Expected Output (localhost only):**
+```
+=== CSS Loading Debug (Localhost) ===
+Stylesheet links found: 2
+Stylesheet link 1: http://127.0.0.1:5000/css/main.css
+Stylesheet link 2: http://127.0.0.1:5000/css/integrated.css
+====================================
+```
+
+## Visual Verification
+
+### Desktop
+- ✅ Header navigation visible and styled
+- ✅ Footer visible and styled
+- ✅ Content properly formatted
+- ✅ Colors match live site
+- ✅ Typography matches live site
+- ✅ Spacing and layout correct
+
+### Mobile (DevTools → Toggle Device Toolbar)
+- ✅ Responsive layout works
+- ✅ Navigation accessible
+- ✅ Text readable
+- ✅ No horizontal scrolling
+
+## Route Verification
+
+### Clean URLs (without .html)
+- ✅ `/tools` loads `tools.html`
+- ✅ `/insights` loads `insights.html`
+- ✅ `/about/` loads `about/index.html`
+- ✅ `/store/` loads `store/index.html`
+
+### Direct URLs (with .html)
+- ✅ `/tools.html` loads correctly
+- ✅ `/insights.html` loads correctly
+
+## Files Modified
+
+1. **firebase.json** - Added rewrites for `/tools` and `/insights`
+2. **public/tools.html** - Created (was missing)
+3. **public/index.html** - Updated navigation links to absolute paths, added localhost-only debug
+4. **public/insights.html** - Added localhost-only debug
+5. **public/index-integrated-ryd.html** - Updated links, added localhost-only debug
+6. **public/index-integrated.html** - Added localhost-only debug
+7. **public/platform-integrated.html** - Added localhost-only debug
+8. **public/live-site-integration.html** - Added localhost-only debug
+9. **public/about/index.html** - Added CSS links and localhost-only debug
+10. **public/store/index.html** - Added CSS links and localhost-only debug
+11. **public/analytics/index.html** - Added CSS links and localhost-only debug
+12. **public/disclosures/index.html** - Added CSS links and localhost-only debug
+13. **public/ethics/index.html** - Added CSS links and localhost-only debug
+14. **public/terms/index.html** - Added CSS links and localhost-only debug
+
+## Summary
+
+- ✅ All HTML files now include both CSS files with absolute paths
+- ✅ All navigation links use absolute paths
+- ✅ Firebase rewrites configured for clean URLs
+- ✅ Debug script only runs on localhost (not production)
+- ✅ tools.html created (was missing)
+- ✅ All subdirectory pages have CSS links
+
+## Success Criteria
+
+✅ **PASS** if:
+- All CSS files load with 200 status
+- Page styling matches live site
+- All routes work (with and without .html)
+- Console shows debug output on localhost only
+- No 404 errors in Network tab
+
+❌ **FAIL** if:
+- Any CSS file returns 404
+- Page appears unstyled
+- Routes don't work
+- Console errors appear
+

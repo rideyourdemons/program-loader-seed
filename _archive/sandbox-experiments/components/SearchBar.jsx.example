@@ -1,0 +1,275 @@
+/**
+ * Search Bar Component for Pain Point Search
+ * 
+ * Usage in React app:
+ * import SearchBar from './components/SearchBar';
+ * 
+ * <SearchBar 
+ *   onSearch={(query) => navigate(`/pain-point/${query}`)}
+ *   placeholder="Search for help with depression, anxiety..."
+ * />
+ */
+
+import React, { useState, useRef, useEffect } from 'react';
+
+export default function SearchBar({ 
+  onSearch, 
+  placeholder = "Search for help with depression, anxiety, stress...",
+  autocompleteLimit = 5,
+  className = ""
+}) {
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const searchRef = useRef(null);
+  const suggestionsRef = useRef(null);
+
+  // Handle autocomplete (you'll need to connect this to your search API)
+  useEffect(() => {
+    if (query.length >= 2) {
+      // TODO: Replace with actual API call
+      // Example: getAutocompleteSuggestions(query).then(setSuggestions);
+      // For now, using mock data
+      const mockSuggestions = [
+        'Depression',
+        'Anxiety',
+        'Anxiety Attacks',
+        'Panic Attacks',
+        'Stress'
+      ].filter(s => s.toLowerCase().includes(query.toLowerCase()));
+      
+      setSuggestions(mockSuggestions.slice(0, autocompleteLimit));
+      setShowSuggestions(mockSuggestions.length > 0);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [query, autocompleteLimit]);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        searchRef.current && 
+        !searchRef.current.contains(event.target) &&
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      setIsSearching(true);
+      setShowSuggestions(false);
+      
+      // Call search handler (should navigate to pain point page)
+      if (onSearch) {
+        onSearch(query.trim());
+      }
+      
+      setIsSearching(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion);
+    setShowSuggestions(false);
+    
+    if (onSearch) {
+      onSearch(suggestion);
+    }
+  };
+
+  const handleClear = () => {
+    setQuery('');
+    setSuggestions([]);
+    setShowSuggestions(false);
+  };
+
+  return (
+    <div className={`search-bar-container ${className}`} ref={searchRef}>
+      <form onSubmit={handleSubmit} className="search-form">
+        <div className="search-input-wrapper">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => query.length >= 2 && setShowSuggestions(true)}
+            placeholder={placeholder}
+            className="search-input"
+            aria-label="Search for mental health help"
+            autoComplete="off"
+          />
+          
+          {query && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="search-clear-button"
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          )}
+          
+          <button
+            type="submit"
+            disabled={isSearching || !query.trim()}
+            className="search-submit-button"
+            aria-label="Search"
+          >
+            {isSearching ? '...' : '🔍'}
+          </button>
+        </div>
+      </form>
+
+      {showSuggestions && suggestions.length > 0 && (
+        <ul 
+          className="search-suggestions"
+          ref={suggestionsRef}
+          role="listbox"
+        >
+          {suggestions.map((suggestion, index) => (
+            <li
+              key={index}
+              onClick={() => handleSuggestionClick(suggestion)}
+              onMouseDown={(e) => e.preventDefault()} // Prevent input blur
+              className="search-suggestion-item"
+              role="option"
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// CSS (add to your stylesheet)
+/*
+.search-bar-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0;
+  transition: border-color 0.2s;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+}
+
+.search-clear-button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.search-clear-button:hover {
+  color: #333;
+}
+
+.search-submit-button {
+  background: #667eea;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  transition: background 0.2s;
+}
+
+.search-submit-button:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.search-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-suggestion-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover,
+.search-suggestion-item:focus {
+  background: #f8f9fa;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .search-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .search-suggestions {
+    max-height: 200px;
+  }
+}
+*/
+

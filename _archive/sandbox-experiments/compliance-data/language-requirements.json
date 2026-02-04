@@ -1,0 +1,130 @@
+{
+  "US": {
+    "primaryLanguage": "en",
+    "region": "United States",
+    "dialects": ["en-US"],
+    "translationRequirements": "Native English speaker review recommended",
+    "technicalConsiderations": "Left-to-right, standard encoding"
+  },
+  "UK": {
+    "primaryLanguage": "en",
+    "region": "United Kingdom",
+    "dialects": ["en-GB"],
+    "translationRequirements": "British English, native speaker review",
+    "technicalConsiderations": "Left-to-right, standard encoding",
+    "notes": "Spelling differences (colour vs color, etc.)"
+  },
+  "CA": {
+    "primaryLanguage": "en",
+    "region": "Canada",
+    "dialects": ["en-CA", "fr-CA"],
+    "translationRequirements": "Canadian English and French (bilingual where required)",
+    "technicalConsiderations": "Left-to-right, standard encoding",
+    "notes": "Bilingual requirement in some provinces"
+  },
+  "DE": {
+    "primaryLanguage": "de",
+    "region": "Germany",
+    "dialects": ["de-DE"],
+    "translationRequirements": "Certified professional German translator, native speaker review",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding",
+    "notes": "Formal language often preferred, technical terminology important"
+  },
+  "FR": {
+    "primaryLanguage": "fr",
+    "region": "France",
+    "dialects": ["fr-FR"],
+    "translationRequirements": "Certified professional French translator, native speaker review",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding",
+    "notes": "Formal language preferred, technical/medical terminology critical"
+  },
+  "ES": {
+    "primaryLanguage": "es",
+    "region": "Spain",
+    "dialects": ["es-ES"],
+    "translationRequirements": "Certified professional Spanish translator",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding"
+  },
+  "MX": {
+    "primaryLanguage": "es",
+    "region": "Mexico",
+    "dialects": ["es-MX"],
+    "translationRequirements": "Mexican Spanish translator (different from Spain Spanish)",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding",
+    "notes": "Different vocabulary and expressions than Spain Spanish"
+  },
+  "BR": {
+    "primaryLanguage": "pt",
+    "region": "Brazil",
+    "dialects": ["pt-BR"],
+    "translationRequirements": "Brazilian Portuguese translator (different from Portugal Portuguese)",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding",
+    "notes": "Significant differences from European Portuguese"
+  },
+  "JP": {
+    "primaryLanguage": "ja",
+    "region": "Japan",
+    "dialects": ["ja-JP"],
+    "translationRequirements": "Certified professional Japanese translator, native speaker review essential",
+    "technicalConsiderations": "Left-to-right (horizontal), UTF-8 encoding, character system (Hiragana, Katakana, Kanji)",
+    "notes": "Indirect communication style, high formality, character encoding critical"
+  },
+  "CN": {
+    "primaryLanguage": "zh",
+    "region": "China",
+    "dialects": ["zh-CN (Simplified)"],
+    "translationRequirements": "Certified professional Chinese translator, Simplified Chinese",
+    "technicalConsiderations": "Left-to-right (horizontal), UTF-8 encoding, character system",
+    "notes": "Simplified vs Traditional Chinese important, cultural context critical"
+  },
+  "TW": {
+    "primaryLanguage": "zh",
+    "region": "Taiwan",
+    "dialects": ["zh-TW (Traditional)"],
+    "translationRequirements": "Certified professional Chinese translator, Traditional Chinese",
+    "technicalConsiderations": "Left-to-right (horizontal), UTF-8 encoding, character system",
+    "notes": "Traditional Chinese (different from Simplified)"
+  },
+  "KR": {
+    "primaryLanguage": "ko",
+    "region": "South Korea",
+    "dialects": ["ko-KR"],
+    "translationRequirements": "Certified professional Korean translator, native speaker review",
+    "technicalConsiderations": "Left-to-right (horizontal), UTF-8 encoding, Hangul script",
+    "notes": "Formal language, hierarchy respected"
+  },
+  "IN": {
+    "primaryLanguage": "hi",
+    "region": "India",
+    "dialects": ["hi-IN", "en-IN"],
+    "translationRequirements": "Hindi and English (often multilingual), native speaker review",
+    "technicalConsiderations": "Left-to-right, UTF-8 encoding",
+    "notes": "Often multilingual (Hindi + English), regional languages vary"
+  },
+  "SA": {
+    "primaryLanguage": "ar",
+    "region": "Saudi Arabia",
+    "dialects": ["ar-SA"],
+    "translationRequirements": "Certified professional Arabic translator, native speaker review",
+    "technicalConsiderations": "Right-to-left (RTL), UTF-8 encoding, Arabic script",
+    "notes": "RTL text direction, formal language, cultural/religious sensitivity critical"
+  },
+  "AE": {
+    "primaryLanguage": "ar",
+    "region": "United Arab Emirates",
+    "dialects": ["ar-AE", "en-AE"],
+    "translationRequirements": "Arabic and English (often bilingual), certified translator",
+    "technicalConsiderations": "Right-to-left (RTL) for Arabic, UTF-8 encoding",
+    "notes": "Often bilingual Arabic/English"
+  },
+  "IL": {
+    "primaryLanguage": "he",
+    "region": "Israel",
+    "dialects": ["he-IL", "ar-IL", "en-IL"],
+    "translationRequirements": "Hebrew, Arabic, and English (multilingual), certified translator",
+    "technicalConsiderations": "Right-to-left (RTL) for Hebrew/Arabic, UTF-8 encoding",
+    "notes": "Hebrew RTL, Holocaust sensitivity critical"
+  }
+}
+
+

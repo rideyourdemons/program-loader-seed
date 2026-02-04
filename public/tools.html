@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager (via analytics.js) -->
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/ui-sanitize.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/js/matrix-expander.js" defer></script>
+    <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/matrix-status.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    
+    <!-- SEO Meta Tags -->
+    <link rel="canonical" href="https://rideyourdemons.com/tools">
+    <title>Tools — Ride Your Demons</title>
+    <meta name="description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth. Educational use only.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tools — Ride Your Demons">
+    <meta property="og:description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth.">
+    <meta property="og:url" content="https://rideyourdemons.com/tools">
+    <meta property="og:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ride Your Demons">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tools — Ride Your Demons">
+    <meta name="twitter:description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth.">
+    <meta name="twitter:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    
+    <style>
+        /* Additional page-specific styles if needed */
+        .tools-intro {
+            text-align: center;
+        }
+        
+        .tools-intro h1 {
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+        }
+        
+        .tools-intro p {
+            font-size: 1.2em;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--gap-lg);
+        }
+        
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .tool-card h3 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .tool-card p {
+            color: var(--color-text-secondary);
+        }
+    </style>
+    <script>
+        // CSS Loading Debug (localhost only)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('=== CSS Loading Debug (Localhost) ===');
+                const stylesheetLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+                console.log('Stylesheet links found:', stylesheetLinks.length);
+                stylesheetLinks.forEach((link, index) => {
+                    console.log(`Stylesheet link ${index + 1}:`, link.href);
+                    link.addEventListener('error', () => {
+                        console.error(`Failed to load: ${link.href}`);
+                    });
+                });
+                console.log('document.styleSheets.length:', document.styleSheets.length);
+                Array.from(document.styleSheets).forEach((sheet, index) => {
+                    try {
+                        console.log(`Loaded stylesheet ${index + 1}:`, sheet.href || 'inline');
+                    } catch (e) {
+                        console.log(`Loaded stylesheet ${index + 1}:`, 'cross-origin or inline');
+                    }
+                });
+                console.log('====================================');
+            });
+        }
+        
+        // Load and render tools
+        function extractDescription(tool) {
+            const raw = (tool && (tool.description || tool.summary)) || '';
+            const title = tool && (tool.title || tool.name);
+            if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                return window.RYD_UI.sanitizeDescription(raw, title);
+            }
+            return String(raw || '').trim();
+        }
+
+        function extractDescription(tool) {
+            const raw = (tool && (tool.description || tool.summary)) || '';
+            if (!raw) return '';
+            const title = String(tool.title || tool.name || '').trim();
+            const lines = raw
+                .split(/\r?\n/)
+                .map(line => line.trim())
+                .filter(Boolean);
+            const filtered = lines.filter(line => {
+                const lower = line.toLowerCase();
+                if (lower === 'login' || lower === 'log in') return false;
+                if (title && line === title) return false;
+                if (lower.startsWith('tool •')) return false;
+                return true;
+            });
+            return (filtered[0] || raw).trim();
+        }
+
+        function scoreTool(tool) {
+            let score = 0;
+            if (extractDescription(tool)) score += 3;
+            if (tool.howWhyWorks) score += 2;
+            if (Array.isArray(tool.citations) && tool.citations.length > 0) score += 2;
+            if (Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0) score += 1;
+            if (tool.duration) score += 1;
+            return score;
+        }
+
+        async function loadAndRenderTools() {
+            const toolsGrid = document.getElementById('toolsGrid');
+            if (!toolsGrid) {
+                console.warn('[RYD] tools.html: toolsGrid not found');
+                return;
+            }
+            
+            try {
+                const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+                const fallbackRes = toolsRes && toolsRes.ok
+                    ? null
+                    : await fetch('/data/tools.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+
+                const data = toolsRes && toolsRes.ok
+                    ? await toolsRes.json()
+                    : (fallbackRes && fallbackRes.ok ? await fallbackRes.json() : null);
+
+                if (!data || !Array.isArray(data.tools)) {
+                    throw new Error('Failed to load tools data.');
+                }
+
+                const normalizeKey = (tool) => {
+                    const raw = tool.title || tool.name || tool.slug || tool.id || '';
+                    return String(raw)
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                };
+
+                const uniqueMap = new Map();
+                data.tools.forEach(tool => {
+                    const key = normalizeKey(tool);
+                    if (!key) return;
+                    const existing = uniqueMap.get(key);
+                    if (!existing || scoreTool(tool) > scoreTool(existing)) {
+                        uniqueMap.set(key, tool);
+                    }
+                });
+
+                const tools = Array.from(uniqueMap.values())
+                    .sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || '', 'en', { sensitivity: 'base' }));
+                
+                if (tools.length === 0) {
+                    const p = document.createElement('p');
+                    p.textContent = 'No tools available.';
+                    toolsGrid.innerHTML = '';
+                    toolsGrid.appendChild(p);
+                    return;
+                }
+                
+                toolsGrid.innerHTML = '';
+                tools.forEach(tool => {
+                    const card = document.createElement('div');
+                    card.className = 'card tool-card';
+                    card.style.cssText = 'padding: 20px; margin-bottom: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = tool.title || tool.name || tool.id;
+                    h3.style.cssText = 'margin-bottom: 12px; color: var(--color-text, #1a1a1a);';
+                    card.appendChild(h3);
+                    
+                    const p = document.createElement('p');
+                    const cleaned = extractDescription(tool);
+                    p.textContent = cleaned || 'Description coming soon.';
+                    p.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
+                    card.appendChild(p);
+                    
+                    // Meta info
+                    const meta = document.createElement('div');
+                    meta.style.cssText = 'display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9em; color: var(--color-text-secondary, #666);';
+                    
+                    if (tool.duration) {
+                        const duration = document.createElement('span');
+                        duration.textContent = `⏱️ ${tool.duration}`;
+                        meta.appendChild(duration);
+                    }
+                    
+                    if (tool.difficulty) {
+                        const difficulty = document.createElement('span');
+                        const badge = document.createElement('span');
+                        badge.className = `badge badge-${tool.difficulty}`;
+                        badge.textContent = tool.difficulty;
+                        difficulty.innerHTML = `📖 `;
+                        difficulty.appendChild(badge);
+                        meta.appendChild(difficulty);
+                    }
+                    
+                    if (meta.children.length > 0) {
+                        card.appendChild(meta);
+                    }
+                    
+                    // CTA button
+                    const link = document.createElement('a');
+                    const toolSlug = encodeURIComponent(String(tool.slug || tool.id || tool.title || tool.name || '').trim());
+                    link.href = `/tools/tool.html?slug=${toolSlug}`;
+                    link.className = 'btn';
+                    link.textContent = 'View Tool';
+                    link.style.cssText = 'display: inline-block; margin-top: 10px;';
+                    card.appendChild(link);
+                    
+                    toolsGrid.appendChild(card);
+                });
+                
+                console.log('✅ Tools loaded:', tools.length, 'tools');
+                
+            } catch (error) {
+                console.error('[RYD] Error loading tools from /data/tools.json:', error.message);
+                console.error('[RYD] Full error:', error);
+                if (toolsGrid) {
+                    toolsGrid.innerHTML = '';
+                    const errorCard = document.createElement('div');
+                    errorCard.className = 'card tool-card';
+                    errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = 'Error Loading Tools';
+                    errorCard.appendChild(h3);
+                    
+                    const p1 = document.createElement('p');
+                    p1.textContent = 'Could not load tools data from /data/tools.json.';
+                    errorCard.appendChild(p1);
+                    
+                    const p2 = document.createElement('p');
+                    p2.style.cssText = 'font-size: 0.9em; color: #666; margin-top: 8px;';
+                    p2.textContent = `Error: ${error.message}`;
+                    errorCard.appendChild(p2);
+                    
+                    const p3 = document.createElement('p');
+                    p3.style.cssText = 'font-size: 0.85em; color: #999; margin-top: 4px;';
+                    p3.textContent = 'Please check the browser console for details and try refreshing the page.';
+                    errorCard.appendChild(p3);
+                    
+                    toolsGrid.appendChild(errorCard);
+                }
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadAndRenderTools);
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager noscript (injected by analytics.js) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>Ride Your Demons</h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section tools-intro">
+            <h1 class="sectionTitle">Self-Help Tools</h1>
+            <p>Educational techniques and practices for stress management, emotional well-being, and personal growth. No signup required.</p>
+        </section>
+
+        <section class="section">
+            <div class="grid tools-grid" id="toolsGrid">
+                <div class="card tool-card">
+                    <p>Loading tools...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-tools.js" defer></script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

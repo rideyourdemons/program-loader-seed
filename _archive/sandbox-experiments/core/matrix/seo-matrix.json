@@ -1,0 +1,54 @@
+{
+    "version": "1.0",
+    "status": "canonical",
+  
+    "authority_model": {
+      "source": [
+        "intent satisfaction",
+        "content completeness",
+        "structural consistency",
+        "user progression"
+      ],
+      "explicitly_excluded": [
+        "keyword stuffing",
+        "behavioral manipulation",
+        "urgency pressure",
+        "personal profiling"
+      ]
+    },
+  
+    "gates": [
+      {
+        "id": "stabilization",
+        "intent": "help users regain calm and safety",
+        "priority": "high",
+        "indexable": true
+      },
+      {
+        "id": "orientation",
+        "intent": "help users understand their situation",
+        "priority": "high",
+        "indexable": true
+      },
+      {
+        "id": "reflection",
+        "intent": "help users process meaning responsibly",
+        "priority": "medium",
+        "indexable": true
+      },
+      {
+        "id": "integration",
+        "intent": "help users move forward with clarity",
+        "priority": "medium",
+        "indexable": true
+      }
+    ],
+  
+    "indexing_rules": {
+      "one_primary_intent_per_page": true,
+      "no_intent_cannibalization": true,
+      "authority_accrues_from_completion": true,
+      "expansion_requires_existing_demand": true
+    }
+  }
+  

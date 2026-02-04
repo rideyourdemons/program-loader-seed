@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "description": "Fixed, static numerology meanings for symbolic reflection only. NON-ADAPTIVE. NON-CLINICAL. For metaphorical framing and optional reflective prompts only.",
+  "disclaimer": "These meanings are presented as symbolic reflection only, not factual guidance, predictions, or decision-making tools.",
+  "meanings": {
+    "1": {
+      "symbolic": "beginnings, independence, self-reliance",
+      "reflective_framing": "Some find it interesting to reflect on themes of new beginnings and self-direction",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "2": {
+      "symbolic": "cooperation, balance, partnership",
+      "reflective_framing": "As a symbolic lens, themes of balance and connection might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "3": {
+      "symbolic": "creativity, expression, communication",
+      "reflective_framing": "Some find it interesting to consider creativity and expression as metaphorical frames",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "4": {
+      "symbolic": "stability, structure, foundation",
+      "reflective_framing": "As a symbolic lens, themes of stability and structure might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "5": {
+      "symbolic": "freedom, change, exploration",
+      "reflective_framing": "Some find it interesting to consider freedom and exploration as metaphorical frames",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "6": {
+      "symbolic": "nurturing, responsibility, care",
+      "reflective_framing": "As a symbolic lens, themes of care and responsibility might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "7": {
+      "symbolic": "introspection, wisdom, inner search",
+      "reflective_framing": "Some find it interesting to consider introspection and inner exploration as metaphorical frames",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "8": {
+      "symbolic": "achievement, material focus, organization",
+      "reflective_framing": "As a symbolic lens, themes of achievement and organization might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "9": {
+      "symbolic": "completion, service, universal concern",
+      "reflective_framing": "Some find it interesting to consider completion and service as metaphorical frames",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "11": {
+      "symbolic": "intuition, inspiration, spiritual insight",
+      "reflective_framing": "As a symbolic lens, themes of intuition and inspiration might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "22": {
+      "symbolic": "master builder, practical vision, large-scale impact",
+      "reflective_framing": "Some find it interesting to consider practical vision and impact as metaphorical frames",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    },
+    "33": {
+      "symbolic": "master teacher, compassion, healing service",
+      "reflective_framing": "As a symbolic lens, themes of teaching and service might invite reflection",
+      "not_intended_as": ["prediction", "guidance", "truth", "prescription"]
+    }
+  },
+  "constraints": {
+    "static": true,
+    "non_adaptive": true,
+    "non_clinical": true,
+    "symbolic_only": true,
+    "optional": true,
+    "never_override_matrix": true,
+    "never_personalize_claims": true,
+    "never_target_vulnerability": true,
+    "never_influence_merch": true
+  },
+  "required_disclosure": "Numerology is presented here as symbolic reflection only, not factual guidance."
+}
+

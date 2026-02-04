@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYD Platform - Search & Tool Rotation Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 24px 0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 32px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            color: #1a1a1a;
+        }
+
+        header p {
+            display: none;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .tour-button {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .tour-button:hover {
+            background: #fafafa;
+            border-color: #d0d0d0;
+        }
+
+        /* Search Bar Styles */
+        .search-section {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .search-section h2 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .search-bar-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-form {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0;
+            transition: border-color 0.2s;
+        }
+
+        .search-form:focus-within {
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: transparent;
+        }
+
+        .search-clear-button {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .search-clear-button:hover {
+            color: #333;
+        }
+
+        .search-submit-button {
+            background: #1a1a1a;
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 0 6px 6px 0;
+            transition: background 0.2s;
+        }
+
+        .search-submit-button:hover:not(:disabled) {
+            background: #333333;
+        }
+
+        .search-submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-suggestions.show {
+            display: block;
+        }
+
+        .search-suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .search-suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestion-item:hover {
+            background: #f8f9fa;
+        }
+
+        /* Pain Point Page Styles */
+        .pain-point-page {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+            display: none;
+        }
+
+        .pain-point-page.show {
+            display: block;
+        }
+
+        .pain-point-header {
+            margin-bottom: 30px;
+        }
+
+        .pain-point-header h2 {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .pain-point-description {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .disclaimer-brief {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .tools-section {
+            margin-bottom: 30px;
+        }
+
+        .tools-section h3 {
+            font-size: 1.8em;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-intro {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .tools-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: box-shadow 0.2s;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .tool-title {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .tool-description {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .start-tool-button {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .start-tool-button:hover {
+            background: #333333;
+        }
+
+        .research-section {
+            margin-bottom: 30px;
+        }
+
+        .research-toggle {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .research-toggle h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .research-content {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .research-content.show {
+            display: block;
+        }
+
+        .research-item {
+            background: white;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .research-item h4 {
+            margin-bottom: 8px;
+        }
+
+        .back-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+        }
+
+        .tool-of-day {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .tool-of-day h2 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .tool-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #1a1a1a;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .tool-title {
+            font-size: 2em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tool-description {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        /* Tour Guide Styles - Original RYD Minimal Design */
+        .tour-overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+
+        .tour-overlay-backdrop.active {
+            display: block;
+        }
+
+        .tour-tooltip {
+            position: fixed;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            width: 400px;
+            max-width: 90vw;
+            display: none;
+            animation: tourFadeIn 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tour-tooltip.active {
+            display: block;
+        }
+
+        @keyframes tourFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tour-tooltip-header {
+            background: #fafafa;
+            color: #1a1a1a;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tour-tooltip-header h3 {
+            margin: 0;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .tour-close {
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            color: #666;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tour-close:hover {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .tour-tooltip-content {
+            padding: 24px;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .tour-tooltip-content h3 {
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .tour-tooltip-content p {
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .tour-progress {
+            padding: 16px 24px;
+            background: #fafafa;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tour-progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .tour-progress-fill {
+            height: 100%;
+            background: #666;
+            transition: width 0.3s ease;
+        }
+
+        .tour-progress-text {
+            font-size: 0.85em;
+            color: #666;
+            text-align: center;
+            display: block;
+        }
+
+        .tour-controls {
+            padding: 16px 24px;
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .tour-button {
+            padding: 10px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            color: #1a1a1a;
+        }
+
+        .tour-button-primary {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+            flex: 1;
+        }
+
+        .tour-button-primary:hover:not(:disabled) {
+            background: #333;
+            border-color: #333;
+        }
+
+        .tour-button-secondary {
+            background: white;
+            color: #1a1a1a;
+            border-color: #e0e0e0;
+        }
+
+        .tour-button-secondary:hover:not(:disabled) {
+            background: #fafafa;
+        }
+
+        .tour-button-link {
+            background: transparent;
+            border: none;
+            color: #666;
+            text-decoration: underline;
+            padding: 10px 8px;
+            font-weight: 400;
+        }
+
+        .tour-button-link:hover {
+            color: #1a1a1a;
+        }
+
+        .tour-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 9997;
+            outline: 2px solid #1a1a1a;
+            outline-offset: 3px;
+            border-radius: 4px;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
+        }
+
+        #startTourButton {
+            /* Styles now in .tour-button */
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Ride Your Demons</h1>
+                <div class="header-actions">
+                    <button onclick="startTour()" id="startTourButton" class="tour-button">
+                        Take a Tour
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section" id="searchSection" data-tour="search">
+            <h2>Search for Help</h2>
+            <div class="search-bar-container">
+                <form class="search-form" id="searchForm" onsubmit="handleSearch(event)">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search for depression, anxiety, stress..."
+                        autocomplete="off"
+                        oninput="handleSearchInput(event)"
+                    />
+                    <button
+                        type="button"
+                        id="clearButton"
+                        class="search-clear-button"
+                        onclick="clearSearch()"
+                        style="display: none;"
+                    >
+                        Ãƒâ€”
+                    </button>
+                    <button
+                        type="submit"
+                        class="search-submit-button"
+                        id="searchButton"
+                    >
+                        Ã°Å¸â€Â
+                    </button>
+                </form>
+                <ul class="search-suggestions" id="suggestions"></ul>
+            </div>
+        </section>
+
+        <!-- Pain Point Page (hidden by default) -->
+        <section class="pain-point-page" id="painPointPage">
+            <button class="back-button" onclick="showSearchSection()">Ã¢â€ Â Back to Search</button>
+            <div class="pain-point-header">
+                <h2 id="painPointTitle"></h2>
+                <p class="pain-point-description" id="painPointDescription"></p>
+                <p class="disclaimer-brief">
+                    <small>Educational purposes only. Not a replacement for professional treatment.</small>
+                </p>
+            </div>
+
+            <div class="tools-section">
+                <h3>Three Free Self-Help Tools</h3>
+                <p class="section-intro">
+                    We offer <strong>three proven self-help techniques</strong> completely free, 
+                    backed by peer-reviewed research. No signup required. Start immediately.
+                </p>
+                <div class="tools-grid" id="toolsGrid"></div>
+            </div>
+
+            <div class="research-section">
+                <div class="research-toggle" onclick="toggleResearch()">
+                    <h3>Research & Evidence</h3>
+                    <span id="researchToggleIcon">+</span>
+                </div>
+                <div class="research-content" id="researchContent">
+                    <p>Learn the science behind these techniques. All tools are backed by peer-reviewed research.</p>
+                    <div id="researchList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool of the Day Section (hidden when viewing pain point) -->
+        <section class="tool-of-day" id="toolOfDaySection" data-tour="tool-of-day">
+            <h2>Tool of the Day</h2>
+            <div class="tool-card">
+                <div class="tool-title" id="toolTitle">Loading...</div>
+                <div class="tool-description" id="toolDescription">Loading...</div>
+                <div class="tool-meta">
+                    <div class="tool-meta-item">
+                        <span>Ã¢ÂÂ±</span>
+                        <span id="toolDuration">Loading...</span>
+                    </div>
+                    <div class="tool-meta-item">
+                        <span>Ã°Å¸â€œÅ </span>
+                        <span class="badge badge-beginner" id="toolDifficulty">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>This is a sandbox preview. Test the search and tool rotation system before going live.</p>
+            <p>Changes made here do not affect the production site.</p>
+        </footer>
+    </div>
+
+    <!-- Tour Guide Overlay -->
+    <div class="tour-overlay-backdrop" id="tourBackdrop" onclick="skipTour()"></div>
+    <div class="tour-tooltip" id="tourTooltip">
+        <div class="tour-tooltip-header">
+            <h3 id="tourTitle">Welcome</h3>
+            <button class="tour-close" onclick="skipTour()" aria-label="Skip tour">Ãƒâ€”</button>
+        </div>
+        <div class="tour-tooltip-content" id="tourContent"></div>
+        <div class="tour-progress">
+            <div class="tour-progress-bar">
+                <div class="tour-progress-fill" id="tourProgressFill"></div>
+            </div>
+            <span class="tour-progress-text" id="tourProgressText">Step 0 of 0</span>
+        </div>
+        <div class="tour-controls">
+            <button class="tour-button tour-button-secondary" id="tourPrev" onclick="prevTourStep()">Previous</button>
+            <button class="tour-button tour-button-primary" id="tourNext" onclick="nextTourStep()">Next</button>
+            <button class="tour-button tour-button-link" onclick="skipTour()">Skip Tour</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock Pain Points Data
+        const mockPainPoints = [
+            {
+                id: 'depression',
+                title: 'Depression',
+                slug: 'depression',
+                description: 'Depression is more than feeling sad. It affects how you think, feel, and handle daily activities. We offer free, research-backed tools to help you cope.',
+                keywords: ['depression', 'depressed', 'sadness', 'major depressive disorder'],
+                tools: ['tool-1', 'tool-2', 'tool-3'],
+                research: [
+                    {
+                        title: 'Cognitive Behavioral Therapy for Depression',
+                        authors: ['Smith, J.', 'Doe, A.'],
+                        publication: 'Journal of Mental Health',
+                        year: 2020
+                    }
+                ]
+            },
+            {
+                id: 'anxiety',
+                title: 'Anxiety',
+                slug: 'anxiety',
+                description: 'Anxiety can feel overwhelming. These free tools help you manage anxious thoughts and feelings with proven techniques.',
+                keywords: ['anxiety', 'anxious', 'worry', 'panic'],
+                tools: ['tool-1', 'tool-2', 'tool-5'],
+                research: [
+                    {
+                        title: 'Breathing Techniques for Anxiety Management',
+                        authors: ['Johnson, M.'],
+                        publication: 'Psychology Today',
+                        year: 2021
+                    }
+                ]
+            },
+            {
+                id: 'anxiety-attacks',
+                title: 'Anxiety Attacks',
+                slug: 'anxiety-attacks',
+                description: 'Panic and anxiety attacks can be frightening. Learn immediate techniques to help you regain control.',
+                keywords: ['anxiety attacks', 'panic attack', 'panic', 'anxiety episode'],
+                tools: ['tool-1', 'tool-2', 'tool-4'],
+                research: [
+                    {
+                        title: 'Grounding Techniques for Panic Attacks',
+                        authors: ['Williams, K.'],
+                        publication: 'Clinical Psychology Review',
+                        year: 2019
+                    }
+                ]
+            },
+            {
+                id: 'stress',
+                title: 'Stress',
+                slug: 'stress',
+                description: 'Chronic stress impacts your health and wellbeing. These tools help you manage and reduce stress effectively.',
+                keywords: ['stress', 'stressed', 'overwhelmed', 'burnout'],
+                tools: ['tool-2', 'tool-3', 'tool-5'],
+                research: [
+                    {
+                        title: 'Stress Reduction Through Mindfulness',
+                        authors: ['Brown, L.', 'Davis, R.'],
+                        publication: 'Health Psychology',
+                        year: 2022
+                    }
+                ]
+            },
+            {
+                id: 'grief',
+                title: 'Grief',
+                slug: 'grief',
+                description: 'Grief is a natural response to loss. These tools support you through the grieving process.',
+                keywords: ['grief', 'grieving', 'loss', 'bereavement'],
+                tools: ['tool-3', 'tool-4', 'tool-5'],
+                research: [
+                    {
+                        title: 'Supporting Grief Recovery',
+                        authors: ['Anderson, S.'],
+                        publication: 'Bereavement Care',
+                        year: 2020
+                    }
+                ]
+            }
+        ];
+
+        // Mock Tools Data
+        const mockTools = [
+            {
+                id: 'tool-1',
+                title: 'Breathing Exercise',
+                description: 'A simple breathing technique to reduce anxiety and promote relaxation. Practice the 4-4-4 method.',
+                duration: '5 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-2',
+                title: 'Grounding Technique',
+                description: '5-4-3-2-1 grounding method to bring you back to the present moment when feeling overwhelmed.',
+                duration: '3 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-3',
+                title: 'Progressive Muscle Relaxation',
+                description: 'Release tension through systematic muscle relaxation. Great for stress and physical tension.',
+                duration: '10 minutes',
+                difficulty: 'intermediate'
+            },
+            {
+                id: 'tool-4',
+                title: 'Cognitive Reframing',
+                description: 'Change your perspective on challenging thoughts. Learn to see situations from different angles.',
+                duration: '10-15 minutes',
+                difficulty: 'intermediate'
+            },
+            {
+                id: 'tool-5',
+                title: 'Mindful Meditation',
+                description: 'Practice present-moment awareness. Build your ability to stay grounded and focused.',
+                duration: '10 minutes',
+                difficulty: 'beginner'
+            }
+        ];
+
+        // Search Functions
+        function searchPainPoints(query) {
+            if (!query || query.length < 2) return [];
+
+            const searchTerm = query.toLowerCase().trim();
+            const results = [];
+
+            mockPainPoints.forEach(painPoint => {
+                let score = 0;
+
+                // Exact title match
+                if (painPoint.title.toLowerCase() === searchTerm) {
+                    score = 100;
+                }
+                // Title starts with query
+                else if (painPoint.title.toLowerCase().startsWith(searchTerm)) {
+                    score = 90;
+                }
+                // Title contains query
+                else if (painPoint.title.toLowerCase().includes(searchTerm)) {
+                    score = 80;
+                }
+                // Slug match
+                else if (painPoint.slug.toLowerCase().includes(searchTerm)) {
+                    score = 75;
+                }
+                // Keyword match
+                else if (painPoint.keywords && painPoint.keywords.some(kw => kw.toLowerCase().includes(searchTerm))) {
+                    score = 70;
+                }
+                // Description contains query
+                else if (painPoint.description.toLowerCase().includes(searchTerm)) {
+                    score = 60;
+                }
+
+                if (score > 0) {
+                    results.push({ ...painPoint, searchScore: score });
+                }
+            });
+
+            // Sort by score
+            results.sort((a, b) => b.searchScore - a.searchScore);
+            return results.slice(0, 5);
+        }
+
+        function handleSearchInput(event) {
+            const query = event.target.value;
+            const clearButton = document.getElementById('clearButton');
+            const suggestions = document.getElementById('suggestions');
+
+            if (query.length > 0) {
+                clearButton.style.display = 'block';
+            } else {
+                clearButton.style.display = 'none';
+                suggestions.classList.remove('show');
+                suggestions.innerHTML = '';
+                return;
+            }
+
+            if (query.length >= 2) {
+                const results = searchPainPoints(query);
+                showSuggestions(results);
+            } else {
+                suggestions.classList.remove('show');
+                suggestions.innerHTML = '';
+            }
+        }
+
+        function showSuggestions(results) {
+            const suggestions = document.getElementById('suggestions');
+            
+            if (results.length === 0) {
+                suggestions.classList.remove('show');
+                return;
+            }
+
+            suggestions.innerHTML = results.map(result => 
+                `<li class="search-suggestion-item" onclick="selectPainPoint('${result.id}')">${result.title}</li>`
+            ).join('');
+
+            suggestions.classList.add('show');
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const input = document.getElementById('searchInput');
+            const query = input.value.trim();
+
+            if (!query) return;
+
+            const results = searchPainPoints(query);
+            if (results.length > 0) {
+                selectPainPoint(results[0].id);
+            } else {
+                alert(`No results found for "${query}"`);
+            }
+        }
+
+        function selectPainPoint(painPointId) {
+            const painPoint = mockPainPoints.find(pp => pp.id === painPointId);
+            if (!painPoint) return;
+
+            showPainPointPage(painPoint);
+        }
+
+        function showPainPointPage(painPoint) {
+            // Hide search section and tool of day
+            document.getElementById('searchSection').style.display = 'none';
+            document.getElementById('toolOfDaySection').style.display = 'none';
+
+            // Show pain point page
+            const page = document.getElementById('painPointPage');
+            page.classList.add('show');
+
+            // Set pain point info
+            document.getElementById('painPointTitle').textContent = painPoint.title;
+            document.getElementById('painPointDescription').textContent = painPoint.description;
+
+            // Get tools
+            const tools = painPoint.tools.map(toolId => 
+                mockTools.find(t => t.id === toolId)
+            ).filter(Boolean);
+
+            // Display tools
+            const toolsGrid = document.getElementById('toolsGrid');
+            toolsGrid.innerHTML = tools.map((tool, index) => `
+                <div class="tool-card">
+                    <span class="tool-number">${index + 1}</span>
+                    <div style="display: inline-block; width: calc(100% - 50px); vertical-align: top;">
+                        <div class="tool-title">${tool.title}</div>
+                        <div class="tool-description">${tool.description}</div>
+                        <div class="tool-meta">
+                            <span>Ã¢ÂÂ± ${tool.duration}</span>
+                            <span>Ã°Å¸â€œÅ  <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
+                        </div>
+                        <button class="start-tool-button" onclick="alert('Tool: ${tool.title}\\n\\nThis is a sandbox preview. In production, this would start the tool workthrough.')">Start Tool</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Display research
+            const researchList = document.getElementById('researchList');
+            if (painPoint.research && painPoint.research.length > 0) {
+                researchList.innerHTML = painPoint.research.map(research => `
+                    <div class="research-item">
+                        <h4>${research.title}</h4>
+                        ${research.authors ? `<p><strong>By:</strong> ${research.authors.join(', ')}</p>` : ''}
+                        ${research.publication ? `<p><strong>Publication:</strong> ${research.publication} (${research.year})</p>` : ''}
+                    </div>
+                `).join('');
+            } else {
+                researchList.innerHTML = '<p>Research information will be available here.</p>';
+            }
+
+            // Clear search
+            document.getElementById('searchInput').value = '';
+            document.getElementById('suggestions').classList.remove('show');
+        }
+
+        function showSearchSection() {
+            document.getElementById('painPointPage').classList.remove('show');
+            document.getElementById('searchSection').style.display = 'block';
+            document.getElementById('toolOfDaySection').style.display = 'block';
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearButton').style.display = 'none';
+            document.getElementById('suggestions').classList.remove('show');
+            document.getElementById('searchInput').focus();
+        }
+
+        let researchExpanded = false;
+        function toggleResearch() {
+            researchExpanded = !researchExpanded;
+            const content = document.getElementById('researchContent');
+            const icon = document.getElementById('researchToggleIcon');
+            
+            if (researchExpanded) {
+                content.classList.add('show');
+                icon.textContent = 'Ã¢Ë†â€™';
+            } else {
+                content.classList.remove('show');
+                icon.textContent = '+';
+            }
+        }
+
+        // Tool of the Day (simple rotation)
+        function getToolOfTheDay() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const index = dayOfYear % mockTools.length;
+            return mockTools[index];
+        }
+
+        function updateToolOfDay() {
+            const tool = getToolOfTheDay();
+            document.getElementById('toolTitle').textContent = tool.title;
+            document.getElementById('toolDescription').textContent = tool.description;
+            document.getElementById('toolDuration').textContent = tool.duration;
+            
+            const difficultyEl = document.getElementById('toolDifficulty');
+            difficultyEl.textContent = tool.difficulty;
+            difficultyEl.className = `badge badge-${tool.difficulty}`;
+        }
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.querySelector('.search-bar-container');
+            if (!container.contains(e.target)) {
+                document.getElementById('suggestions').classList.remove('show');
+            }
+        });
+
+        // Tour Guide System
+        const tourSteps = [
+            {
+                id: 'welcome',
+                title: 'Welcome to Ride Your Demons',
+                content: '<h3>Welcome!</h3><p>This brief tour will help you navigate our platform and discover tools that can support your journey.</p><p>You can skip or pause at any time and return later.</p>',
+                targetElement: null,
+                position: 'center'
+            },
+            {
+                id: 'search',
+                title: 'Search for What You Need',
+                content: '<h3>Find Support</h3><p>Use the search to find specific challenges or pain points you\'re experiencing.</p><p>We have tools and resources for a wide range of topics like depression, anxiety, stress, and more.</p>',
+                targetElement: '#searchSection',
+                position: 'bottom'
+            },
+            {
+                id: 'tool-of-day',
+                title: 'Tool of the Day',
+                content: '<h3>Daily Inspiration</h3><p>We feature a different tool every day to help you discover new resources.</p><p>Come back daily to explore something new!</p>',
+                targetElement: '#toolOfDaySection',
+                position: 'bottom'
+            },
+            {
+                id: 'complete',
+                title: 'You\'re All Set!',
+                content: '<h3>Ready to Begin</h3><p>You now know the basics of navigating our platform.</p><p>Start by searching for something you\'re dealing with, or explore the tool of the day!</p>',
+                targetElement: null,
+                position: 'center'
+            }
+        ];
+
+        let currentTourStep = -1;
+        let tourActive = false;
+        let tourTargetElement = null;
+
+        function startTour() {
+            tourActive = true;
+            currentTourStep = 0;
+            document.getElementById('startTourButton').style.display = 'none';
+            showTourStep(0);
+        }
+
+        function showTourStep(stepIndex) {
+            if (stepIndex < 0 || stepIndex >= tourSteps.length) {
+                endTour();
+                return;
+            }
+
+            const step = tourSteps[stepIndex];
+            const backdrop = document.getElementById('tourBackdrop');
+            const tooltip = document.getElementById('tourTooltip');
+
+            // Remove previous highlight
+            if (tourTargetElement) {
+                tourTargetElement.classList.remove('tour-highlight');
+                tourTargetElement = null;
+            }
+
+            // Show backdrop
+            backdrop.classList.add('active');
+
+            // Position tooltip
+            if (step.targetElement) {
+                const element = document.querySelector(step.targetElement);
+                if (element) {
+                    element.classList.add('tour-highlight');
+                    tourTargetElement = element;
+                    const rect = element.getBoundingClientRect();
+                    const positions = calculateTourPosition(rect, step.position);
+                    tooltip.style.top = positions.top + 'px';
+                    tooltip.style.left = positions.left + 'px';
+                } else {
+                    // Center if element not found
+                    tooltip.style.top = '50%';
+                    tooltip.style.left = '50%';
+                    tooltip.style.transform = 'translate(-50%, -50%)';
+                }
+            } else {
+                // Center position
+                tooltip.style.top = '50%';
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+            }
+
+            // Update content
+            document.getElementById('tourTitle').textContent = step.title;
+            document.getElementById('tourContent').innerHTML = step.content;
+
+            // Update progress
+            const progress = ((stepIndex + 1) / tourSteps.length) * 100;
+            document.getElementById('tourProgressFill').style.width = progress + '%';
+            document.getElementById('tourProgressText').textContent = `Step ${stepIndex + 1} of ${tourSteps.length}`;
+
+            // Update buttons
+            const prevButton = document.getElementById('tourPrev');
+            const nextButton = document.getElementById('tourNext');
+            prevButton.disabled = stepIndex === 0;
+            nextButton.textContent = stepIndex === tourSteps.length - 1 ? 'Start Exploring' : 'Next';
+
+            // Show tooltip
+            tooltip.classList.add('active');
+            currentTourStep = stepIndex;
+        }
+
+        function calculateTourPosition(rect, position) {
+            const tooltipWidth = 380;
+            const tooltipHeight = 400;
+            const padding = 20;
+
+            switch (position) {
+                case 'top':
+                    return {
+                        top: rect.top - tooltipHeight - padding + window.scrollY,
+                        left: rect.left + (rect.width / 2) - (tooltipWidth / 2) + window.scrollX
+                    };
+                case 'bottom':
+                    return {
+                        top: rect.bottom + padding + window.scrollY,
+                        left: rect.left + (rect.width / 2) - (tooltipWidth / 2) + window.scrollX
+                    };
+                case 'left':
+                    return {
+                        top: rect.top + (rect.height / 2) - (tooltipHeight / 2) + window.scrollY,
+                        left: rect.left - tooltipWidth - padding + window.scrollX
+                    };
+                case 'right':
+                    return {
+                        top: rect.top + (rect.height / 2) - (tooltipHeight / 2) + window.scrollY,
+                        left: rect.right + padding + window.scrollX
+                    };
+                default:
+                    return {
+                        top: window.innerHeight / 2 - tooltipHeight / 2,
+                        left: window.innerWidth / 2 - tooltipWidth / 2
+                    };
+            }
+        }
+
+        function nextTourStep() {
+            if (currentTourStep < tourSteps.length - 1) {
+                showTourStep(currentTourStep + 1);
+            } else {
+                endTour();
+            }
+        }
+
+        function prevTourStep() {
+            if (currentTourStep > 0) {
+                showTourStep(currentTourStep - 1);
+            }
+        }
+
+        function skipTour() {
+            endTour();
+        }
+
+        function endTour() {
+            tourActive = false;
+            document.getElementById('tourBackdrop').classList.remove('active');
+            document.getElementById('tourTooltip').classList.remove('active');
+            document.getElementById('startTourButton').style.display = 'inline-block';
+            
+            if (tourTargetElement) {
+                tourTargetElement.classList.remove('tour-highlight');
+                tourTargetElement = null;
+            }
+
+            // Reset transform
+            const tooltip = document.getElementById('tourTooltip');
+            tooltip.style.transform = '';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateToolOfDay();
+        });
+    </script>
+</body>
+</html>
+

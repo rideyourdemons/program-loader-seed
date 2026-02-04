@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store — Coming Soon | Ride Your Demons</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666;
+            --color-border: #e0e0e0;
+            --color-bg: #f5f5f5;
+            --color-bg-secondary: #ffffff;
+            --color-accent: #667eea;
+            --color-accent-dark: #764ba2;
+            --color-header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            background: var(--color-header-gradient);
+            color: #ffffff;
+            border-bottom: none;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: opacity 0.2s;
+        }
+
+        .header-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .page-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-content h2 {
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .page-content p {
+            font-size: 1.1em;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            margin: 0 var(--spacing-md);
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            color: var(--color-text-secondary);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header-nav {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+
+            .page-content h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <script>
+        // CSS Loading Debug (localhost only)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('=== CSS Loading Debug (Localhost) ===');
+                const stylesheetLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+                console.log('Stylesheet links found:', stylesheetLinks.length);
+                stylesheetLinks.forEach((link, index) => {
+                    console.log(`Stylesheet link ${index + 1}:`, link.href);
+                });
+                console.log('====================================');
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>Ride Your Demons</h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-content">
+                <h2>Store — Coming Soon</h2>
+                <p>Ride Your Demons exists to provide free, research-backed mental health tools. Our mission is to support mental resilience without barriers.</p>
+                <p>Merchandise launching later. Proceeds will support platform development and help keep our tools free and accessible.</p>
+                <p>No checkout, no products, no payments—just a place for future support options when we're ready.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

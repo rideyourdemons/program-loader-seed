@@ -1,0 +1,7 @@
+{
+  "enabledPrograms": [
+    "example-program",
+    "website-monitor",
+    "remote-access"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "hosting": {
+    "public": "public",
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/tools",
+        "destination": "/tools.html"
+      },
+      {
+        "source": "/insights",
+        "destination": "/insights.html"
+      },
+      {
+        "source": "/matrix/**",
+        "destination": "/matrix/**"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": [],
+    "headers": [
+      {
+        "source": "**/*.@(html|js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      },
+      {
+        "source": "/matrix/**",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          }
+        ]
+      }
+    ]
+  }
+}
+

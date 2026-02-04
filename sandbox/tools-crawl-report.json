@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-02-01T20:59:04.529Z",
+  "source": "https://rideyourdemons.com",
+  "totals": {
+    "sitemapUrls": 1,
+    "toolUrlsKept": 2277,
+    "extracted": 2259,
+    "failed": 13,
+    "deduped": 5,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "url": "https://rideyourdemons.com/insights/mens-mental-health/how-do-i-build-mental-toughness",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/addiction-recovery-men-couples",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/financial-collapse-purpose",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/fathers-and-sons",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/full-resurrection-system",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/grief-and-loss-recovery",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/heartbreak-loop",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/identity-crisis",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/mens-mental-health",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/teen-gen-z-mental-health",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/trauma-rebuild",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/womens-mental-health",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    },
+    {
+      "url": "https://rideyourdemons.com/members/tools/shame-recovery",
+      "status": "HTTP 404",
+      "error": "Error: HTTP 404"
+    }
+  ],
+  "skipped": []
+}

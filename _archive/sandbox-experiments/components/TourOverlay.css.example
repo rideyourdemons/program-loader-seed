@@ -1,0 +1,200 @@
+/**
+ * Tour Overlay Styles
+ * Styles for the guided tour overlay and tooltips
+ */
+
+.tour-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  cursor: pointer;
+}
+
+.tour-tooltip {
+  position: fixed;
+  width: 320px;
+  max-width: 90vw;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  animation: tourFadeIn 0.3s ease-out;
+}
+
+@keyframes tourFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-highlight {
+  position: relative;
+  z-index: 9997;
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tour-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tour-tooltip-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tour-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tour-close:hover {
+  color: #374151;
+}
+
+.tour-tooltip-content {
+  padding: 16px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.tour-tooltip-content h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tour-tooltip-content p {
+  margin: 0 0 12px 0;
+}
+
+.tour-tooltip-content p:last-child {
+  margin-bottom: 0;
+}
+
+.tour-progress {
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.tour-progress-bar {
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.tour-progress-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.tour-progress-text {
+  font-size: 12px;
+  color: #6b7280;
+  display: block;
+  text-align: center;
+}
+
+.tour-controls {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tour-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.tour-button-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.tour-button-primary:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.tour-button-secondary {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.tour-button-secondary:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.tour-button-link {
+  background: none;
+  color: #6b7280;
+  text-decoration: underline;
+  padding: 8px;
+}
+
+.tour-button-link:hover {
+  color: #374151;
+}
+
+.tour-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .tour-tooltip {
+    width: calc(100vw - 32px);
+    max-width: 90vw;
+  }
+  
+  .tour-controls {
+    flex-direction: column;
+  }
+  
+  .tour-button {
+    width: 100%;
+  }
+}
+
+
+
+

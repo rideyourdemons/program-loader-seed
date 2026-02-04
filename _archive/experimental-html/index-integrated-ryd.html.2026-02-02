@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Your Demons - Free Self-Help Tools</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666;
+            --color-border: #e0e0e0;
+            --color-bg: #ffffff;
+            --color-bg-secondary: #fafafa;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            background: #1a1a1a;
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: opacity 0.2s;
+        }
+
+        .header-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .hero-section h2 {
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tool of the Day */
+        .tool-of-day {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .tool-of-day h2 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border-left: 4px solid #667eea;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+        }
+
+        .tool-title {
+            font-size: 1.8em;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .tool-description {
+            font-size: 1.1em;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .tool-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-secondary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .rotation-info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: var(--spacing-md);
+            border-radius: 6px;
+            margin-top: var(--spacing-md);
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            margin: 0 var(--spacing-md);
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            color: var(--color-text-secondary);
+            font-size: 0.9em;
+        }
+
+        .disclaimer {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .header-nav {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+
+            .hero-section h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <script>
+        // CSS Loading Debug
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('=== CSS Loading Debug ===');
+            console.log('document.styleSheets.length:', document.styleSheets.length);
+            Array.from(document.styleSheets).forEach((sheet, index) => {
+                try {
+                    console.log(`Stylesheet ${index + 1}:`, sheet.href || 'inline');
+                } catch (e) {
+                    console.log(`Stylesheet ${index + 1}:`, 'cross-origin or inline');
+                }
+            });
+            console.log('========================');
+        });
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>Ride Your Demons</h1>
+            <nav class="header-nav">
+                <a href="index-integrated-ryd.html">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="store/">Store (Coming Soon)</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero-section">
+                <h2>Free Self-Help Tools</h2>
+                <p>Educational techniques and practices for stress management, emotional well-being, and personal growth. No signup required.</p>
+            </section>
+
+            <div class="disclaimer">
+                <strong>Educational Purpose Only:</strong> This platform provides educational self-help tools only, not medical advice, diagnosis, or treatment. If you are experiencing a mental health emergency, please contact your local emergency services or a mental health helpline.
+            </div>
+
+            <section class="tool-of-day">
+                <h2>Tool of the Day</h2>
+                <div class="tool-card" id="toolOfDayCard">
+                    <div class="tool-title" id="toolTitle">Loading...</div>
+                    <div class="tool-description" id="toolDescription"></div>
+                    <div class="tool-meta">
+                        <div class="tool-meta-item">
+                            <strong>Duration:</strong> <span id="toolDuration"></span>
+                        </div>
+                        <div class="tool-meta-item">
+                            <strong>Difficulty:</strong> <span id="toolDifficulty"></span>
+                        </div>
+                    </div>
+                    <div class="rotation-info">
+                        <strong>Next rotation:</strong> <span id="rotationTime"></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index-integrated-ryd.html">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="store/">Store (Coming Soon)</a>
+                <a href="about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client-side engines (load before main script) -->
+    <script src="/js/ethics-guard.js"></script>
+    <script src="/js/tool-rotation.js"></script>
+    <script src="/js/compliance-state.js"></script>
+    
+    <script type="module">
+        // Production-safe tool rotation (educational self-help tools only)
+        const educationalTools = [
+            {
+                id: 'tool-1',
+                title: 'Breathing Exercise',
+                description: 'A simple breathing technique for stress management and relaxation',
+                duration: '5 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-2',
+                title: 'Grounding Technique',
+                description: '5-4-3-2-1 grounding method to bring awareness to the present moment',
+                duration: '3 minutes',
+                difficulty: 'beginner'
+            },
+            {
+                id: 'tool-3',
+                title: 'Progressive Muscle Relaxation',
+                description: 'Release tension through systematic muscle relaxation',
+                duration: '10 minutes',
+                difficulty: 'intermediate'
+            },
+            {
+                id: 'tool-4',
+                title: 'Cognitive Reframing',
+                description: 'Explore different perspectives on challenging thoughts',
+                duration: '10-15 minutes',
+                difficulty: 'intermediate'
+            },
+            {
+                id: 'tool-5',
+                title: 'Mindful Meditation',
+                description: 'Practice present-moment awareness and acceptance',
+                duration: '10 minutes',
+                difficulty: 'beginner'
+            }
+        ];
+
+        function getToolIndexForDate(date, toolCount) {
+            const year = date.getFullYear();
+            const startOfYear = new Date(year, 0, 1);
+            const dayOfYear = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24));
+            const seed = year * 366 + dayOfYear;
+            return seed % toolCount;
+        }
+
+        function getToolOfTheDay(tools, targetDate = null) {
+            const today = targetDate || new Date();
+            const toolIndex = getToolIndexForDate(today, tools.length);
+            return tools[toolIndex];
+        }
+
+        function getNextRotationInfo() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(now.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const msUntilMidnight = tomorrow - now;
+            const hoursUntil = Math.floor(msUntilMidnight / (1000 * 60 * 60));
+            const minutesUntil = Math.floor((msUntilMidnight % (1000 * 60 * 60)) / (1000 * 60));
+            
+            return {
+                hoursUntil: hoursUntil,
+                minutesUntil: minutesUntil,
+                formatted: `${hoursUntil}h ${minutesUntil}m`
+            };
+        }
+
+        function updateToolOfDay(targetDate = null) {
+            try {
+                const tool = getToolOfTheDay(educationalTools, targetDate);
+                const rotationInfo = getNextRotationInfo();
+                
+                const titleEl = document.getElementById('toolTitle');
+                const descEl = document.getElementById('toolDescription');
+                const durationEl = document.getElementById('toolDuration');
+                const difficultyEl = document.getElementById('toolDifficulty');
+                const rotationEl = document.getElementById('rotationTime');
+                
+                if (titleEl) titleEl.textContent = tool.title || 'Breathing Exercise';
+                if (descEl) descEl.textContent = tool.description || 'A simple breathing technique for stress management and relaxation';
+                if (durationEl) durationEl.textContent = tool.duration || '5 minutes';
+                
+                if (difficultyEl) {
+                    difficultyEl.textContent = tool.difficulty || 'beginner';
+                    difficultyEl.className = `badge badge-${tool.difficulty || 'beginner'}`;
+                }
+                
+                if (rotationEl) rotationEl.textContent = rotationInfo.formatted || '24h 0m';
+            } catch (error) {
+                console.error('Error updating Tool of the Day:', error);
+                // Fallback: show default tool
+                const titleEl = document.getElementById('toolTitle');
+                if (titleEl) titleEl.textContent = 'Breathing Exercise';
+                const descEl = document.getElementById('toolDescription');
+                if (descEl) descEl.textContent = 'A simple breathing technique for stress management and relaxation';
+                const durationEl = document.getElementById('toolDuration');
+                if (durationEl) durationEl.textContent = '5 minutes';
+                const difficultyEl = document.getElementById('toolDifficulty');
+                if (difficultyEl) {
+                    difficultyEl.textContent = 'beginner';
+                    difficultyEl.className = 'badge badge-beginner';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateToolOfDay();
+        });
+    </script>
+</body>
+</html>

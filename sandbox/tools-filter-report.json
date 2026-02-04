@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-02-01T22:51:09.824Z",
+  "inputFile": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\store\\tools.canonical.json",
+  "outputFile": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\store\\tools.filtered.json",
+  "totals": {
+    "input": 2259,
+    "filtered": 526,
+    "excluded": 1733,
+    "filterRate": "23.3%"
+  },
+  "exclusionReasons": {
+    "Clinical language": 1,
+    "No educational intent in title": 1730,
+    "Title is just ID or too short": 2
+  },
+  "sampleFiltered": [
+    {
+      "id": "how-do-i-address-the-underlying-issues-that-led-to-addiction",
+      "title": "How do I address the underlying issues that led to addiction?"
+    },
+    {
+      "id": "how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+      "title": "How do I bounce back after a slip to avoid full relapse?"
+    },
+    {
+      "id": "how-do-i-build-a-new-life-without-my-addiction",
+      "title": "How do I build a new life without my addiction?"
+    },
+    {
+      "id": "how-do-i-build-patience-and-persistence",
+      "title": "How do I build patience and persistence?"
+    },
+    {
+      "id": "how-do-i-create-healthy-pleasure-in-sober-life",
+      "title": "How do I create healthy pleasure in sober life?"
+    }
+  ],
+  "sampleExcluded": [
+    {
+      "id": "how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+      "reason": "Clinical language"
+    },
+    {
+      "id": "how-do-we-rebuild-as-a-couple-after-addiction",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-can-a-father-help-his-son-with-emotional-regulation",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-can-a-father-instill-discipline-in-his-son",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-can-a-father-teach-his-son-resilience",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-do-fathers-and-sons-build-a-stronger-bond",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-do-we-address-bullying-and-peer-pressure",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-do-we-build-a-support-network-as-a-family",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-do-we-build-purpose-through-service-together",
+      "reason": "No educational intent in title"
+    },
+    {
+      "id": "how-do-we-build-discipline-together",
+      "reason": "No educational intent in title"
+    }
+  ]
+}

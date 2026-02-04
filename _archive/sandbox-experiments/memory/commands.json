@@ -1,0 +1,43 @@
+[
+  {
+    "timestamp": "2025-12-24T22:08:23.787Z",
+    "command": "test command",
+    "success": true,
+    "exitCode": 0,
+    "duration": 100
+  },
+  {
+    "timestamp": "2025-12-24T22:08:25.320Z",
+    "command": "echo \"test\"",
+    "success": true,
+    "exitCode": 0,
+    "duration": 16
+  },
+  {
+    "timestamp": "2025-12-24T22:17:12.136Z",
+    "command": "test command",
+    "success": true,
+    "exitCode": 0,
+    "duration": 100
+  },
+  {
+    "timestamp": "2025-12-24T22:17:13.188Z",
+    "command": "echo \"test command\"",
+    "success": true,
+    "exitCode": 0,
+    "duration": 15
+  },
+  {
+    "timestamp": "2025-12-24T22:17:13.193Z",
+    "command": "integration test",
+    "success": true,
+    "exitCode": 0
+  },
+  {
+    "timestamp": "2025-12-24T22:24:41.880Z",
+    "command": "echo \"System test command\"",
+    "success": true,
+    "exitCode": 0,
+    "duration": 232
+  }
+]

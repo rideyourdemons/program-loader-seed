@@ -1,0 +1,36 @@
+{
+  "learned": [
+    {
+      "timestamp": "2025-12-24T22:08:25.320Z",
+      "command": "echo \"test\"",
+      "result": {
+        "success": true,
+        "exitCode": 0,
+        "output": "\"test\"\r\n"
+      },
+      "context": "Direct command"
+    },
+    {
+      "timestamp": "2025-12-24T22:17:13.189Z",
+      "command": "echo \"test command\"",
+      "result": {
+        "success": true,
+        "exitCode": 0,
+        "output": "\"test command\"\r\n"
+      },
+      "context": "Direct command"
+    },
+    {
+      "timestamp": "2025-12-24T22:24:41.883Z",
+      "command": "echo \"System test command\"",
+      "result": {
+        "success": true,
+        "exitCode": 0,
+        "output": "\"System test command\"\r\n"
+      },
+      "context": "Direct command"
+    }
+  ],
+  "patterns": {},
+  "lastUpdated": "2025-12-24T22:47:06.045Z"
+}

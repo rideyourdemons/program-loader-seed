@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-01T00:00:00Z",
+  "toolOfTheDay": {
+    "id": "grounding-reset",
+    "title": "Grounding Reset",
+    "description": "A short reset to calm your nervous system and regain focus.",
+    "duration": "5 minutes",
+    "difficulty": "beginner",
+    "cta": "/tools/grounding-reset"
+  },
+  "tools": [
+    {
+      "id": "grounding-reset",
+      "category": "anxiety",
+      "title": "Grounding Reset",
+      "summary": "Calm your body and mind in under 5 minutes.",
+      "description": "A short reset to calm your nervous system and regain focus. This technique helps you reconnect with the present moment when you feel overwhelmed or disconnected.",
+      "duration": "5 minutes",
+      "difficulty": "beginner",
+      "cta": "/tools/grounding-reset"
+    },
+    {
+      "id": "thought-unhook",
+      "category": "anxiety",
+      "title": "Thought Unhook",
+      "summary": "Create distance from looping thoughts.",
+      "description": "Create distance from looping thoughts. This practice helps you observe your thoughts without getting caught in them, reducing the intensity of repetitive thinking patterns.",
+      "duration": "10 minutes",
+      "difficulty": "intermediate",
+      "cta": "/tools/thought-unhook"
+    },
+    {
+      "id": "energy-check",
+      "category": "stress",
+      "title": "Energy Check",
+      "summary": "Identify what is draining you right now.",
+      "description": "Identify what is draining you right now. This tool helps you recognize where your energy is going and what might be depleting it, so you can make more informed choices about how you spend your time and attention.",
+      "duration": "5 minutes",
+      "difficulty": "beginner",
+      "cta": "/tools/energy-check"
+    }
+  ]
+}

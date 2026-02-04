@@ -1,0 +1,31 @@
+{
+    "purpose": "Define the explicit boundaries of intent for the Ride Your Demons system.",
+  
+    "this_system_provides": [
+      "educational guidance",
+      "self-reflection tools",
+      "non-clinical support pathways",
+      "intent-based content routing"
+    ],
+  
+    "this_system_does_not_provide": [
+      "medical advice",
+      "psychological diagnosis",
+      "therapy or treatment",
+      "emergency intervention",
+      "behavioral manipulation"
+    ],
+  
+    "user_relationship": {
+      "no_dependency_creation": true,
+      "no coercion": true,
+      "no urgency_pressure": true
+    },
+  
+    "data_policy": {
+      "no_personal_data_storage": true,
+      "no_identity_tracking": true,
+      "no cross-session profiling": true
+    }
+  }
+  

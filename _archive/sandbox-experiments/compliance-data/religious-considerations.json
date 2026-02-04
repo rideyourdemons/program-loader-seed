@@ -1,0 +1,131 @@
+{
+  "Islam": {
+    "religion": "Islam",
+    "mentalHealthViews": {
+      "general": "Mental health is increasingly accepted, but stigma still exists in some communities",
+      "approach": "Spirituality and prayer are important. Some prefer faith-integrated approaches."
+    },
+    "prohibitedConcepts": [],
+    "preferredApproaches": [
+      "Prayer (Salah/Dua)",
+      "Meditation (Dhikr)",
+      "Community support",
+      "Spiritual counseling"
+    ],
+    "culturalNotes": {
+      "genderConsiderations": "May need gender-separated content or considerations",
+      "prayerTimes": "Respect prayer times in scheduling/interactions",
+      "ramadan": "Consider Ramadan period for content timing"
+    },
+    "applicableRegions": ["SA", "AE", "IQ", "IR", "PK", "ID", "MY", "BD"]
+  },
+  "Christianity": {
+    "religion": "Christianity",
+    "mentalHealthViews": {
+      "general": "Varies by denomination. Generally accepted, some integrate faith/prayer",
+      "approach": "Pastoral counseling accepted. Faith-based approaches common in some denominations."
+    },
+    "prohibitedConcepts": [],
+    "preferredApproaches": [
+      "Prayer",
+      "Pastoral counseling",
+      "Faith-based approaches (varies by denomination)",
+      "Scripture integration (varies)"
+    ],
+    "denominationalNotes": {
+      "catholic": "May prefer Vatican-approved content",
+      "protestant": "Varies widely by denomination",
+      "orthodox": "Respect Orthodox traditions"
+    },
+    "applicableRegions": ["US", "UK", "CA", "AU", "BR", "MX", "PH"]
+  },
+  "Judaism": {
+    "religion": "Judaism",
+    "mentalHealthViews": {
+      "general": "Mental health generally well-accepted. Community support important",
+      "approach": "Community and family support valued. Holocaust trauma sensitivity critical."
+    },
+    "prohibitedConcepts": [
+      {
+        "term": "certain historical references",
+        "reason": "Holocaust trauma sensitivity"
+      }
+    ],
+    "preferredApproaches": [
+      "Community support",
+      "Family context",
+      "Spiritual counseling",
+      "Trauma-informed approaches"
+    ],
+    "culturalNotes": {
+      "sabbath": "Respect Sabbath (Friday evening to Saturday evening)",
+      "holocaustSensitivity": "Extreme sensitivity to Holocaust-related content",
+      "communityFocus": "Community and family are central"
+    },
+    "applicableRegions": ["IL", "US", "UK"]
+  },
+  "Hinduism": {
+    "religion": "Hinduism",
+    "mentalHealthViews": {
+      "general": "Ayurveda and yoga integrated. Meditation common",
+      "approach": "Traditional practices (Ayurveda, yoga) respected alongside modern approaches"
+    },
+    "prohibitedConcepts": [],
+    "preferredApproaches": [
+      "Yoga",
+      "Meditation",
+      "Ayurvedic principles",
+      "Traditional practices integration"
+    ],
+    "culturalNotes": {
+      "vegetarian": "Consider vegetarian examples",
+      "casteSensitivity": "Extreme sensitivity to caste-related content",
+      "traditionalMedicine": "Ayurveda is respected traditional medicine"
+    },
+    "applicableRegions": ["IN", "NP"]
+  },
+  "Buddhism": {
+    "religion": "Buddhism",
+    "mentalHealthViews": {
+      "general": "Meditation central. Mindfulness natural fit",
+      "approach": "Natural alignment with mindfulness practices. Meditation common."
+    },
+    "prohibitedConcepts": [
+      {
+        "term": "claiming Buddhist authority",
+        "reason": "Respect different schools of Buddhism"
+      }
+    ],
+    "preferredApproaches": [
+      "Meditation",
+      "Mindfulness",
+      "Traditional Buddhist practices"
+    ],
+    "culturalNotes": {
+      "schools": "Different schools: Theravada, Mahayana, Vajrayana - respect differences",
+      "monasticLay": "Consider monastic vs. lay practices"
+    },
+    "applicableRegions": ["TH", "MM", "LK", "CN", "JP", "KR"]
+  },
+  "Sikhism": {
+    "religion": "Sikhism",
+    "mentalHealthViews": {
+      "general": "Community support important. Meditation (Simran) practiced",
+      "approach": "Service to others and community support valued"
+    },
+    "prohibitedConcepts": [],
+    "preferredApproaches": [
+      "Meditation (Simran)",
+      "Community support",
+      "Service-oriented approaches"
+    ],
+    "culturalNotes": {
+      "turban": "Respect turban and identity",
+      "noAlcohol": "Avoid alcohol references",
+      "community": "Community is central"
+    },
+    "applicableRegions": ["IN", "PK", "CA", "UK"]
+  }
+}
+
+

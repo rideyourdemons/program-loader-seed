@@ -1,0 +1,209 @@
+/**
+ * Tour Overlay Component (React Example)
+ * Provides guided tour overlay with tooltips and progress tracking
+ * 
+ * This is an example component showing how to integrate the tour system.
+ * Adapt to your specific React setup and styling system.
+ */
+
+import React, { useState, useEffect } from 'react';
+import aiTourGuide from '../core/ai-tour-guide.js';
+import './TourOverlay.css';
+
+export default function TourOverlay({ isActive, onComplete, onSkip }) {
+  const [currentStep, setCurrentStep] = useState(null);
+  const [targetElement, setTargetElement] = useState(null);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    if (isActive) {
+      const step = aiTourGuide.getCurrentStepData();
+      setCurrentStep(step);
+      updateTargetPosition(step);
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (currentStep && currentStep.targetElement) {
+      // Update position when window resizes
+      const handleResize = () => updateTargetPosition(currentStep);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [currentStep]);
+
+  const updateTargetPosition = (step) => {
+    if (step.targetElement) {
+      const element = document.querySelector(step.targetElement);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        setTargetElement(element);
+        
+        // Calculate position based on step position preference
+        const positions = calculatePosition(rect, step.position);
+        setPosition(positions);
+        
+        // Highlight target element
+        element.classList.add('tour-highlight');
+      }
+    }
+  };
+
+  const calculatePosition = (rect, preferredPosition) => {
+    const padding = 16;
+    const tooltipWidth = 320;
+    const tooltipHeight = 200;
+
+    switch (preferredPosition) {
+      case 'top':
+        return {
+          top: rect.top - tooltipHeight - padding,
+          left: rect.left + (rect.width / 2) - (tooltipWidth / 2)
+        };
+      case 'bottom':
+        return {
+          top: rect.bottom + padding,
+          left: rect.left + (rect.width / 2) - (tooltipWidth / 2)
+        };
+      case 'left':
+        return {
+          top: rect.top + (rect.height / 2) - (tooltipHeight / 2),
+          left: rect.left - tooltipWidth - padding
+        };
+      case 'right':
+        return {
+          top: rect.top + (rect.height / 2) - (tooltipHeight / 2),
+          left: rect.right + padding
+        };
+      case 'center':
+      default:
+        return {
+          top: window.innerHeight / 2 - tooltipHeight / 2,
+          left: window.innerWidth / 2 - tooltipWidth / 2
+        };
+    }
+  };
+
+  const handleNext = () => {
+    const nextStep = aiTourGuide.next();
+    if (nextStep) {
+      setCurrentStep(nextStep);
+      updateTargetPosition(nextStep);
+    } else {
+      handleComplete();
+    }
+  };
+
+  const handlePrevious = () => {
+    const prevStep = aiTourGuide.previous();
+    if (prevStep) {
+      setCurrentStep(prevStep);
+      updateTargetPosition(prevStep);
+    }
+  };
+
+  const handleSkip = () => {
+    aiTourGuide.skip();
+    cleanup();
+    if (onSkip) onSkip();
+  };
+
+  const handleComplete = () => {
+    aiTourGuide.complete();
+    cleanup();
+    if (onComplete) onComplete();
+  };
+
+  const cleanup = () => {
+    if (targetElement) {
+      targetElement.classList.remove('tour-highlight');
+    }
+    setTargetElement(null);
+    setCurrentStep(null);
+  };
+
+  if (!isActive || !currentStep) {
+    return null;
+  }
+
+  return (
+    <>
+      {/* Overlay backdrop */}
+      <div className="tour-overlay-backdrop" onClick={handleSkip} />
+      
+      {/* Tooltip */}
+      <div 
+        className="tour-tooltip"
+        style={{
+          top: `${position.top}px`,
+          left: `${position.left}px`
+        }}
+      >
+        <div className="tour-tooltip-header">
+          <h3>{currentStep.title}</h3>
+          <button 
+            className="tour-close"
+            onClick={handleSkip}
+            aria-label="Skip tour"
+          >
+            ×
+          </button>
+        </div>
+        
+        <div 
+          className="tour-tooltip-content"
+          dangerouslySetInnerHTML={{ __html: currentStep.content }}
+        />
+        
+        <div className="tour-progress">
+          <div className="tour-progress-bar">
+            <div 
+              className="tour-progress-fill"
+              style={{ width: `${currentStep.progress}%` }}
+            />
+          </div>
+          <span className="tour-progress-text">
+            Step {currentStep.stepNumber} of {currentStep.totalSteps}
+          </span>
+        </div>
+        
+        <div className="tour-controls">
+          <button
+            className="tour-button tour-button-secondary"
+            onClick={handlePrevious}
+            disabled={currentStep.isFirst}
+          >
+            Previous
+          </button>
+          
+          {currentStep.isLast ? (
+            <button
+              className="tour-button tour-button-primary"
+              onClick={handleComplete}
+            >
+              {currentStep.actionButton || 'Complete'}
+            </button>
+          ) : (
+            <button
+              className="tour-button tour-button-primary"
+              onClick={handleNext}
+            >
+              {currentStep.actionButton || 'Next'}
+            </button>
+          )}
+          
+          <button
+            className="tour-button tour-button-link"
+            onClick={handleSkip}
+          >
+            Skip Tour
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+
+
+

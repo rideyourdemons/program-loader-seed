@@ -1,0 +1,99 @@
+# CSS Fix Summary
+
+## Files Changed
+
+### CSS Files Created
+1. **public/css/main.css** - Main stylesheet extracted from index.html and index-integrated-ryd.html
+2. **public/css/integrated.css** - Stylesheet for integrated sandbox preview (index-integrated.html)
+
+### HTML Files Updated
+1. **public/index.html**
+   - Added: `<link rel="stylesheet" href="./css/main.css">`
+   - Added: CSS loading debug script
+
+2. **public/index-integrated-ryd.html**
+   - Added: `<link rel="stylesheet" href="./css/main.css">`
+   - Added: CSS loading debug script
+
+3. **public/index-integrated.html**
+   - Added: `<link rel="stylesheet" href="./css/integrated.css">`
+   - Added: CSS loading debug script
+
+4. **public/platform-integrated.html**
+   - Added: `<link rel="stylesheet" href="./css/main.css">`
+   - Added: CSS loading debug script
+
+5. **public/live-site-integration.html**
+   - Added: `<link rel="stylesheet" href="./css/main.css">`
+   - Added: CSS loading debug script
+
+## Updated Link Tags
+
+All HTML files now include:
+```html
+<link rel="stylesheet" href="./css/main.css">
+```
+or
+```html
+<link rel="stylesheet" href="./css/integrated.css">
+```
+
+**Note:** Using relative paths (`./css/`) instead of absolute paths (`/css/`) to ensure compatibility with Firebase Hosting where `/public` is the root.
+
+## CSS Loading Debug
+
+All pages now include a debug script that logs:
+- `document.styleSheets.length` - Total number of stylesheets
+- Each stylesheet's resolved href
+
+This appears in the browser console on page load.
+
+## Test Checklist
+
+1. **Start Firebase Emulator:**
+   ```bash
+   firebase emulators:start --only hosting
+   ```
+
+2. **Open in Browser:**
+   - Navigate to: `http://127.0.0.1:5000/`
+   - Or: `http://127.0.0.1:5000/index.html`
+   - Or: `http://127.0.0.1:5000/index-integrated-ryd.html`
+
+3. **Verify in Browser:**
+   - Open DevTools → Network tab
+   - Filter by "CSS" or "main.css"
+   - Confirm `main.css` or `integrated.css` shows status 200
+   - Check Console for CSS loading debug output
+   - Verify page renders with correct styling
+
+4. **Expected Console Output:**
+   ```
+   === CSS Loading Debug ===
+   document.styleSheets.length: 2
+   Stylesheet 1: http://127.0.0.1:5000/css/main.css
+   Stylesheet 2: inline
+   ========================
+   ```
+
+## File Structure
+
+```
+public/
+  css/
+    main.css          ✅ Main stylesheet
+    integrated.css    ✅ Integrated preview stylesheet
+  index.html          ✅ Updated with CSS link
+  index-integrated-ryd.html  ✅ Updated with CSS link
+  index-integrated.html      ✅ Updated with CSS link
+  platform-integrated.html   ✅ Updated with CSS link
+  live-site-integration.html ✅ Updated with CSS link
+```
+
+## Notes
+
+- All CSS paths use relative paths (`./css/`) to work correctly with Firebase Hosting
+- Inline styles are preserved for page-specific overrides
+- Debug script helps verify CSS loading in development
+- CSS files are extracted from inline styles to improve maintainability
+

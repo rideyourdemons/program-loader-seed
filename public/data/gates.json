@@ -1,0 +1,79 @@
+{
+  "version": "2.0",
+  "generated": "2026-02-01T00:00:00Z",
+  "note": "12 gates with descriptions and pain point mappings",
+  "gates": [
+    {
+      "id": "mens-mental-health",
+      "gateName": "Men's Mental Health",
+      "title": "Men's Mental Health",
+      "description": "Tools for emotional resilience, clarity, and grounded self-leadership."
+    },
+    {
+      "id": "womens-mental-health",
+      "gateName": "Women's Mental Health",
+      "title": "Women's Mental Health",
+      "description": "Tools for stress relief, self-trust, and steady emotional balance."
+    },
+    {
+      "id": "addiction-recovery",
+      "gateName": "Addiction Recovery",
+      "title": "Addiction Recovery",
+      "description": "Tools for recovery, cravings, and rebuilding stability over time."
+    },
+    {
+      "id": "fathers-and-sons",
+      "gateName": "Fathers & Sons",
+      "title": "Fathers & Sons",
+      "description": "Tools for guidance, trust, and stronger father-son connection."
+    },
+    {
+      "id": "teen-and-gen-z",
+      "gateName": "Teen & Gen Z",
+      "title": "Teen & Gen Z",
+      "description": "Tools for focus, identity, confidence, and emotional regulation."
+    },
+    {
+      "id": "grief-and-loss",
+      "gateName": "Grief & Loss",
+      "title": "Grief & Loss",
+      "description": "Tools for mourning, memory, and moving through loss with care."
+    },
+    {
+      "id": "financial-collapse-and-purpose",
+      "gateName": "Financial Collapse & Purpose",
+      "title": "Financial Collapse & Purpose",
+      "description": "Tools for rebuilding direction, stability, and purpose after setbacks."
+    },
+    {
+      "id": "trauma-rebuild",
+      "gateName": "Trauma Rebuild",
+      "title": "Trauma Rebuild",
+      "description": "Tools for safety, nervous system grounding, and gradual recovery."
+    },
+    {
+      "id": "heartbreak-loop",
+      "gateName": "Heartbreak Loop",
+      "title": "Heartbreak Loop",
+      "description": "Tools for breakups, rumination, and regaining emotional footing."
+    },
+    {
+      "id": "identity-crisis",
+      "gateName": "Identity Crisis",
+      "title": "Identity Crisis",
+      "description": "Tools for clarity, values, and rebuilding a stable sense of self."
+    },
+    {
+      "id": "full-resurrection-system",
+      "gateName": "Full Resurrection System",
+      "title": "Full Resurrection System",
+      "description": "Tools to rebuild life systems step by step after collapse."
+    },
+    {
+      "id": "loneliness",
+      "gateName": "Loneliness & Social Disconnection",
+      "title": "Loneliness & Social Disconnection",
+      "description": "Tools for feeling less alone, rebuilding connection, and understanding why disconnection hurts."
+    }
+  ]
+}

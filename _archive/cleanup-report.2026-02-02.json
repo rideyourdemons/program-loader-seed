@@ -1,0 +1,62 @@
+{
+  "date": "2026-02-02",
+  "archived": 11,
+  "errors": 0,
+  "operations": [
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\index-integrated.html",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\experimental-html\\index-integrated.html.2026-02-02",
+      "reason": "Experimental integrated version, not in firebase.json"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\index-integrated-ryd.html",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\experimental-html\\index-integrated-ryd.html.2026-02-02",
+      "reason": "Experimental RYD version, not in firebase.json"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\platform-integrated.html",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\experimental-html\\platform-integrated.html.2026-02-02",
+      "reason": "Experimental platform version, not in firebase.json"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\live-site-integration.html",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\experimental-html\\live-site-integration.html.2026-02-02",
+      "reason": "Experimental integration, not in firebase.json"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\CSS_FIX_COMPLETE.md",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\docs-from-public\\CSS_FIX_COMPLETE.md.2026-02-02",
+      "reason": "Documentation should not be in public/ (gets deployed)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\CSS_FIX_SUMMARY.md",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\docs-from-public\\CSS_FIX_SUMMARY.md.2026-02-02",
+      "reason": "Documentation should not be in public/ (gets deployed)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\DEPLOYMENT_READY.md",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\docs-from-public\\DEPLOYMENT_READY.md.2026-02-02",
+      "reason": "Documentation should not be in public/ (gets deployed)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\FINAL_STATUS.md",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\docs-from-public\\FINAL_STATUS.md.2026-02-02",
+      "reason": "Documentation should not be in public/ (gets deployed)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public\\VERIFICATION_CHECKLIST.md",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\docs-from-public\\VERIFICATION_CHECKLIST.md.2026-02-02",
+      "reason": "Documentation should not be in public/ (gets deployed)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\scripts\\build-tools-canonical.js",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\duplicate-scripts\\build-tools-canonical.js.2026-02-02",
+      "reason": "Duplicate of .cjs version (which is canonical)"
+    },
+    {
+      "source": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\scripts\\fix-ryd-all.js",
+      "archive": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\duplicate-scripts\\fix-ryd-all.js.2026-02-02",
+      "reason": "Duplicate of .cjs version (which is canonical)"
+    }
+  ]
+}

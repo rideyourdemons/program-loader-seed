@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  website-auditor:
+    build: .
+    container_name: website-auditor
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=INFO
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - auditor-network
+
+networks:
+  auditor-network:
+    driver: bridge
+

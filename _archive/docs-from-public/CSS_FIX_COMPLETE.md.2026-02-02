@@ -1,0 +1,116 @@
+# CSS Fix Complete - All Entry Files Normalized
+
+## Summary
+
+All HTML entry files served by Firebase Hosting now include **both CSS files** using **absolute paths** to ensure consistent styling across all pages.
+
+## Files Modified
+
+### 1. `public/index.html`
+- **Status:** ✅ Already had both CSS files with absolute paths
+- **Lines 10-11:** 
+  ```html
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/integrated.css">
+  ```
+
+### 2. `public/index-integrated-ryd.html`
+- **Changed:** Line 10
+- **Before:** `<link rel="stylesheet" href="./css/main.css">` (relative path, only main.css)
+- **After:** 
+  ```html
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/integrated.css">
+  ```
+
+### 3. `public/index-integrated.html`
+- **Changed:** Line 10
+- **Before:** `<link rel="stylesheet" href="./css/integrated.css">` (relative path, only integrated.css)
+- **After:**
+  ```html
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/integrated.css">
+  ```
+
+### 4. `public/platform-integrated.html`
+- **Changed:** Line 9
+- **Before:** `<link rel="stylesheet" href="./css/main.css">` (relative path, only main.css)
+- **After:**
+  ```html
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/integrated.css">
+  ```
+
+### 5. `public/live-site-integration.html`
+- **Changed:** Line 10
+- **Before:** `<link rel="stylesheet" href="./css/main.css">` (relative path, only main.css)
+- **After:**
+  ```html
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/integrated.css">
+  ```
+
+## Verification
+
+### Firebase Configuration
+- ✅ `firebase.json` → `hosting.public` = `"public"` (correct)
+
+### CSS Files
+- ✅ `public/css/main.css` exists
+- ✅ `public/css/integrated.css` exists
+
+### All Entry Files
+- ✅ `public/index.html` - Both CSS files with absolute paths
+- ✅ `public/index-integrated-ryd.html` - Both CSS files with absolute paths
+- ✅ `public/index-integrated.html` - Both CSS files with absolute paths
+- ✅ `public/platform-integrated.html` - Both CSS files with absolute paths
+- ✅ `public/live-site-integration.html` - Both CSS files with absolute paths
+
+## Why This Fixes the Issue
+
+### Problem
+1. **Relative paths (`./css/...`)** can break when:
+   - Files are served from different directory levels
+   - Firebase Hosting rewrites or cleanUrls are used
+   - Pages are accessed via different routes
+
+2. **Missing CSS files** caused:
+   - Only `main.css` or only `integrated.css` loading
+   - Incomplete styling
+   - Visual mismatch with live site
+
+### Solution
+1. **Absolute paths (`/css/...`)** always resolve from the hosting root:
+   - Work consistently regardless of page location
+   - Compatible with Firebase Hosting's routing
+   - Match live site behavior
+
+2. **Both CSS files** ensure:
+   - Complete styling stack
+   - All design tokens and components load
+   - Visual parity with live site
+
+## Success Check
+
+After running `firebase emulators:start --only hosting`:
+
+1. **DevTools → Network → CSS** must show:
+   - ✅ `main.css` → Status 200
+   - ✅ `integrated.css` → Status 200
+
+2. **Visual verification:**
+   - ✅ Sandbox UI matches live site styling
+   - ✅ Desktop layout correct
+   - ✅ Mobile layout correct
+   - ✅ All components styled properly
+
+## Changes Summary
+
+- **5 HTML files** updated
+- **4 files** changed from relative to absolute paths
+- **4 files** had missing CSS links added
+- **0 design changes** - CSS loading only
+- **0 new frameworks** - Pure HTML/CSS fix
+
+All entry files now use the same normalized CSS stack with absolute paths, ensuring consistent styling across all pages served by Firebase Hosting.
+

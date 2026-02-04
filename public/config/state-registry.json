@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "description": "NON-CLINICAL self-help states only. Educational and supportive states for user routing.",
+  "states": {
+    "seeking_information": {
+      "type": "educational",
+      "priority": "information_access",
+      "allowed_actions": ["browse_tools", "read_content", "explore_topics"],
+      "forbidden_actions": ["personalized_advice", "diagnostic_language"],
+      "description": "User is seeking educational information about self-help techniques"
+    },
+    "practicing_technique": {
+      "type": "educational",
+      "priority": "skill_building",
+      "allowed_actions": ["use_tool", "practice_exercise", "follow_guide"],
+      "forbidden_actions": ["outcome_promises", "therapeutic_language"],
+      "description": "User is actively practicing a self-help technique"
+    },
+    "reflecting": {
+      "type": "educational",
+      "priority": "self_awareness",
+      "allowed_actions": ["review_content", "journal", "self_reflection"],
+      "forbidden_actions": ["interpretation", "diagnostic_framing"],
+      "description": "User is reflecting on their experience with tools"
+    },
+    "exploring_options": {
+      "type": "educational",
+      "priority": "discovery",
+      "allowed_actions": ["browse_tools", "compare_options", "read_research"],
+      "forbidden_actions": ["recommendation_pressure", "urgency"],
+      "description": "User is exploring different self-help options"
+    },
+    "building_habit": {
+      "type": "educational",
+      "priority": "consistency",
+      "allowed_actions": ["schedule_practice", "track_progress", "set_reminders"],
+      "forbidden_actions": ["outcome_guarantees", "compliance_pressure"],
+      "description": "User is building a consistent practice habit"
+    }
+  },
+  "routing_rules": {
+    "one_state_at_a_time": true,
+    "no_state_stacking": true,
+    "exit_required_before_reentry": false,
+    "user_controlled": true,
+    "no_automatic_state_changes": true
+  },
+  "constraints": {
+    "no_clinical_inference": true,
+    "no_emotional_inference": true,
+    "no_vulnerability_scoring": true,
+    "no_diagnostic_language": true,
+    "educational_only": true
+  }
+}
+

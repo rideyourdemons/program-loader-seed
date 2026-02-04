@@ -1,0 +1,10 @@
+{
+  "serviceAccountPath": "path/to/your/firebase-service-account.json",
+  "projectId": "your-project-id",
+  "note": "Copy this file to firebase-config.json and update the paths"
+}
+
+
+
+
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8KF4XF');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYD Site - Platform Integration Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* RYD Site Header */
+        .existing-site-header {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .existing-site-header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .existing-site-header h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .existing-site-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .existing-site-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: opacity 0.2s;
+        }
+
+        .existing-site-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Platform Container */
+        .platform-container {
+            width: 100%;
+            height: calc(100vh - 80px);
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .platform-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Hide platform's internal header when embedded */
+        .platform-iframe ~ * {
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .existing-site-header .container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .existing-site-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .platform-container {
+                height: calc(100vh - 120px);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8KF4XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header class="existing-site-header">
+        <div class="container">
+            <h1>Ride Your Demons</h1>
+            <nav class="existing-site-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#tools">Tools</a>
+                <a href="#resources">Resources</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="platform-container">
+        <iframe
+            id="platformIframe"
+            src="/platform-integrated"
+            class="platform-iframe"
+            title="RYD Platform">
+        </iframe>
+    </div>
+
+    <script>
+        // Handle iframe height adjustment
+        const iframe = document.getElementById('platformIframe');
+        const header = document.querySelector('.existing-site-header');
+        
+        function adjustIframeHeight() {
+            const headerHeight = header ? header.offsetHeight : 80;
+            const viewportHeight = window.innerHeight;
+            const container = document.querySelector('.platform-container');
+            if (container) {
+                container.style.height = `${viewportHeight - headerHeight}px`;
+            }
+        }
+
+        // Adjust on load and resize
+        window.addEventListener('load', adjustIframeHeight);
+        window.addEventListener('resize', adjustIframeHeight);
+
+        // Handle iframe load
+        iframe.addEventListener('load', () => {
+            // Hide the platform's internal header if it exists
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const platformHeader = iframeDoc.querySelector('header, .site-header, .main-header');
+                if (platformHeader) {
+                    platformHeader.style.display = 'none';
+                }
+            } catch (e) {
+                // Cross-origin restrictions - this is expected in some cases
+                console.log('Iframe loaded successfully');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

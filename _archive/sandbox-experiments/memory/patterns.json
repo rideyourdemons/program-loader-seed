@@ -1,0 +1,38 @@
+{
+  "monitoring_test_loop": [
+    {
+      "timestamp": "2025-12-24T22:08:23.794Z",
+      "result": {
+        "test": "success"
+      },
+      "success": true
+    },
+    {
+      "timestamp": "2025-12-24T22:08:24.805Z",
+      "result": {
+        "test": "success"
+      },
+      "success": true
+    },
+    {
+      "timestamp": "2025-12-24T22:17:12.145Z",
+      "result": {
+        "test": "success"
+      },
+      "success": true
+    },
+    {
+      "timestamp": "2025-12-24T22:17:12.663Z",
+      "result": {
+        "test": "success"
+      },
+      "success": true
+    }
+  ],
+  "test_pattern": [
+    {
+      "timestamp": "2025-12-24T22:17:12.138Z",
+      "data": "test"
+    }
+  ]
+}

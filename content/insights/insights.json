@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-02T00:00:00Z",
+  "insights": [
+    {
+      "id": "understanding-anxiety",
+      "slug": "understanding-anxiety",
+      "title": "Understanding Anxiety",
+      "summary": "Anxiety is a natural response to stress, but when it becomes overwhelming, it can interfere with daily life.",
+      "category": "anxiety",
+      "readTime": "5 min",
+      "published": "2024-01-01",
+      "author": "Ride Your Demons"
+    },
+    {
+      "id": "science-of-breathing",
+      "slug": "science-of-breathing",
+      "title": "The Science of Breathing",
+      "summary": "Deep breathing activates the parasympathetic nervous system, helping to calm the body's stress response.",
+      "category": "stress",
+      "readTime": "4 min",
+      "published": "2024-01-02",
+      "author": "Ride Your Demons"
+    },
+    {
+      "id": "building-resilience",
+      "slug": "building-resilience",
+      "title": "Building Resilience",
+      "summary": "Resilience is the ability to bounce back from adversity. It's a skill that can be developed over time.",
+      "category": "general",
+      "readTime": "6 min",
+      "published": "2024-01-03",
+      "author": "Ride Your Demons"
+    },
+    {
+      "id": "mindfulness-basics",
+      "slug": "mindfulness-basics",
+      "title": "Mindfulness Basics",
+      "summary": "Mindfulness is the practice of paying attention to the present moment without judgment.",
+      "category": "stress",
+      "readTime": "5 min",
+      "published": "2024-01-04",
+      "author": "Ride Your Demons"
+    },
+    {
+      "id": "sleep-mental-health",
+      "slug": "sleep-mental-health",
+      "title": "Sleep and Mental Health",
+      "summary": "Quality sleep is essential for emotional regulation and cognitive function.",
+      "category": "general",
+      "readTime": "7 min",
+      "published": "2024-01-05",
+      "author": "Ride Your Demons"
+    }
+  ]
+}
+

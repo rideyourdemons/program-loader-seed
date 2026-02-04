@@ -1,0 +1,188 @@
+{
+  "East Asia": {
+    "regions": ["CN", "JP", "KR", "TW"],
+    "communicationStyle": "indirect",
+    "formalityLevel": "high",
+    "culturalValues": {
+      "individualVsCollective": "collective",
+      "familyFocus": "high",
+      "hierarchy": "respected"
+    },
+    "mentalHealthStigma": "high",
+    "acceptableTerminology": [
+      "wellness",
+      "stress management",
+      "emotional wellness",
+      "avoid direct mental health terms in some contexts"
+    ],
+    "adaptations": {
+      "languageStyle": "Use indirect, suggestive language. Avoid direct commands",
+      "examples": "Use family/community examples",
+      "authority": "Respect hierarchy and authority",
+      "harmony": "Emphasize harmony and balance"
+    },
+    "traditionalPractices": [
+      "Traditional Chinese Medicine (China)",
+      "Kampo medicine (Japan)",
+      "Traditional Korean medicine"
+    ]
+  },
+  "South Asia": {
+    "regions": ["IN", "PK", "BD", "LK"],
+    "communicationStyle": "indirect to moderate",
+    "formalityLevel": "moderate to high",
+    "culturalValues": {
+      "individualVsCollective": "collective",
+      "familyFocus": "very high",
+      "hierarchy": "respected",
+      "community": "central"
+    },
+    "mentalHealthStigma": "moderate to high",
+    "acceptableTerminology": [
+      "wellness",
+      "emotional wellness",
+      "stress management",
+      "respect traditional medicine terminology"
+    ],
+    "adaptations": {
+      "languageStyle": "Include family/community context",
+      "examples": "Use extended family examples",
+      "traditionalMedicine": "Acknowledge Ayurveda, Unani, etc.",
+      "arrangedMarriage": "Consider arranged marriage context where relevant"
+    },
+    "traditionalPractices": [
+      "Ayurveda (India)",
+      "Unani medicine",
+      "Traditional practices"
+    ]
+  },
+  "Middle East": {
+    "regions": ["SA", "AE", "IQ", "IR", "EG"],
+    "communicationStyle": "indirect",
+    "formalityLevel": "high",
+    "culturalValues": {
+      "individualVsCollective": "collective",
+      "familyFocus": "very high",
+      "honor": "critical",
+      "hospitality": "valued"
+    },
+    "mentalHealthStigma": "moderate to high",
+    "acceptableTerminology": [
+      "wellness",
+      "emotional wellness",
+      "be mindful of direct mental health terms"
+    ],
+    "adaptations": {
+      "languageStyle": "Indirect, respectful language",
+      "gender": "Consider gender-appropriate content",
+      "modesty": "Respect modesty norms",
+      "familyHonor": "Be sensitive to family honor concepts"
+    },
+    "traditionalPractices": [
+      "Traditional medicine",
+      "Spiritual practices"
+    ]
+  },
+  "Latin America": {
+    "regions": ["BR", "MX", "AR", "CO"],
+    "communicationStyle": "moderate",
+    "formalityLevel": "moderate",
+    "culturalValues": {
+      "individualVsCollective": "collective",
+      "familyFocus": "very high",
+      "emotion": "accepted",
+      "community": "valued"
+    },
+    "mentalHealthStigma": "moderate",
+    "acceptableTerminology": [
+      "wellness",
+      "emotional health",
+      "mental wellness"
+    ],
+    "adaptations": {
+      "languageStyle": "Warm, personal tone acceptable",
+      "examples": "Include family context",
+      "religion": "Consider religious integration where relevant",
+      "emotion": "Emotional expression is acceptable"
+    },
+    "traditionalPractices": [
+      "Traditional healing practices",
+      "Community-based approaches"
+    ]
+  },
+  "Nordic": {
+    "regions": ["SE", "NO", "DK", "FI"],
+    "communicationStyle": "direct",
+    "formalityLevel": "low",
+    "culturalValues": {
+      "individualVsCollective": "individual",
+      "privacy": "valued",
+      "equality": "emphasized",
+      "autonomy": "respected"
+    },
+    "mentalHealthStigma": "low",
+    "acceptableTerminology": [
+      "mental health",
+      "mental wellness",
+      "emotional health"
+    ],
+    "adaptations": {
+      "languageStyle": "Direct, clear communication",
+      "privacy": "Respect privacy and boundaries",
+      "equality": "Emphasize equality",
+      "individual": "Focus on individual autonomy"
+    }
+  },
+  "Western Europe": {
+    "regions": ["DE", "FR", "IT", "ES", "NL"],
+    "communicationStyle": "moderate to direct",
+    "formalityLevel": "moderate",
+    "culturalValues": {
+      "individualVsCollective": "individual",
+      "privacy": "valued",
+      "directness": "appreciated"
+    },
+    "mentalHealthStigma": "low to moderate",
+    "acceptableTerminology": [
+      "mental health",
+      "emotional wellness",
+      "wellness"
+    ],
+    "adaptations": {
+      "languageStyle": "Clear, direct communication",
+      "privacy": "Respect GDPR and privacy",
+      "formality": "Moderate formality in some contexts"
+    }
+  },
+  "Africa": {
+    "regions": ["ZA", "NG", "KE", "EG"],
+    "communicationStyle": "varies widely",
+    "formalityLevel": "varies",
+    "culturalValues": {
+      "individualVsCollective": "collective",
+      "community": "central",
+      "traditional": "respected",
+      "family": "extended family important"
+    },
+    "mentalHealthStigma": "moderate to high",
+    "acceptableTerminology": [
+      "wellness",
+      "emotional wellness",
+      "respect traditional terminology"
+    ],
+    "adaptations": {
+      "languageStyle": "Consider community context",
+      "traditionalHealers": "Acknowledge traditional healers",
+      "extendedFamily": "Include extended family context",
+      "oralTradition": "Consider storytelling approaches",
+      "note": "Varies widely by country and region"
+    },
+    "traditionalPractices": [
+      "Traditional healers",
+      "Community-based healing",
+      "Traditional ceremonies"
+    ]
+  }
+}
+
+

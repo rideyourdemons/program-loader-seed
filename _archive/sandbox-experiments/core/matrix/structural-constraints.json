@@ -1,0 +1,39 @@
+{
+    "version": "1.0",
+  
+    "global_limits": {
+      "max_primary_intents_per_page": 1,
+      "max_sections_per_page": 7,
+      "max_internal_links_per_section": 5
+    },
+  
+    "tool_structures": {
+      "stabilization": {
+        "phases": 4,
+        "core_insights": 3,
+        "max_reflections": 5
+      },
+      "orientation": {
+        "phases": 3,
+        "core_insights": 3,
+        "max_reflections": 4
+      },
+      "reflection": {
+        "phases": 5,
+        "core_insights": 3,
+        "max_reflections": 7
+      },
+      "integration": {
+        "phases": 7,
+        "core_insights": 3,
+        "max_reflections": 7
+      }
+    },
+  
+    "resolution_rules": {
+      "forced_closure": true,
+      "no_infinite_loops": true,
+      "max_return_visits_without_new_content": 3
+    }
+  }
+  

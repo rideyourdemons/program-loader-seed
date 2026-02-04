@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gates - Ride Your Demons</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h1>Gates</h1>
+            <div id="gatesList" class="grid">
+                <p>Loading gates...</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const listEl = document.getElementById('gatesList');
+            
+            try {
+                const res = await fetch('/data/gates.json?ts=' + Date.now());
+                const data = await res.json();
+                const gates = data.gates || [];
+                
+                if (gates.length === 0) {
+                    listEl.innerHTML = '';
+                    const p = document.createElement('p');
+                    p.textContent = 'No gates available.';
+                    listEl.appendChild(p);
+                    return;
+                }
+                
+                listEl.innerHTML = '';
+                
+                gates.forEach(gate => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    const h2 = document.createElement('h2');
+                    h2.textContent = gate.title;
+                    card.appendChild(h2);
+                    
+                    const link = document.createElement('a');
+                    link.href = `/gates/${gate.id}`;
+                    link.className = 'btn';
+                    link.textContent = 'Explore Gate';
+                    card.appendChild(link);
+                    
+                    listEl.appendChild(card);
+                });
+            } catch (err) {
+                listEl.innerHTML = `<p>Error loading gates: ${err.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
+

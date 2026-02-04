@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://rideyourdemons.com/tools/">
+    <title>Tool - Ride Your Demons</title>
+    
+    <!-- Google Tag Manager (via analytics.js) -->
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/ui-sanitize.js" defer></script>
+    
+    <!-- SEO Meta Tags (will be updated by seo-meta.js) -->
+    <meta name="description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tool - Ride Your Demons">
+    <meta property="og:description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta property="og:url" content="https://rideyourdemons.com/tools/">
+    <meta property="og:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ride Your Demons">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tool - Ride Your Demons">
+    <meta name="twitter:description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta name="twitter:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <script src="/js/seo-meta.js" defer></script>
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
+                <a href="/">Home</a> › <a href="/tools">Tools</a> › <span id="toolTitleBreadcrumb">Tool</span>
+            </nav>
+            <h1 id="toolTitle">Tool</h1>
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <p><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. This tool is meant to help you understand what may help and why it works.</p>
+                <p>If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. In Canada, you can call or text <strong>988</strong> for the Suicide Crisis Helpline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
+            </div>
+            
+            <div id="toolContent" class="card" style="margin-bottom: 30px;">
+                <p>Loading tool...</p>
+            </div>
+            
+            <div id="howWhyWorks" class="card" style="margin-bottom: 30px; display: none;">
+                <h2>How & Why It Works</h2>
+                <div id="howWhyContent"></div>
+            </div>
+            
+            <div id="citations" class="card" style="margin-bottom: 30px; display: none;">
+                <h2>References & Citations</h2>
+                <div id="citationsContent"></div>
+            </div>
+            
+            <div id="workthroughs" class="section">
+                <h2>Self-Help Workthroughs</h2>
+                <div id="workthroughsContent">
+                    <p>Loading workthroughs...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Parse URL params for gate/painPoint context
+            const urlParams = new URLSearchParams(window.location.search);
+            const gateId = urlParams.get('gate');
+            const painPointId = urlParams.get('painPoint');
+            
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const toolIndex = pathParts.indexOf('tools');
+            const pathSlug = toolIndex >= 0 ? pathParts[toolIndex + 1] : '';
+            const slugParam = urlParams.get('slug') || urlParams.get('tool') || '';
+            const rawSlug = (pathSlug && pathSlug !== 'tool.html' && pathSlug !== 'tool')
+                ? pathSlug
+                : slugParam;
+            const slug = decodeURIComponent(rawSlug || '').trim();
+            
+            if (!slug) {
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                const p = document.createElement('p');
+                p.textContent = 'Invalid tool slug.';
+                contentEl.appendChild(p);
+                return;
+            }
+            
+            try {
+                const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now()).catch(() => null);
+                const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now()).catch(() => null);
+
+                const canonicalData = toolsRes && toolsRes.ok ? await toolsRes.json() : { tools: [] };
+                const fallbackData = fallbackRes && fallbackRes.ok ? await fallbackRes.json() : { tools: [] };
+
+                const canonicalTools = Array.isArray(canonicalData.tools) ? canonicalData.tools : [];
+                const fallbackTools = Array.isArray(fallbackData.tools) ? fallbackData.tools : [];
+
+                if (canonicalTools.length === 0 && fallbackTools.length === 0) {
+                    throw new Error('Tools data not available.');
+                }
+
+                const normalizeSlug = (value) =>
+                    String(value || '')
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+
+                const isEmptyValue = (value) => {
+                    if (value == null) return true;
+                    if (typeof value === 'string') return value.trim() === '';
+                    if (Array.isArray(value)) return value.length === 0;
+                    return false;
+                };
+
+                const mergeTool = (primary, secondary) => {
+                    if (!secondary) return primary;
+                    const merged = { ...secondary, ...primary };
+                    Object.keys(secondary).forEach(key => {
+                        if (isEmptyValue(merged[key]) && !isEmptyValue(secondary[key])) {
+                            merged[key] = secondary[key];
+                        }
+                    });
+                    return merged;
+                };
+
+                const toolMap = new Map();
+                const indexTool = (tool) => {
+                    if (!tool) return;
+                    const key = normalizeSlug(tool.slug || tool.id || tool.title || tool.name);
+                    if (!key) return;
+                    const existing = toolMap.get(key);
+                    toolMap.set(key, existing ? mergeTool(existing, tool) : tool);
+                };
+
+                canonicalTools.forEach(indexTool);
+                fallbackTools.forEach(indexTool);
+
+                const lookup = (value) => {
+                    if (!value) return null;
+                    const key = normalizeSlug(value);
+                    return toolMap.get(key) || null;
+                };
+
+                const allTools = Array.from(toolMap.values());
+                const tool = lookup(slug);
+                
+                if (!tool) {
+                    const contentEl = document.getElementById('toolContent');
+                    contentEl.innerHTML = '';
+                    const p1 = document.createElement('p');
+                    p1.textContent = `Tool not found: ${slug}`;
+                    contentEl.appendChild(p1);
+                    return;
+                }
+                
+                // Render tool content
+                document.getElementById('toolTitle').textContent = tool.title || tool.name;
+                document.getElementById('toolTitleBreadcrumb').textContent = tool.title || tool.name;
+                
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                
+                // Add back link if gate/painPoint context exists
+                if (gateId && painPointId) {
+                    const backLink = document.createElement('div');
+                    backLink.style.cssText = 'margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border, #e0e0e0);';
+                    const link = document.createElement('a');
+                    link.href = `/?gate=${gateId}&painPoint=${painPointId}`;
+                    link.textContent = `← Back to ${gateId.replace(/-/g, ' ')} / ${painPointId.replace(/-/g, ' ')}`;
+                    link.style.cssText = 'color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em;';
+                    backLink.appendChild(link);
+                    contentEl.appendChild(backLink);
+                }
+                
+                // Description
+                const extractDescription = (tool) => {
+                    const raw = (tool && (tool.description || tool.summary)) || '';
+                    const title = tool && (tool.title || tool.name);
+                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                        return window.RYD_UI.sanitizeDescription(raw, title);
+                    }
+                    return String(raw || '').trim();
+                };
+
+                const cleanedDescription = extractDescription(tool);
+                if (cleanedDescription) {
+                    const p = document.createElement('p');
+                    p.style.cssText = 'font-size: 1.1em; line-height: 1.7; margin-bottom: 20px;';
+                    p.textContent = cleanedDescription;
+                    contentEl.appendChild(p);
+                }
+                
+                // Meta info
+                const meta = document.createElement('div');
+                meta.style.cssText = 'display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border, #e0e0e0);';
+                
+                if (tool.duration) {
+                    const duration = document.createElement('span');
+                    duration.style.cssText = 'display: flex; align-items: center; gap: 5px;';
+                    duration.innerHTML = `⏱️ <strong>Duration:</strong> ${tool.duration}`;
+                    meta.appendChild(duration);
+                }
+                
+                if (tool.difficulty) {
+                    const difficulty = document.createElement('span');
+                    difficulty.style.cssText = 'display: flex; align-items: center; gap: 5px;';
+                    const badge = document.createElement('span');
+                    badge.className = `badge badge-${tool.difficulty}`;
+                    badge.textContent = tool.difficulty;
+                    difficulty.innerHTML = `📖 <strong>Difficulty:</strong> `;
+                    difficulty.appendChild(badge);
+                    meta.appendChild(difficulty);
+                }
+                
+                contentEl.appendChild(meta);
+                
+                // How & Why It Works
+                if (tool.howWhyWorks) {
+                    const howWhyEl = document.getElementById('howWhyWorks');
+                    const howWhyContent = document.getElementById('howWhyContent');
+                    howWhyContent.innerHTML = '';
+                    const p = document.createElement('p');
+                    p.style.cssText = 'line-height: 1.7;';
+                    const safeHowWhy = window.RYD_UI && window.RYD_UI.sanitizeDescription
+                        ? window.RYD_UI.sanitizeDescription(tool.howWhyWorks, tool.title || tool.name)
+                        : tool.howWhyWorks;
+                    p.textContent = safeHowWhy;
+                    howWhyContent.appendChild(p);
+                    howWhyEl.style.display = 'block';
+                }
+                
+                // Citations
+                if (tool.citations && tool.citations.length > 0) {
+                    const citationsEl = document.getElementById('citations');
+                    const citationsContent = document.getElementById('citationsContent');
+                    citationsContent.innerHTML = '';
+                    
+                    const ul = document.createElement('ul');
+                    ul.style.cssText = 'list-style: none; padding: 0;';
+                    
+                    tool.citations.forEach(citation => {
+                        const li = document.createElement('li');
+                        li.style.cssText = 'margin-bottom: 15px; padding-left: 20px; position: relative;';
+                        
+                        if (citation.title && citation.title !== 'Content pending import') {
+                            const strong = document.createElement('strong');
+                            strong.textContent = citation.title;
+                            li.appendChild(strong);
+                            
+                            if (citation.source) {
+                                const br = document.createElement('br');
+                                li.appendChild(br);
+                                const span = document.createElement('span');
+                                span.textContent = citation.source;
+                                li.appendChild(span);
+                            }
+                            
+                            const directUrl = citation.url || '';
+                            const searchSeed = citation.title || citation.source || '';
+                            const searchUrl = searchSeed
+                                ? `https://scholar.google.com/scholar?q=${encodeURIComponent(searchSeed)}`
+                                : '';
+                            const finalUrl = directUrl || searchUrl;
+
+                            if (finalUrl) {
+                                const br2 = document.createElement('br');
+                                li.appendChild(br2);
+                                const a = document.createElement('a');
+                                a.href = finalUrl;
+                                a.target = '_blank';
+                                a.rel = 'noopener noreferrer';
+                                a.textContent = directUrl ? 'View source' : 'Find source';
+                                a.style.cssText = 'color: var(--color-accent, #667eea);';
+                                li.appendChild(a);
+                            }
+                        } else {
+                            const em = document.createElement('em');
+                            em.textContent = 'Content pending import from live site';
+                            li.appendChild(em);
+                        }
+                        
+                        ul.appendChild(li);
+                    });
+                    
+                    citationsContent.appendChild(ul);
+                    citationsEl.style.display = 'block';
+                }
+                
+                // 3 Expandable Workthroughs
+                const workthroughsContent = document.getElementById('workthroughsContent');
+                workthroughsContent.innerHTML = '';
+                
+                if (tool.walkthroughs && tool.walkthroughs.length > 0) {
+                    tool.walkthroughs.forEach((wt, index) => {
+                        const details = document.createElement('details');
+                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
+                        
+                        const summary = document.createElement('summary');
+                        summary.textContent = wt.title;
+                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
+                        details.appendChild(summary);
+                        
+                        const content = document.createElement('div');
+                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
+                        
+                        if (wt.steps && wt.steps.length > 0) {
+                            const ol = document.createElement('ol');
+                            ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
+                            wt.steps.forEach(step => {
+                                const li = document.createElement('li');
+                                li.style.cssText = 'margin: 8px 0;';
+                                li.textContent = step;
+                                ol.appendChild(li);
+                            });
+                            content.appendChild(ol);
+                        } else {
+                            const p = document.createElement('p');
+                            p.textContent = 'Content pending import from live site.';
+                            content.appendChild(p);
+                        }
+                        
+                        details.appendChild(content);
+                        workthroughsContent.appendChild(details);
+                    });
+                } else {
+                    // Fallback: create 3 placeholder workthroughs
+                    const workthroughs = [
+                        { title: 'Quick Workthrough (5 min)', content: 'Content pending import from live site.' },
+                        { title: 'Standard Workthrough (15 min)', content: 'Content pending import from live site.' },
+                        { title: 'Deep Workthrough (30 min)', content: 'Content pending import from live site.' }
+                    ];
+                    
+                    workthroughs.forEach(wt => {
+                        const details = document.createElement('details');
+                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
+                        
+                        const summary = document.createElement('summary');
+                        summary.textContent = wt.title;
+                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
+                        details.appendChild(summary);
+                        
+                        const content = document.createElement('div');
+                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
+                        content.textContent = wt.content;
+                        details.appendChild(content);
+                        
+                        workthroughsContent.appendChild(details);
+                    });
+                }
+
+                // Related tools from same gate/pain point (if available)
+                if (gateId && painPointId) {
+                    const mappingRes = await fetch('/data/gates-painpoints-tools.json?ts=' + Date.now()).catch(() => null);
+                    if (mappingRes && mappingRes.ok) {
+                        const mappingData = await mappingRes.json();
+                        const gate = (mappingData.gates || []).find(g => g.id === gateId);
+                        const painPoint = gate ? (gate.painPoints || []).find(pp => pp.id === painPointId) : null;
+                        const relatedIds = painPoint ? (painPoint.toolIds || []) : [];
+                        const relatedTools = relatedIds
+                            .map(id => allTools.find(t => t.id === id || t.slug === id))
+                            .filter(Boolean)
+                            .slice(0, 6);
+
+                        if (relatedTools.length > 0) {
+                            const relatedSection = document.createElement('div');
+                            relatedSection.className = 'card';
+                            relatedSection.style.cssText = 'margin-top: 30px;';
+                            const h2 = document.createElement('h2');
+                            h2.textContent = 'Related Tools';
+                            relatedSection.appendChild(h2);
+                            const ul = document.createElement('ul');
+                            ul.style.cssText = 'list-style: none; padding: 0;';
+                            relatedTools.forEach(rt => {
+                                const li = document.createElement('li');
+                                li.style.cssText = 'margin: 10px 0;';
+                                const link = document.createElement('a');
+                                link.href = `/tools/${rt.slug || rt.id}`;
+                                link.textContent = rt.title || rt.name || rt.id;
+                                link.style.cssText = 'color: var(--color-accent, #667eea); text-decoration: none;';
+                                li.appendChild(link);
+                                ul.appendChild(li);
+                            });
+                            relatedSection.appendChild(ul);
+                            document.querySelector('main .section').appendChild(relatedSection);
+                        }
+                    }
+                }
+                
+            } catch (err) {
+                console.error('[RYD] tool page error:', err);
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                const p = document.createElement('p');
+                p.style.cssText = 'color: #d32f2f;';
+                p.textContent = 'Error loading tool. Please try again later.';
+                contentEl.appendChild(p);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Ride Your Demons</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h1>Search Results</h1>
+            <div id="searchResults">
+                <p>Loading search results...</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Render search results from sessionStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsEl = document.getElementById('searchResults');
+            let result;
+            
+            try {
+                const stored = sessionStorage.getItem('ryd:searchResult');
+                if (stored) {
+                    result = JSON.parse(stored);
+                }
+            } catch (e) {
+                console.error('Failed to load search result:', e);
+            }
+            
+            if (!result) {
+                // Get query from URL
+                const params = new URLSearchParams(window.location.search);
+                const query = params.get('q');
+                if (query && window.RYD_NAV) {
+                    result = window.RYD_NAV.classifyPain ? window.RYD_NAV.classifyPain(query) : null;
+                }
+            }
+            
+            resultsEl.innerHTML = '';
+            
+            if (!result || !result.gate) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const p = document.createElement('p');
+                p.textContent = 'No results found. Try searching for: anxiety, depression, stress, relationships, trauma';
+                card.appendChild(p);
+                
+                const link = document.createElement('a');
+                link.href = '/';
+                link.className = 'btn';
+                link.textContent = 'Return Home';
+                card.appendChild(link);
+                
+                resultsEl.appendChild(card);
+                return;
+            }
+            
+            // Find gate title
+            const gate = window.RYD_NAV && window.RYD_NAV.gates ? 
+                window.RYD_NAV.gates.find(g => g.id === result.gate) : null;
+            const gateTitle = gate ? gate.title : result.gate;
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const h2 = document.createElement('h2');
+            h2.textContent = `Best Match: ${gateTitle}`;
+            card.appendChild(h2);
+            
+            if (result.painPoint) {
+                const h3 = document.createElement('h3');
+                h3.textContent = result.painPoint.title;
+                card.appendChild(h3);
+                
+                const p = document.createElement('p');
+                const link = document.createElement('a');
+                link.href = `/gates/${result.gate}/${result.painPoint.id}`;
+                link.className = 'btn';
+                link.textContent = 'View Pain Point';
+                p.appendChild(link);
+                card.appendChild(p);
+            }
+            
+            if (result.tools && result.tools.length > 0) {
+                const h3 = document.createElement('h3');
+                h3.textContent = `Relevant Tools (${result.tools.length})`;
+                card.appendChild(h3);
+                
+                const ul = document.createElement('ul');
+                result.tools.forEach(tool => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `/tools/${tool.slug || tool.id}`;
+                    link.textContent = tool.title || tool.id;
+                    li.appendChild(link);
+                    ul.appendChild(li);
+                });
+                card.appendChild(ul);
+            }
+            
+            const p = document.createElement('p');
+            const link = document.createElement('a');
+            link.href = `/gates/${result.gate}`;
+            link.className = 'btn';
+            link.textContent = `Browse All ${gateTitle} Tools`;
+            p.appendChild(link);
+            card.appendChild(p);
+            
+            resultsEl.appendChild(card);
+        });
+    </script>
+</body>
+</html>
+

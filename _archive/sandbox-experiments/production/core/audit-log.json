@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "description": "Append-only adaptation log. Every system adjustment must be logged here for audit and reversibility.",
+  "entries": [],
+  "schema": {
+    "timestamp": "ISO 8601 datetime",
+    "type": "weight_adjustment | content_addition | content_removal | state_change | ethics_violation | analytics_event | analytics_matrix_use | numerology_display | numerology_validation",
+    "action": "string describing the action",
+    "before": "state before change",
+    "after": "state after change",
+    "reason": "why the change was made",
+    "approved_by": "human | system | rule",
+    "reversible": true,
+    "reversal_method": "description of how to reverse",
+    "source_system": "matrix | analytics | numerology | ethics | region"
+  },
+  "retention": {
+    "policy": "permanent",
+    "reason": "Required for legal, ethical, and investor audit trails"
+  }
+}
+

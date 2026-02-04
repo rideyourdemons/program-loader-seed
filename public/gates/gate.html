@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate - Ride Your Demons</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ui-sanitize.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
+                <a href="/">Home</a> › <span id="gateTitle">Gate</span>
+            </nav>
+            <h1 id="gateTitleH1">Gate</h1>
+            <div class="card" style="margin-bottom: 20px;">
+                <p><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. These tools are meant to help you understand what may help and why it works.</p>
+                <p>If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
+            </div>
+            <div id="painPointsList">
+                <p>Loading pain points...</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const sanitizeDescription = (raw, title) => {
+                if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                    return window.RYD_UI.sanitizeDescription(raw, title);
+                }
+                return String(raw || '').trim();
+            };
+
+            // Extract gateId from URL
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const gateId = pathParts[pathParts.indexOf('gates') + 1];
+            
+            if (!gateId) {
+                const listEl = document.getElementById('painPointsList');
+                listEl.innerHTML = '';
+                const p = document.createElement('p');
+                p.textContent = 'Invalid gate ID.';
+                listEl.appendChild(p);
+                return;
+            }
+            
+            try {
+                const mappingRes = await fetch('/data/gates-painpoints-tools.json?ts=' + Date.now());
+                if (!mappingRes.ok) {
+                    throw new Error('Gates mapping not available.');
+                }
+
+                const mappingData = await mappingRes.json();
+                const gate = (mappingData.gates || []).find(g => g.id === gateId);
+                const points = gate ? (gate.painPoints || []) : [];
+                
+                if (gate) {
+                    document.getElementById('gateTitle').textContent = gate.title;
+                    document.getElementById('gateTitleH1').textContent = gate.title;
+                }
+                
+                if (points.length === 0) {
+                    const listEl = document.getElementById('painPointsList');
+                    listEl.innerHTML = '';
+                    const p = document.createElement('p');
+                    p.textContent = 'No pain points available for this gate.';
+                    listEl.appendChild(p);
+                    return;
+                }
+                
+                const container = document.getElementById('painPointsList');
+                container.innerHTML = '';
+
+                if (gate && gate.description) {
+                    const desc = document.createElement('p');
+                    desc.textContent = sanitizeDescription(gate.description, gate.title);
+                    desc.style.cssText = 'color: var(--color-text-secondary, #666); margin-bottom: 20px;';
+                    container.appendChild(desc);
+                }
+                
+                const p = document.createElement('p');
+                p.textContent = `${points.length} pain points:`;
+                container.appendChild(p);
+                
+                const ul = document.createElement('ul');
+                ul.style.cssText = 'list-style: none; padding: 0;';
+                
+                points.forEach(pp => {
+                    const li = document.createElement('li');
+                    li.style.cssText = 'margin: 10px 0;';
+                    const link = document.createElement('a');
+                    link.href = `/gates/${gateId}/${pp.id}`;
+                    link.className = 'btn';
+                    link.style.cssText = 'display: inline-block;';
+                    const toolCount = Array.isArray(pp.toolIds) ? pp.toolIds.length : 0;
+                    link.textContent = toolCount > 0 ? `${pp.title} (${toolCount} tools)` : pp.title;
+                    li.appendChild(link);
+                    ul.appendChild(li);
+                });
+                
+                container.appendChild(ul);
+            } catch (err) {
+                document.getElementById('painPointsList').innerHTML = `<p>Error: ${err.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
+

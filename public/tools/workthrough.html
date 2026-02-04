@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work-Through - Ride Your Demons</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
+                <a href="/">Home</a> › <a href="/tools">Tools</a> › <a href="#" id="toolLink">Tool</a> › <span id="workthroughType">Work-Through</span>
+            </nav>
+            <h1 id="workthroughTitle">Work-Through</h1>
+            <div id="workthroughContent" class="card">
+                <p>Loading work-through...</p>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="#" id="backLink" class="btn">← Back to Tool</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const toolIndex = pathParts.indexOf('tools');
+            const slug = pathParts[toolIndex + 1];
+            const type = pathParts[toolIndex + 2]; // quick, standard, deep
+            
+            if (!slug || !type) {
+                document.getElementById('workthroughContent').innerHTML = '<p>Invalid work-through path.</p>';
+                return;
+            }
+            
+            const typeLabels = {
+                'quick': 'Quick (5 min)',
+                'standard': 'Standard (15 min)',
+                'deep': 'Deep (30 min)'
+            };
+            
+            document.getElementById('workthroughType').textContent = typeLabels[type] || type;
+            document.getElementById('workthroughTitle').textContent = typeLabels[type] || 'Work-Through';
+            document.getElementById('backLink').href = `/tools/${slug}`;
+            
+            try {
+                const res = await fetch('/data/tools.json?ts=' + Date.now());
+                if (!res.ok) {
+                    throw new Error('Tools data not available.');
+                }
+                
+                const data = await res.json();
+                const tool = data.tools.find(t => (t.slug === slug || t.id === slug));
+                
+                if (!tool) {
+                    const contentEl = document.getElementById('workthroughContent');
+                contentEl.innerHTML = '';
+                const p1 = document.createElement('p');
+                p1.textContent = `Tool not found: ${slug}`;
+                contentEl.appendChild(p1);
+                const p2 = document.createElement('p');
+                const em = document.createElement('em');
+                em.textContent = 'Work-through steps must be extracted from live site.';
+                p2.appendChild(em);
+                contentEl.appendChild(p2);
+                    return;
+                }
+                
+                document.getElementById('toolLink').textContent = tool.title;
+                document.getElementById('toolLink').href = `/tools/${slug}`;
+                
+                // Render work-through steps (TRUTH ONLY)
+                const contentEl = document.getElementById('workthroughContent');
+                contentEl.innerHTML = '';
+                
+                const h2 = document.createElement('h2');
+                h2.textContent = `${tool.title} - ${typeLabels[type]}`;
+                contentEl.appendChild(h2);
+                
+                if (tool.steps) {
+                    // If steps exist, render them (may contain HTML, so use innerHTML carefully)
+                    const div = document.createElement('div');
+                    div.style.marginTop = '20px';
+                    div.innerHTML = tool.steps; // Steps may contain formatting
+                    contentEl.appendChild(div);
+                } else {
+                    // If no steps, show minimal guidance
+                    const div = document.createElement('div');
+                    div.style.marginTop = '20px';
+                    
+                    const p1 = document.createElement('p');
+                    const em1 = document.createElement('em');
+                    em1.textContent = 'Work-through steps not yet extracted from live site.';
+                    p1.appendChild(em1);
+                    div.appendChild(p1);
+                    
+                    const p2 = document.createElement('p');
+                    const strong1 = document.createElement('strong');
+                    strong1.textContent = 'Note: ';
+                    p2.appendChild(strong1);
+                    p2.appendChild(document.createTextNode('Steps must be extracted from the live RYD site. No placeholder content generated.'));
+                    div.appendChild(p2);
+                    
+                    if (tool.howWhyWorks) {
+                        const p3 = document.createElement('p');
+                        const strong2 = document.createElement('strong');
+                        strong2.textContent = 'Methodology: ';
+                        p3.appendChild(strong2);
+                        p3.appendChild(document.createTextNode(tool.howWhyWorks.substring(0, 200) + '...'));
+                        div.appendChild(p3);
+                    }
+                    
+                    contentEl.appendChild(div);
+                }
+                
+                // Add limits/disclaimers
+                const disclaimerDiv = document.createElement('div');
+                disclaimerDiv.style.cssText = 'margin-top: 30px; padding: 15px; background: #f5f5f5; border-left: 4px solid var(--color-accent, #667eea);';
+                const p = document.createElement('p');
+                const strong = document.createElement('strong');
+                strong.textContent = 'Limits: ';
+                p.appendChild(strong);
+                p.appendChild(document.createTextNode('This is a self-help tool, not therapy. Results vary. If you need professional support, consult a qualified professional.'));
+                disclaimerDiv.appendChild(p);
+                contentEl.appendChild(disclaimerDiv);
+            } catch (err) {
+                const contentEl = document.getElementById('workthroughContent');
+                contentEl.innerHTML = '';
+                const p1 = document.createElement('p');
+                p1.textContent = `Error loading work-through: ${err.message}`;
+                contentEl.appendChild(p1);
+                const p2 = document.createElement('p');
+                const em = document.createElement('em');
+                em.textContent = 'Content must be extracted from live site first.';
+                p2.appendChild(em);
+                contentEl.appendChild(p2);
+            }
+        });
+    </script>
+</body>
+</html>
+

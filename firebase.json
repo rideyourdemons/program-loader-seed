@@ -1,0 +1,108 @@
+{
+  "hosting": {
+    "public": "public",
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      { "source": "/tools", "destination": "/tools.html" },
+      { "source": "/tools/:slug", "destination": "/tools/tool.html" },
+      { "source": "/tools/:slug/:type", "destination": "/tools/workthrough.html" },
+      { "source": "/insights", "destination": "/insights.html" },
+      { "source": "/insights/:slug", "destination": "/insights.html" },
+      { "source": "/search", "destination": "/search.html" },
+      { "source": "/gates", "destination": "/gates/index.html" },
+      { "source": "/gates/:gateId", "destination": "/gates/gate.html" },
+      { "source": "/gates/:gateId/:painPointId", "destination": "/gates/pain-point.html" },
+      { "source": "/matrix/**", "destination": "/matrix/**" },
+      { "source": "/data/**", "destination": "/data/**" },
+      { "source": "**", "destination": "/index.html" }
+    ],
+    "redirects": [],
+    "headers": [
+      {
+        "source": "**/*.@(html|js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      },
+      {
+        "source": "/matrix/**",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "**/*.js",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/javascript; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "**/*.css",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "**/*.json",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-store, no-cache, must-revalidate, max-age=0"
+          }
+        ]
+      },
+      {
+        "source": "**/*.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "matrix/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-store, no-cache, must-revalidate, max-age=0"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          }
+        ]
+      }
+    ]
+  }
+}

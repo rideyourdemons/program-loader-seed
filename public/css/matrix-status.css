@@ -1,0 +1,26 @@
+/* matrix-status.css - optional helper styles */
+#matrix-status, #tool-of-day-status, #tod-status, #status {
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+#matrix-status[data-status="loading"],
+#tool-of-day-status[data-status="loading"],
+#tod-status[data-status="loading"],
+#status[data-status="loading"] {
+  opacity: 0.9;
+}
+#matrix-status[data-status="error"],
+#tool-of-day-status[data-status="error"],
+#tod-status[data-status="error"],
+#status[data-status="error"] {
+  border: 1px solid rgba(255,0,0,0.25);
+}
+#matrix-status[data-status="ok"],
+#tool-of-day-status[data-status="ok"],
+#tod-status[data-status="ok"],
+#status[data-status="ok"] {
+  border: 1px solid rgba(0,0,0,0.15);
+}

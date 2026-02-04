@@ -1,0 +1,4351 @@
+{
+  "version": "2.0",
+  "generated": "2026-02-01T23:50:45.637Z",
+  "note": "40 pain points per gate with tool mappings",
+  "painPoints": {
+    "mens-mental-health": [
+      {
+        "id": "how-do-i-stop-feeling-numb",
+        "title": "How do I stop feeling numb?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-become-more-disciplined",
+        "title": "How do I become more disciplined?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-anger-issues",
+        "title": "How do I deal with anger issues?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-procrastinating",
+        "title": "How do I stop procrastinating?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-build-self-confidence",
+        "title": "How do I build self-confidence?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-anxiety",
+        "title": "How do I overcome anxiety?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-find-my-purpose",
+        "title": "How do I find my purpose?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-toxic-relationships",
+        "title": "How do I deal with toxic relationships?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-my-focus",
+        "title": "How do I improve my focus?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-stress",
+        "title": "How do I manage stress?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-fear-of-failure",
+        "title": "How do I overcome fear of failure?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-build-better-habits",
+        "title": "How do I build better habits?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-loneliness",
+        "title": "How do I deal with loneliness?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-my-relationships",
+        "title": "How do I improve my relationships?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-negative-self-talk",
+        "title": "How do I stop negative self-talk?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-set-and-achieve-goals",
+        "title": "How do I set and achieve goals?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-burnout",
+        "title": "How do I manage burnout?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-my-sleep",
+        "title": "How do I improve my sleep?",
+        "toolIds": [
+          "sleep-guardrails-how-do-i-improve-my-sleep",
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-grief",
+        "title": "How do I deal with grief?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-control-my-emotions",
+        "title": "How do I control my emotions?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "why-do-i-feel-lost-in-life",
+        "title": "Why do I feel lost in life?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "why-do-i-feel-angry-all-the-time",
+        "title": "Why do I feel angry all the time?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "why-do-i-feel-like-a-failure",
+        "title": "Why do I feel like a failure?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "why-do-i-shut-down-emotionally",
+        "title": "Why do I shut down emotionally?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-overthinking-everything",
+        "title": "How do I stop overthinking everything?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-self-sabotaging",
+        "title": "How do I stop self-sabotaging?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-shame",
+        "title": "How do I deal with shame?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-comparing-myself-to-others",
+        "title": "How do I stop comparing myself to others?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-after-hitting-rock-bottom",
+        "title": "How do I rebuild after hitting rock bottom?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-avoiding-hard-things",
+        "title": "How do I stop avoiding hard things?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-rejection",
+        "title": "How do I deal with rejection?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-feeling-behind-in-life",
+        "title": "How do I stop feeling behind in life?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-regain-motivation",
+        "title": "How do I regain motivation?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-trust-myself-again",
+        "title": "How do I trust myself again?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-guilt",
+        "title": "How do I deal with guilt?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-bottling-things-up",
+        "title": "How do I stop bottling things up?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-feel-like-a-man-again",
+        "title": "How do I feel like a man again?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-pressure-without-breaking",
+        "title": "How do I handle pressure without breaking?",
+        "toolIds": [
+          "the-pressure-release-valve-how-do-i-deal-with-anger-issues",
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-feeling-empty",
+        "title": "How do I stop feeling empty?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      },
+      {
+        "id": "how-do-i-move-forward-when-i-m-stuck",
+        "title": "How do I move forward when I’m stuck?",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "action-burn-how-do-i-overcome-anxiety",
+          "action-first-mood-follows-how-do-i-become-more-resilient"
+        ]
+      }
+    ],
+    "womens-mental-health": [
+      {
+        "id": "how-do-i-manage-overwhelming-emotions",
+        "title": "How do I manage overwhelming emotions?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-set-healthy-boundaries",
+        "title": "How do I set healthy boundaries?",
+        "toolIds": [
+          "compassionate-boundaries-how-do-i-deal-with-judgment-from-others",
+          "compassionate-boundaries-how-do-i-heal-from-sexual-trauma",
+          "compassionate-boundaries-how-do-i-manage-resentment-in-my-relationship"
+        ]
+      },
+      {
+        "id": "how-do-i-find-balance-in-life",
+        "title": "How do I find balance in life?",
+        "toolIds": [
+          "wheel-of-life-audit-how-do-i-find-balance-in-life",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-self-doubt",
+        "title": "How do I overcome self-doubt?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-build-mental-toughness",
+        "title": "How do I build mental toughness?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-address-emotional-eating",
+        "title": "How do I address emotional eating?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-balance-caregiving-and-self-care",
+        "title": "How do I balance caregiving and self-care?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-build-resilience-against-life-setbacks",
+        "title": "How do I build resilience against life setbacks?",
+        "toolIds": [
+          "wheel-of-life-audit-how-do-i-find-balance-in-life",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-communicate-better-with-my-partner",
+        "title": "How do I communicate better with my partner?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-cope-with-infertility",
+        "title": "How do I cope with infertility?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-cope-with-loneliness-as-a-single-mother",
+        "title": "How do I cope with loneliness as a single mother?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-cope-with-postpartum-depression",
+        "title": "How do I cope with postpartum depression?",
+        "toolIds": [
+          "postpartum-support-plan-how-do-i-balance-caregiving-and-self-care",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-body-changes-from-aging",
+        "title": "How do I deal with body changes from aging?",
+        "toolIds": [
+          "body-image-reframe-how-do-i-cope-with-loneliness-as-a-single-mother",
+          "body-image-reframe-how-do-i-improve-body-image-and-self-esteem",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-judgment-from-others",
+        "title": "How do I deal with judgment from others?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-perfectionism",
+        "title": "How do I deal with perfectionism?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-social-pressure-to-conform",
+        "title": "How do I deal with social pressure to conform?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-find-joy-in-my-daily-routine",
+        "title": "How do I find joy in my daily routine?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-find-my-identity-outside-of-motherhood",
+        "title": "How do I find my identity outside of motherhood?",
+        "toolIds": [
+          "identity-beyond-roles-map-how-do-i-deal-with-body-changes-from-aging",
+          "identity-beyond-roles-map-how-do-i-deal-with-social-pressure-to-conform",
+          "identity-beyond-roles-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-find-purpose-after-children-leave-home",
+        "title": "How do I find purpose after children leave home?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-financial-independence-after-separation",
+        "title": "How do I handle financial independence after separation?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-workplace-discrimination-or-harassment",
+        "title": "How do I handle workplace discrimination or harassment?",
+        "toolIds": [
+          "harassment-response-script-how-do-i-handle-harassment-online",
+          "workplace-rights-checklist-how-do-i-handle-workplace-discrimination-or-harassment",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-heal-from-sexual-trauma",
+        "title": "How do I heal from sexual trauma?",
+        "toolIds": [
+          "trauma-grounding-kit-how-do-i-handle-harassment-online",
+          "trauma-grounding-kit-how-do-i-handle-workplace-discrimination-or-harassment",
+          "trauma-grounding-kit-how-do-i-heal-from-sexual-trauma"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-anxiety-while-balancing-work-and-family",
+        "title": "How do I manage anxiety while balancing work and family?",
+        "toolIds": [
+          "blended-family-playbook-how-do-i-navigate-blended-family-challenges",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-chronic-illness-while-caring-for-others",
+        "title": "How do I manage chronic illness while caring for others?",
+        "toolIds": [
+          "chronic-illness-coping-plan-how-do-i-manage-chronic-illness-while-caring-for-others",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-work-life-boundaries-when-working-from-home",
+        "title": "How do I manage work-life boundaries when working from home?",
+        "toolIds": [
+          "compassionate-boundaries-how-do-i-deal-with-judgment-from-others",
+          "compassionate-boundaries-how-do-i-heal-from-sexual-trauma",
+          "compassionate-boundaries-how-do-i-manage-resentment-in-my-relationship"
+        ]
+      },
+      {
+        "id": "how-do-i-navigate-blended-family-challenges",
+        "title": "How do I navigate blended family challenges?",
+        "toolIds": [
+          "blended-family-playbook-how-do-i-navigate-blended-family-challenges",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-imposter-syndrome",
+        "title": "How do I overcome imposter syndrome?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-prepare-mentally-for-retirement",
+        "title": "How do I prepare mentally for retirement?",
+        "toolIds": [
+          "retirement-mindset-prep-how-do-i-handle-financial-independence-after-separation",
+          "retirement-mindset-prep-how-do-i-prepare-mentally-for-retirement",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-process-grief-after-miscarriage",
+        "title": "How do I process grief after miscarriage?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-confidence-after-an-abusive-relationship",
+        "title": "How do I rebuild confidence after an abusive relationship?",
+        "toolIds": [
+          "confidence-rebuild-plan-how-do-i-address-emotional-eating",
+          "confidence-rebuild-plan-how-do-i-find-joy-in-my-daily-routine",
+          "confidence-rebuild-plan-how-do-i-handle-financial-independence-after-separation"
+        ]
+      },
+      {
+        "id": "how-do-i-recover-from-burnout",
+        "title": "How do I recover from burnout?",
+        "toolIds": [
+          "burnout-recovery-map-how-do-i-cope-with-loneliness-as-a-single-mother",
+          "burnout-recovery-map-how-do-i-recover-from-burnout",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-reduce-mental-load-in-my-household",
+        "title": "How do I reduce mental load in my household?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-set-relational-boundaries-with-family",
+        "title": "How do I set relational boundaries with family?",
+        "toolIds": [
+          "blended-family-playbook-how-do-i-navigate-blended-family-challenges",
+          "compassionate-boundaries-how-do-i-deal-with-judgment-from-others",
+          "compassionate-boundaries-how-do-i-heal-from-sexual-trauma"
+        ]
+      },
+      {
+        "id": "how-do-i-support-a-friend-through-domestic-violence",
+        "title": "How do I support a friend through domestic violence?",
+        "toolIds": [
+          "menopause-support-toolkit-how-do-i-balance-caregiving-and-self-care",
+          "menopause-support-toolkit-how-do-i-manage-stress-during-menopause",
+          "postpartum-support-plan-how-do-i-balance-caregiving-and-self-care"
+        ]
+      },
+      {
+        "id": "how-do-i-support-my-mental-health-during-pregnancy",
+        "title": "How do I support my mental health during pregnancy?",
+        "toolIds": [
+          "menopause-support-toolkit-how-do-i-balance-caregiving-and-self-care",
+          "menopause-support-toolkit-how-do-i-manage-stress-during-menopause",
+          "postpartum-support-plan-how-do-i-balance-caregiving-and-self-care"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-stress-during-menopause",
+        "title": "How do I manage stress during menopause?",
+        "toolIds": [
+          "menopause-support-toolkit-how-do-i-balance-caregiving-and-self-care",
+          "menopause-support-toolkit-how-do-i-manage-stress-during-menopause",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-body-image-and-self-esteem",
+        "title": "How do I improve body image and self-esteem?",
+        "toolIds": [
+          "body-image-reframe-how-do-i-cope-with-loneliness-as-a-single-mother",
+          "body-image-reframe-how-do-i-improve-body-image-and-self-esteem",
+          "act-values-map-how-do-i-cope-with-postpartum-depression"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-comparing-myself-to-others",
+        "title": "How do I stop comparing myself to others?",
+        "toolIds": [
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood",
+          "act-values-map-how-do-i-find-purpose-after-children-leave-home"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-resentment-in-my-relationship",
+        "title": "How do I manage resentment in my relationship?",
+        "toolIds": [
+          "resentment-release-ritual-how-do-i-cope-with-infertility",
+          "resentment-release-ritual-how-do-i-deal-with-body-changes-from-aging",
+          "resentment-release-ritual-how-do-i-manage-resentment-in-my-relationship"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-harassment-online",
+        "title": "How do I handle harassment online?",
+        "toolIds": [
+          "harassment-response-script-how-do-i-handle-harassment-online",
+          "act-values-map-how-do-i-cope-with-postpartum-depression",
+          "act-values-map-how-do-i-find-my-identity-outside-of-motherhood"
+        ]
+      }
+    ],
+    "addiction-recovery": [
+      {
+        "id": "how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+        "title": "How do I combine medication assisted treatment mat with tools?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-fix-sleep-problems-in-recovery",
+        "title": "How do I fix sleep problems in recovery?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-travel-without-relapsing",
+        "title": "How do I travel without relapsing?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-boredom-in-sobriety",
+        "title": "How do I deal with boredom in sobriety?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-social-pressure-to-use",
+        "title": "How do I handle social pressure to use?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-maintain-long-term-sobriety",
+        "title": "How do I maintain long term sobriety?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-date-or-return-to-intimacy-in-early-recovery",
+        "title": "How do I date or return to intimacy in early recovery?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-forgive-myself-for-what-ive-done",
+        "title": "How do I forgive myself for What ive done?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-create-healthy-pleasure-in-sober-life",
+        "title": "How do I create healthy pleasure in sober life?",
+        "toolIds": [
+          "the-healthy-pleasure-discovery-tool-how-do-i-deal-with-anger-safely",
+          "the-healthy-pleasure-discovery-tool-how-do-i-deal-with-financial-consequences-of-addiction",
+          "the-healthy-pleasure-discovery-tool-how-do-i-improve-my-physical-health-in-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-post-acute-withdrawal-syndrome-paws",
+        "title": "How do I deal with post acute withdrawal syndrome paws?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-stress-without-using-substances",
+        "title": "How do I manage stress without using substances?",
+        "toolIds": [
+          "the-stress-management-tool-how-do-i-deal-with-anger-safely",
+          "the-stress-management-tool-how-do-i-deal-with-financial-consequences-of-addiction",
+          "the-stress-management-tool-how-do-i-manage-anger-and-resentment-towards-others"
+        ]
+      },
+      {
+        "id": "how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+        "title": "How do I bounce back after a slip to avoid full relapse?",
+        "toolIds": [
+          "the-relapse-prevention-tool-how-do-i-build-a-new-life-without-my-addiction",
+          "the-relapse-prevention-tool-how-do-i-find-joy-in-sobriety",
+          "the-relapse-prevention-tool-how-do-i-stop-craving-my-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-find-a-new-support-system",
+        "title": "How do I find a new support system?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-craving-my-addiction",
+        "title": "How do I stop craving my addiction?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-anger-and-resentment-from-my-partner",
+        "title": "How do I deal with the anger and resentment from my partner?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-my-careerprofessional-life",
+        "title": "How do I rebuild my careerprofessional life?",
+        "toolIds": [
+          "the-communication-rebuild-tool-for-couples-how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+          "the-communication-rebuild-tool-for-couples-how-do-i-find-a-new-support-system",
+          "the-communication-rebuild-tool-for-couples-how-do-i-stop-craving-my-addiction"
+        ]
+      },
+      {
+        "id": "the-creative-expression-tool",
+        "title": "The Creative Expression Tool",
+        "toolIds": [
+          "the-creative-expression-tool-how-do-i-deal-with-the-anger-and-resentment-from-my-partner",
+          "the-creative-expression-tool-how-do-i-rebuild-my-careerprofessional-life",
+          "the-creative-expression-tool-how-do-we-rebuild-as-a-couple-after-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-build-a-new-life-without-my-addiction",
+        "title": "How do I build a new life without my addiction?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-find-joy-in-sobriety",
+        "title": "How do I find joy in sobriety?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-support-my-partners-recovery-without-enabling-them",
+        "title": "How do I support my partners recovery without enabling them?",
+        "toolIds": [
+          "the-self-compassion-for-partners-tool-how-do-i-deal-with-the-anger-and-resentment-from-my-partner",
+          "the-self-compassion-for-partners-tool-how-do-i-rebuild-trust-with-my-partner",
+          "the-self-compassion-for-partners-tool-how-do-we-rebuild-as-a-couple-after-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-loneliness-in-recovery",
+        "title": "How do I deal with loneliness in recovery?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-shame-spirals",
+        "title": "How do I handle shame spirals?",
+        "toolIds": [
+          "the-shame-and-guilt-processing-tool-how-do-i-deal-with-boredom-in-sobriety",
+          "the-shame-and-guilt-processing-tool-how-do-i-improve-communication-in-my-relationship",
+          "the-shame-and-guilt-processing-tool-how-do-i-maintain-long-term-sobriety"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-anger-safely",
+        "title": "How do I deal with anger safely?",
+        "toolIds": [
+          "the-anger-release-tool-how-do-i-deal-with-boredom-in-sobriety",
+          "the-anger-release-tool-how-do-i-handle-social-pressure-to-use",
+          "the-anger-release-tool-how-do-i-maintain-long-term-sobriety"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-anger-and-resentment-towards-others",
+        "title": "How do I manage anger and resentment towards others?",
+        "toolIds": [
+          "the-anger-release-tool-how-do-i-deal-with-boredom-in-sobriety",
+          "the-anger-release-tool-how-do-i-handle-social-pressure-to-use",
+          "the-anger-release-tool-how-do-i-maintain-long-term-sobriety"
+        ]
+      },
+      {
+        "id": "how-do-i-explain-my-addiction-to-my-children",
+        "title": "How do I explain my addiction to my children?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-trust-with-my-partner",
+        "title": "How do I rebuild trust with my partner?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "the-future-proofing-recovery-tool",
+        "title": "The Future-Proofing Recovery Tool",
+        "toolIds": [
+          "the-future-proofing-recovery-tool-how-do-i-explain-my-addiction-to-my-children",
+          "the-future-proofing-recovery-tool-how-do-i-rebuild-trust-with-my-partner",
+          "the-future-proofing-recovery-tool-how-do-we-rebuild-as-a-couple-after-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-digital-triggers-social-media-porn-gambling",
+        "title": "How do I deal with digital triggers social media porn gambling?",
+        "toolIds": [
+          "the-triggers-and-cravings-management-tool-how-do-i-deal-with-digital-triggers-social-media-porn-gambling",
+          "the-triggers-and-cravings-management-tool-how-do-i-handle-grief-without-using",
+          "the-triggers-and-cravings-management-tool-how-do-i-improve-my-physical-health-in-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-without-using",
+        "title": "How do I handle grief without using?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-communication-in-my-relationship",
+        "title": "How do I improve communication in my relationship?",
+        "toolIds": [
+          "the-communication-rebuild-tool-for-couples-how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+          "the-communication-rebuild-tool-for-couples-how-do-i-find-a-new-support-system",
+          "the-communication-rebuild-tool-for-couples-how-do-i-stop-craving-my-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-shame-and-guilt-from-my-past",
+        "title": "How do I deal with shame and guilt from my past?",
+        "toolIds": [
+          "the-shame-and-guilt-processing-tool-how-do-i-deal-with-boredom-in-sobriety",
+          "the-shame-and-guilt-processing-tool-how-do-i-improve-communication-in-my-relationship",
+          "the-shame-and-guilt-processing-tool-how-do-i-maintain-long-term-sobriety"
+        ]
+      },
+      {
+        "id": "how-do-i-future-proof-my-recovery-plan",
+        "title": "How do I future proof my recovery plan?",
+        "toolIds": [
+          "the-future-visioning-tool-how-do-i-deal-with-digital-triggers-social-media-porn-gambling",
+          "the-future-visioning-tool-how-do-i-handle-grief-without-using",
+          "the-future-visioning-tool-how-do-i-improve-communication-in-my-relationship"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-daily-routines-that-support-sobriety",
+        "title": "How do I rebuild daily routines that support sobriety?",
+        "toolIds": [
+          "the-communication-rebuild-tool-for-couples-how-do-i-bounce-back-after-a-slip-to-avoid-full-relapse",
+          "the-communication-rebuild-tool-for-couples-how-do-i-find-a-new-support-system",
+          "the-communication-rebuild-tool-for-couples-how-do-i-stop-craving-my-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-build-patience-and-persistence",
+        "title": "How do I build patience and persistence?",
+        "toolIds": [
+          "the-patience-and-persistence-tool-how-do-i-deal-with-the-anger-and-resentment-from-my-partner",
+          "the-patience-and-persistence-tool-how-do-i-future-proof-my-recovery-plan",
+          "the-patience-and-persistence-tool-how-do-i-rebuild-my-careerprofessional-life"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-relapse-and-shame",
+        "title": "How do I deal with relapse and shame?",
+        "toolIds": [
+          "the-relapse-prevention-tool-how-do-i-build-a-new-life-without-my-addiction",
+          "the-relapse-prevention-tool-how-do-i-find-joy-in-sobriety",
+          "the-relapse-prevention-tool-how-do-i-stop-craving-my-addiction"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-financial-consequences-of-addiction",
+        "title": "How do I deal with financial consequences of addiction?",
+        "toolIds": [
+          "the-financial-recovery-tool-how-do-i-deal-with-loneliness-in-recovery",
+          "the-financial-recovery-tool-how-do-i-handle-shame-spirals",
+          "the-financial-recovery-tool-how-do-i-manage-stress-without-using-substances"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-my-physical-health-in-recovery",
+        "title": "How do I improve my physical health in recovery?",
+        "toolIds": [
+          "the-physical-well-being-tool-how-do-i-date-or-return-to-intimacy-in-early-recovery",
+          "the-physical-well-being-tool-how-do-i-handle-holidays-and-special-occasions-without-using",
+          "the-physical-well-being-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-address-the-underlying-issues-that-led-to-addiction",
+        "title": "How do I address the underlying issues that led to addiction?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-set-boundaries-with-people-who-enable-me",
+        "title": "How do I set boundaries with people who enable me?",
+        "toolIds": [
+          "the-accountability-partner-tool-how-do-i-combine-medication-assisted-treatment-mat-with-tools",
+          "the-accountability-partner-tool-how-do-i-fix-sleep-problems-in-recovery",
+          "the-accountability-partner-tool-how-do-i-travel-without-relapsing"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-triggers-and-cravings-in-social-situations",
+        "title": "How do I manage triggers and cravings in social situations?",
+        "toolIds": [
+          "the-triggers-and-cravings-management-tool-how-do-i-deal-with-digital-triggers-social-media-porn-gambling",
+          "the-triggers-and-cravings-management-tool-how-do-i-handle-grief-without-using",
+          "the-triggers-and-cravings-management-tool-how-do-i-improve-my-physical-health-in-recovery"
+        ]
+      }
+    ],
+    "fathers-and-sons": [
+      {
+        "id": "how-do-i-rebuild-trust-with-my-parents",
+        "title": "How do I rebuild trust with my parents?",
+        "toolIds": [
+          "how-do-i-rebuild-trust-with-my-parents",
+          "how-do-i-rebuild-a-sense-of-safety-and-trust",
+          "how-do-i-rebuild-trust-after-financial-betrayal"
+        ]
+      },
+      {
+        "id": "apology-amp-amends-script",
+        "title": "Apology &amp; Amends Script",
+        "toolIds": [
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond",
+          "apology-and-amends-script-how-do-i-apologize-and-make-amends-to-my-son",
+          "apology-and-amends-script-how-do-i-deal-with-my-adult-sons-struggles"
+        ]
+      },
+      {
+        "id": "how-do-i-apologize-and-make-amends-to-my-son",
+        "title": "How do I apologize and make amends to my son?",
+        "toolIds": [
+          "how-do-i-apologize-and-make-amends-to-my-son",
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond",
+          "apology-and-amends-script-how-do-i-apologize-and-make-amends-to-my-son"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-adult-sons-struggles",
+        "title": "How do I deal with my adult sons struggles?",
+        "toolIds": [
+          "how-do-i-deal-with-my-adult-sons-struggles",
+          "how-do-i-deal-with-my-sons-struggles-in-school",
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-sons-defiance",
+        "title": "How do I deal with my sons defiance?",
+        "toolIds": [
+          "how-do-i-deal-with-my-sons-defiance",
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond",
+          "apology-and-amends-script-how-do-i-apologize-and-make-amends-to-my-son"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-navigate-peer-pressure",
+        "title": "How do I help my son navigate peer pressure?",
+        "toolIds": [
+          "how-do-i-help-my-son-navigate-peer-pressure",
+          "how-do-i-help-my-son-navigate-academic-pressure",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-prepare-my-son-for-adulthood",
+        "title": "How do I prepare my son for adulthood?",
+        "toolIds": [
+          "how-do-i-prepare-my-son-for-adulthood",
+          "how-do-i-prepare-my-son-for-the-challenges-of-manhood",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "apology-repair-cards",
+        "title": "Apology Repair Cards",
+        "toolIds": [
+          "apology-repair-cards-how-do-we-handle-grief-together",
+          "apology-repair-cards-how-do-we-manage-time-and-commitments",
+          "apology-repair-cards-how-do-we-support-physical-health-habits"
+        ]
+      },
+      {
+        "id": "how-do-i-talk-to-my-parents-without-it-turning-into-a-fight",
+        "title": "How do I talk to my parents without it turning into a fight?",
+        "toolIds": [
+          "how-do-i-talk-to-my-parents-without-it-turning-into-a-fight",
+          "family-talk-agenda-how-do-i-handle-coping-at-night",
+          "family-talk-agenda-how-do-i-handle-grief-and-pets"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-a-distant-relationship-with-my-father",
+        "title": "How do I deal with a distant relationship with my father?",
+        "toolIds": [
+          "how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "how-do-i-deal-with-grief-over-a-lost-relationship",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-sons-lack-of-motivation",
+        "title": "How do I deal with my sons lack of motivation?",
+        "toolIds": [
+          "how-do-i-deal-with-my-sons-lack-of-motivation",
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond",
+          "apology-and-amends-script-how-do-i-apologize-and-make-amends-to-my-son"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-find-his-passion",
+        "title": "How do I help my son find his passion?",
+        "toolIds": [
+          "how-do-i-help-my-son-find-his-passion",
+          "how-can-a-father-help-his-son-with-emotional-regulation",
+          "how-can-a-father-instill-discipline-in-his-son"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-with-social-skills",
+        "title": "How do I help my son with social skills?",
+        "toolIds": [
+          "how-do-i-help-my-son-with-social-skills",
+          "how-do-i-help-my-son-develop-problem-solving-skills",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "blowup-repair-protocol",
+        "title": "Blowup Repair Protocol",
+        "toolIds": [
+          "blowup-repair-protocol-how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "blowup-repair-protocol-how-do-i-deal-with-my-sons-lack-of-motivation",
+          "blowup-repair-protocol-how-do-i-help-my-son-find-his-passion"
+        ]
+      },
+      {
+        "id": "boundary-amp-consequence-map",
+        "title": "Boundary &amp; Consequence Map",
+        "toolIds": [
+          "boundary-and-consequence-map-how-do-fathers-and-sons-build-a-stronger-bond",
+          "boundary-and-consequence-map-how-do-i-apologize-and-make-amends-to-my-son",
+          "boundary-and-consequence-map-how-do-i-deal-with-my-adult-sons-struggles"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-sons-screen-time",
+        "title": "How do I deal with my sons screen time?",
+        "toolIds": [
+          "how-do-i-deal-with-my-sons-screen-time",
+          "how-do-i-handle-screen-time-as-a-teen",
+          "how-do-i-manage-screen-time-and-still-keep-up-socially"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-toxic-masculinity",
+        "title": "How do I deal with toxic masculinity?",
+        "toolIds": [
+          "how-do-i-deal-with-toxic-masculinity",
+          "how-do-i-deal-with-toxic-family-shame",
+          "how-do-i-deal-with-toxic-relationships"
+        ]
+      },
+      {
+        "id": "how-do-i-prepare-my-son-for-the-challenges-of-manhood",
+        "title": "How do I prepare my son for the challenges of manhood?",
+        "toolIds": [
+          "how-do-i-prepare-my-son-for-the-challenges-of-manhood",
+          "how-do-i-prepare-my-son-for-adulthood",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-healthy-eating",
+        "title": "How do I teach my son about healthy eating?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-healthy-eating",
+          "how-do-i-teach-my-son-about-healthy-masculinity",
+          "how-do-i-teach-my-son-about-healthy-relationships"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-healthy-masculinity",
+        "title": "How do I teach my son about healthy masculinity?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-healthy-masculinity",
+          "how-do-i-teach-my-son-about-healthy-eating",
+          "how-do-i-teach-my-son-about-healthy-relationships"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-healthy-relationships",
+        "title": "How do I teach my son about healthy relationships?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-healthy-relationships",
+          "how-do-i-teach-my-son-about-healthy-eating",
+          "how-do-i-teach-my-son-about-healthy-masculinity"
+        ]
+      },
+      {
+        "id": "bullying-response-script",
+        "title": "Bullying Response Script",
+        "toolIds": [
+          "bullying-response-script-how-do-i-build-confidence-to-speak-in-class",
+          "bullying-response-script-how-do-i-calm-test-anxiety-fast",
+          "bullying-response-script-how-do-i-handle-bullying-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-support-my-sons-mental-health",
+        "title": "How do I support my sons mental health?",
+        "toolIds": [
+          "how-do-i-find-free-or-low-cost-mental-health-support",
+          "how-do-i-support-my-mental-health-during-pregnancy",
+          "how-do-i-support-my-sons-mental-health"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-integrity",
+        "title": "How do I teach my son about integrity?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-integrity",
+          "how-do-i-teach-my-son-about-courage",
+          "how-do-i-teach-my-son-about-failure"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-self-control",
+        "title": "How do I teach my son about self control?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-courage",
+          "how-do-i-teach-my-son-about-failure",
+          "how-do-i-teach-my-son-about-healthy-eating"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-sexual-health",
+        "title": "How do I teach my son about sexual health?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-sexual-health",
+          "how-do-i-teach-my-son-about-courage",
+          "how-do-i-teach-my-son-about-failure"
+        ]
+      },
+      {
+        "id": "challenge-together-plan",
+        "title": "Challenge Together Plan",
+        "toolIds": [
+          "challenge-together-plan-how-do-i-support-my-sons-mental-health",
+          "challenge-together-plan-how-do-i-teach-my-son-about-integrity",
+          "challenge-together-plan-how-do-i-teach-my-son-about-self-control"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-responsibility",
+        "title": "How do I teach my son about responsibility?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-responsibility",
+          "how-do-i-teach-my-son-about-courage",
+          "how-do-i-teach-my-son-about-failure"
+        ]
+      },
+      {
+        "id": "college-work-transition-map",
+        "title": "College/Work Transition Map",
+        "toolIds": [
+          "collegework-transition-map-how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "collegework-transition-map-how-do-i-deal-with-my-sons-lack-of-motivation",
+          "collegework-transition-map-how-do-i-help-my-son-with-social-skills"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-chronic-feelings-of-inadequacy",
+        "title": "How do I deal with chronic feelings of inadequacy?",
+        "toolIds": [
+          "how-do-i-deal-with-chronic-feelings-of-inadequacy",
+          "how-do-i-deal-with-feelings-of-abandonment",
+          "how-do-i-deal-with-feelings-of-numbness-or-detachment"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-purpose-loss-during-an-identity-crisis",
+        "title": "How do I handle purpose loss during an identity crisis?",
+        "toolIds": [
+          "how-do-i-handle-purpose-loss-during-an-identity-crisis",
+          "how-do-i-handle-analysis-paralysis-during-an-identity-crisis",
+          "how-do-i-handle-authenticity-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-parent-identity-shift-during-an-identity-crisis",
+        "title": "How do I handle parent identity shift during an identity crisis?",
+        "toolIds": [
+          "how-do-i-handle-parent-identity-shift-during-an-identity-crisis",
+          "how-do-i-handle-analysis-paralysis-during-an-identity-crisis",
+          "how-do-i-handle-authenticity-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-build-an-authentic-personal-brand",
+        "title": "How do I build an authentic personal brand?",
+        "toolIds": [
+          "how-do-i-build-an-authentic-personal-brand",
+          "how-do-i-build-authentic-self-esteem",
+          "how-do-i-build-the-personal-mission-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-navigate-academic-pressure",
+        "title": "How do I help my son navigate academic pressure?",
+        "toolIds": [
+          "how-do-i-help-my-son-navigate-academic-pressure",
+          "how-do-i-help-my-son-navigate-peer-pressure",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "dating-amp-consent-dialogue",
+        "title": "Dating &amp; Consent Dialogue",
+        "toolIds": [
+          "dating-and-consent-dialogue-how-do-i-deal-with-my-sons-defiance",
+          "dating-and-consent-dialogue-how-do-i-help-my-son-navigate-academic-pressure",
+          "dating-and-consent-dialogue-how-do-i-help-my-son-navigate-peer-pressure"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-personal-mission-part-of-my-resurrection-system",
+        "title": "How do I build the personal mission part of my resurrection system?",
+        "toolIds": [
+          "how-do-i-build-the-personal-mission-part-of-my-resurrection-system",
+          "how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+          "how-do-i-build-the-career-search-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-communicate-with-my-teenage-son",
+        "title": "How do I communicate with my teenage son?",
+        "toolIds": [
+          "how-do-i-communicate-with-my-teenage-son",
+          "how-can-a-father-help-his-son-with-emotional-regulation",
+          "how-can-a-father-instill-discipline-in-his-son"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-sons-anger",
+        "title": "How do I deal with my sons anger?",
+        "toolIds": [
+          "how-do-i-deal-with-anger-issues",
+          "how-do-i-deal-with-anger-safely",
+          "how-do-i-deal-with-my-sons-anger"
+        ]
+      },
+      {
+        "id": "how-do-i-encourage-my-son-to-read",
+        "title": "How do I encourage my son to read?",
+        "toolIds": [
+          "how-do-i-encourage-my-son-to-read",
+          "how-do-i-encourage-my-son-to-be-independent",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-with-self-esteem",
+        "title": "How do I help my son with self esteem?",
+        "toolIds": [
+          "how-can-a-father-help-his-son-with-emotional-regulation",
+          "how-do-i-help-my-son-develop-problem-solving-skills",
+          "how-do-i-help-my-son-find-his-passion"
+        ]
+      }
+    ],
+    "teen-and-gen-z": [
+      {
+        "id": "how-do-i-create-joy-when-life-feels-meh",
+        "title": "How do I create joy when life feels meh?",
+        "toolIds": [
+          "how-do-i-create-joy-when-life-feels-meh",
+          "how-do-i-create-a-vision-for-my-new-life",
+          "how-do-i-create-healthy-pleasure-in-sober-life"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-body-image-as-a-teen",
+        "title": "How do I handle body image as a teen?",
+        "toolIds": [
+          "how-do-i-handle-body-image-as-a-teen",
+          "body-image-reframe-teens-how-do-i-calm-test-anxiety-fast",
+          "body-image-reframe-teens-how-do-i-handle-bullying-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-online-harassment-as-a-teen",
+        "title": "How do I handle online harassment as a teen?",
+        "toolIds": [
+          "how-do-i-handle-online-harassment-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-panic-or-anxiety-spikes-at-school",
+        "title": "How do I handle panic or anxiety spikes at school?",
+        "toolIds": [
+          "how-do-i-handle-panic-or-anxiety-spikes-at-school",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-panic-in-grief"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-porn-exposure-as-a-teen",
+        "title": "How do I handle porn exposure as a teen?",
+        "toolIds": [
+          "how-do-i-handle-porn-exposure-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-procrastinating-on-homework",
+        "title": "How do I stop procrastinating on homework?",
+        "toolIds": [
+          "how-do-i-stop-procrastinating-on-homework",
+          "how-do-i-stop-procrastinating",
+          "homework-sprint-how-do-i-balance-sports-school-and-a-job"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-gaming-balance-as-a-teen",
+        "title": "How do I handle gaming balance as a teen?",
+        "toolIds": [
+          "how-do-i-handle-gaming-balance-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-motivation-as-a-teen",
+        "title": "How do I handle motivation as a teen?",
+        "toolIds": [
+          "how-do-i-handle-motivation-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-sleep-schedule-as-a-teen",
+        "title": "How do I handle sleep schedule as a teen?",
+        "toolIds": [
+          "how-do-i-handle-sleep-schedule-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-trust-with-my-parents",
+        "title": "How do I rebuild trust with my parents?",
+        "toolIds": [
+          "how-do-i-rebuild-trust-with-my-parents",
+          "how-do-i-rebuild-a-sense-of-safety-and-trust",
+          "how-do-i-rebuild-trust-after-financial-betrayal"
+        ]
+      },
+      {
+        "id": "how-do-i-reduce-overthinkingrumination",
+        "title": "How do I reduce overthinkingrumination?",
+        "toolIds": [
+          "breathing-exercise",
+          "cognitive-reframing",
+          "how-do-i-reduce-mental-load-in-my-household"
+        ]
+      },
+      {
+        "id": "how-do-i-repair-a-friendship-after-a-fight",
+        "title": "How do I repair a friendship after a fight?",
+        "toolIds": [
+          "how-do-i-repair-a-friendship-after-a-fight",
+          "friendship-repair-steps-how-do-i-handle-college-stress-as-a-teen",
+          "friendship-repair-steps-how-do-i-handle-friend-drama-without-making-it-worse"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-part-time-job-stress-as-a-teen",
+        "title": "How do I handle part time job stress as a teen?",
+        "toolIds": [
+          "how-do-i-handle-part-time-job-stress-as-a-teen",
+          "how-do-i-handle-college-stress-as-a-teen",
+          "how-do-i-handle-screen-time-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-purpose-as-a-teen",
+        "title": "How do I handle purpose as a teen?",
+        "toolIds": [
+          "how-do-i-handle-purpose-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-improve-body-image-and-selfrespect",
+        "title": "How do I improve body image and selfrespect?",
+        "toolIds": [
+          "how-do-i-improve-body-image-and-self-esteem",
+          "how-do-i-improve-body-image-and-selfrespect",
+          "body-image-reframe-how-do-i-cope-with-loneliness-as-a-single-mother"
+        ]
+      },
+      {
+        "id": "how-do-i-stay-calm-during-family-conflict",
+        "title": "How do I stay calm during family conflict?",
+        "toolIds": [
+          "how-do-i-stay-calm-during-family-conflict",
+          "how-do-i-handle-family-conflict-as-a-teen",
+          "how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-talk-to-my-parents-without-it-turning-into-a-fight",
+        "title": "How do I talk to my parents without it turning into a fight?",
+        "toolIds": [
+          "how-do-i-talk-to-my-parents-without-it-turning-into-a-fight",
+          "family-talk-agenda-how-do-i-handle-coping-at-night",
+          "family-talk-agenda-how-do-i-handle-grief-and-pets"
+        ]
+      },
+      {
+        "id": "how-do-i-calm-test-anxiety-fast",
+        "title": "How do I calm test anxiety fast?",
+        "toolIds": [
+          "how-do-i-calm-test-anxiety-fast",
+          "how-do-i-handle-test-anxiety-as-a-teen",
+          "anxiety-grounding-how-do-i-handle-gaming-balance-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-bullying-as-a-teen",
+        "title": "How do I handle bullying as a teen?",
+        "toolIds": [
+          "how-do-i-handle-bullying-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-friend-drama-as-a-teen",
+        "title": "How do I handle friend drama as a teen?",
+        "toolIds": [
+          "how-do-i-handle-friend-drama-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grades-as-a-teen",
+        "title": "How do I handle grades as a teen?",
+        "toolIds": [
+          "how-do-i-handle-grades-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-recover-after-a-tough-day-without-shutting-down",
+        "title": "How do I recover after a tough day without shutting down?",
+        "toolIds": [
+          "how-do-i-recover-after-a-tough-day-without-shutting-down",
+          "how-do-i-prepare-for-college-apps-without-melting-down",
+          "exam-day-routine-how-do-i-manage-adhdstyle-distractions"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-peer-pressure-as-a-teen",
+        "title": "How do I handle peer pressure as a teen?",
+        "toolIds": [
+          "how-do-i-handle-peer-pressure-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-social-anxiety-as-a-teen",
+        "title": "How do I handle social anxiety as a teen?",
+        "toolIds": [
+          "how-do-i-handle-social-anxiety-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-social-media-detox-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-study-focus-as-a-teen",
+        "title": "How do I handle study focus as a teen?",
+        "toolIds": [
+          "how-do-i-handle-study-focus-as-a-teen",
+          "how-do-i-handle-study-sprints-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-build-confidence-to-speak-in-class",
+        "title": "How do I build confidence to speak in class?",
+        "toolIds": [
+          "how-do-i-build-confidence-to-speak-in-class",
+          "how-do-i-build-confidence-when-shame-has-eroded-it",
+          "confidence-rebuild-plan-how-do-i-address-emotional-eating"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-screen-time-as-a-teen",
+        "title": "How do I handle screen time as a teen?",
+        "toolIds": [
+          "how-do-i-handle-screen-time-as-a-teen",
+          "how-do-i-handle-time-management-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-academic-stress",
+        "title": "How do I handle academic stress?",
+        "toolIds": [
+          "how-do-i-handle-academic-stress",
+          "how-do-i-handle-college-stress-as-a-teen",
+          "how-do-i-handle-part-time-job-stress-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-anxiety-tools-as-a-teen",
+        "title": "How do I handle anxiety tools as a teen?",
+        "toolIds": [
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-social-anxiety-as-a-teen",
+          "how-do-i-handle-test-anxiety-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-college-stress-as-a-teen",
+        "title": "How do I handle college stress as a teen?",
+        "toolIds": [
+          "how-do-i-handle-college-stress-as-a-teen",
+          "how-do-i-handle-part-time-job-stress-as-a-teen",
+          "college-stress-plan-how-do-i-handle-academic-stress"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-first-breakup-as-a-teen",
+        "title": "How do I handle first breakup as a teen?",
+        "toolIds": [
+          "how-do-i-handle-first-breakup-as-a-teen",
+          "how-do-i-handle-anxiety-tools-as-a-teen",
+          "how-do-i-handle-body-image-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-screen-time-and-still-keep-up-socially",
+        "title": "How do I manage screen time and still keep up socially?",
+        "toolIds": [
+          "how-do-i-manage-screen-time-and-still-keep-up-socially",
+          "how-do-i-deal-with-my-sons-screen-time",
+          "how-do-i-handle-screen-time-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-arguing-online",
+        "title": "How do I stop arguing online?",
+        "toolIds": [
+          "how-do-i-stop-arguing-online",
+          "how-do-i-stop-comparing-myself-to-others-online",
+          "how-do-i-deal-with-cyberbullying-or-online-harassment"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-a-distant-relationship-with-my-father",
+        "title": "How do I deal with a distant relationship with my father?",
+        "toolIds": [
+          "how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "how-do-i-deal-with-grief-over-a-lost-relationship",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-my-sons-lack-of-motivation",
+        "title": "How do I deal with my sons lack of motivation?",
+        "toolIds": [
+          "how-do-i-deal-with-my-sons-lack-of-motivation",
+          "apology-and-amends-script-how-do-fathers-and-sons-build-a-stronger-bond",
+          "apology-and-amends-script-how-do-i-apologize-and-make-amends-to-my-son"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-with-social-skills",
+        "title": "How do I help my son with social skills?",
+        "toolIds": [
+          "how-do-i-help-my-son-with-social-skills",
+          "how-do-i-help-my-son-develop-problem-solving-skills",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      },
+      {
+        "id": "how-do-i-teach-my-son-about-responsibility",
+        "title": "How do I teach my son about responsibility?",
+        "toolIds": [
+          "how-do-i-teach-my-son-about-responsibility",
+          "how-do-i-teach-my-son-about-courage",
+          "how-do-i-teach-my-son-about-failure"
+        ]
+      },
+      {
+        "id": "college-work-transition-map",
+        "title": "College/Work Transition Map",
+        "toolIds": [
+          "collegework-transition-map-how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "collegework-transition-map-how-do-i-deal-with-my-sons-lack-of-motivation",
+          "collegework-transition-map-how-do-i-help-my-son-with-social-skills"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-in-teens",
+        "title": "How do I handle grief in teens?",
+        "toolIds": [
+          "how-do-i-handle-grief-in-teens",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "dating-amp-consent-dialogue",
+        "title": "Dating &amp; Consent Dialogue",
+        "toolIds": [
+          "dating-and-consent-dialogue-how-do-i-deal-with-my-sons-defiance",
+          "dating-and-consent-dialogue-how-do-i-help-my-son-navigate-academic-pressure",
+          "dating-and-consent-dialogue-how-do-i-help-my-son-navigate-peer-pressure"
+        ]
+      }
+    ],
+    "grief-and-loss": [
+      {
+        "id": "how-do-i-handle-anniversary-reactions",
+        "title": "How do I handle anniversary reactions?",
+        "toolIds": [
+          "how-do-i-handle-anniversary-reactions",
+          "anniversary-plan-how-do-i-handle-grief-waves",
+          "anniversary-plan-how-do-i-handle-sleep-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-guilt-after-loss",
+        "title": "How do I handle guilt after loss?",
+        "toolIds": [
+          "how-do-i-handle-guilt-after-loss",
+          "guilt-and-grace-process-how-do-i-handle-anniversary-reactions",
+          "guilt-and-grace-process-how-do-i-handle-sleep-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-talking-to-kids-about-death",
+        "title": "How do I handle talking to kids about death?",
+        "toolIds": [
+          "how-do-i-handle-talking-to-kids-about-death",
+          "how-do-i-handle-talking-to-family",
+          "energy-check"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-waves",
+        "title": "How do I handle grief waves?",
+        "toolIds": [
+          "how-do-i-handle-grief-waves",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-sleep-after-loss",
+        "title": "How do I handle sleep after loss?",
+        "toolIds": [
+          "how-do-i-handle-sleep-after-loss",
+          "appetite-and-sleep-reset-how-do-i-handle-appetite-changes",
+          "appetite-and-sleep-reset-how-do-i-handle-coping-at-night"
+        ]
+      },
+      {
+        "id": "apology-repair-cards",
+        "title": "Apology Repair Cards",
+        "toolIds": [
+          "apology-repair-cards-how-do-we-handle-grief-together",
+          "apology-repair-cards-how-do-we-manage-time-and-commitments",
+          "apology-repair-cards-how-do-we-support-physical-health-habits"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-appetite-changes",
+        "title": "How do I handle appetite changes?",
+        "toolIds": [
+          "how-do-i-handle-appetite-changes",
+          "how-do-i-handle-body-changes-and-identity-during-an-identity-crisis",
+          "appetite-and-sleep-reset-how-do-i-handle-appetite-changes"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-coping-at-night",
+        "title": "How do I handle coping at night?",
+        "toolIds": [
+          "how-do-i-handle-coping-at-night",
+          "chronic-illness-coping-plan-how-do-i-manage-chronic-illness-while-caring-for-others",
+          "how-do-i-handle-a-breakup-without-losing-myself"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-panic-in-grief",
+        "title": "How do I handle panic in grief?",
+        "toolIds": [
+          "how-do-i-handle-panic-in-grief",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-anger-in-grief",
+        "title": "How do I handle anger in grief?",
+        "toolIds": [
+          "how-do-i-handle-anger-in-grief",
+          "anger-in-grief-steps-how-do-i-handle-anniversary-reactions",
+          "anger-in-grief-steps-how-do-i-handle-guilt-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-holidays-without-them",
+        "title": "How do I handle holidays without them?",
+        "toolIds": [
+          "how-do-i-handle-holidays-without-them",
+          "how-do-i-handle-holidays-and-special-occasions-without-using",
+          "holiday-plan-without-them-how-do-i-handle-meaning-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-meaning-after-loss",
+        "title": "How do I handle meaning after loss?",
+        "toolIds": [
+          "how-do-i-handle-meaning-after-loss",
+          "how-do-i-handle-first-weeks-after-loss",
+          "how-do-i-handle-guilt-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-support-network",
+        "title": "How do I handle support network?",
+        "toolIds": [
+          "how-do-i-handle-support-network",
+          "family-support-network-map-how-can-a-father-teach-his-son-resilience",
+          "family-support-network-map-how-do-i-encourage-my-son-to-be-independent"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-acceptance-vs-avoidance",
+        "title": "How do I handle acceptance vs avoidance?",
+        "toolIds": [
+          "how-do-i-handle-acceptance-vs-avoidance",
+          "how-do-i-handle-identity-vs-expectations-during-an-identity-crisis",
+          "how-do-i-handle-past-vs-future-self-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-complicated-grief-signs",
+        "title": "How do I handle complicated grief signs?",
+        "toolIds": [
+          "how-do-i-handle-complicated-grief-signs",
+          "complicated-grief-signals-how-do-i-handle-grief-in-men",
+          "complicated-grief-signals-how-do-i-handle-grief-in-teens"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-groups",
+        "title": "How do I handle grief groups?",
+        "toolIds": [
+          "how-do-i-handle-grief-groups",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-grief",
+        "title": "How do I deal with grief?",
+        "toolIds": [
+          "how-do-i-deal-with-grief",
+          "how-do-i-deal-with-grief-over-a-lost-relationship",
+          "anger-in-grief-steps-how-do-i-handle-anniversary-reactions"
+        ]
+      },
+      {
+        "id": "how-do-i-process-grief-after-miscarriage",
+        "title": "How do I process grief after miscarriage?",
+        "toolIds": [
+          "how-do-i-process-grief-after-miscarriage",
+          "guilt-and-grace-process-how-do-i-handle-anniversary-reactions",
+          "guilt-and-grace-process-how-do-i-handle-sleep-after-loss"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-and-trauma",
+        "title": "How do I handle grief and trauma?",
+        "toolIds": [
+          "how-do-i-handle-grief-and-trauma",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-purpose-loss-during-an-identity-crisis",
+        "title": "How do I handle purpose loss during an identity crisis?",
+        "toolIds": [
+          "how-do-i-handle-purpose-loss-during-an-identity-crisis",
+          "how-do-i-handle-analysis-paralysis-during-an-identity-crisis",
+          "how-do-i-handle-authenticity-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-in-men",
+        "title": "How do I handle grief in men?",
+        "toolIds": [
+          "how-do-i-handle-grief-in-men",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-in-teens",
+        "title": "How do I handle grief in teens?",
+        "toolIds": [
+          "how-do-i-handle-grief-in-teens",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-in-women",
+        "title": "How do I handle grief in women?",
+        "toolIds": [
+          "how-do-i-handle-grief-in-women",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-journaling",
+        "title": "How do I handle grief journaling?",
+        "toolIds": [
+          "how-do-i-handle-grief-journaling",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-memorial-planning",
+        "title": "How do I handle memorial planning?",
+        "toolIds": [
+          "how-do-i-handle-memorial-planning",
+          "how-do-i-handle-future-planning-as-a-teen",
+          "how-do-i-handle-gap-year-planning-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-rituals-of-remembrance",
+        "title": "How do I handle rituals of remembrance?",
+        "toolIds": [
+          "how-do-i-handle-rituals-of-remembrance",
+          "how-do-i-handle-a-breakup-without-losing-myself",
+          "how-do-i-handle-academic-stress"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-and-exercise",
+        "title": "How do I handle grief and exercise?",
+        "toolIds": [
+          "how-do-i-handle-grief-and-exercise",
+          "exercise-for-grief-plan-how-do-i-handle-appetite-changes",
+          "exercise-for-grief-plan-how-do-i-handle-grief-and-exercise"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-helping-a-grieving-friend",
+        "title": "How do I handle helping a grieving friend?",
+        "toolIds": [
+          "how-do-i-handle-helping-a-grieving-friend",
+          "helping-a-grieving-friend-how-do-i-handle-grief-triggers",
+          "helping-a-grieving-friend-how-do-i-handle-what-to-do-with-belongings"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-when-to-seek-therapy",
+        "title": "How do I handle when to seek therapy?",
+        "toolIds": [
+          "how-do-i-handle-when-to-seek-therapy",
+          "when-to-seek-therapy-checklist-how-do-i-handle-grief-triggers",
+          "when-to-seek-therapy-checklist-how-do-i-handle-holidays-without-them"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-widowhood-loneliness",
+        "title": "How do I handle widowhood loneliness?",
+        "toolIds": [
+          "how-do-i-handle-widowhood-loneliness",
+          "how-do-i-handle-loneliness-as-a-teen",
+          "how-do-i-cope-with-loneliness-as-a-single-mother"
+        ]
+      },
+      {
+        "id": "family-mission-charter",
+        "title": "Family Mission Charter",
+        "toolIds": [
+          "family-mission-charter-how-do-we-handle-grief-together",
+          "family-mission-charter-how-do-we-pass-down-skills-and-traditions",
+          "family-mission-charter-how-do-we-prepare-for-collegework-transitions"
+        ]
+      },
+      {
+        "id": "how-do-i-help-my-son-with-grief",
+        "title": "How do I help my son with grief?",
+        "toolIds": [
+          "how-do-i-help-my-son-with-grief",
+          "community-help-script-how-do-i-handle-complicated-grief-signs",
+          "community-help-script-how-do-i-handle-grief-and-trauma"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-and-pets",
+        "title": "How do I handle grief and pets?",
+        "toolIds": [
+          "how-do-i-handle-grief-and-pets",
+          "how-do-i-handle-anger-in-grief",
+          "how-do-i-handle-complicated-grief-signs"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-grief-and-faith",
+        "title": "How do I handle grief and faith?",
+        "toolIds": [
+          "how-do-i-handle-grief-and-faith",
+          "faith-and-grief-dialogue-how-do-i-handle-helping-a-grieving-friend",
+          "faith-and-grief-dialogue-how-do-i-handle-when-to-seek-therapy"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-unexpected-reminders",
+        "title": "How do I handle unexpected reminders?",
+        "toolIds": [
+          "how-do-i-handle-unexpected-reminders",
+          "gentle-exposure-to-reminders-how-do-i-handle-redefining-future",
+          "gentle-exposure-to-reminders-how-do-i-handle-support-at-work"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-redefining-future",
+        "title": "How do I handle redefining future?",
+        "toolIds": [
+          "how-do-i-handle-redefining-future",
+          "how-do-i-handle-future-planning-as-a-teen",
+          "how-do-i-handle-past-vs-future-self-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-support-at-work",
+        "title": "How do I handle support at work?",
+        "toolIds": [
+          "how-do-i-handle-support-at-work",
+          "how-do-i-handle-returning-to-work",
+          "how-do-i-handle-support-network"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-talking-to-family",
+        "title": "How do I handle talking to family?",
+        "toolIds": [
+          "how-do-i-handle-talking-to-family",
+          "how-do-i-handle-family-conflict-as-a-teen",
+          "how-do-i-handle-talking-to-kids-about-death"
+        ]
+      },
+      {
+        "id": "how-do-i-communicate-with-my-teenage-son",
+        "title": "How do I communicate with my teenage son?",
+        "toolIds": [
+          "how-do-i-communicate-with-my-teenage-son",
+          "how-can-a-father-help-his-son-with-emotional-regulation",
+          "how-can-a-father-instill-discipline-in-his-son"
+        ]
+      },
+      {
+        "id": "how-do-i-encourage-my-son-to-be-independent",
+        "title": "How do I encourage my son to be independent?",
+        "toolIds": [
+          "how-do-i-encourage-my-son-to-be-independent",
+          "how-do-i-encourage-my-son-to-read",
+          "how-can-a-father-help-his-son-with-emotional-regulation"
+        ]
+      }
+    ],
+    "financial-collapse-and-purpose": [
+      {
+        "id": "how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+        "title": "How do I deal with temptations to overspend or take on new debt?",
+        "toolIds": [
+          "the-debt-inventory-how-do-i-manage-overwhelming-financial-stress",
+          "the-debt-snowballavalanche-how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt",
+          "the-new-habits-how-do-i-avoid-repeating-past-financial-mistakes"
+        ]
+      },
+      {
+        "id": "how-do-i-stay-motivated-during-a-long-financial-recovery",
+        "title": "How do I stay motivated during a long financial recovery?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-find-purpose-in-helping-others-through-my-experience",
+        "title": "How do I find purpose in helping others through my experience?",
+        "toolIds": [
+          "the-focus-on-experience-how-do-i-deal-with-the-loss-of-assets-or-possessions",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-education-or-skill-training",
+        "title": "How do I find affordable education or skill training?",
+        "toolIds": [
+          "the-education-how-do-i-avoid-repeating-past-financial-mistakes",
+          "the-education-how-do-i-deal-with-the-fear-of-future-financial-instability",
+          "the-skill-audit-how-do-i-find-a-job-quickly-after-financial-collapse"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-loss-of-social-status-or-identity",
+        "title": "How do I deal with the loss of social status or identity?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-start-saving-again-with-limited-income",
+        "title": "How do I start saving again with limited income?",
+        "toolIds": [
+          "the-diversification-of-income-how-do-i-deal-with-the-fear-of-future-financial-instability",
+          "the-fresh-start-how-do-i-deal-with-bankruptcy",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-childcare-during-financial-hardship",
+        "title": "How do I find affordable childcare during financial hardship?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-transportation",
+        "title": "How do I find affordable transportation?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-initial-shock-of-financial-collapse",
+        "title": "How do I deal with the initial shock of financial collapse?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-relationships-affected-by-financial-stress",
+        "title": "How do I manage relationships affected by financial stress?",
+        "toolIds": [
+          "the-stress-audit-how-do-i-manage-stress-from-constant-financial-pressure",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-trust-after-financial-betrayal",
+        "title": "How do I rebuild trust after financial betrayal?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-friends-and-family-who-judge-my-financial-situation",
+        "title": "How do I deal with friends and family who judge my financial situation?",
+        "toolIds": [
+          "the-familyfriend-support-how-do-i-find-affordable-childcare-during-financial-hardship",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-overwhelming-financial-stress",
+        "title": "How do I manage overwhelming financial stress?",
+        "toolIds": [
+          "the-stress-audit-how-do-i-manage-stress-from-constant-financial-pressure",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-food-during-financial-hardship",
+        "title": "How do I find affordable food during financial hardship?",
+        "toolIds": [
+          "the-food-banks-how-do-i-find-affordable-food-during-financial-hardship",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-creditors-and-debt-collectors",
+        "title": "How do I deal with creditors and debt collectors?",
+        "toolIds": [
+          "the-debt-inventory-how-do-i-manage-overwhelming-financial-stress",
+          "the-debt-snowballavalanche-how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-healthcare-during-financial-hardship",
+        "title": "How do I find affordable healthcare during financial hardship?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-housing-after-financial-collapse",
+        "title": "How do I find affordable housing after financial collapse?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-find-free-or-low-cost-mental-health-support",
+        "title": "How do I find free or low cost mental health support?",
+        "toolIds": [
+          "the-familyfriend-support-how-do-i-find-affordable-childcare-during-financial-hardship",
+          "the-support-groups-how-do-i-find-free-or-low-cost-mental-health-support",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-legal-issues-related-to-financial-collapse-bankruptcy-lawsuits",
+        "title": "How do I deal with legal issues related to financial collapse bankruptcy lawsuits?",
+        "toolIds": [
+          "the-legal-aid-societies-how-do-i-find-affordable-legal-aid",
+          "the-legal-consultation-how-do-i-deal-with-bankruptcy",
+          "the-legal-consultation-how-do-i-deal-with-legal-issues-related-to-financial-collapse-bankruptcy-lawsuits"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-my-mental-health-during-financial-hardship",
+        "title": "How do I manage my mental health during financial hardship?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-find-purpose-when-everything-feels-lost",
+        "title": "How do I find purpose when everything feels lost?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt",
+        "title": "How do I deal with the feeling of being overwhelmed by debt?",
+        "toolIds": [
+          "the-debt-inventory-how-do-i-manage-overwhelming-financial-stress",
+          "the-debt-snowballavalanche-how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-loss-of-assets-or-possessions",
+        "title": "How do I deal with the loss of assets or possessions?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-fear-of-future-financial-instability",
+        "title": "How do I deal with the fear of future financial instability?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-bankruptcy",
+        "title": "How do I deal with bankruptcy?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-avoid-repeating-past-financial-mistakes",
+        "title": "How do I avoid repeating past financial mistakes?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-emotional-toll-of-financial-ruin",
+        "title": "How do I deal with the emotional toll of financial ruin?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-the-fear-of-never-recovering-financially",
+        "title": "How do I manage the fear of never recovering financially?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-loss-of-a-home-due-to-foreclosure",
+        "title": "How do I deal with the loss of a home due to foreclosure?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-maintain-hope-during-financial-adversity",
+        "title": "How do I maintain hope during financial adversity?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-loss-of-a-business-or-investment",
+        "title": "How do I deal with the loss of a business or investment?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-my-professional-network-after-a-career-setback",
+        "title": "How do I rebuild my professional network after a career setback?",
+        "toolIds": [
+          "the-network-activation-how-do-i-find-a-job-quickly-after-financial-collapse",
+          "the-network-search-how-do-i-find-a-mentor-for-financial-recovery",
+          "the-professional-help-how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt"
+        ]
+      },
+      {
+        "id": "how-do-i-find-affordable-legal-aid",
+        "title": "How do I find affordable legal aid?",
+        "toolIds": [
+          "the-legal-aid-societies-how-do-i-find-affordable-legal-aid",
+          "the-legal-consultation-how-do-i-deal-with-bankruptcy",
+          "the-legal-consultation-how-do-i-deal-with-legal-issues-related-to-financial-collapse-bankruptcy-lawsuits"
+        ]
+      },
+      {
+        "id": "how-do-i-find-a-mentor-for-financial-recovery",
+        "title": "How do I find a mentor for financial recovery?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-feeling-of-failure",
+        "title": "How do I deal with the feeling of failure?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-stress-from-constant-financial-pressure",
+        "title": "How do I manage stress from constant financial pressure?",
+        "toolIds": [
+          "the-stress-audit-how-do-i-manage-stress-from-constant-financial-pressure",
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery"
+        ]
+      },
+      {
+        "id": "how-do-i-find-a-job-quickly-after-financial-collapse",
+        "title": "How do I find a job quickly after financial collapse?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-my-credit-score",
+        "title": "How do I rebuild my credit score?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-shame-and-embarrassment-about-my-financial-situation",
+        "title": "How do I overcome shame and embarrassment about my financial situation?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-my-emotions-during-job-searching",
+        "title": "How do I manage my emotions during job searching?",
+        "toolIds": [
+          "the-accountability-how-do-i-deal-with-temptations-to-overspend-or-take-on-new-debt",
+          "the-accountability-partner-how-do-i-stay-motivated-during-a-long-financial-recovery",
+          "the-advocacy-how-do-i-find-purpose-in-helping-others-through-my-experience"
+        ]
+      }
+    ],
+    "trauma-rebuild": [
+      {
+        "id": "how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+        "title": "How do I deal with flashbacks and intrusive thoughts?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-flashbacks-and-intrusive-thoughts",
+        "title": "How do I manage flashbacks and intrusive thoughts?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-memory-gaps-or-fragmented-memories",
+        "title": "How do I deal with memory gaps or fragmented memories?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-self-worth-after-trauma",
+        "title": "How do I rebuild self worth after trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-my-identity-after-trauma",
+        "title": "How do I rebuild my identity after trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks",
+        "title": "How do I deal with feeling overwhelmed by daily tasks?",
+        "toolIds": [
+          "the-daily-de-stress-ritual-how-do-i-manage-chronic-stress-from-trauma",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "how-do-i-find-a-supportive-community",
+        "title": "How do I find a supportive community?",
+        "toolIds": [
+          "the-supportive-network-how-do-i-rebuild-healthy-relationships",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-triggers",
+        "title": "How do I manage triggers?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-immediate-aftermath-of-trauma",
+        "title": "How do I deal with the immediate aftermath of trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-dissociation",
+        "title": "How do I manage dissociation?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-physical-pain-related-to-trauma",
+        "title": "How do I manage physical pain related to trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-hypervigilance-and-anxiety",
+        "title": "How do I deal with hypervigilance and anxiety?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-anger-and-resentment",
+        "title": "How do I manage anger and resentment?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-chronic-stress-from-trauma",
+        "title": "How do I manage chronic stress from trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-a-sense-of-safety-and-trust",
+        "title": "How do I rebuild a sense of safety and trust?",
+        "toolIds": [
+          "the-gradual-trust-how-do-i-rebuild-healthy-relationships",
+          "the-small-trust-tests-how-do-i-deal-with-trust-issues",
+          "the-small-wins-in-trust-how-do-i-rebuild-a-sense-of-safety-and-trust"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-intense-fear",
+        "title": "How do I manage intense fear?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-healthy-relationships",
+        "title": "How do I rebuild healthy relationships?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-self-blame-and-guilt",
+        "title": "How do I manage self blame and guilt?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-find-a-trauma-informed-therapist",
+        "title": "How do I find a trauma informed therapist?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-find-meaning-after-trauma",
+        "title": "How do I find meaning after trauma?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-trust-issues",
+        "title": "How do I deal with trust issues?",
+        "toolIds": [
+          "the-gradual-trust-how-do-i-rebuild-healthy-relationships",
+          "the-small-trust-tests-how-do-i-deal-with-trust-issues",
+          "the-small-wins-in-trust-how-do-i-rebuild-a-sense-of-safety-and-trust"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-nightmares-and-sleep-disturbances",
+        "title": "How do I deal with nightmares and sleep disturbances?",
+        "toolIds": [
+          "the-safe-place-visualization-before-sleep-how-do-i-deal-with-nightmares-and-sleep-disturbances",
+          "the-sleep-hygiene-how-do-i-deal-with-nightmares-and-sleep-disturbances",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "how-do-i-cope-with-intense-emotional-pain",
+        "title": "How do I cope with intense emotional pain?",
+        "toolIds": [
+          "the-emotional-labeling-how-do-i-deal-with-feelings-of-numbness-or-detachment",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-feelings-of-numbness-or-detachment",
+        "title": "How do I deal with feelings of numbness or detachment?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-my-life-after-trauma-has-shattered-it",
+        "title": "How do I rebuild my life after trauma has shattered it?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-reconnect-with-my-body-after-trauma",
+        "title": "How do I reconnect with my body after trauma?",
+        "toolIds": [
+          "the-body-awareness-how-do-i-manage-dissociation",
+          "the-body-awareness-how-do-i-manage-physical-pain-related-to-trauma",
+          "the-body-scan-how-do-i-deal-with-hypervigilance-and-anxiety"
+        ]
+      },
+      {
+        "id": "how-do-i-process-traumatic-memories",
+        "title": "How do I process traumatic memories?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-survivors-guilt",
+        "title": "How do I deal with survivors guilt?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-isolation-and-loneliness",
+        "title": "How do I deal with isolation and loneliness?",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories"
+        ]
+      },
+      {
+        "id": "the-5-4-3-2-1-grounding",
+        "title": "The 5-4-3-2-1 Grounding",
+        "toolIds": [
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts",
+          "the-grounding-breath-how-do-i-deal-with-the-immediate-aftermath-of-trauma"
+        ]
+      },
+      {
+        "id": "the-acceptance",
+        "title": "The Acceptance",
+        "toolIds": [
+          "the-acceptance-how-do-i-deal-with-memory-gaps-or-fragmented-memories",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-accomplishment-tracking",
+        "title": "The Accomplishment Tracking",
+        "toolIds": [
+          "the-accomplishment-tracking-how-do-i-rebuild-self-worth-after-trauma",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-action-for-self-discovery",
+        "title": "The Action for Self-Discovery",
+        "toolIds": [
+          "the-action-for-self-discovery-how-do-i-rebuild-my-identity-after-trauma",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-ask-for-help",
+        "title": "The Ask for Help",
+        "toolIds": [
+          "the-ask-for-help-how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-authentic-connection",
+        "title": "The Authentic Connection",
+        "toolIds": [
+          "the-authentic-connection-how-do-i-find-a-supportive-community",
+          "the-mind-body-connection-how-do-i-manage-physical-pain-related-to-trauma",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-avoidance-strategic",
+        "title": "The Avoidance (Strategic)",
+        "toolIds": [
+          "the-avoidance-strategic-how-do-i-manage-triggers",
+          "the-5-4-3-2-1-grounding-how-do-i-deal-with-flashbacks-and-intrusive-thoughts",
+          "the-5-4-3-2-1-grounding-how-do-i-manage-flashbacks-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "id": "the-basic-needs-check",
+        "title": "The Basic Needs Check",
+        "toolIds": [
+          "the-basic-needs-check-how-do-i-deal-with-the-immediate-aftermath-of-trauma",
+          "the-reality-check-how-do-i-manage-intense-fear",
+          "the-reality-check-how-do-i-manage-self-blame-and-guilt"
+        ]
+      },
+      {
+        "id": "the-body-awareness",
+        "title": "The Body Awareness",
+        "toolIds": [
+          "the-body-awareness-how-do-i-manage-dissociation",
+          "the-body-awareness-how-do-i-manage-physical-pain-related-to-trauma",
+          "the-body-scan-how-do-i-deal-with-hypervigilance-and-anxiety"
+        ]
+      },
+      {
+        "id": "the-body-scan",
+        "title": "The Body Scan",
+        "toolIds": [
+          "the-body-scan-how-do-i-deal-with-hypervigilance-and-anxiety",
+          "the-body-awareness-how-do-i-manage-dissociation",
+          "the-body-awareness-how-do-i-manage-physical-pain-related-to-trauma"
+        ]
+      },
+      {
+        "id": "the-boundary-enforcement",
+        "title": "The Boundary Enforcement",
+        "toolIds": [
+          "the-boundary-enforcement-how-do-i-manage-anger-and-resentment",
+          "the-boundary-enforcement-how-do-i-manage-chronic-stress-from-trauma",
+          "the-boundary-establishment-how-do-i-rebuild-a-sense-of-safety-and-trust"
+        ]
+      }
+    ],
+    "heartbreak-loop": [
+      {
+        "id": "how-do-i-deal-with-the-fear-of-being-alone-forever",
+        "title": "How do I deal with the fear of being alone forever?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-feelings-of-regret",
+        "title": "How do I deal with feelings of regret?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-feelings-of-regret",
+        "title": "How do I manage feelings of regret?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-seeking-validation-from-others",
+        "title": "How do I stop seeking validation from others?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-communicate-effectively-after-heartbreak",
+        "title": "How do I communicate effectively after heartbreak?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-cultivate-self-love",
+        "title": "How do I cultivate self love?",
+        "toolIds": [
+          "the-authentic-self-how-do-i-attract-a-healthy-partner",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-build-healthy-attachment-styles",
+        "title": "How do I build healthy attachment styles?",
+        "toolIds": [
+          "the-attachment-education-how-do-i-build-healthy-attachment-styles",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-attract-a-healthy-partner",
+        "title": "How do I attract a healthy partner?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-rebuild-self-worth-after-heartbreak",
+        "title": "How do I rebuild self worth after heartbreak?",
+        "toolIds": [
+          "the-authentic-self-how-do-i-attract-a-healthy-partner",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-break-toxic-relationship-patterns",
+        "title": "How do I break toxic relationship patterns?",
+        "toolIds": [
+          "the-relationship-journal-how-do-i-identify-unhealthy-relationship-patterns",
+          "the-secure-relationship-model-how-do-i-build-healthy-attachment-styles",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-shared-friends-after-a-breakup",
+        "title": "How do I deal with shared friends after a breakup?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-set-healthy-boundaries-in-relationships",
+        "title": "How do I set healthy boundaries in relationships?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-avoid-rebound-relationships",
+        "title": "How do I avoid rebound relationships?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-know-when-im-ready-for-a-new-relationship",
+        "title": "How do I know when im ready for a new relationship?",
+        "toolIds": [
+          "the-new-connections-how-do-i-deal-with-shared-friends-after-a-breakup",
+          "the-new-hobbyinterest-how-do-i-deal-with-loneliness-after-a-breakup",
+          "the-relationship-journal-how-do-i-identify-unhealthy-relationship-patterns"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-jealousy-and-insecurity",
+        "title": "How do I deal with jealousy and insecurity?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-fear-of-commitment",
+        "title": "How do I manage fear of commitment?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-loneliness-after-a-breakup",
+        "title": "How do I deal with loneliness after a breakup?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-learn-to-trust-again",
+        "title": "How do I learn to trust again?",
+        "toolIds": [
+          "the-here-we-go-again-feeling-how-do-i-recognize-im-in-a-heartbreak-loop",
+          "the-small-trust-tests-how-do-i-learn-to-trust-again",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-intrusive-thoughts-about-my-ex",
+        "title": "How do I manage intrusive thoughts about my ex?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-obsessing-over-my-ex",
+        "title": "How do I stop obsessing over my ex?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-intense-emotional-pain-after-a-breakup",
+        "title": "How do I deal with intense emotional pain after a breakup?",
+        "toolIds": [
+          "the-emotional-echo-how-do-i-recognize-im-in-a-heartbreak-loop",
+          "the-emotional-regulation-how-do-i-communicate-effectively-after-heartbreak",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "how-do-i-recognize-im-in-a-heartbreak-loop",
+        "title": "How do I recognize im in a heartbreak loop?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-manage-feelings-of-bitterness-or-resentment",
+        "title": "How do I manage feelings of bitterness or resentment?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-move-on-when-my-ex-has-moved-on-quickly",
+        "title": "How do I move on when my ex has moved on quickly?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-forgive-my-ex-and-myself",
+        "title": "How do I forgive my ex and myself?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-idealizing-my-ex-partner",
+        "title": "How do I stop idealizing my ex partner?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-grief-over-a-lost-relationship",
+        "title": "How do I deal with grief over a lost relationship?",
+        "toolIds": [
+          "the-relationship-journal-how-do-i-identify-unhealthy-relationship-patterns",
+          "the-secure-relationship-model-how-do-i-build-healthy-attachment-styles",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-feelings-of-abandonment",
+        "title": "How do I deal with feelings of abandonment?",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "how-do-i-identify-unhealthy-relationship-patterns",
+        "title": "How do I identify unhealthy relationship patterns?",
+        "toolIds": [
+          "the-relationship-journal-how-do-i-identify-unhealthy-relationship-patterns",
+          "the-secure-relationship-model-how-do-i-build-healthy-attachment-styles",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "how-do-i-heal-from-past-relationship-trauma",
+        "title": "How do I heal from past relationship trauma?",
+        "toolIds": [
+          "the-relationship-journal-how-do-i-identify-unhealthy-relationship-patterns",
+          "the-secure-relationship-model-how-do-i-build-healthy-attachment-styles",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "the-abundance-mindset",
+        "title": "The Abundance Mindset",
+        "toolIds": [
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "the-action-for-change",
+        "title": "The Action for Change",
+        "toolIds": [
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret",
+          "the-action-for-self-trust-how-do-i-stop-seeking-validation-from-others"
+        ]
+      },
+      {
+        "id": "the-action-for-self-trust",
+        "title": "The Action for Self-Trust",
+        "toolIds": [
+          "the-action-for-self-trust-how-do-i-stop-seeking-validation-from-others",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret",
+          "the-action-for-change-how-do-i-manage-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "the-active-listening",
+        "title": "The Active Listening",
+        "toolIds": [
+          "the-active-listening-how-do-i-communicate-effectively-after-heartbreak",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "the-affirmation-practice",
+        "title": "The Affirmation Practice",
+        "toolIds": [
+          "the-affirmation-practice-how-do-i-cultivate-self-love",
+          "the-discernment-practice-how-do-i-learn-to-trust-again",
+          "the-gratitude-practice-how-do-i-manage-feelings-of-bitterness-or-resentment"
+        ]
+      },
+      {
+        "id": "the-attachment-education",
+        "title": "The Attachment Education",
+        "toolIds": [
+          "the-attachment-education-how-do-i-build-healthy-attachment-styles",
+          "the-red-flag-education-how-do-i-identify-unhealthy-relationship-patterns",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever"
+        ]
+      },
+      {
+        "id": "the-authentic-self",
+        "title": "The Authentic Self",
+        "toolIds": [
+          "the-authentic-self-how-do-i-attract-a-healthy-partner",
+          "the-abundance-mindset-how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "the-action-for-change-how-do-i-deal-with-feelings-of-regret"
+        ]
+      },
+      {
+        "id": "the-boundary-enforcement",
+        "title": "The Boundary Enforcement",
+        "toolIds": [
+          "the-boundary-enforcement-how-do-i-rebuild-self-worth-after-heartbreak",
+          "the-boundary-reinforcement-how-do-i-break-toxic-relationship-patterns",
+          "the-boundary-setting-how-do-i-deal-with-shared-friends-after-a-breakup"
+        ]
+      },
+      {
+        "id": "the-boundary-reinforcement",
+        "title": "The Boundary Reinforcement",
+        "toolIds": [
+          "the-boundary-reinforcement-how-do-i-break-toxic-relationship-patterns",
+          "the-boundary-enforcement-how-do-i-rebuild-self-worth-after-heartbreak",
+          "the-boundary-setting-how-do-i-deal-with-shared-friends-after-a-breakup"
+        ]
+      },
+      {
+        "id": "the-boundary-setting",
+        "title": "The Boundary Setting",
+        "toolIds": [
+          "the-boundary-setting-how-do-i-deal-with-shared-friends-after-a-breakup",
+          "the-boundary-enforcement-how-do-i-rebuild-self-worth-after-heartbreak",
+          "the-boundary-reinforcement-how-do-i-break-toxic-relationship-patterns"
+        ]
+      }
+    ],
+    "identity-crisis": [
+      {
+        "id": "how-do-i-find-my-voice-and-speak-my-truth",
+        "title": "How do I find my voice and speak my truth?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "truth-core-how-do-i-build-an-authentic-personal-brand",
+          "voice-note-dump-how-do-i-find-my-voice-and-speak-my-truth"
+        ]
+      },
+      {
+        "id": "how-do-i-build-self-confidence-after-an-identity-crisis",
+        "title": "How do I build self confidence after an identity crisis?",
+        "toolIds": [
+          "action-for-self-how-do-i-deal-with-judgment-from-myself",
+          "action-for-self-how-do-i-stop-obsessing-over-who-i-should-be",
+          "confidence-rebuild-routine-how-do-i-handle-empty-nest-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-redefine-myself-after-a-major-life-change",
+        "title": "How do I redefine myself after a major life change?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-regret-about-who-i-used-to-be",
+        "title": "How do I deal with regret about who i used to be?",
+        "toolIds": [
+          "regret-audit-how-do-i-deal-with-regret-about-who-i-used-to-be",
+          "regret-audit-no-pity-how-do-i-deal-with-the-should-haves-and-could-haves",
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-judgment-from-myself",
+        "title": "How do I deal with judgment from myself?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-obsessing-over-who-i-should-be",
+        "title": "How do I stop obsessing over who i should be?",
+        "toolIds": [
+          "action-over-analysis-how-do-i-deal-with-existential-dread-or-nihilism",
+          "action-over-apology-how-do-i-overcome-the-fear-of-judgment-from-my-past",
+          "action-over-explanation-how-do-i-deal-with-external-expectations-and-judgment"
+        ]
+      },
+      {
+        "id": "how-do-i-create-my-own-path-not-follow-others",
+        "title": "How do I create my own path not follow others?",
+        "toolIds": [
+          "learning-path-ladder-how-do-i-handle-finding-mentors-during-an-identity-crisis",
+          "learning-path-ladder-how-do-i-handle-learning-path-during-an-identity-crisis",
+          "learning-path-ladder-how-do-i-handle-starting-over-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-existential-dread-or-nihilism",
+        "title": "How do I deal with existential dread or nihilism?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-overcome-the-fear-of-judgment-from-my-past",
+        "title": "How do I overcome the fear of judgment from my past?",
+        "toolIds": [
+          "past-vs-future-bridge-how-do-i-handle-creative-block-during-an-identity-crisis",
+          "past-vs-future-bridge-how-do-i-handle-daily-structure-during-an-identity-crisis",
+          "past-vs-future-bridge-how-do-i-handle-discipline-reset-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-external-expectations-and-judgment",
+        "title": "How do I deal with external expectations and judgment?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-caring-what-others-think",
+        "title": "How do I stop caring What others think?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-embrace-change-and-uncertainty",
+        "title": "How do I embrace change and uncertainty?",
+        "toolIds": [
+          "discomfort-embrace-how-do-i-deal-with-the-constant-need-for-approval",
+          "discomfort-embrace-how-do-i-stop-being-a-people-pleaser",
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth"
+        ]
+      },
+      {
+        "id": "how-do-i-define-my-values",
+        "title": "How do I define my values?",
+        "toolIds": [
+          "values-compass-how-do-i-handle-body-changes-and-identity-during-an-identity-crisis",
+          "values-compass-how-do-i-handle-public-vs-private-self-during-an-identity-crisis",
+          "values-compass-how-do-i-handle-who-am-i-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-fear-of-change-during-an-identity-crisis",
+        "title": "How do I handle fear of change during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-identity-vs-expectations-during-an-identity-crisis",
+        "title": "How do I handle identity vs expectations during an identity crisis?",
+        "toolIds": [
+          "past-vs-future-bridge-how-do-i-handle-creative-block-during-an-identity-crisis",
+          "past-vs-future-bridge-how-do-i-handle-daily-structure-during-an-identity-crisis",
+          "past-vs-future-bridge-how-do-i-handle-discipline-reset-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-reinventing-self-during-an-identity-crisis",
+        "title": "How do I handle reinventing self during an identity crisis?",
+        "toolIds": [
+          "action-for-self-how-do-i-deal-with-judgment-from-myself",
+          "action-for-self-how-do-i-stop-obsessing-over-who-i-should-be",
+          "future-self-letter-why-do-i-feel-lost-and-dont-know-who-i-am"
+        ]
+      },
+      {
+        "id": "how-do-i-find-my-strengths-when-i-feel-weak",
+        "title": "How do I find my strengths when i feel weak?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-create-a-vision-for-my-new-life",
+        "title": "How do I create a vision for my new life?",
+        "toolIds": [
+          "future-impact-vision-how-do-i-find-meaning-in-my-struggle",
+          "future-vision-how-do-i-stop-defining-myself-by-my-failures",
+          "legacy-vision-how-do-i-define-my-values"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-courage-to-try-during-an-identity-crisis",
+        "title": "How do I handle courage to try during an identity crisis?",
+        "toolIds": [
+          "courage-microactions-how-do-i-handle-midlife-pivot-during-an-identity-crisis",
+          "courage-microactions-how-do-i-handle-purpose-loss-during-an-identity-crisis",
+          "courage-microactions-how-do-i-handle-role-overload-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-small-experiments-during-an-identity-crisis",
+        "title": "How do I handle small experiments during an identity crisis?",
+        "toolIds": [
+          "small-experiments-ladder-how-do-i-handle-career-confusion-during-an-identity-crisis",
+          "small-experiments-ladder-how-do-i-handle-life-transition-during-an-identity-crisis",
+          "small-experiments-ladder-how-do-i-handle-values-uncertainty-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-burnout-during-an-identity-crisis",
+        "title": "How do I handle burnout during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-career-confusion-during-an-identity-crisis",
+        "title": "How do I handle career confusion during an identity crisis?",
+        "toolIds": [
+          "career-confusion-canvas-how-do-i-handle-burnout-during-an-identity-crisis",
+          "career-confusion-canvas-how-do-i-handle-career-confusion-during-an-identity-crisis",
+          "career-confusion-canvas-how-do-i-handle-life-transition-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-life-transition-during-an-identity-crisis",
+        "title": "How do I handle life transition during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-purpose-loss-during-an-identity-crisis",
+        "title": "How do I handle purpose loss during an identity crisis?",
+        "toolIds": [
+          "purpose-loss-recovery-how-do-i-handle-confidence-rebuild-during-an-identity-crisis",
+          "purpose-loss-recovery-how-do-i-handle-resilience-during-an-identity-crisis",
+          "pain-to-purpose-how-do-i-find-meaning-in-my-struggle"
+        ]
+      },
+      {
+        "id": "how-do-i-build-self-worth",
+        "title": "How do I build self worth?",
+        "toolIds": [
+          "action-for-self-how-do-i-deal-with-judgment-from-myself",
+          "action-for-self-how-do-i-stop-obsessing-over-who-i-should-be",
+          "future-self-letter-why-do-i-feel-lost-and-dont-know-who-i-am"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-empty-nest-during-an-identity-crisis",
+        "title": "How do I handle empty nest during an identity crisis?",
+        "toolIds": [
+          "empty-nest-reframe-how-do-i-handle-past-vs-future-self-during-an-identity-crisis",
+          "empty-nest-reframe-how-do-i-handle-reputation-vs-reality-during-an-identity-crisis",
+          "empty-nest-reframe-how-do-i-handle-self-acceptance-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-parent-identity-shift-during-an-identity-crisis",
+        "title": "How do I handle parent identity shift during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-retirement-identity-during-an-identity-crisis",
+        "title": "How do I handle retirement identity during an identity crisis?",
+        "toolIds": [
+          "retirement-identity-prep-how-do-i-handle-letting-go-of-labels-during-an-identity-crisis",
+          "retirement-identity-prep-how-do-i-handle-past-vs-future-self-during-an-identity-crisis",
+          "retirement-identity-prep-how-do-i-handle-reputation-vs-reality-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-build-an-authentic-personal-brand",
+        "title": "How do I build an authentic personal brand?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-find-my-purpose-when-everything-feels-meaningless",
+        "title": "How do I find my purpose when everything feels meaningless?",
+        "toolIds": [
+          "pain-to-purpose-how-do-i-find-meaning-in-my-struggle",
+          "purpose-excavation-why-do-i-feel-lost-and-dont-know-who-i-am",
+          "purpose-loss-recovery-how-do-i-handle-confidence-rebuild-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-midlife-pivot-during-an-identity-crisis",
+        "title": "How do I handle midlife pivot during an identity crisis?",
+        "toolIds": [
+          "midlife-pivot-planner-how-do-i-handle-authenticity-during-an-identity-crisis",
+          "midlife-pivot-planner-how-do-i-handle-conflicting-goals-during-an-identity-crisis",
+          "midlife-pivot-planner-how-do-i-handle-self-acceptance-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-role-overload-during-an-identity-crisis",
+        "title": "How do I handle role overload during an identity crisis?",
+        "toolIds": [
+          "role-overload-map-how-do-i-handle-confidence-rebuild-during-an-identity-crisis",
+          "role-overload-map-how-do-i-handle-discipline-reset-during-an-identity-crisis",
+          "role-overload-map-how-do-i-handle-resilience-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-analysis-paralysis-during-an-identity-crisis",
+        "title": "How do I handle analysis paralysis during an identity crisis?",
+        "toolIds": [
+          "analysis-paralysis-breaker-how-do-i-handle-fear-of-change-during-an-identity-crisis",
+          "analysis-paralysis-breaker-how-do-i-handle-identity-vs-expectations-during-an-identity-crisis",
+          "analysis-paralysis-breaker-how-do-i-handle-reinventing-self-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-authenticity-during-an-identity-crisis",
+        "title": "How do I handle authenticity during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-conflicting-goals-during-an-identity-crisis",
+        "title": "How do I handle conflicting goals during an identity crisis?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-find-passion-when-i-feel-burnt-out",
+        "title": "How do I find passion when i feel burnt out?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-handle-moving-cities-during-an-identity-crisis",
+        "title": "How do I handle moving cities during an identity crisis?",
+        "toolIds": [
+          "moving-city-playbook-how-do-i-handle-authenticity-during-an-identity-crisis",
+          "moving-city-playbook-how-do-i-handle-reputation-vs-reality-during-an-identity-crisis",
+          "moving-city-playbook-how-do-i-handle-self-acceptance-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-seeking-external-validation",
+        "title": "How do I stop seeking external validation?",
+        "toolIds": [
+          "discomfort-seeking-how-do-i-embrace-change-and-uncertainty",
+          "internal-validation-how-do-i-deal-with-feeling-like-an-outsider",
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth"
+        ]
+      },
+      {
+        "id": "how-do-i-deal-with-the-constant-need-for-approval",
+        "title": "How do I deal with the constant need for approval?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      },
+      {
+        "id": "how-do-i-stop-being-a-people-pleaser",
+        "title": "How do I stop being a people pleaser?",
+        "toolIds": [
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth",
+          "action-builds-swagger-how-do-i-build-self-confidence-after-an-identity-crisis",
+          "action-first-identity-how-do-i-redefine-myself-after-a-major-life-change"
+        ]
+      }
+    ],
+    "full-resurrection-system": [
+      {
+        "id": "how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+        "title": "How do I build the 72 hour stabilization part of my resurrection system?",
+        "toolIds": [
+          "72hour-stabilizer-how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+          "72hour-stabilizer-how-do-i-build-the-day-1-reset-part-of-my-resurrection-system",
+          "72hour-stabilizer-how-do-i-build-the-full-stack-checklist-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-day-1-reset-part-of-my-resurrection-system",
+        "title": "How do I build the day 1 reset part of my resurrection system?",
+        "toolIds": [
+          "day1-reset-protocol-how-do-i-build-the-day-1-reset-part-of-my-resurrection-system",
+          "day1-reset-protocol-how-do-i-build-the-full-stack-checklist-part-of-my-resurrection-system",
+          "day1-reset-protocol-how-do-i-build-the-personal-mission-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-full-stack-checklist-part-of-my-resurrection-system",
+        "title": "How do I build the full stack checklist part of my resurrection system?",
+        "toolIds": [
+          "full-stack-checklist-how-do-i-build-the-document-the-process-part-of-my-resurrection-system",
+          "full-stack-checklist-how-do-i-build-the-full-stack-checklist-part-of-my-resurrection-system",
+          "full-stack-checklist-how-do-i-build-the-personal-mission-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-career-search-part-of-my-resurrection-system",
+        "title": "How do I build the career search part of my resurrection system?",
+        "toolIds": [
+          "career-search-map-how-do-i-build-the-career-search-part-of-my-resurrection-system",
+          "career-search-map-how-do-i-build-the-skill-building-part-of-my-resurrection-system",
+          "career-search-map-how-do-i-build-the-social-circle-reset-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-daily-tracking-part-of-my-resurrection-system",
+        "title": "How do I build the daily tracking part of my resurrection system?",
+        "toolIds": [
+          "daily-tracking-system-how-do-i-build-the-career-search-part-of-my-resurrection-system",
+          "daily-tracking-system-how-do-i-build-the-daily-tracking-part-of-my-resurrection-system",
+          "daily-tracking-system-how-do-i-build-the-skill-building-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-feedback-and-accountability-part-of-my-resurrection-system",
+        "title": "How do I build the feedback and accountability part of my resurrection system?",
+        "toolIds": [
+          "accountability-feedback-loop-how-do-i-build-the-career-search-part-of-my-resurrection-system",
+          "accountability-feedback-loop-how-do-i-build-the-daily-tracking-part-of-my-resurrection-system",
+          "accountability-feedback-loop-how-do-i-build-the-feedback-and-accountability-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-skill-building-part-of-my-resurrection-system",
+        "title": "How do I build the skill building part of my resurrection system?",
+        "toolIds": [
+          "skill-building-ladder-how-do-i-build-the-nutrition-basics-part-of-my-resurrection-system",
+          "skill-building-ladder-how-do-i-build-the-skill-building-part-of-my-resurrection-system",
+          "skill-building-ladder-how-do-i-build-the-social-circle-reset-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-social-circle-reset-part-of-my-resurrection-system",
+        "title": "How do I build the social circle reset part of my resurrection system?",
+        "toolIds": [
+          "social-circle-reset-how-do-i-build-the-nutrition-basics-part-of-my-resurrection-system",
+          "social-circle-reset-how-do-i-build-the-sleepmovement-basics-part-of-my-resurrection-system",
+          "social-circle-reset-how-do-i-build-the-social-circle-reset-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-celebration-and-reward-part-of-my-resurrection-system",
+        "title": "How do I build the celebration and reward part of my resurrection system?",
+        "toolIds": [
+          "celebrate-and-reward-ritual-how-do-i-build-the-celebration-and-reward-part-of-my-resurrection-system",
+          "celebrate-and-reward-ritual-how-do-i-build-the-daily-tracking-part-of-my-resurrection-system",
+          "celebrate-and-reward-ritual-how-do-i-build-the-feedback-and-accountability-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-creative-life-part-of-my-resurrection-system",
+        "title": "How do I build the creative life part of my resurrection system?",
+        "toolIds": [
+          "creative-life-ladder-how-do-i-build-the-creative-life-part-of-my-resurrection-system",
+          "creative-life-ladder-how-do-i-build-the-future-vision-part-of-my-resurrection-system",
+          "creative-life-ladder-how-do-i-build-the-service-and-contribution-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-future-vision-part-of-my-resurrection-system",
+        "title": "How do I build the future vision part of my resurrection system?",
+        "toolIds": [
+          "future-vision-builder-how-do-i-build-the-future-vision-part-of-my-resurrection-system",
+          "future-vision-builder-how-do-i-build-the-quarterly-goals-part-of-my-resurrection-system",
+          "future-vision-builder-how-do-i-build-the-yearly-audit-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-service-and-contribution-part-of-my-resurrection-system",
+        "title": "How do I build the service and contribution part of my resurrection system?",
+        "toolIds": [
+          "service-and-contribution-plan-how-do-i-build-the-future-vision-part-of-my-resurrection-system",
+          "service-and-contribution-plan-how-do-i-build-the-service-and-contribution-part-of-my-resurrection-system",
+          "service-and-contribution-plan-how-do-i-build-the-yearly-audit-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-crisis-protocol-part-of-my-resurrection-system",
+        "title": "How do I build the crisis protocol part of my resurrection system?",
+        "toolIds": [
+          "crisis-protocol-kit-how-do-i-build-the-crisis-protocol-part-of-my-resurrection-system",
+          "crisis-protocol-kit-how-do-i-build-the-leadership-and-legacy-part-of-my-resurrection-system",
+          "crisis-protocol-kit-how-do-i-build-the-spiritual-life-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-leadership-and-legacy-part-of-my-resurrection-system",
+        "title": "How do I build the leadership and legacy part of my resurrection system?",
+        "toolIds": [
+          "leadership-and-legacy-map-how-do-i-build-the-creative-life-part-of-my-resurrection-system",
+          "leadership-and-legacy-map-how-do-i-build-the-leadership-and-legacy-part-of-my-resurrection-system",
+          "leadership-and-legacy-map-how-do-i-build-the-spiritual-life-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-spiritual-life-part-of-my-resurrection-system",
+        "title": "How do I build the spiritual life part of my resurrection system?",
+        "toolIds": [
+          "spiritual-life-rhythm-how-do-i-build-the-creative-life-part-of-my-resurrection-system",
+          "spiritual-life-rhythm-how-do-i-build-the-service-and-contribution-part-of-my-resurrection-system",
+          "spiritual-life-rhythm-how-do-i-build-the-spiritual-life-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-personal-mission-part-of-my-resurrection-system",
+        "title": "How do I build the personal mission part of my resurrection system?",
+        "toolIds": [
+          "personal-mission-charter-how-do-i-build-the-document-the-process-part-of-my-resurrection-system",
+          "personal-mission-charter-how-do-i-build-the-personal-mission-part-of-my-resurrection-system",
+          "personal-mission-charter-how-do-i-build-the-teach-others-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-discipline-system-part-of-my-resurrection-system",
+        "title": "How do I build the discipline system part of my resurrection system?",
+        "toolIds": [
+          "discipline-system-builder-how-do-i-build-the-discipline-system-part-of-my-resurrection-system",
+          "discipline-system-builder-how-do-i-build-the-health-rebuild-part-of-my-resurrection-system",
+          "discipline-system-builder-how-do-i-build-the-money-rebuild-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-health-rebuild-part-of-my-resurrection-system",
+        "title": "How do I build the health rebuild part of my resurrection system?",
+        "toolIds": [
+          "health-rebuild-plan-how-do-i-build-the-health-rebuild-part-of-my-resurrection-system",
+          "health-rebuild-plan-how-do-i-build-the-relationship-repair-part-of-my-resurrection-system",
+          "health-rebuild-plan-how-do-i-build-the-work-rebuild-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-money-rebuild-part-of-my-resurrection-system",
+        "title": "How do I build the money rebuild part of my resurrection system?",
+        "toolIds": [
+          "money-rebuild-plan-how-do-i-build-the-health-rebuild-part-of-my-resurrection-system",
+          "money-rebuild-plan-how-do-i-build-the-money-rebuild-part-of-my-resurrection-system",
+          "money-rebuild-plan-how-do-i-build-the-work-rebuild-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-environment-design-part-of-my-resurrection-system",
+        "title": "How do I build the environment design part of my resurrection system?",
+        "toolIds": [
+          "environment-design-blueprint-how-do-i-build-the-environment-design-part-of-my-resurrection-system",
+          "environment-design-blueprint-how-do-i-build-the-monthly-review-part-of-my-resurrection-system",
+          "environment-design-blueprint-how-do-i-build-the-weekly-cadence-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-monthly-review-part-of-my-resurrection-system",
+        "title": "How do I build the monthly review part of my resurrection system?",
+        "toolIds": [
+          "monthly-review-ritual-how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+          "monthly-review-ritual-how-do-i-build-the-monthly-review-part-of-my-resurrection-system",
+          "monthly-review-ritual-how-do-i-build-the-weekly-cadence-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-weekly-cadence-part-of-my-resurrection-system",
+        "title": "How do I build the weekly cadence part of my resurrection system?",
+        "toolIds": [
+          "weekly-cadence-planner-how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+          "weekly-cadence-planner-how-do-i-build-the-day-1-reset-part-of-my-resurrection-system",
+          "weekly-cadence-planner-how-do-i-build-the-weekly-cadence-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-document-the-process-part-of-my-resurrection-system",
+        "title": "How do I build the document the process part of my resurrection system?",
+        "toolIds": [
+          "process-documentation-kit-how-do-i-build-the-document-the-process-part-of-my-resurrection-system",
+          "process-documentation-kit-how-do-i-build-the-maintenance-mode-part-of-my-resurrection-system",
+          "process-documentation-kit-how-do-i-build-the-teach-others-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-quarterly-goals-part-of-my-resurrection-system",
+        "title": "How do I build the quarterly goals part of my resurrection system?",
+        "toolIds": [
+          "quarterly-goals-map-how-do-i-build-the-holiday-routine-part-of-my-resurrection-system",
+          "quarterly-goals-map-how-do-i-build-the-quarterly-goals-part-of-my-resurrection-system",
+          "quarterly-goals-map-how-do-i-build-the-sprintseason-planning-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-yearly-audit-part-of-my-resurrection-system",
+        "title": "How do I build the yearly audit part of my resurrection system?",
+        "toolIds": [
+          "yearly-audit-sheet-how-do-i-build-the-quarterly-goals-part-of-my-resurrection-system",
+          "yearly-audit-sheet-how-do-i-build-the-sprintseason-planning-part-of-my-resurrection-system",
+          "yearly-audit-sheet-how-do-i-build-the-yearly-audit-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-relationship-repair-part-of-my-resurrection-system",
+        "title": "How do I build the relationship repair part of my resurrection system?",
+        "toolIds": [
+          "relationship-repair-steps-how-do-i-build-the-environment-design-part-of-my-resurrection-system",
+          "relationship-repair-steps-how-do-i-build-the-identity-rebuild-part-of-my-resurrection-system",
+          "relationship-repair-steps-how-do-i-build-the-relationship-repair-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-work-rebuild-part-of-my-resurrection-system",
+        "title": "How do I build the work rebuild part of my resurrection system?",
+        "toolIds": [
+          "work-rebuild-plan-how-do-i-build-the-identity-rebuild-part-of-my-resurrection-system",
+          "work-rebuild-plan-how-do-i-build-the-relationship-repair-part-of-my-resurrection-system",
+          "work-rebuild-plan-how-do-i-build-the-work-rebuild-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-holiday-routine-part-of-my-resurrection-system",
+        "title": "How do I build the holiday routine part of my resurrection system?",
+        "toolIds": [
+          "holiday-routine-plan-how-do-i-build-the-holiday-routine-part-of-my-resurrection-system",
+          "holiday-routine-plan-how-do-i-build-the-setbacks-and-review-part-of-my-resurrection-system",
+          "holiday-routine-plan-how-do-i-build-the-travel-routine-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-setbacks-and-review-part-of-my-resurrection-system",
+        "title": "How do I build the setbacks and review part of my resurrection system?",
+        "toolIds": [
+          "monthly-review-ritual-how-do-i-build-the-72-hour-stabilization-part-of-my-resurrection-system",
+          "monthly-review-ritual-how-do-i-build-the-monthly-review-part-of-my-resurrection-system",
+          "monthly-review-ritual-how-do-i-build-the-weekly-cadence-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-travel-routine-part-of-my-resurrection-system",
+        "title": "How do I build the travel routine part of my resurrection system?",
+        "toolIds": [
+          "travel-routine-builder-how-do-i-build-the-celebration-and-reward-part-of-my-resurrection-system",
+          "travel-routine-builder-how-do-i-build-the-setbacks-and-review-part-of-my-resurrection-system",
+          "travel-routine-builder-how-do-i-build-the-travel-routine-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-identity-rebuild-part-of-my-resurrection-system",
+        "title": "How do I build the identity rebuild part of my resurrection system?",
+        "toolIds": [
+          "identity-rebuild-map-how-do-i-build-the-environment-design-part-of-my-resurrection-system",
+          "identity-rebuild-map-how-do-i-build-the-identity-rebuild-part-of-my-resurrection-system",
+          "identity-rebuild-map-how-do-i-build-the-monthly-review-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-maintenance-mode-part-of-my-resurrection-system",
+        "title": "How do I build the maintenance mode part of my resurrection system?",
+        "toolIds": [
+          "maintenance-mode-plan-how-do-i-build-the-crisis-protocol-part-of-my-resurrection-system",
+          "maintenance-mode-plan-how-do-i-build-the-leadership-and-legacy-part-of-my-resurrection-system",
+          "maintenance-mode-plan-how-do-i-build-the-maintenance-mode-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-mindset-shifts-part-of-my-resurrection-system",
+        "title": "How do I build the mindset shifts part of my resurrection system?",
+        "toolIds": [
+          "mindset-shift-pack-how-do-i-build-the-discipline-system-part-of-my-resurrection-system",
+          "mindset-shift-pack-how-do-i-build-the-mindset-shifts-part-of-my-resurrection-system",
+          "mindset-shift-pack-how-do-i-build-the-money-rebuild-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-nutrition-basics-part-of-my-resurrection-system",
+        "title": "How do I build the nutrition basics part of my resurrection system?",
+        "toolIds": [
+          "nutrition-basics-plan-how-do-i-build-the-nutrition-basics-part-of-my-resurrection-system",
+          "nutrition-basics-plan-how-do-i-build-the-relapse-planning-part-of-my-resurrection-system",
+          "nutrition-basics-plan-how-do-i-build-the-sleepmovement-basics-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-relapse-planning-part-of-my-resurrection-system",
+        "title": "How do I build the relapse planning part of my resurrection system?",
+        "toolIds": [
+          "relapse-and-risk-plan-how-do-i-build-the-relapse-planning-part-of-my-resurrection-system",
+          "relapse-and-risk-plan-how-do-i-build-the-tools-stack-part-of-my-resurrection-system",
+          "relapse-and-risk-plan-how-do-i-build-the-values-and-purpose-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-sleepmovement-basics-part-of-my-resurrection-system",
+        "title": "How do I build the sleepmovement basics part of my resurrection system?",
+        "toolIds": [
+          "nutrition-basics-plan-how-do-i-build-the-nutrition-basics-part-of-my-resurrection-system",
+          "nutrition-basics-plan-how-do-i-build-the-relapse-planning-part-of-my-resurrection-system",
+          "nutrition-basics-plan-how-do-i-build-the-sleepmovement-basics-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-teach-others-part-of-my-resurrection-system",
+        "title": "How do I build the teach others part of my resurrection system?",
+        "toolIds": [
+          "teach-others-template-how-do-i-build-the-crisis-protocol-part-of-my-resurrection-system",
+          "teach-others-template-how-do-i-build-the-maintenance-mode-part-of-my-resurrection-system",
+          "teach-others-template-how-do-i-build-the-teach-others-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-sprintseason-planning-part-of-my-resurrection-system",
+        "title": "How do I build the sprintseason planning part of my resurrection system?",
+        "toolIds": [
+          "season-planning-canvas-how-do-i-build-the-holiday-routine-part-of-my-resurrection-system",
+          "season-planning-canvas-how-do-i-build-the-sprintseason-planning-part-of-my-resurrection-system",
+          "season-planning-canvas-how-do-i-build-the-travel-routine-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-tools-stack-part-of-my-resurrection-system",
+        "title": "How do I build the tools stack part of my resurrection system?",
+        "toolIds": [
+          "tools-stack-map-how-do-i-build-the-mindset-shifts-part-of-my-resurrection-system",
+          "tools-stack-map-how-do-i-build-the-tools-stack-part-of-my-resurrection-system",
+          "tools-stack-map-how-do-i-build-the-values-and-purpose-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "how-do-i-build-the-values-and-purpose-part-of-my-resurrection-system",
+        "title": "How do I build the values and purpose part of my resurrection system?",
+        "toolIds": [
+          "values-and-purpose-sprint-how-do-i-build-the-discipline-system-part-of-my-resurrection-system",
+          "values-and-purpose-sprint-how-do-i-build-the-mindset-shifts-part-of-my-resurrection-system",
+          "values-and-purpose-sprint-how-do-i-build-the-values-and-purpose-part-of-my-resurrection-system"
+        ]
+      }
+    ],
+    "loneliness": [
+      {
+        "id": "why-do-i-feel-lonely",
+        "title": "why do I feel lonely",
+        "toolIds": [
+          "how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "breathing-exercise",
+          "grounding-reset"
+        ]
+      },
+      {
+        "id": "feeling-lonely-all-the-time",
+        "title": "feeling lonely all the time",
+        "toolIds": [
+          "energy-check",
+          "how-do-i-deal-with-feeling-like-an-outsider",
+          "how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks"
+        ]
+      },
+      {
+        "id": "i-feel-alone",
+        "title": "I feel alone",
+        "toolIds": [
+          "breathing-exercise",
+          "grounding-reset",
+          "grounding-technique"
+        ]
+      },
+      {
+        "id": "feeling-isolated",
+        "title": "feeling isolated",
+        "toolIds": [
+          "how-do-i-deal-with-feeling-like-an-outsider",
+          "how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks",
+          "how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt"
+        ]
+      },
+      {
+        "id": "loneliness-meaning",
+        "title": "loneliness meaning",
+        "toolIds": [
+          "how-do-i-cope-with-loneliness-as-a-single-mother",
+          "how-do-i-deal-with-isolation-and-loneliness",
+          "how-do-i-deal-with-loneliness"
+        ]
+      },
+      {
+        "id": "lonely-even-when-surrounded-by-people",
+        "title": "lonely even when surrounded by people",
+        "toolIds": [
+          "how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks",
+          "how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt"
+        ]
+      },
+      {
+        "id": "why-am-i-so-lonely",
+        "title": "why am I so lonely",
+        "toolIds": [
+          "energy-check",
+          "how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "so-what-test-how-do-i-deal-with-external-expectations-and-judgment"
+        ]
+      },
+      {
+        "id": "loneliness-vs-being-alone",
+        "title": "loneliness vs being alone",
+        "toolIds": [
+          "how-do-i-deal-with-the-fear-of-being-alone",
+          "how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "how-do-i-build-healthy-shame-remorse-vs-toxic-shame"
+        ]
+      },
+      {
+        "id": "why-does-loneliness-hurt",
+        "title": "why does loneliness hurt",
+        "toolIds": [
+          "how-do-i-cope-with-loneliness-as-a-single-mother",
+          "how-do-i-deal-with-isolation-and-loneliness",
+          "how-do-i-deal-with-loneliness"
+        ]
+      },
+      {
+        "id": "feeling-disconnected-from-people",
+        "title": "feeling disconnected from people",
+        "toolIds": [
+          "grounding-reset",
+          "grounding-technique",
+          "how-do-i-deal-with-feeling-like-an-outsider"
+        ]
+      },
+      {
+        "id": "how-to-stop-being-lonely",
+        "title": "how to stop being lonely",
+        "toolIds": [
+          "how-do-i-stop-being-a-people-pleaser",
+          "how-do-i-stop-being-a-victim-of-my-own-story",
+          "how-do-i-deal-with-the-fear-of-being-alone"
+        ]
+      },
+      {
+        "id": "what-to-do-when-you-are-lonely",
+        "title": "what to do when you are lonely",
+        "toolIds": [
+          "how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "gratitude-text-how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "gym-confidence-ladder-how-do-i-feel-less-lonely-even-with-lots-of-followers"
+        ]
+      },
+      {
+        "id": "how-to-make-friends-when-lonely",
+        "title": "how to make friends when lonely",
+        "toolIds": [
+          "how-do-i-make-new-friends-after-switching-schools",
+          "energy-check",
+          "how-do-i-apologize-and-make-amends-to-my-son"
+        ]
+      },
+      {
+        "id": "ways-to-deal-with-loneliness",
+        "title": "ways to deal with loneliness",
+        "toolIds": [
+          "how-do-i-deal-with-isolation-and-loneliness",
+          "how-do-i-deal-with-loneliness",
+          "how-do-i-deal-with-loneliness-after-a-breakup"
+        ]
+      },
+      {
+        "id": "help-for-loneliness-and-anxiety",
+        "title": "help for loneliness and anxiety",
+        "toolIds": [
+          "breathing-exercise",
+          "how-do-i-help-my-son-with-anxiety",
+          "anxiety-grounding-how-do-i-handle-gaming-balance-as-a-teen"
+        ]
+      },
+      {
+        "id": "how-to-cope-with-loneliness",
+        "title": "how to cope with loneliness",
+        "toolIds": [
+          "how-do-i-cope-with-loneliness-as-a-single-mother",
+          "how-do-i-cope-with-infertility",
+          "how-do-i-cope-with-intense-emotional-pain"
+        ]
+      },
+      {
+        "id": "how-to-feel-connected",
+        "title": "how to feel connected",
+        "toolIds": [
+          "breathing-exercise",
+          "grounding-reset",
+          "grounding-technique"
+        ]
+      },
+      {
+        "id": "how-to-find-social-support",
+        "title": "how to find social support",
+        "toolIds": [
+          "how-do-i-find-a-new-support-system",
+          "how-do-i-find-free-or-low-cost-mental-health-support",
+          "family-support-network-map-how-can-a-father-teach-his-son-resilience"
+        ]
+      },
+      {
+        "id": "tips-for-loneliness",
+        "title": "tips for loneliness",
+        "toolIds": [
+          "how-do-i-cope-with-loneliness-as-a-single-mother",
+          "how-do-i-deal-with-isolation-and-loneliness",
+          "how-do-i-deal-with-loneliness"
+        ]
+      },
+      {
+        "id": "online-help-for-loneliness",
+        "title": "online help for loneliness",
+        "toolIds": [
+          "breathing-exercise",
+          "community-help-script-how-do-i-handle-complicated-grief-signs",
+          "community-help-script-how-do-i-handle-grief-and-trauma"
+        ]
+      },
+      {
+        "id": "why-am-i-lonely-after-a-breakup",
+        "title": "why am I lonely after a breakup",
+        "toolIds": [
+          "breakup-recovery-plan-how-do-i-rebuild-trust-with-my-parents",
+          "breakup-recovery-plan-how-do-i-reduce-overthinkingrumination",
+          "breakup-recovery-plan-how-do-i-stay-calm-during-family-conflict"
+        ]
+      },
+      {
+        "id": "lonely-in-a-relationship",
+        "title": "lonely in a relationship",
+        "toolIds": [
+          "how-do-i-break-toxic-relationship-patterns",
+          "how-do-i-build-the-relationship-repair-part-of-my-resurrection-system",
+          "how-do-i-deal-with-a-distant-relationship-with-my-father"
+        ]
+      },
+      {
+        "id": "loneliness-and-depression-connection",
+        "title": "loneliness and depression connection",
+        "toolIds": [
+          "depression-signal-check-how-do-i-handle-hobbies-as-a-teen",
+          "depression-signal-check-how-do-i-handle-part-time-job-stress-as-a-teen",
+          "depression-signal-check-how-do-i-handle-purpose-as-a-teen"
+        ]
+      },
+      {
+        "id": "why-do-i-feel-unloved",
+        "title": "why do I feel unloved",
+        "toolIds": [
+          "breathing-exercise",
+          "grounding-reset",
+          "grounding-technique"
+        ]
+      },
+      {
+        "id": "feeling-lonely-at-night",
+        "title": "feeling lonely at night",
+        "toolIds": [
+          "how-do-i-deal-with-feeling-like-an-outsider",
+          "how-do-i-deal-with-feeling-overwhelmed-by-daily-tasks",
+          "how-do-i-deal-with-the-feeling-of-being-overwhelmed-by-debt"
+        ]
+      },
+      {
+        "id": "lonely-without-friends",
+        "title": "lonely without friends",
+        "toolIds": [
+          "holiday-plan-without-them-how-do-i-handle-meaning-after-loss",
+          "holiday-plan-without-them-how-do-i-handle-returning-to-work",
+          "holiday-plan-without-them-how-do-i-handle-support-network"
+        ]
+      },
+      {
+        "id": "social-anxiety-loneliness",
+        "title": "social anxiety loneliness",
+        "toolIds": [
+          "how-do-i-deal-with-social-media-anxiety",
+          "how-do-i-handle-social-anxiety-as-a-teen",
+          "anxiety-grounding-how-do-i-handle-gaming-balance-as-a-teen"
+        ]
+      },
+      {
+        "id": "loneliness-after-moving-to-new-city",
+        "title": "loneliness after moving to new city",
+        "toolIds": [
+          "moving-city-playbook-how-do-i-handle-authenticity-during-an-identity-crisis",
+          "moving-city-playbook-how-do-i-handle-reputation-vs-reality-during-an-identity-crisis",
+          "moving-city-playbook-how-do-i-handle-self-acceptance-during-an-identity-crisis"
+        ]
+      },
+      {
+        "id": "loneliness-at-work",
+        "title": "loneliness at work",
+        "toolIds": [
+          "collegework-transition-map-how-do-i-deal-with-a-distant-relationship-with-my-father",
+          "collegework-transition-map-how-do-i-deal-with-my-sons-lack-of-motivation",
+          "collegework-transition-map-how-do-i-help-my-son-with-social-skills"
+        ]
+      },
+      {
+        "id": "loneliness-after-college",
+        "title": "loneliness after college",
+        "toolIds": [
+          "college-stress-plan-how-do-i-handle-academic-stress",
+          "college-stress-plan-how-do-i-handle-anxiety-tools-as-a-teen",
+          "college-stress-plan-how-do-i-handle-college-stress-as-a-teen"
+        ]
+      },
+      {
+        "id": "fear-of-being-alone-meaning",
+        "title": "fear of being alone meaning",
+        "toolIds": [
+          "how-do-i-deal-with-the-fear-of-being-alone",
+          "how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "how-do-i-deal-with-the-fear-of-future-financial-instability"
+        ]
+      },
+      {
+        "id": "monophobia-fear-of-being-alone",
+        "title": "monophobia fear of being alone",
+        "toolIds": [
+          "how-do-i-deal-with-the-fear-of-being-alone",
+          "how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "how-do-i-deal-with-the-fear-of-future-financial-instability"
+        ]
+      },
+      {
+        "id": "autophobia-symptoms",
+        "title": "autophobia symptoms",
+        "toolIds": [
+          "100year-vision-how-do-i-find-my-purpose",
+          "30-second-truth-drop-how-do-i-find-my-voice-after-being-silenced-by-shame",
+          "30-second-truth-drop-how-do-i-find-my-voice-and-speak-my-truth"
+        ]
+      },
+      {
+        "id": "isolophobia-definition",
+        "title": "isolophobia definition",
+        "toolIds": [
+          "north-star-definition-how-do-i-create-my-own-path-not-follow-others",
+          "100year-vision-how-do-i-find-my-purpose",
+          "30-second-truth-drop-how-do-i-find-my-voice-after-being-silenced-by-shame"
+        ]
+      },
+      {
+        "id": "why-am-i-scared-to-be-alone",
+        "title": "why am I scared to be alone",
+        "toolIds": [
+          "how-do-i-deal-with-the-fear-of-being-alone",
+          "how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "100year-vision-how-do-i-find-my-purpose"
+        ]
+      },
+      {
+        "id": "anxiety-about-being-alone",
+        "title": "anxiety about being alone",
+        "toolIds": [
+          "how-do-i-deal-with-the-fear-of-being-alone",
+          "how-do-i-deal-with-the-fear-of-being-alone-forever",
+          "anxiety-grounding-how-do-i-handle-gaming-balance-as-a-teen"
+        ]
+      },
+      {
+        "id": "loneliness-and-self-worth",
+        "title": "loneliness and self-worth",
+        "toolIds": [
+          "how-do-i-build-self-worth",
+          "how-do-i-cope-with-loneliness-as-a-single-mother",
+          "how-do-i-deal-with-isolation-and-loneliness"
+        ]
+      },
+      {
+        "id": "loneliness-and-meaning-in-life",
+        "title": "loneliness and meaning in life",
+        "toolIds": [
+          "creative-life-ladder-how-do-i-build-the-creative-life-part-of-my-resurrection-system",
+          "creative-life-ladder-how-do-i-build-the-future-vision-part-of-my-resurrection-system",
+          "creative-life-ladder-how-do-i-build-the-service-and-contribution-part-of-my-resurrection-system"
+        ]
+      },
+      {
+        "id": "am-i-lonely-or-depressed",
+        "title": "am I lonely or depressed",
+        "toolIds": [
+          "how-do-i-feel-less-lonely-even-with-lots-of-followers",
+          "100year-vision-how-do-i-find-my-purpose",
+          "30-second-truth-drop-how-do-i-find-my-voice-after-being-silenced-by-shame"
+        ]
+      },
+      {
+        "id": "loneliness-social-isolation-support",
+        "title": "loneliness social isolation support",
+        "toolIds": [
+          "how-do-i-deal-with-isolation-and-loneliness",
+          "family-support-network-map-how-can-a-father-teach-his-son-resilience",
+          "family-support-network-map-how-do-i-encourage-my-son-to-be-independent"
+        ]
+      }
+    ]
+  }
+}

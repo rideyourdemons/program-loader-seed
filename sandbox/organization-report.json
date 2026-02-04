@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-02-01T22:52:52.826Z",
+  "stats": {
+    "filesArchived": 80,
+    "dirsArchived": 9,
+    "errors": 2
+  },
+  "archiveLocations": {
+    "duplicates": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\duplicates",
+    "testFiles": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\test-files",
+    "brokenFiles": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\broken-files",
+    "oldDocs": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\old-docs",
+    "backups": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\backups",
+    "sandbox": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\sandbox-experiments",
+    "rootHTML": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\_archive\\root-html-duplicates"
+  },
+  "productionRoot": "C:\\Users\\Earl Taylor\\Documents\\program-loader-seed_MATRIX_COMPLETE_2025-12-26\\program-loader-seed\\public",
+  "canonicalFiles": {
+    "homepage": "public/index.html",
+    "tools": "public/tools.html",
+    "insights": "public/insights.html",
+    "data": [
+      "public/data/tools.json",
+      "public/data/gates.json",
+      "public/data/pain-points.json",
+      "public/store/tools.filtered.json"
+    ],
+    "config": [
+      "public/config/region-profiles.json",
+      "public/config/weight-table.json",
+      "public/config/state-registry.json",
+      "public/config/numerology-map.json"
+    ],
+    "js": [
+      "public/js/matrix-loader.js",
+      "public/js/ryd-boot.js",
+      "public/js/ryd-bind.js",
+      "public/js/ryd-navigation.js",
+      "public/js/ryd-router.js",
+      "public/js/matrix-expander.js"
+    ]
+  }
+}

@@ -1,0 +1,542 @@
+/**
+ * Pain Point Page Component
+ * 
+ * Displays a pain point page with tools, research, and related content
+ * 
+ * Usage:
+ * import PainPointPage from './components/PainPointPage';
+ * 
+ * <PainPointPage 
+ *   painPointId="depression" 
+ *   or 
+ *   painPointSlug="depression-help"
+ * />
+ */
+
+import React, { useState, useEffect } from 'react';
+
+export default function PainPointPage({ painPointId, painPointSlug }) {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pageData, setPageData] = useState(null);
+
+  useEffect(() => {
+    loadPainPointPage();
+  }, [painPointId, painPointSlug]);
+
+  const loadPainPointPage = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // TODO: Replace with actual API call
+      // const data = await getPainPointPage(painPointId || painPointSlug);
+      // setPageData(data);
+
+      // Mock data for example
+      setPageData({
+        painPoint: {
+          id: 'depression',
+          title: 'Depression',
+          description: 'Depression is more than feeling sad. It affects how you think, feel, and handle daily activities.',
+          slug: 'depression'
+        },
+        tools: [
+          {
+            id: 'tool-1',
+            title: 'Grounding Technique',
+            description: 'A simple technique to reconnect with the present moment.',
+            duration: '5-10 minutes',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tool-2',
+            title: 'Cognitive Reframing',
+            description: 'Change the way you think about difficult situations.',
+            duration: '15-20 minutes',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'tool-3',
+            title: 'Gratitude Practice',
+            description: 'Focus on what you\'re grateful for to shift perspective.',
+            duration: '10 minutes',
+            difficulty: 'Easy'
+          }
+        ],
+        research: [
+          {
+            id: 'research-1',
+            title: 'Cognitive Behavioral Therapy for Depression',
+            authors: ['Smith, J.', 'Doe, A.'],
+            publication: 'Journal of Mental Health',
+            year: 2020,
+            url: 'https://example.com/research'
+          }
+        ],
+        relatedPainPoints: [
+          { id: 'anxiety', title: 'Anxiety' },
+          { id: 'stress', title: 'Stress' }
+        ]
+      });
+
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="pain-point-page loading">
+        <div className="loading-spinner">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="pain-point-page error">
+        <h1>Error</h1>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  if (!pageData || !pageData.painPoint) {
+    return (
+      <div className="pain-point-page not-found">
+        <h1>Pain Point Not Found</h1>
+        <p>We couldn't find the pain point you're looking for.</p>
+      </div>
+    );
+  }
+
+  const { painPoint, tools, research, relatedPainPoints } = pageData;
+
+  return (
+    <div className="pain-point-page">
+      {/* Breadcrumbs */}
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span> / </span>
+        <a href={`/category/${painPoint.gateId || 'all'}`}>
+          {painPoint.gateName || 'Pain Points'}
+        </a>
+        <span> / </span>
+        <span>{painPoint.title}</span>
+      </nav>
+
+      {/* Header */}
+      <header className="pain-point-header">
+        <h1>{painPoint.title}</h1>
+        <p className="pain-point-description">{painPoint.description}</p>
+        <p className="disclaimer">
+          <small>Educational purposes only. Not a replacement for professional treatment.</small>
+        </p>
+      </header>
+
+      {/* Three Tools Section */}
+      <section className="tools-section">
+        <h2>Three Free Self-Help Tools</h2>
+        <p className="section-intro">
+          We offer <strong>three proven self-help techniques</strong> completely free, 
+          backed by peer-reviewed research. No signup required. Start immediately.
+        </p>
+
+        <div className="tools-grid">
+          {tools && tools.map((tool, index) => (
+            <ToolCard key={tool.id || index} tool={tool} index={index + 1} />
+          ))}
+        </div>
+      </section>
+
+      {/* Research Section */}
+      {research && research.length > 0 && (
+        <ResearchSection research={research} />
+      )}
+
+      {/* Related Content */}
+      {relatedPainPoints && relatedPainPoints.length > 0 && (
+        <section className="related-section">
+          <h2>Related Content</h2>
+          <div className="related-pain-points">
+            {relatedPainPoints.map((related) => (
+              <a 
+                key={related.id}
+                href={`/pain-point/${related.slug || related.id}`}
+                className="related-item"
+              >
+                {related.title}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}
+
+// Tool Card Component
+function ToolCard({ tool, index }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className={`tool-card ${expanded ? 'expanded' : ''}`}>
+      <div className="tool-card-header" onClick={() => setExpanded(!expanded)}>
+        <div className="tool-number">{index}</div>
+        <div className="tool-info">
+          <h3 className="tool-title">{tool.title}</h3>
+          <div className="tool-meta">
+            {tool.duration && <span className="meta-item">⏱ {tool.duration}</span>}
+            {tool.difficulty && <span className="meta-item">📊 {tool.difficulty}</span>}
+          </div>
+        </div>
+        <button className="expand-button" aria-label={expanded ? 'Collapse' : 'Expand'}>
+          {expanded ? '−' : '+'}
+        </button>
+      </div>
+
+      {expanded && (
+        <div className="tool-card-content">
+          <p className="tool-description">{tool.description}</p>
+          <button className="start-tool-button">Start Tool</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Research Section Component
+function ResearchSection({ research }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <section className="research-section">
+      <button 
+        className="research-toggle"
+        onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
+      >
+        <h2>Research & Evidence</h2>
+        <span className="toggle-icon">{expanded ? '−' : '+'}</span>
+      </button>
+
+      {expanded && (
+        <div className="research-content">
+          <p className="research-intro">
+            Learn the science behind these techniques. All tools are backed by peer-reviewed research.
+          </p>
+
+          <div className="research-list">
+            {research.map((item) => (
+              <div key={item.id} className="research-item">
+                <h3>{item.title}</h3>
+                {item.authors && (
+                  <p className="research-authors">By {item.authors.join(', ')}</p>
+                )}
+                {item.publication && (
+                  <p className="research-publication">{item.publication} ({item.year})</p>
+                )}
+                {item.url && (
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="research-link"
+                  >
+                    View Full Research →
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// CSS (add to your stylesheet)
+/*
+.pain-point-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.breadcrumbs {
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumbs a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.pain-point-header {
+  margin-bottom: 48px;
+}
+
+.pain-point-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.pain-point-description {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.disclaimer {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.tools-section {
+  margin-bottom: 48px;
+}
+
+.tools-section h2 {
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+.section-intro {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.tools-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.tool-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.tool-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.tool-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #667eea;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.tool-info {
+  flex: 1;
+}
+
+.tool-title {
+  font-size: 1.3em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.tool-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #667eea;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-card-content {
+  padding: 0 20px 20px 20px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 16px;
+  padding-top: 20px;
+}
+
+.tool-description {
+  margin-bottom: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.start-tool-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.start-tool-button:hover {
+  background: #5568d3;
+}
+
+.research-section {
+  margin-bottom: 48px;
+}
+
+.research-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.research-toggle h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.toggle-icon {
+  font-size: 24px;
+  color: #667eea;
+}
+
+.research-content {
+  margin-top: 24px;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.research-intro {
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.research-list {
+  display: grid;
+  gap: 20px;
+}
+
+.research-item {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.research-item h3 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.research-authors,
+.research-publication {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.research-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.research-link:hover {
+  text-decoration: underline;
+}
+
+.related-section {
+  margin-bottom: 48px;
+}
+
+.related-section h2 {
+  margin-bottom: 20px;
+}
+
+.related-pain-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.related-item {
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.related-item:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+@media (max-width: 768px) {
+  .pain-point-page {
+    padding: 16px;
+  }
+  
+  .pain-point-header h1 {
+    font-size: 2em;
+  }
+  
+  .tools-grid {
+    gap: 16px;
+  }
+}
+*/
+

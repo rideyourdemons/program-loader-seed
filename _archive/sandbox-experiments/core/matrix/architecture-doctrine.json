@@ -1,0 +1,93 @@
+{
+    "version": "1.0",
+    "status": "locked",
+    "purpose": "Define the non-negotiable architecture, ethics, and structural rules governing the Ride Your Demons Matrix system.",
+  
+    "core_principles": {
+      "intent_first": true,
+      "ethics_before_optimization": true,
+      "clarity_over_conversion": true,
+      "structure_over_symbolism": true,
+      "authority_is_earned": true
+    },
+  
+    "authority_definition": {
+      "authority_source": [
+        "genuine user demand",
+        "intent satisfaction",
+        "content completeness",
+        "structural coherence over time"
+      ],
+      "explicitly_not_authority": [
+        "manipulation",
+        "urgency pressure",
+        "emotional coercion",
+        "keyword stuffing",
+        "behavioral profiling"
+      ]
+    },
+  
+    "data_ethics": {
+      "no_personal_data_collection": true,
+      "no_user_profiling": true,
+      "no_cross_session_identity": true,
+      "aggregate_signals_only": [
+        "page visits",
+        "click paths",
+        "completion flow"
+      ]
+    },
+  
+    "numerology_policy": {
+      "allowed_as": [
+        "structural constraints",
+        "group sizing",
+        "progression pacing",
+        "resolution limits"
+      ],
+      "forbidden_as": [
+        "user-facing explanation",
+        "branding language",
+        "symbolic claims",
+        "promised outcomes",
+        "spiritual framing"
+      ],
+      "implementation_rule": "Numerology must never be named, marketed, explained, or required for belief. It exists only as invisible structural discipline."
+    },
+  
+    "cognitive_layer_policy": {
+      "focus": [
+        "stabilization",
+        "orientation",
+        "reflection",
+        "integration"
+      ],
+      "forbidden_tactics": [
+        "fear amplification",
+        "false urgency",
+        "dependency creation",
+        "loop trapping"
+      ]
+    },
+  
+    "seo_doctrine": {
+      "optimization_goal": "Serve intent completely, not exploit algorithms.",
+      "content_rules": [
+        "one primary intent per page",
+        "no intentional cannibalization",
+        "clarity before depth",
+        "depth before expansion"
+      ],
+      "growth_rule": "Expansion occurs only where demand already exists."
+    },
+  
+    "immutability": {
+      "this_file_may_be_modified_only_if": [
+        "founder approval",
+        "full system review",
+        "version increment"
+      ],
+      "default_state": "read_only"
+    }
+  }
+  

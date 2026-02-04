@@ -1,0 +1,6 @@
+{
+  "projectType": "program-loader",
+  "entry": "scripts/boot.js",
+  "language": "node",
+  "style": "modular"
+}

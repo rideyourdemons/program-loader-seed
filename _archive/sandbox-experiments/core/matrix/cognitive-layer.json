@@ -1,0 +1,36 @@
+{
+    "version": "1.0",
+  
+    "states": {
+      "overwhelmed": {
+        "priority": "stabilization",
+        "allowed_actions": ["grounding", "breathing", "simplification"],
+        "forbidden_actions": ["deep_reflection", "decision_pressure"]
+      },
+  
+      "confused": {
+        "priority": "orientation",
+        "allowed_actions": ["clarification", "mapping", "context_setting"],
+        "forbidden_actions": ["emotional_intensity", "forced_insight"]
+      },
+  
+      "reflective": {
+        "priority": "reflection",
+        "allowed_actions": ["pattern_recognition", "meaning_making"],
+        "forbidden_actions": ["urgency", "premature_resolution"]
+      },
+  
+      "rebuilding": {
+        "priority": "integration",
+        "allowed_actions": ["planning", "habit_alignment", "forward_steps"],
+        "forbidden_actions": ["rumination", "looping_content"]
+      }
+    },
+  
+    "routing_rules": {
+      "one_state_at_a_time": true,
+      "no_state_stacking": true,
+      "exit_required_before_reentry": true
+    }
+  }
+  

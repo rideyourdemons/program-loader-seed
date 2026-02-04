@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "description": "Capped, slow-moving adaptive weights for self-resonating system. All weights bounded to prevent runaway amplification.",
+  "constraints": {
+    "min_weight": 0.1,
+    "max_weight": 2.0,
+    "initial_weight": 1.0,
+    "adjustment_rate": 0.05,
+    "decay_rate": 0.02,
+    "update_frequency": "daily",
+    "max_daily_adjustment": 0.1
+  },
+  "tools": {
+    "breathing-exercise": {
+      "weight": 1.0,
+      "last_updated": null,
+      "engagement_signals": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 0
+      },
+      "adjustment_history": []
+    },
+    "grounding-technique": {
+      "weight": 1.0,
+      "last_updated": null,
+      "engagement_signals": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 0
+      },
+      "adjustment_history": []
+    },
+    "progressive-muscle-relaxation": {
+      "weight": 1.0,
+      "last_updated": null,
+      "engagement_signals": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 0
+      },
+      "adjustment_history": []
+    },
+    "cognitive-reframing": {
+      "weight": 1.0,
+      "last_updated": null,
+      "engagement_signals": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 0
+      },
+      "adjustment_history": []
+    },
+    "mindful-meditation": {
+      "weight": 1.0,
+      "last_updated": null,
+      "engagement_signals": {
+        "positive": 0,
+        "negative": 0,
+        "neutral": 0
+      },
+      "adjustment_history": []
+    }
+  },
+  "adjustment_rules": {
+    "positive_engagement": {
+      "signals": ["completion", "return_visit", "positive_feedback", "time_spent"],
+      "weight_change": "+0.05",
+      "max_per_day": 0.1
+    },
+    "negative_engagement": {
+      "signals": ["drop_off", "confusion", "negative_feedback", "quick_exit"],
+      "weight_change": "-0.02",
+      "max_per_day": 0.05
+    },
+    "decay": {
+      "trigger": "no_engagement_30_days",
+      "weight_change": "-0.01",
+      "frequency": "daily"
+    }
+  }
+}
+
