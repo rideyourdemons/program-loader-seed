@@ -6,6 +6,7 @@
  */
 
 import ComplianceChecker from '../core/compliance-checker.js';
+import { DATA_FILES } from './config/data-files.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

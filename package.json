@@ -54,7 +54,8 @@
     "fix:pain-points": "node scripts/fix-pain-points.cjs",
     "validate:assets": "node scripts/validate-assets.cjs",
     "build": "npm run build:matrix",
-    "build:legacy": "node scripts/build-tools-canonical.cjs && node scripts/build-matrix.cjs && node scripts/build-gates-mapping.cjs && node scripts/build-insights.cjs && node scripts/generate-sitemap.cjs && node scripts/validate-assets.cjs"
+    "build:legacy": "node scripts/build-tools-canonical.cjs && node scripts/build-matrix.cjs && node scripts/build-gates-mapping.cjs && node scripts/build-insights.cjs && node scripts/generate-sitemap.cjs && node scripts/validate-assets.cjs",
+    "local:test": "powershell -ExecutionPolicy Bypass -File scripts/local-test.ps1"
   },
   "dependencies": {
     "axios": "^1.6.0",

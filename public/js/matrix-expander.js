@@ -12,7 +12,7 @@
   const PAIN_POINTS_URL = '/data/pain-points.json';
   const TOOLS_URL = '/data/tools.json';
   const TOOLS_CANONICAL_URL = '/data/tools-canonical.json';
-  const DATA_FILES = {
+  const DATA_FILES = window.RYD_DATA_FILES || {
     gates: 'gates.json',
     painPoints: 'pain-points.json',
     tools: 'tools.json',
