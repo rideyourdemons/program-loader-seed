@@ -53,6 +53,9 @@
     "build:matrix": "node js/build-matrix.cjs",
     "fix:pain-points": "node scripts/fix-pain-points.cjs",
     "validate:assets": "node scripts/validate-assets.cjs",
+    "site-doctor": "node tools/site-doctor.mjs",
+    "site-doctor:fix": "node tools/site-doctor.mjs --fix",
+    "site-doctor:serve": "node tools/site-doctor.mjs --fix --serve",
     "build": "npm run build:matrix",
     "build:legacy": "node scripts/build-tools-canonical.cjs && node scripts/build-matrix.cjs && node scripts/build-gates-mapping.cjs && node scripts/build-insights.cjs && node scripts/generate-sitemap.cjs && node scripts/validate-assets.cjs",
     "local:test": "powershell -ExecutionPolicy Bypass -File scripts/local-test.ps1"
