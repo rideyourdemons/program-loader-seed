@@ -1,0 +1,76 @@
+{
+  "domains": [
+    {
+      "id": "D01",
+      "name": "Loss & Grief",
+      "slug": "loss-and-grief",
+      "description": "Processing loss, death, endings, and irreversible change."
+    },
+    {
+      "id": "D02",
+      "name": "Shame & Self-Judgment",
+      "slug": "shame-and-self-judgment",
+      "description": "Internalized blame, guilt, self-criticism, and identity collapse."
+    },
+    {
+      "id": "D03",
+      "name": "Anger & Control",
+      "slug": "anger-and-control",
+      "description": "Explosive reactions, suppressed rage, and loss of emotional regulation."
+    },
+    {
+      "id": "D04",
+      "name": "Anxiety & Overthinking",
+      "slug": "anxiety-and-overthinking",
+      "description": "Persistent worry, looping thoughts, fear anticipation, and nervous system overload."
+    },
+    {
+      "id": "D05",
+      "name": "Low Mood & Depression",
+      "slug": "low-mood-and-depression",
+      "description": "Emotional flatness, hopelessness, fatigue, and withdrawal."
+    },
+    {
+      "id": "D06",
+      "name": "Addiction & Impulse",
+      "slug": "addiction-and-impulse",
+      "description": "Compulsive behaviors, urges, cravings, and loss of agency."
+    },
+    {
+      "id": "D07",
+      "name": "Relationships & Attachment",
+      "slug": "relationships-and-attachment",
+      "description": "Connection wounds, abandonment, conflict cycles, and intimacy breakdown."
+    },
+    {
+      "id": "D08",
+      "name": "Self-Worth & Identity",
+      "slug": "self-worth-and-identity",
+      "description": "Who am I, what am I worth, and where do I belong?"
+    },
+    {
+      "id": "D09",
+      "name": "Purpose & Meaning",
+      "slug": "purpose-and-meaning",
+      "description": "Directionlessness, existential doubt, and loss of motivation."
+    },
+    {
+      "id": "D10",
+      "name": "Trauma & Rebuild",
+      "slug": "trauma-and-rebuild",
+      "description": "Aftermath of overwhelming events and rebuilding safety and trust."
+    },
+    {
+      "id": "D11",
+      "name": "Money, Survival & Stability",
+      "slug": "money-survival-and-stability",
+      "description": "Financial stress, insecurity, collapse, and survival pressure."
+    },
+    {
+      "id": "D12",
+      "name": "Burnout & Overload",
+      "slug": "burnout-and-overload",
+      "description": "Chronic exhaustion, responsibility overload, and emotional depletion."
+    }
+  ]
+}
