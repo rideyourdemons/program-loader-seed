@@ -14,7 +14,7 @@
   }
   
   function checkForCorruption() {
-    const corrupted = ['Â', 'Ã', ''', '–', '"', '"'];
+    const corrupted = ['\u00C2', '\u00C3', '\u2018', '\u2013', '\u201C', '\u201D'];
     const issues = [];
     
     // Check buttons
