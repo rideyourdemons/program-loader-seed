@@ -1,0 +1,10 @@
+{
+  "pillar": "mens-mental-health",
+  "domain": "loss-and-grief",
+  "tools": [
+    { "id": "MMH-D01-T01", "state_id": "S1", "name": "Box the Compass", "action": "Grounding: 4 objects seen, 3 touched, 2 heard, 1 smelled." },
+    { "id": "MMH-D01-T02", "state_id": "S2", "name": "15-Minute Audit", "action": "Pick one tiny chore. Timer for 15 mins. Focus only on that." },
+    { "id": "MMH-D01-T03", "state_id": "S3", "name": "Legacy Drafting", "action": "Identify one trait from the loss you respect; act on it today." },
+    { "id": "MMH-D01-T04", "state_id": "S4", "name": "External Output", "action": "20 mins high-intensity movement. No audio. Process through the body." }
+  ]
+}
