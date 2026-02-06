@@ -1,0 +1,8 @@
+{
+  "states": [
+    { "id": "S1", "slug": "barely-holding-it-together", "label": "Redline", "description": "High acute stress; survival mode; minimal cognitive bandwidth." },
+    { "id": "S2", "slug": "functional-but-numb", "label": "Autopilot", "description": "You can function, but you're disconnected, flat, or running on fumes." },
+    { "id": "S3", "slug": "spinning-and-stuck", "label": "Looping", "description": "Racing thoughts; rumination; indecision; can't land the plane." },
+    { "id": "S4", "slug": "steady-and-ready", "label": "Build Mode", "description": "Enough stability to reflect, plan, and take consistent action." }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "pillar": "Men's Mental Health",
+  "domain": "Anxiety & Performance",
+  "state_id": "MMH-AP-01",
+  "tools": [
+    {
+      "id": "S1",
+      "name": "Box Breathing (4-4-4-4)",
+      "action": "Grounding: Inhale 4s, Hold 4s, Exhale 4s, Hold 4s. Repeat 4 times to reset the nervous system."
+    },
+    {
+      "id": "S2",
+      "name": "Control vs. Concern Audit",
+      "action": "Audit: Draw two columns. List stressors you can control vs. those you cannot. Cross out the 'cannot' column."
+    },
+    {
+      "id": "S3",
+      "name": "Pre-Performance Scripting",
+      "action": "Drafting: Write down 3 'If/Then' scenarios for your upcoming task. (e.g., 'If I lose my place, then I will take a sip of water and reset.')"
+    },
+    {
+      "id": "S4",
+      "name": "High-Intensity Burst",
+      "action": "Output: Perform 30 seconds of maximum effort movement (shadow boxing or sprints) to burn off excess cortisol."
+    }
+  ]
+}
