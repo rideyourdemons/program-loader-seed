@@ -5,7 +5,7 @@
   "description": "Website Code Auditor & Remote Access System with Compliance and Matrix Engine",
   "main": "scripts/boot.js",
   "scripts": {
-    "dev": "npm run dev:matrix",
+    "dev": "node server.cjs",
     "dev:matrix": "node js/build-matrix.cjs --dev",
     "dev:legacy": "firebase emulators:start --only hosting",
     "serve": "firebase emulators:start --only hosting",

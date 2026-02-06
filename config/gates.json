@@ -1,0 +1,20 @@
+{
+  "gates": [
+    {
+      "id": "01",
+      "name": "Pressure & Control",
+      "slug": "pressure-control",
+      "target_audience": "men",
+      "default_tone_layer": "resonance",
+      "description": "Tools for managing internal pressure, anger, impulse, and decision-making under load."
+    },
+    {
+      "id": "02",
+      "name": "Loss & Grief",
+      "slug": "loss-grief",
+      "target_audience": "men",
+      "default_tone_layer": "resonance",
+      "description": "Tools for processing loss without shutdown, avoidance, or self-destruction."
+    }
+  ]
+}

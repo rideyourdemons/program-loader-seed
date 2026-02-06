@@ -1,0 +1,38 @@
+{
+  "allowed_domains": [
+    "nih.gov",
+    "ncbi.nlm.nih.gov",
+    "pubmed.ncbi.nlm.nih.gov",
+    "who.int",
+    "apa.org",
+    "harvard.edu",
+    "stanford.edu",
+    "mit.edu",
+    "ox.ac.uk",
+    "cam.ac.uk",
+    "nature.com",
+    "sciencedirect.com",
+    "springer.com",
+    "wiley.com",
+    "frontiersin.org",
+    "jamanetwork.com",
+    "elsevier.com"
+  ],
+  "reference_pool": [
+    {
+      "title": "Affect Labeling and Emotional Regulation",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3156609/",
+      "supports": "Why naming emotions reduces intensity and restores control"
+    },
+    {
+      "title": "Stress Response and Decision-Making",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK541120/",
+      "supports": "How stress narrows cognition and increases impulsive behavior"
+    },
+    {
+      "title": "Thinking, Fast and Slow",
+      "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow",
+      "supports": "Fast vs slow decision systems under pressure"
+    }
+  ]
+}

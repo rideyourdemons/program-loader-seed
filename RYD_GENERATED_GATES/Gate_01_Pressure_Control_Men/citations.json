@@ -1,0 +1,63 @@
+[
+  {
+    "id": "mcewen_1998_allostatic_load",
+    "title": "Protective and damaging effects of stress mediators",
+    "authors": ["McEwen BS"],
+    "year": 1998,
+    "type": "journal-article",
+    "journal": "New England Journal of Medicine",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9800931/",
+    "domain": "pubmed.ncbi.nlm.nih.gov",
+    "summary": "Describes how chronic activation of the body\u2019s stress response (allostatic load) damages cardiovascular, metabolic, and immune systems over time, explaining the long-term cost of living under constant pressure.",
+    "supports": [
+      "Long-term pressure and stress load have cumulative effects on the body",
+      "Short bursts of stress are tolerable, chronic activation is harmful"
+    ]
+  },
+  {
+    "id": "kivimaki_2012_job_strain_chd",
+    "title": "Job strain as a risk factor for coronary heart disease: a collaborative meta-analysis of individual participant data",
+    "authors": ["Kivimäki M", "Nyberg ST", "Fransson EI", "et al."],
+    "year": 2012,
+    "type": "journal-article",
+    "journal": "The Lancet",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3816699/",
+    "domain": "ncbi.nlm.nih.gov",
+    "summary": "Shows that high job demands combined with low control over work are linked to an increased risk of coronary heart disease, especially relevant for men in high-responsibility roles.",
+    "supports": [
+      "Job strain with low control is physically harmful",
+      "Perceived control over work load is a key factor in long-term health"
+    ]
+  },
+  {
+    "id": "arnsten_2009_stress_prefrontal",
+    "title": "Stress signalling pathways that impair prefrontal cortex structure and function",
+    "authors": ["Arnsten AFT"],
+    "year": 2009,
+    "type": "journal-article",
+    "journal": "Nature Reviews Neuroscience",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2907136/",
+    "domain": "ncbi.nlm.nih.gov",
+    "summary": "Explains how stress chemicals weaken the prefrontal cortex, leading to more impulsive, short-term decisions and reduced self-control under pressure.",
+    "supports": [
+      "Stress narrows thinking and pushes people toward fast, reactive decisions",
+      "Restoring calmer states supports better judgment and impulse control"
+    ]
+  },
+  {
+    "id": "addis_mahalik_2003_men_help_seeking",
+    "title": "Men, masculinity, and the contexts of help seeking",
+    "authors": ["Addis ME", "Mahalik JR"],
+    "year": 2003,
+    "type": "journal-article",
+    "journal": "American Psychologist",
+    "url": "https://psycnet.apa.org/doi/10.1037/0003-066X.58.1.5",
+    "domain": "apa.org",
+    "summary": "Examines how traditional masculine norms around toughness and self-reliance make men less likely to acknowledge strain or seek support, increasing the risk of silent overload.",
+    "supports": [
+      "Masculine norms can delay men from addressing damaging levels of pressure",
+      "Reframing help-seeking as responsible action increases engagement"
+    ]
+  }
+]
+
