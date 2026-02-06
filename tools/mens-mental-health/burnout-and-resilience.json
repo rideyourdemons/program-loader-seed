@@ -1,0 +1,27 @@
+{
+  "pillar": "Men's Mental Health",
+  "domain": "Burnout & Resilience",
+  "state_id": "MMH-BR-01",
+  "tools": [
+    {
+      "id": "S1",
+      "name": "Tactical Physiological Sigh",
+      "action": "Grounding: Inhale deeply through nose, add a second short sharp inhale, then a long slow exhale through mouth. Repeat 3 times."
+    },
+    {
+      "id": "S2",
+      "name": "Energy Leak Audit",
+      "action": "Audit: List 5 tasks from your last 48 hours. Label each as 'Charging' (+) or 'Draining' (-). Identify one (-) to delegate or delete."
+    },
+    {
+      "id": "S3",
+      "name": "Boundary Drafting",
+      "action": "Drafting: Write one 'No' script for a recurring work request. Example: 'I can't take that on right now without dropping [Project X]. Which is the priority?'"
+    },
+    {
+      "id": "S4",
+      "name": "Non-Sleep Deep Rest (NSDR)",
+      "action": "Output: Set a timer for 10 minutes. Lay flat, eyes closed, focus on slowing your heart rate with belly breathing. No screens."
+    }
+  ]
+}
