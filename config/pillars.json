@@ -1,0 +1,19 @@
+{
+  "pillars": [
+    { "id": "P01", "slug": "mens-mental-health", "name": "Men's Mental Health" },
+    { "id": "P02", "slug": "womens-mental-health", "name": "Women's Mental Health" },
+    { "id": "P03", "slug": "teen-and-genz-mental-health", "name": "Teen & Gen Z Mental Health" },
+    { "id": "P04", "slug": "addiction-recovery", "name": "Addiction Recovery" },
+    { "id": "P05", "slug": "fathers-and-sons", "name": "Fathers & Sons" },
+    { "id": "P06", "slug": "mothers-and-daughters", "name": "Mothers & Daughters" },
+    { "id": "P07", "slug": "relationships-and-breakups", "name": "Relationships & Breakups" },
+    { "id": "P08", "slug": "trauma-survivors", "name": "Trauma Survivors" },
+    { "id": "P09", "slug": "burnout-and-overload", "name": "Burnout & Overload" },
+    { "id": "P10", "slug": "loneliness-and-isolation", "name": "Loneliness & Isolation" },
+    { "id": "P11", "slug": "identity-and-life-transitions", "name": "Identity & Life Transitions" },
+    { "id": "P12", "slug": "collapse-and-rebuild", "name": "Collapse & Rebuild" }
+  ],
+  "defaults": {
+    "pillars_include_all_domains": true
+  }
+}
