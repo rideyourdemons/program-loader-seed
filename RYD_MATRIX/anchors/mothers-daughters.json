@@ -1,0 +1,450 @@
+{
+  "anchor": "mothers-daughters",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for mothers daughters. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "role-strain, boundary defense, emotional labor",
+  "pain_points": [
+    {
+      "id": "pp-mothers-daughters-01",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-02",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-03",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-04",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-05",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-06",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-07",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-08",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-09",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-10",
+      "search_query": "role-strain acute management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-11",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-12",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-13",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-14",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-15",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-16",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-17",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-18",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-19",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-20",
+      "search_query": "role-strain chronic management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-21",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-22",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-23",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-24",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-25",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-26",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-27",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-28",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-29",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-30",
+      "search_query": "role-strain severe management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-31",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-32",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-33",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-34",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-35",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-36",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-37",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-38",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-39",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-mothers-daughters-40",
+      "search_query": "role-strain recovery management",
+      "anchor_id": "mothers-daughters",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.360Z",
+  "updatedAt": "2026-02-07T03:03:36.360Z"
+}

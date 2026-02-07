@@ -1,0 +1,450 @@
+{
+  "anchor": "the-addict",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for the addict. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "dopamine-loop disruption, impulse override, baseline rebuild",
+  "pain_points": [
+    {
+      "id": "pp-the-addict-01",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-02",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-03",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-04",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-05",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-06",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-07",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-08",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-09",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-10",
+      "search_query": "dopamine-loop disruption acute management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-11",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-12",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-13",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-14",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-15",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-16",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-17",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-18",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-19",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-20",
+      "search_query": "dopamine-loop disruption chronic management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-21",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-22",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-23",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-24",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-25",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-26",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-27",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-28",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-29",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-30",
+      "search_query": "dopamine-loop disruption severe management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-31",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-32",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-33",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-34",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-35",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-36",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-37",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-38",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-39",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-addict-40",
+      "search_query": "dopamine-loop disruption recovery management",
+      "anchor_id": "the-addict",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.365Z",
+  "updatedAt": "2026-02-07T03:03:36.365Z"
+}

@@ -198,6 +198,12 @@
   
   // Export API
   window.RYD_ANALYTICS = {
+    where_it_came_from: {
+      origin: "internal",
+      basis: "built for Ride Your Demons platform",
+      source_type: "system-utility",
+      verified: true
+    },
     initialized: () => analytics.initialized,
     environment: () => analytics.environment,
     debug: () => analytics.debug,

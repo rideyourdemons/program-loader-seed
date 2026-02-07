@@ -1,0 +1,43 @@
+{
+  "pillar": "mens-mental-health",
+  "domain": "burnout-and-overload",
+  "pillar_slug": "mens-mental-health",
+  "domain_slug": "burnout-and-overload",
+  "disclaimer": "Tactical manual for mental mechanics. This guide focuses on bio-mechanical overrides for high-performance states.",
+  "tools": [
+    {
+      "id": "the-load-reset",
+      "state_id": "S1",
+      "name": "The Load Reset",
+      "title": "The Load Reset",
+      "slug": "the-load-reset",
+      "action": "Forces a system blackout to flush cortisol. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Forces a system blackout to flush cortisol. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Forces a system blackout to flush cortisol. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Stress Response Research and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Isolate the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "decision-fatigue-bypass",
+      "state_id": "S1",
+      "name": "Decision Fatigue Bypass",
+      "title": "Decision Fatigue Bypass",
+      "slug": "decision-fatigue-bypass",
+      "action": "Automates low-stakes choices to preserve focus. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Automates low-stakes choices to preserve focus. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Automates low-stakes choices to preserve focus. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Cognitive Load Theory and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Isolate the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    }
+  ]
+}

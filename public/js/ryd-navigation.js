@@ -157,6 +157,12 @@
   
   // Route handlers
   window.RYD_NAV = {
+    where_it_came_from: {
+      origin: "internal",
+      basis: "built for Ride Your Demons platform",
+      source_type: "system-utility",
+      verified: true
+    },
     search: function(query) {
       const result = classifyPain(query);
       

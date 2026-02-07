@@ -1,0 +1,450 @@
+{
+  "anchor": "young-lions",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for young lions. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "identity crisis, social anxiety, purpose, digital addiction",
+  "pain_points": [
+    {
+      "id": "pp-young-lions-01",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-02",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-03",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-04",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-05",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-06",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-07",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-08",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-09",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-10",
+      "search_query": "identity crisis acute management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-11",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-12",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-13",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-14",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-15",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-16",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-17",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-18",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-19",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-20",
+      "search_query": "identity crisis chronic management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-21",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-22",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-23",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-24",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-25",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-26",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-27",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-28",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-29",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-30",
+      "search_query": "identity crisis severe management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-31",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-32",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-33",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-34",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-35",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-36",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-37",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-38",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-39",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-lions-40",
+      "search_query": "identity crisis recovery management",
+      "anchor_id": "young-lions",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.354Z",
+  "updatedAt": "2026-02-07T03:03:36.354Z"
+}

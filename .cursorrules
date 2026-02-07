@@ -159,3 +159,24 @@ SEO is a **by-product**, not the goal.
 
 ## END DIRECTIVE
 
+
+# SCHEMA ENFORCEMENT PROTOCOL
+- All JSON in tools/ must have a top-level "disclaimer" field.
+- If validation fails, Cursor is MANDATED to fix it using this text: "The information provided is for educational purposes and is not a substitute for professional medical advice."
+- Never mark a task as complete until 'npm run validate' passes.
+
+# GOLD STANDARD SCHEMA RULES
+- NEVER save a file in /tools/ unless it contains: disclaimer, how_it_works, where_it_came_from, and steps.
+- If 'npm run validate' fails, you are MANDATED to auto-fix the missing fields using the boilerplate in gold-standard-final.mjs.
+- Commits are BLOCKED by Husky if validation fails. Do not ask to bypass.
+
+# RYD_MATRIX EXECUTION PROTOCOL
+- The RYD_MATRIX structure is LOCKED: 12 Anchors × 40 Pain Points × 3 Tools = 1,440 tool references.
+- NEVER add placeholders, "Mama Drama," clinical fluff, or generic emotional language to RYD_MATRIX files.
+- All content in /RYD_MATRIX/ must use tactical, high-performance language only.
+- When updating pain points in /RYD_MATRIX/anchors/, replace generic search_query text with specific 2026 tactical solutions.
+- Reference tools from /RYD_MATRIX/armory/global_mechanics.json by their exact IDs.
+- Every tool in the armory must have: name, logic, how_it_works, where_it_came_from, and steps.
+- Pain points must reference exactly 3 tools from the armory (no more, no less).
+- If asked to analyze or update RYD_MATRIX files, use ONLY the tools and language already established in the armory.
+- NO NEW TOOLS should be created without explicit user approval and proper schema compliance.

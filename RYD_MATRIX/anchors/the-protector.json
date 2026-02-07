@@ -1,0 +1,450 @@
+{
+  "anchor": "the-protector",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for the protector. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "hyper-vigilance reset, moral injury, off-duty transition",
+  "pain_points": [
+    {
+      "id": "pp-the-protector-01",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-02",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-03",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-04",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-05",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-06",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-07",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-08",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-09",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-10",
+      "search_query": "hyper-vigilance reset acute management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-11",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-12",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-13",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-14",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-15",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-16",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-17",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-18",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-19",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-20",
+      "search_query": "hyper-vigilance reset chronic management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-21",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-22",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-23",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-24",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-25",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-26",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-27",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-28",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-29",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-30",
+      "search_query": "hyper-vigilance reset severe management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-31",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-32",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-33",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-34",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-35",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-36",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-37",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-38",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-39",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-protector-40",
+      "search_query": "hyper-vigilance reset recovery management",
+      "anchor_id": "the-protector",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.365Z",
+  "updatedAt": "2026-02-07T03:03:36.365Z"
+}

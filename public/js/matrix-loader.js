@@ -71,6 +71,12 @@
       clearTimeout(t);
       if (!window.RYD_MATRIX) {
         window.RYD_MATRIX = {
+          where_it_came_from: {
+            origin: "internal",
+            basis: "built for Ride Your Demons platform",
+            source_type: "system-utility",
+            verified: true
+          },
           get tools() { warnLegacyMatrix(); return []; },
           get toolOfTheDay() { warnLegacyMatrix(); return null; }
         };

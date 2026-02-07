@@ -1,0 +1,450 @@
+{
+  "anchor": "the-professional",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for the professional. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "decision fatigue, high-stakes panic, imposter noise",
+  "pain_points": [
+    {
+      "id": "pp-the-professional-01",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-02",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-03",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-04",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-05",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-06",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-07",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-08",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-09",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-10",
+      "search_query": "decision fatigue acute management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-11",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-12",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-13",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-14",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-15",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-16",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-17",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-18",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-19",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-20",
+      "search_query": "decision fatigue chronic management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-21",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-22",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-23",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-24",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-25",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-26",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-27",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-28",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-29",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-30",
+      "search_query": "decision fatigue severe management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-31",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-32",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-33",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-34",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-35",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-36",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-37",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-38",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-39",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-professional-40",
+      "search_query": "decision fatigue recovery management",
+      "anchor_id": "the-professional",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.359Z",
+  "updatedAt": "2026-02-07T03:03:36.359Z"
+}

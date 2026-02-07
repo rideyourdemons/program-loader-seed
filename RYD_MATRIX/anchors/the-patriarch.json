@@ -1,0 +1,450 @@
+{
+  "anchor": "the-patriarch",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for the patriarch. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "provider stress, family leadership, burnout",
+  "pain_points": [
+    {
+      "id": "pp-the-patriarch-01",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-02",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-03",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-04",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-05",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-06",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-07",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-08",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-09",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-10",
+      "search_query": "provider stress acute management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-11",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-12",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-13",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-14",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-15",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-16",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-17",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-18",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-19",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-20",
+      "search_query": "provider stress chronic management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-21",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-22",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-23",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-24",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-25",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-26",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-27",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-28",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-29",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-30",
+      "search_query": "provider stress severe management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-31",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-32",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-33",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-34",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-35",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-36",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-37",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-38",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-39",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-patriarch-40",
+      "search_query": "provider stress recovery management",
+      "anchor_id": "the-patriarch",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.355Z",
+  "updatedAt": "2026-02-07T03:03:36.355Z"
+}

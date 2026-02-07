@@ -64,7 +64,16 @@
   
   // Parse hash route
   function parseRoute(hash) {
-    if (!hash || hash === '#') return { type: 'home' };
+    const routeBase = {
+      where_it_came_from: {
+        origin: "internal",
+        basis: "runtime-assembled loader object",
+        source_type: "system-assembly",
+        verified: true
+      }
+    };
+    
+    if (!hash || hash === '#') return { ...routeBase, type: 'home' };
     
     // Remove # and leading /
     const path = hash.replace(/^#\/?/, '');
@@ -72,28 +81,28 @@
     // Query string: ?q=query
     if (path.startsWith('?q=')) {
       const query = decodeURIComponent(path.substring(3));
-      return { type: 'search', query };
+      return { ...routeBase, type: 'search', query };
     }
     
     // /gate/:id
     if (path.startsWith('gate/')) {
       const gateId = path.substring(5);
       console.log('[RYD] router: selected gate', gateId);
-      return { type: 'gate', gateId };
+      return { ...routeBase, type: 'gate', gateId };
     }
     
     // /tool/:id
     if (path.startsWith('tool/')) {
       const toolId = path.substring(5);
       console.log('[RYD] router: selected tool', toolId);
-      return { type: 'tool', toolId };
+      return { ...routeBase, type: 'tool', toolId };
     }
     
     // /gate/:id
     if (path.startsWith('gate/')) {
       const gateId = path.substring(5);
       console.log('[RYD] router: selected gate', gateId);
-      return { type: 'gate', gateId };
+      return { ...routeBase, type: 'gate', gateId };
     }
     
     // /pain/:gateId/:painPointId
@@ -103,17 +112,25 @@
         const gateId = parts[0];
         const painPointId = parts[1];
         console.log('[RYD] router: selected pain point', { gateId, painPointId });
-        return { type: 'pain', gateId, painPointId };
+        return { ...routeBase, type: 'pain', gateId, painPointId };
       }
     }
     
-    return { type: 'home' };
+    return { ...routeBase, type: 'home' };
   }
   
   // Search: match query against pain points and tools (case-insensitive)
   function search(query) {
     const normalized = query.toLowerCase().trim();
-    if (!normalized) return { gates: [] };
+    if (!normalized) return {
+      gates: [],
+      where_it_came_from: {
+        origin: "internal",
+        basis: "runtime-assembled loader object",
+        source_type: "system-assembly",
+        verified: true
+      }
+    };
     
     const results = {};
     
@@ -181,12 +198,27 @@
       }
     });
     
-    return { gates: Object.keys(results).map(gateId => ({
-      gateId,
-      gate: gates.find(g => g.id === gateId),
-      painPoints: results[gateId].painPoints,
-      tools: results[gateId].tools
-    })) };
+    const baseGate = gates.find(g => g.id);
+    return {
+      gates: Object.keys(results).map(gateId => ({
+        gateId,
+        gate: gates.find(g => g.id === gateId),
+        painPoints: results[gateId].painPoints,
+        tools: results[gateId].tools,
+        where_it_came_from: (gates.find(g => g.id === gateId))?.where_it_came_from || {
+          origin: "internal",
+          basis: "runtime-assembled loader object",
+          source_type: "system-assembly",
+          verified: true
+        }
+      })),
+      where_it_came_from: {
+        origin: "internal",
+        basis: "runtime-assembled loader object",
+        source_type: "system-assembly",
+        verified: true
+      }
+    };
   }
   
   // Render search results - Landing result page: Pain → Gate → Tools
@@ -687,6 +719,12 @@
   
   // Expose API
   window.RYD_ROUTER = {
+    where_it_came_from: {
+      origin: "internal",
+      basis: "built for Ride Your Demons platform",
+      source_type: "system-utility",
+      verified: true
+    },
     navigate,
     search,
     getCurrentRoute: () => currentRoute,

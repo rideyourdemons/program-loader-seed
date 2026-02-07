@@ -341,6 +341,12 @@
 
   // Export for external use
   window.RYD_GATES = {
+    where_it_came_from: {
+      origin: "internal",
+      basis: "built for Ride Your Demons platform",
+      source_type: "system-utility",
+      verified: true
+    },
     init,
     loadData,
     renderGates

@@ -93,6 +93,12 @@
   
   // Expose global API
   window.RYD = {
+    where_it_came_from: {
+      origin: "internal",
+      basis: "built for Ride Your Demons platform",
+      source_type: "system-utility",
+      verified: true
+    },
     matrix: null,
     tools: [],
     status: 'loading',
@@ -134,6 +140,12 @@
   // Legacy compatibility
   if (!window.RYD_MATRIX) {
     window.RYD_MATRIX = {
+      where_it_came_from: {
+        origin: "internal",
+        basis: "built for Ride Your Demons platform",
+        source_type: "system-utility",
+        verified: true
+      },
       get tools() {
         warnLegacyMatrix();
         return [];

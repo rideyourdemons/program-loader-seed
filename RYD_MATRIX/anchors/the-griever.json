@@ -1,0 +1,450 @@
+{
+  "anchor": "the-griever",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for the griever. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "loss of identity, bereavement shock, system collapse",
+  "pain_points": [
+    {
+      "id": "pp-the-griever-01",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-02",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-03",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-04",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-05",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-06",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-07",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-08",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-09",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-10",
+      "search_query": "loss of identity acute management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-11",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-12",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-13",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-14",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-15",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-16",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-17",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-18",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-19",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-20",
+      "search_query": "loss of identity chronic management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-21",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-22",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-23",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-24",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-25",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-26",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-27",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-28",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-29",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-30",
+      "search_query": "loss of identity severe management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-31",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-32",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-33",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-34",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-35",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-36",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-37",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-38",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-39",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-the-griever-40",
+      "search_query": "loss of identity recovery management",
+      "anchor_id": "the-griever",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.357Z",
+  "updatedAt": "2026-02-07T03:03:36.357Z"
+}

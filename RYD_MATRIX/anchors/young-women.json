@@ -1,0 +1,450 @@
+{
+  "anchor": "young-women",
+  "status": "GOLD_STANDARD",
+  "disclaimer": "Tactical framework for young women. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
+  "search_intent": "comparison loops, social isolation, self-possession",
+  "pain_points": [
+    {
+      "id": "pp-young-women-01",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-02",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-03",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-04",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-05",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-06",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-07",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-08",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-09",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-10",
+      "search_query": "comparison loops acute management",
+      "anchor_id": "young-women",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-11",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-12",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-13",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-14",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-15",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-16",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-17",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-18",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-19",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-20",
+      "search_query": "comparison loops chronic management",
+      "anchor_id": "young-women",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-21",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-22",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-23",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-24",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-25",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-26",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "ego-deescalate",
+        "verbal-judo",
+        "boundary-fort"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-27",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "verbal-judo",
+        "boundary-fort",
+        "adrenaline-channel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-28",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "boundary-fort",
+        "adrenaline-channel",
+        "horizon-focus"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-29",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "adrenaline-channel",
+        "horizon-focus",
+        "gap-3s"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-30",
+      "search_query": "comparison loops severe management",
+      "anchor_id": "young-women",
+      "tools": [
+        "horizon-focus",
+        "gap-3s",
+        "vagus-90"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-31",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "gap-3s",
+        "vagus-90",
+        "signal-filt"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-32",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "vagus-90",
+        "signal-filt",
+        "dopamine-kill"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-33",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "signal-filt",
+        "dopamine-kill",
+        "proprio-lock"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-34",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "dopamine-kill",
+        "proprio-lock",
+        "thermal-shed"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-35",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "proprio-lock",
+        "thermal-shed",
+        "cognitive-tunnel"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-36",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "thermal-shed",
+        "cognitive-tunnel",
+        "bandwidth-triage"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-37",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "cognitive-tunnel",
+        "bandwidth-triage",
+        "anchor-protocol"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-38",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "bandwidth-triage",
+        "anchor-protocol",
+        "memory-reframe"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-39",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "anchor-protocol",
+        "memory-reframe",
+        "ego-deescalate"
+      ],
+      "status": "GOLD_STANDARD"
+    },
+    {
+      "id": "pp-young-women-40",
+      "search_query": "comparison loops recovery management",
+      "anchor_id": "young-women",
+      "tools": [
+        "memory-reframe",
+        "ego-deescalate",
+        "verbal-judo"
+      ],
+      "status": "GOLD_STANDARD"
+    }
+  ],
+  "createdAt": "2026-02-07T03:03:36.361Z",
+  "updatedAt": "2026-02-07T03:03:36.361Z"
+}

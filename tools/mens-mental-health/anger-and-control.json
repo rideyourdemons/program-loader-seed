@@ -1,0 +1,111 @@
+{
+  "pillar": "mens-mental-health",
+  "domain": "anger-and-control",
+  "pillar_slug": "mens-mental-health",
+  "domain_slug": "anger-and-control",
+  "disclaimer": "Tactical manual for mental mechanics.",
+  "tools": [
+    {
+      "id": "interpersonal-de-escalation",
+      "state_id": "S1",
+      "name": "Interpersonal De-escalation",
+      "title": "Interpersonal De-escalation",
+      "slug": "interpersonal-de-escalation",
+      "action": "Disrupts the sympathetic nervous system spike during verbal confrontation This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Disrupts the sympathetic nervous system spike during verbal confrontation This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options.",
+      "how_it_works": "Disrupts the sympathetic nervous system spike during verbal confrontation Leveraging systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from behavioral engineering and high-pressure field testing. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Isolate the external trigger.",
+        "Execute the RYD pivot maneuver.",
+        "Stabilize the new tactical position."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "ego-de-escalation",
+      "state_id": "S1",
+      "name": "Ego-De-escalation",
+      "title": "Ego-De-escalation",
+      "slug": "ego-de-escalation",
+      "action": "Suppresses social-threat response. Evolutionary Psychology. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Suppresses social-threat response. Evolutionary Psychology. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options.",
+      "how_it_works": "Suppresses social-threat response. Evolutionary Psychology. Leveraging systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from behavioral engineering and high-pressure field testing. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Isolate the external trigger.",
+        "Execute the RYD pivot maneuver.",
+        "Stabilize the new tactical position."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "thermal-load-shedding",
+      "state_id": "S1",
+      "name": "Thermal Load Shedding",
+      "title": "Thermal Load Shedding",
+      "slug": "thermal-load-shedding",
+      "action": "Vagus nerve stimulation to drop core emotional temperature. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Vagus nerve stimulation to drop core emotional temperature. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Vagus nerve stimulation to drop core emotional temperature. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Bio-feedback Mechanics and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "the-3-second-gap",
+      "state_id": "S1",
+      "name": "The 3-Second Gap",
+      "title": "The 3-Second Gap",
+      "slug": "the-3-second-gap",
+      "action": "Prefrontal cortex engagement to interrupt the rage-loop. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Prefrontal cortex engagement to interrupt the rage-loop. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Prefrontal cortex engagement to interrupt the rage-loop. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Impulse Control Research and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "verbal-judo-reset",
+      "state_id": "S1",
+      "name": "Verbal Judo Reset",
+      "title": "Verbal Judo Reset",
+      "slug": "verbal-judo-reset",
+      "action": "Redirection of aggressive energy to neutralize verbal friction. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Redirection of aggressive energy to neutralize verbal friction. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Redirection of aggressive energy to neutralize verbal friction. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Interpersonal Dynamics and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "boundary-fortification",
+      "state_id": "S1",
+      "name": "Boundary Fortification",
+      "title": "Boundary Fortification",
+      "slug": "boundary-fortification",
+      "action": "Neuro-linguistic programming to set non-negotiable perimeters. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Neuro-linguistic programming to set non-negotiable perimeters. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Neuro-linguistic programming to set non-negotiable perimeters. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Behavioral Assertiveness and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    }
+  ]
+}
