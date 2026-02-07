@@ -87,21 +87,42 @@
     validatedTools.forEach(tool => {
       if (!tool || typeof tool !== 'object') return;
 
+      // Guardrail: Skip invalid cards (missing title and id)
+      const toolTitle = tool.title || tool.name || tool.id;
+      if (!toolTitle || String(toolTitle).trim() === '') {
+        console.warn('[RYD Tools] Skipping tool with missing title/id:', tool);
+        return;
+      }
+
       try {
         const card = document.createElement('div');
         card.className = 'card tool-card';
-        card.style.cssText = 'border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; background: #fff;';
+        card.style.cssText = 'border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; background: #fff; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;';
+        
+        // Make card hoverable
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-2px)';
+          card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0)';
+          card.style.boxShadow = 'none';
+        });
 
         const title = document.createElement('h3');
         title.className = 'tool-title';
-        title.textContent = truncateString(String(tool.title || tool.name || tool.id || 'Tool'), 60);
+        title.textContent = truncateString(String(toolTitle), 60);
         title.style.cssText = 'margin: 0 0 0.5rem 0; font-size: 1.2em; color: #333;';
         card.appendChild(title);
 
         const desc = document.createElement('p');
         desc.className = 'tool-description';
-        const cleaned = sanitizeDescription(tool.description || tool.summary || '', tool.title || tool.name);
-        desc.textContent = cleaned || 'Description coming soon.';
+        const cleaned = sanitizeDescription(tool.description || tool.summary || '', toolTitle);
+        // Guardrail: Remove placeholder text
+        const descText = cleaned && !cleaned.toLowerCase().includes('coming soon') && !cleaned.toLowerCase().includes('placeholder')
+          ? cleaned
+          : 'A practical tool for personal growth and well-being.';
+        desc.textContent = descText;
         desc.style.cssText = 'margin: 0 0 1rem 0; color: #666; font-size: 0.9em; line-height: 1.5;';
         card.appendChild(desc);
 
@@ -128,12 +149,23 @@
         }
 
         const cta = document.createElement('a');
-        const slug = encodeURIComponent(truncateString(String(tool.slug || tool.id || tool.title || tool.name || ''), 100));
+        const slug = encodeURIComponent(truncateString(String(tool.slug || tool.id || toolTitle || ''), 100));
         cta.href = `/tools/tool.html?slug=${slug}`;
         cta.textContent = 'Open Tool';
         cta.className = 'tool-cta';
         cta.style.cssText = 'display: inline-block; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;';
+        cta.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = cta.href;
+        });
         card.appendChild(cta);
+
+        // Make entire card clickable
+        card.addEventListener('click', (e) => {
+          // Don't trigger if clicking the CTA link
+          if (e.target === cta || cta.contains(e.target)) return;
+          window.location.href = cta.href;
+        });
 
         grid.appendChild(card);
       } catch (toolError) {

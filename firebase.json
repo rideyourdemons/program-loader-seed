@@ -5,7 +5,13 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "**/sandbox/**",
+      "**/sandbox-preview/**",
+      "**/_archive/**",
+      "**/LEGAL/**",
+      "**/*.log",
+      "**/logs/**"
     ],
     "rewrites": [
       { "source": "/tools", "destination": "/tools.html" },

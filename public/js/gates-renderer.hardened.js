@@ -513,15 +513,26 @@
           toolCard.style.boxShadow = 'none';
         });
 
+        // Guardrail: Ensure tool has title/id
+        const toolTitleText = tool.name || tool.title || instance.toolId;
+        if (!toolTitleText || String(toolTitleText).trim() === '') {
+          console.warn('[RYD Gates] Skipping tool with missing title/id:', tool);
+          return;
+        }
+
         const toolTitle = document.createElement('h5');
-        toolTitle.textContent = truncateString(String(tool.name || tool.title || instance.toolId || 'Tool'), 60);
+        toolTitle.textContent = truncateString(String(toolTitleText), 60);
         toolTitle.style.cssText = 'margin-bottom: 0.5rem; font-size: 1em; color: var(--color-accent, #667eea);';
         toolCard.appendChild(toolTitle);
 
         const description = extractDescription(tool);
-        if (description) {
+        // Guardrail: Remove placeholder text
+        const cleanDesc = description && !description.toLowerCase().includes('coming soon') && !description.toLowerCase().includes('placeholder')
+          ? description
+          : 'A practical tool for managing this challenge.';
+        if (cleanDesc) {
           const toolDesc = document.createElement('p');
-          toolDesc.textContent = truncateString(description, 100);
+          toolDesc.textContent = truncateString(cleanDesc, 100);
           toolDesc.style.cssText = 'font-size: 0.85em; color: var(--color-text-secondary, #666); margin-bottom: 0.5rem;';
           toolCard.appendChild(toolDesc);
         }

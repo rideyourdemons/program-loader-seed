@@ -4,3 +4,6 @@ logs/*
 .env
 .DS_Store
 *.log
+
+# Private legal/provenance evidence (optional - remove if you want to track it)
+# LEGAL/PROVENANCE_EVIDENCE.txt

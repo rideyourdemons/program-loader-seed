@@ -73,12 +73,22 @@
     "local": "node scripts/run-local.mjs",
     "dev:clean": "node scripts/dev-reset-and-run.js",
     "dev:open": "node scripts/dev-open.mjs",
-    "dev:doctor": "node scripts/dev-doctor.mjs"
+    "dev:doctor": "node scripts/dev-doctor.mjs",
+    "audit:site": "node scripts/site-audit.mjs",
+    "audit:ui": "node scripts/ui-audit.mjs",
+    "audit:guardrails": "node scripts/production-guardrails.mjs",
+    "audit:all": "npm run validate && npm run audit:guardrails && npm run audit:site && npm run audit:ui",
+    "predeploy": "npm run audit:all",
+    "copyright": "node scripts/apply-copyright.mjs",
+    "deploy:clean": "node scripts/deploy-clean.mjs",
+    "verify:live": "node scripts/verify-live.mjs",
+    "upload:cedar": "node scripts/upload-cedar-matrix.mjs"
   },
   "dependencies": {
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "express": "^5.2.1",
+    "firebase": "^10.7.1",
     "firebase-admin": "^12.0.0",
     "form-data": "^4.0.0",
     "openai": "^4.104.0",
