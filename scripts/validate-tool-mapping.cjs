@@ -19,6 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { isAnchor, validateAnchor } = require('./anchor-schema.cjs');
 
 const TOOLS_DIR = path.join(__dirname, '..', 'tools');
 const PILLARS_FILE = path.join(__dirname, '..', 'config', 'pillars.json');
@@ -99,6 +100,23 @@ function validateToolFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
     
+    // ROUTING: Check if this is an anchor (not a tool)
+    if (isAnchor(data, filePath)) {
+      // Validate as anchor
+      const anchorErrors = validateAnchor(data, filePath);
+      errors.push(...anchorErrors);
+      
+      // Validate domain_slug exists in config
+      if (data.domain_slug) {
+        if (!domainSlugs.has(data.domain_slug)) {
+          errors.push(`${relativePath}: 'domain_slug' "${data.domain_slug}" not found in config/domains.json`);
+        }
+      }
+      
+      return errors;
+    }
+    
+    // Continue with tool validation for non-anchor files
     // Handle both schema variants:
     // Variant 1: Array of tools with individual tool objects
     // Variant 2: Single tool object or tools array at root
@@ -232,6 +250,8 @@ function validateAllTools() {
   
   const toolFiles = findAllToolFiles(TOOLS_DIR);
   const allErrors = [];
+  let anchorCount = 0;
+  let toolCount = 0;
   
   if (toolFiles.length === 0) {
     console.warn('⚠️  No tool JSON files found in', TOOLS_DIR);
@@ -243,6 +263,19 @@ function validateAllTools() {
   for (const file of toolFiles) {
     const errors = validateToolFile(file);
     allErrors.push(...errors);
+    
+    // Count anchors vs tools
+    try {
+      const content = fs.readFileSync(file, 'utf8');
+      const data = JSON.parse(content);
+      if (isAnchor(data, file)) {
+        anchorCount++;
+      } else {
+        toolCount++;
+      }
+    } catch (e) {
+      // Ignore counting errors
+    }
   }
   
   // Print results
@@ -250,12 +283,16 @@ function validateAllTools() {
   
   if (allErrors.length === 0) {
     console.log('✅ VALIDATION PASSED');
-    console.log(`   Tool files: ${toolFiles.length}`);
+    console.log(`   Tool files: ${toolCount}`);
+    console.log(`   Anchor files: ${anchorCount}`);
+    console.log(`   Total files: ${toolFiles.length}`);
     console.log('================================\n');
     return true;
   } else {
     console.error('❌ VALIDATION FAILED');
     console.error(`   Errors: ${allErrors.length}`);
+    console.error(`   Tool files: ${toolCount}`);
+    console.error(`   Anchor files: ${anchorCount}`);
     allErrors.forEach(err => console.error(`   - ${err}`));
     console.log('================================\n');
     return false;

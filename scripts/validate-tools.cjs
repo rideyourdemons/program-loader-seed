@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { isAnchor } = require('./anchor-schema.cjs');
 
 const TOOLS_DIR = path.join(__dirname, '..', 'tools');
 
@@ -70,6 +71,11 @@ function validateToolFile(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
+    
+    // Skip anchors - they have their own schema
+    if (isAnchor(data, filePath)) {
+      return { errors: [], warnings: [] };
+    }
     
     // Handle both schema variants
     let tools = [];

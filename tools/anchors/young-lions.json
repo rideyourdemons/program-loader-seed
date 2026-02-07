@@ -2,6 +2,14 @@
   "id": "young-lions",
   "name": "Young Lions",
   "slug": "young-lions",
+  "anchor_type": "anchor",
+  "domain_slug": "self-worth-and-identity",
+  "where_it_came_from": {
+    "origin": "internal",
+    "basis": "built for Ride Your Demons platform",
+    "source_type": "system-utility",
+    "verified": true
+  },
   "disclaimer": "Tactical framework for Young Lions. No clinical fluff. Mental mechanics only. This is here if you want it. Use what helps. Ignore what doesn't.",
   "top_searched_mechanic": "Targeting high-volume pain points identified in 2025 behavioral data.",
   "tools": [],
