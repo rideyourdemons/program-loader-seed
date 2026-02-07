@@ -75,7 +75,7 @@
     "local:test": "powershell -ExecutionPolicy Bypass -File scripts/local-test.ps1",
     "doctor:insights": "node scripts/doctor-insights.mjs",
     "doctor:routes": "node scripts/doctor-routes.mjs",
-    "local": "node scripts/run-local.mjs",
+    "local": "node scripts/run-local.js",
     "dev:clean": "node scripts/dev-reset-and-run.js",
     "dev:open": "node scripts/dev-open.mjs",
     "dev:doctor": "node scripts/dev-doctor.mjs",
