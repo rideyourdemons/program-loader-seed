@@ -5,6 +5,9 @@
     <script src="/js/analytics.js" defer></script>
     <script src="/js/ui-sanitize.js" defer></script>
     <script src="/js/data-files.js" defer></script>
+    <script src="/js/config/social-config.js" defer></script>
+    <script src="/js/utils/social-share.js" defer></script>
+    <script src="/js/utils/footer-social.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://rideyourdemons.com/">
@@ -195,6 +198,24 @@
             color: var(--color-text-secondary);
         }
 
+        .built-in-public {
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            font-size: 0.95em;
+            color: var(--color-text-secondary);
+        }
+
+        .built-in-public a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .built-in-public a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             background: var(--color-bg);
@@ -311,6 +332,11 @@
             
             <!-- Router Content Area (for search results and tool views) -->
             <div id="routerContent" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;"></div>
+            
+            <!-- Built in Public / Follow on Facebook -->
+            <div class="built-in-public">
+                <p>Built in public. <a href="#" id="followFacebookLink" target="_blank" rel="noopener noreferrer">Follow on Facebook</a> for updates.</p>
+            </div>
         </section>
 
         <!-- Gates Section (12 gates with dropdowns) -->

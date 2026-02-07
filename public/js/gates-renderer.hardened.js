@@ -552,9 +552,17 @@
         });
         toolCard.appendChild(toolLink);
 
-        toolCard.addEventListener('click', () => {
+        toolCard.addEventListener('click', (e) => {
+          // Don't trigger if clicking the link or About button
+          if (e.target === toolLink || toolLink.contains(e.target)) return;
+          if (e.target.classList.contains('ryd-about-button') || e.target.closest('.ryd-about-button')) return;
           window.location.href = toolLink.href;
         });
+
+        // Add "About This Tool" button
+        if (window.RYD_ToolAbout && typeof window.RYD_ToolAbout.addAboutButton === 'function') {
+          window.RYD_ToolAbout.addAboutButton(toolCard, tool);
+        }
 
         toolsList.appendChild(toolCard);
       } catch (toolError) {

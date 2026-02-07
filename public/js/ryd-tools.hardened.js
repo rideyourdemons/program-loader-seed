@@ -162,10 +162,16 @@
 
         // Make entire card clickable
         card.addEventListener('click', (e) => {
-          // Don't trigger if clicking the CTA link
+          // Don't trigger if clicking the CTA link or About button
           if (e.target === cta || cta.contains(e.target)) return;
+          if (e.target.classList.contains('ryd-about-button') || e.target.closest('.ryd-about-button')) return;
           window.location.href = cta.href;
         });
+
+        // Add "About This Tool" button
+        if (window.RYD_ToolAbout && typeof window.RYD_ToolAbout.addAboutButton === 'function') {
+          window.RYD_ToolAbout.addAboutButton(card, tool);
+        }
 
         grid.appendChild(card);
       } catch (toolError) {

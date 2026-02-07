@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — Ride Your Demons</title>
     <meta name="description" content="What Ride Your Demons is, what it is not, and how it's designed to stay ethical, transparent, and non-clinical.">
+    <script src="/js/config/social-config.js" defer></script>
+    <script src="/js/utils/social-share.js" defer></script>
+    <script src="/js/utils/footer-social.js" defer></script>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/integrated.css">
     <style>
@@ -147,6 +150,10 @@
             Merchandise is not presented as necessary for progress and is not used as a solution claim.
         </p>
 
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border, #e0e0e0); text-align: center; font-size: 0.95em; color: var(--color-text-secondary, #666);">
+            <p>Built in public. <a href="#" id="aboutFollowFacebookLink" target="_blank" rel="noopener noreferrer" style="color: var(--color-text, #1a1a1a); text-decoration: underline;">Follow on Facebook</a> for updates.</p>
+        </div>
+
         <p style="margin-top: 28px;">
             <a href="/disclosures/">Read Disclosures</a> ·
             <a href="/ethics/">Ethics & Boundaries</a> ·
@@ -154,6 +161,24 @@
             <a href="/terms/">Terms</a>
         </p>
     </main>
+    <script>
+        // Initialize Facebook link after social config loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                if (window.RYD_SocialConfig && window.RYD_SocialConfig.FACEBOOK_URL) {
+                    const link = document.getElementById('aboutFollowFacebookLink');
+                    if (link) {
+                        link.href = window.RYD_SocialConfig.FACEBOOK_URL;
+                        link.addEventListener('click', function() {
+                            if (window.RYD_SocialShare && typeof window.RYD_SocialShare.trackSocialClick === 'function') {
+                                window.RYD_SocialShare.trackSocialClick('facebook', 'about');
+                            }
+                        });
+                    }
+                }
+            }, 100);
+        });
+    </script>
 </body>
 </html>
 

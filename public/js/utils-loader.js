@@ -17,7 +17,8 @@
     '/js/utils/validation-schemas.js',
     '/js/utils/memo-cache.js',
     '/js/utils/ui-stability.js',
-    '/js/utils/safe-data-loader.js'
+    '/js/utils/safe-data-loader.js',
+    '/js/utils/tool-about-modal.js' // Tool About modal
   ];
 
   let loadedCount = 0;

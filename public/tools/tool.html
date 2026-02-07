@@ -10,6 +10,9 @@
     <script src="/js/analytics.js" defer></script>
     <script src="/js/ui-sanitize.js" defer></script>
     <script src="/js/data-files.js" defer></script>
+    <script src="/js/config/social-config.js" defer></script>
+    <script src="/js/utils/social-share.js" defer></script>
+    <script src="/js/utils/footer-social.js" defer></script>
     
     <!-- SEO Meta Tags (will be updated by seo-meta.js) -->
     <meta name="description" content="Free self-help tool for mental health and emotional well-being.">
@@ -526,6 +529,43 @@
                             document.querySelector('main .section').appendChild(relatedSection);
                         }
                     }
+                }
+                
+                // Show share section and bind handlers
+                if (window.RYD_SocialConfig && window.RYD_SocialConfig.ENABLE_SHARE_BUTTONS) {
+                    const shareSection = document.getElementById('shareToolSection');
+                    if (shareSection) {
+                        shareSection.style.display = 'block';
+                        
+                        const shareBtn = document.getElementById('shareToolButton');
+                        const fbShareBtn = document.getElementById('shareFacebookButton');
+                        
+                        if (shareBtn && window.RYD_SocialShare) {
+                            shareBtn.addEventListener('click', () => {
+                                window.RYD_SocialShare.shareTool(tool.title || tool.name, window.location.href);
+                            });
+                        }
+                        
+                        if (fbShareBtn && window.RYD_SocialShare) {
+                            fbShareBtn.addEventListener('click', () => {
+                                window.RYD_SocialShare.shareFacebook(window.location.href);
+                            });
+                        }
+                    }
+                }
+                
+                // Update OG tags for tool
+                if (tool.title || tool.name) {
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    const ogDesc = document.querySelector('meta[property="og:description"]');
+                    const ogUrl = document.querySelector('meta[property="og:url"]');
+                    
+                    if (ogTitle) ogTitle.setAttribute('content', `${tool.title || tool.name} - Ride Your Demons`);
+                    if (ogDesc) {
+                        const desc = tool.description || tool.summary || 'Free self-help tool for mental health and emotional well-being.';
+                        ogDesc.setAttribute('content', desc.substring(0, 200));
+                    }
+                    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
                 }
                 
             } catch (err) {
