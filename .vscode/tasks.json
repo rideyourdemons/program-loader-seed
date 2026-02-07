@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "RYD: Run Local (Validate + Serve)",
+      "type": "npm",
+      "script": "run:local",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false,
+        "clear": false
+      },
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "default"
+      }
+    }
+  ]
+}

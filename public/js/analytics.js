@@ -106,6 +106,64 @@
     debugLog('GTM initialized:', containerId, 'Environment:', analytics.environment);
   }
   
+  // Whitelisted GA4 parameters (security: prevent PII leaks)
+  const ALLOWED_GA4_PARAMS = new Set([
+    'tool_slug',
+    'pillar',
+    'domain',
+    'where_it_came_from',
+    'event',
+    'event_category',
+    'event_action',
+    'event_label',
+    'value',
+    'page_path',
+    'page_title',
+    'page_location'
+  ]);
+  
+  /**
+   * Sanitize event data - only allow whitelisted parameters
+   */
+  function sanitizeEventData(eventData) {
+    if (!eventData || typeof eventData !== 'object') {
+      return {};
+    }
+    
+    const sanitized = {};
+    for (const [key, value] of Object.entries(eventData)) {
+      // Allow whitelisted params only
+      if (ALLOWED_GA4_PARAMS.has(key)) {
+        // Additional safety: ensure where_it_came_from is not user input
+        if (key === 'where_it_came_from') {
+          // Only allow if it's a known enum value or object structure
+          if (typeof value === 'string' && value.length < 200) {
+            sanitized[key] = value;
+          } else if (typeof value === 'object' && value !== null) {
+            // Allow object structure but strip any nested user input
+            sanitized[key] = {
+              origin: value.origin || 'internal',
+              basis: value.basis || '',
+              source_type: value.source_type || 'system-utility',
+              verified: value.verified || false
+            };
+          }
+        } else {
+          // For other whitelisted params, allow string/number values only (no objects with user data)
+          if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+            // Strip any potential PII patterns
+            const stringValue = String(value);
+            if (stringValue.length < 500 && !stringValue.includes('@') && !/\d{3}-\d{2}-\d{4}/.test(stringValue)) {
+              sanitized[key] = value;
+            }
+          }
+        }
+      }
+    }
+    
+    return sanitized;
+  }
+  
   // Push event to dataLayer
   function pushEvent(eventName, eventData) {
     if (!analytics.initialized && !analytics.debug) {
@@ -113,13 +171,19 @@
       return;
     }
     
+    // Sanitize event data to prevent PII leaks
+    const sanitizedData = sanitizeEventData(eventData);
+    
     const event = {
       event: eventName,
-      ...eventData
+      ...sanitizedData
     };
     
     if (analytics.debug) {
-      debugLog('Event:', eventName, eventData);
+      debugLog('Event:', eventName, sanitizedData);
+      if (Object.keys(sanitizedData).length !== Object.keys(eventData || {}).length) {
+        debugWarn('Some event parameters were filtered for security');
+      }
     }
     
     if (window.dataLayer) {

@@ -16,7 +16,8 @@
     '/js/utils/data-sanitizer.js',
     '/js/utils/validation-schemas.js',
     '/js/utils/memo-cache.js',
-    '/js/utils/ui-stability.js'
+    '/js/utils/ui-stability.js',
+    '/js/utils/safe-data-loader.js'
   ];
 
   let loadedCount = 0;

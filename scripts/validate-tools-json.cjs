@@ -1,105 +1,340 @@
-const fs = require('fs');
-const path = require('path');
-
 /**
- * Validation Script for Men's Mental Health JSON Tools
- * Checks for: Syntax, Required Fields, and Grounding Structure
- * 
- * Supports two schema variants:
- * - Variant 1: Tools have both 'id' and 'state_id' fields
- * - Variant 2: Root has 'state_id', tools have 'id' as state identifier (S1, S2, etc.)
+ * Production-Grade Tool JSON Validator
+ * HARD FAIL rules - NO unsafe, placeholder, or non-compliant content can deploy
  */
 
-// Default target file, or use command line argument
-const TARGET_FILE = process.argv[2] 
-    ? path.resolve(process.argv[2])
-    : path.join(__dirname, '../tools/mens-mental-health/loss-and-grief.json');
+const fs = require('fs');
+const path = require('path');
+const { isAnchor } = require('./anchor-schema.cjs');
 
-function validateTools() {
-    try {
-        // 1. Check if file exists
-        if (!fs.existsSync(TARGET_FILE)) {
-            console.error(`❌ Error: File not found at ${TARGET_FILE}`);
-            process.exit(1);
-        }
+const TOOLS_DIR = path.join(__dirname, '..', 'tools');
 
-        // 2. Attempt to parse JSON (Syntax Check)
-        const content = fs.readFileSync(TARGET_FILE, 'utf8');
-        const data = JSON.parse(content);
+// HARD FAIL: Placeholder patterns (block deployment)
+const PLACEHOLDER_PATTERNS = [
+  /\bTBD\b/i,
+  /\bTODO\b/i,
+  /\blorem\b/i,
+  /\bplaceholder\b/i,
+  /\bexample\b/i,
+  /\bsample\b/i,
+  /\btest\s+text\b/i,
+  /\b\[TODO\]/i,
+  /\b\[TBD\]/i,
+  /\b\[PLACEHOLDER\]/i
+];
 
-        // 3. Schema Validation (Structure Check)
-        const errors = [];
-        
-        // Validate root structure
-        if (!data.pillar) {
-            errors.push("Missing required field: 'pillar'");
-        }
-        if (!data.domain) {
-            errors.push("Missing required field: 'domain'");
-        }
-        
-        // Detect schema variant based on first tool
-        let schemaVariant = null;
-        if (Array.isArray(data.tools) && data.tools.length > 0) {
-            const firstTool = data.tools[0];
-            if (firstTool.state_id) {
-                schemaVariant = 1; // Tools have state_id field
-            } else if (firstTool.id && /^S\d+$/.test(firstTool.id)) {
-                schemaVariant = 2; // Tools use id as state identifier
-            }
-        }
-        
-        // Validate tools array
-        if (!Array.isArray(data.tools)) {
-            errors.push("Root element must be an object with a 'tools' array.");
-        } else {
-            data.tools.forEach((tool, index) => {
-                if (!tool.id) {
-                    errors.push(`Tool[${index}]: Missing 'id'`);
-                }
-                if (!tool.name) {
-                    errors.push(`Tool[${index}]: Missing 'name'`);
-                }
-                if (!tool.action) {
-                    errors.push(`Tool[${index}]: Missing 'action'`);
-                }
-                
-                // Schema variant 1: tools have state_id field
-                if (schemaVariant === 1) {
-                    if (!tool.state_id) {
-                        errors.push(`Tool[${index}]: Missing 'state_id'`);
-                    } else if (tool.state_id === "S1" && !tool.action) {
-                        errors.push(`Tool[${index}] S1 (Grounding) is missing its action field.`);
-                    }
-                }
-                
-                // Schema variant 2: tool id is the state identifier
-                if (schemaVariant === 2) {
-                    if (tool.id === "S1" && !tool.action) {
-                        errors.push(`Tool[${index}] S1 (Grounding) is missing its action field.`);
-                    }
-                }
-            });
-        }
+// HARD FAIL: Unsafe instruction patterns (more precise to avoid false positives)
+const UNSAFE_PATTERNS = [
+  // Self-harm instructions (more specific)
+  /\b(self.?harm|self.?injury|cut\s+yourself|kill\s+yourself|end\s+your\s+life|suicide)\b/i,
+  // Illegal activity (more specific)
+  /\b(steal\s+from|rob\s+a|assault\s+someone|commit\s+violence|illegal\s+activity|drug\s+abuse)\b/i,
+  // Hate/harassment (more specific)
+  /\b(hate\s+on|harass\s+someone|threaten\s+someone|discriminate\s+against|racist\s+language|sexist\s+language|homophobic\s+language)\b/i
+];
 
-        if (errors.length > 0) {
-            console.error("❌ Validation Failed:");
-            errors.forEach(err => console.error(`  - ${err}`));
-            process.exit(1);
-        }
+// Minimum length requirements
+const MIN_LENGTHS = {
+  purpose: 40,
+  how_and_why: 80,
+  where_it_came_from_description: 30
+};
 
-        const fileName = path.basename(TARGET_FILE);
-        console.log(`✅ Success: '${fileName}' is valid and follows the schema.`);
-        if (schemaVariant) {
-            console.log(`   Schema variant: ${schemaVariant} detected`);
-        }
-        
-    } catch (err) {
-        console.error("❌ Syntax Error: The JSON file is malformed.");
-        console.error(`   ${err.message}`);
-        process.exit(1);
+// Valid provenance types
+const VALID_PROVENANCE_TYPES = [
+  'lived_experience',
+  'research',
+  'adapted',
+  'training'
+];
+
+/**
+ * Check for placeholder content
+ */
+function containsPlaceholder(text) {
+  if (!text || typeof text !== 'string') return false;
+  const normalized = text.trim();
+  if (normalized === '' || normalized === 'null' || normalized === 'undefined') {
+    return true;
+  }
+  for (const pattern of PLACEHOLDER_PATTERNS) {
+    if (pattern.test(normalized)) {
+      return true;
     }
+  }
+  return false;
 }
 
-// Run validation
-validateTools();
+/**
+ * Check for unsafe instruction patterns
+ */
+function containsUnsafePattern(text) {
+  if (!text || typeof text !== 'string') return false;
+  for (const pattern of UNSAFE_PATTERNS) {
+    if (pattern.test(text)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Validate minimum length
+ */
+function validateMinLength(field, value, minLength) {
+  if (!value || typeof value !== 'string') {
+    return { valid: false, error: `Field '${field}' is missing or not a string` };
+  }
+  if (value.trim().length < minLength) {
+    return { 
+      valid: false, 
+      error: `Field '${field}' must be at least ${minLength} characters (found ${value.trim().length})` 
+    };
+  }
+  return { valid: true };
+}
+
+/**
+ * Validate provenance enum
+ */
+function validateProvenance(whereItCameFrom) {
+  if (!whereItCameFrom || typeof whereItCameFrom !== 'object') {
+    return { valid: false, error: "'where_it_came_from' must be an object" };
+  }
+  
+  if (whereItCameFrom.type) {
+    if (!VALID_PROVENANCE_TYPES.includes(whereItCameFrom.type)) {
+      return { 
+        valid: false, 
+        error: `'where_it_came_from.type' must be one of: ${VALID_PROVENANCE_TYPES.join(', ')}` 
+      };
+    }
+  }
+  
+  if (whereItCameFrom.description) {
+    const lengthCheck = validateMinLength(
+      'where_it_came_from.description',
+      whereItCameFrom.description,
+      MIN_LENGTHS.where_it_came_from_description
+    );
+    if (!lengthCheck.valid) {
+      return lengthCheck;
+    }
+  }
+  
+  return { valid: true };
+}
+
+/**
+ * Find all tool JSON files
+ */
+function findAllToolFiles(dir) {
+  const files = [];
+  
+  function walk(currentDir) {
+    if (!fs.existsSync(currentDir)) return;
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.json')) {
+        files.push(fullPath);
+      }
+    }
+  }
+  
+  walk(dir);
+  return files;
+}
+
+/**
+ * Validate a single tool file
+ */
+function validateToolFile(filePath) {
+  const errors = [];
+  const relativePath = path.relative(process.cwd(), filePath);
+  
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const data = JSON.parse(content);
+    
+    // Skip anchors - they have their own schema
+    if (isAnchor(data, filePath)) {
+      return { errors: [], warnings: [] };
+    }
+    
+    // Extract tools array
+    let tools = [];
+    if (Array.isArray(data.tools)) {
+      tools = data.tools;
+    } else if (data.tools && Array.isArray(data.tools)) {
+      tools = data.tools;
+    } else {
+      tools = [data];
+    }
+    
+    // Validate each tool
+    tools.forEach((tool, index) => {
+      const toolPrefix = `${relativePath}[${index}]`;
+      
+      // HARD FAIL: Check for placeholders
+      const fieldsToCheck = ['name', 'title', 'description', 'action', 'how_it_works', 'where_it_came_from'];
+      fieldsToCheck.forEach(field => {
+        const value = tool[field];
+        if (value && typeof value === 'string') {
+          if (containsPlaceholder(value)) {
+            errors.push(`${toolPrefix}: Field '${field}' contains placeholder content (TBD, TODO, lorem, etc.)`);
+          }
+          if (containsUnsafePattern(value)) {
+            errors.push(`${toolPrefix}: Field '${field}' contains unsafe instruction patterns`);
+          }
+        }
+      });
+      
+      // HARD FAIL: Check steps array for placeholders/unsafe patterns
+      if (Array.isArray(tool.steps)) {
+        tool.steps.forEach((step, stepIndex) => {
+          if (typeof step === 'string') {
+            if (containsPlaceholder(step)) {
+              errors.push(`${toolPrefix}: steps[${stepIndex}] contains placeholder content`);
+            }
+            if (containsUnsafePattern(step)) {
+              errors.push(`${toolPrefix}: steps[${stepIndex}] contains unsafe instruction patterns`);
+            }
+          }
+        });
+      }
+      
+      // HARD FAIL: Minimum length checks
+      const purpose = tool.description || tool.action || '';
+      if (purpose) {
+        const lengthCheck = validateMinLength('purpose/description', purpose, MIN_LENGTHS.purpose);
+        if (!lengthCheck.valid) {
+          errors.push(`${toolPrefix}: ${lengthCheck.error}`);
+        }
+      }
+      
+      const howAndWhy = tool.how_it_works || '';
+      if (howAndWhy) {
+        const lengthCheck = validateMinLength('how_it_works', howAndWhy, MIN_LENGTHS.how_and_why);
+        if (!lengthCheck.valid) {
+          errors.push(`${toolPrefix}: ${lengthCheck.error}`);
+        }
+      }
+      
+      // HARD FAIL: Validate where_it_came_from (supports both object and string formats)
+      if (tool.where_it_came_from) {
+        if (typeof tool.where_it_came_from === 'object' && !Array.isArray(tool.where_it_came_from)) {
+          // Object format - validate provenance enum
+          const provenanceCheck = validateProvenance(tool.where_it_came_from);
+          if (!provenanceCheck.valid) {
+            errors.push(`${toolPrefix}: ${provenanceCheck.error}`);
+          }
+        } else if (typeof tool.where_it_came_from === 'string') {
+          // Legacy string format - check minimum length and no placeholders
+          const lengthCheck = validateMinLength(
+            'where_it_came_from',
+            tool.where_it_came_from,
+            MIN_LENGTHS.where_it_came_from_description
+          );
+          if (!lengthCheck.valid) {
+            errors.push(`${toolPrefix}: ${lengthCheck.error}`);
+          }
+          if (containsPlaceholder(tool.where_it_came_from)) {
+            errors.push(`${toolPrefix}: Field 'where_it_came_from' contains placeholder content`);
+          }
+        } else {
+          errors.push(`${toolPrefix}: 'where_it_came_from' must be a string or object`);
+        }
+      } else {
+        errors.push(`${toolPrefix}: Missing required field 'where_it_came_from'`);
+      }
+      
+      // HARD FAIL: Block null/empty strings (name OR title required, not both)
+      const nameOrTitle = tool.name || tool.title;
+      if (!nameOrTitle || nameOrTitle === null || nameOrTitle === undefined || (typeof nameOrTitle === 'string' && nameOrTitle.trim() === '')) {
+        errors.push(`${toolPrefix}: Field 'name' or 'title' is required and cannot be null, undefined, or empty`);
+      }
+      
+      const requiredStringFields = ['description', 'action'];
+      requiredStringFields.forEach(field => {
+        const value = tool[field];
+        if (value === null || value === undefined || (typeof value === 'string' && value.trim() === '')) {
+          errors.push(`${toolPrefix}: Field '${field}' cannot be null, undefined, or empty`);
+        }
+      });
+      
+    });
+    
+  } catch (err) {
+    if (err instanceof SyntaxError) {
+      errors.push(`${relativePath}: Invalid JSON - ${err.message}`);
+    } else {
+      errors.push(`${relativePath}: Error reading file - ${err.message}`);
+    }
+  }
+  
+  return { errors, warnings: [] };
+}
+
+/**
+ * Validate all tool files
+ */
+function validateAllTools() {
+  console.log('[VALIDATE] Production guardrails validation...\n');
+  
+  const toolFiles = findAllToolFiles(TOOLS_DIR);
+  const allErrors = [];
+  const allWarnings = [];
+  
+  if (toolFiles.length === 0) {
+    console.warn('⚠️  No tool JSON files found in', TOOLS_DIR);
+    return { success: true, errors: [], warnings: [] };
+  }
+  
+  console.log(`Found ${toolFiles.length} tool JSON file(s) to validate\n`);
+  
+  for (const file of toolFiles) {
+    const { errors, warnings } = validateToolFile(file);
+    allErrors.push(...errors);
+    allWarnings.push(...warnings);
+  }
+  
+  // Print results
+  console.log('===== VALIDATION RESULTS =====');
+  
+  if (allErrors.length === 0 && allWarnings.length === 0) {
+    console.log('✅ VALIDATION PASSED');
+    console.log(`   Tool files: ${toolFiles.length}`);
+    console.log('================================\n');
+    console.log('🛡️  RYD GUARDRAILS LOCKED — SAFE TO DEPLOY');
+    console.log('');
+    return { success: true, errors: [], warnings: [] };
+  } else {
+    console.error('❌ VALIDATION FAILED — DEPLOYMENT BLOCKED');
+    console.error(`   Errors: ${allErrors.length}`);
+    if (allWarnings.length > 0) {
+      console.warn(`   Warnings: ${allWarnings.length}`);
+    }
+    allErrors.forEach(err => console.error(`   - ${err}`));
+    if (allWarnings.length > 0) {
+      allWarnings.forEach(warn => console.warn(`   - ${warn}`));
+    }
+    console.log('================================\n');
+    return { success: false, errors: allErrors, warnings: allWarnings };
+  }
+}
+
+// Run if called directly
+if (require.main === module) {
+  try {
+    const result = validateAllTools();
+    process.exit(result.success ? 0 : 1);
+  } catch (error) {
+    console.error('[VALIDATE] Error validating tools:', error);
+    process.exit(1);
+  }
+}
+
+module.exports = { validateAllTools, validateToolFile };

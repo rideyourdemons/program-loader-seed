@@ -275,9 +275,9 @@
   }
 
   /**
-   * Insights hydration with error boundary
+   * Insights hydration with error boundary and safe data loading
    */
-  const hydrateInsights = withErrorBoundary(null, function() {
+  const hydrateInsights = withErrorBoundary(null, async function() {
     const container = document.getElementById('insights-list') ||
                      document.getElementById('insights-container') ||
                      document.querySelector('[data-insights]');
@@ -290,28 +290,72 @@
       return;
     }
 
-    const tools = safeArray(window.RYD?.getTools?.() || []);
+    // Try to load insights data safely
+    let insights = [];
+    try {
+      // First try the safe loader if available
+      if (window.RYD_SafeLoader && typeof window.RYD_SafeLoader.loadInsights === 'function') {
+        insights = await window.RYD_SafeLoader.loadInsights();
+      } else {
+        // Fallback: try to fetch directly
+        try {
+          const response = await fetch('/data/insights.json');
+          if (response.ok) {
+            const data = await response.json();
+            insights = safeArray(data?.insights || []);
+          }
+        } catch (fetchError) {
+          console.warn('[RYD Bind] Failed to load insights.json:', fetchError.message);
+        }
+      }
+    } catch (loadError) {
+      console.warn('[RYD Bind] Error loading insights:', loadError.message);
+    }
 
-    if (tools.length === 0) {
+    // If no insights, try tools as fallback
+    if (insights.length === 0) {
+      try {
+        const tools = safeArray(window.RYD?.getTools?.() || []);
+        if (tools.length > 0) {
+          // Convert tools to insights-like format for display
+          insights = tools.slice(0, 10).map(tool => ({
+            id: tool.id || tool.slug,
+            title: tool.title || tool.name || tool.id,
+            slug: tool.slug || tool.id
+          }));
+        }
+      } catch (toolsError) {
+        console.warn('[RYD Bind] Error getting tools for insights:', toolsError.message);
+      }
+    }
+
+    if (insights.length === 0) {
       container.textContent = 'No insights available at this time.';
       return;
     }
 
-    // Simple list rendering (can be enhanced later)
+    // Render insights list
     const list = document.createElement('ul');
-    tools.slice(0, 10).forEach(tool => {
-      if (!tool || typeof tool !== 'object') return;
+    insights.slice(0, 10).forEach(insight => {
+      if (!insight || typeof insight !== 'object') return;
       
       try {
         const li = document.createElement('li');
         const link = document.createElement('a');
-        const slug = encodeURIComponent(truncateString(String(tool.slug || tool.id || tool.title || tool.name || ''), 100));
-        link.href = `/tools/tool.html?slug=${slug}`;
-        link.textContent = truncateString(String(tool.title || tool.id), 60);
+        const slug = encodeURIComponent(truncateString(String(insight.slug || insight.id || ''), 100));
+        const title = truncateString(String(insight.title || insight.id || 'Untitled'), 60);
+        
+        // Use insights route if available, otherwise tools route
+        if (insight.slug && insight.id && insight.id.startsWith('insight-')) {
+          link.href = `/insights/${slug}`;
+        } else {
+          link.href = `/tools/tool.html?slug=${slug}`;
+        }
+        link.textContent = title;
         li.appendChild(link);
         list.appendChild(li);
-      } catch (toolError) {
-        console.error('[RYD Bind] Error rendering insight tool:', toolError);
+      } catch (insightError) {
+        console.error('[RYD Bind] Error rendering insight:', insightError);
       }
     });
 
