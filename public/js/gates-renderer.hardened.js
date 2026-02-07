@@ -529,7 +529,10 @@
         const toolLink = document.createElement('a');
         const rawSlug = tool.slug || tool.id || instance.toolId || tool.title || tool.name || '';
         const toolSlug = encodeURIComponent(truncateString(String(rawSlug), 100));
-        toolLink.href = `/tools/tool.html?slug=${toolSlug}&gate=${encodeURIComponent(String(gate?.id || ''))}&painPoint=${encodeURIComponent(String(painPoint.id || ''))}`;
+        // Link to /gates/:gateSlug/:painPointSlug/:toolSlug route
+        const gateId = gate && gate.id ? encodeURIComponent(String(gate.id)) : '';
+        const painPointId = painPoint && painPoint.id ? encodeURIComponent(String(painPoint.id)) : '';
+        toolLink.href = `/gates/${gateId}/${painPointId}/${toolSlug}`;
         toolLink.textContent = 'Open Tool →';
         toolLink.style.cssText = 'display: inline-block; color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em; font-weight: 500;';
         toolLink.addEventListener('click', (e) => {

@@ -38,6 +38,9 @@
             <div id="painPointContent" class="card">
                 <p>Loading pain point details...</p>
             </div>
+            <div id="toolDetailView" class="section" style="display: none;">
+                <div id="toolDetailContent"></div>
+            </div>
             <div id="toolsList" class="section">
                 <h2>Relevant Tools</h2>
                 <p>Loading tools...</p>
@@ -51,9 +54,12 @@
             const gateIndex = pathParts.indexOf('gates');
             const gateId = pathParts[gateIndex + 1];
             const painPointId = pathParts[gateIndex + 2];
+            const toolSlug = pathParts[gateIndex + 3]; // Third segment = tool slug
 
             const contentEl = document.getElementById('painPointContent');
             const toolsListEl = document.getElementById('toolsList');
+            const toolDetailView = document.getElementById('toolDetailView');
+            const toolDetailContent = document.getElementById('toolDetailContent');
 
             if (!gateId || !painPointId) {
                 contentEl.innerHTML = '';
@@ -238,7 +244,8 @@
 
                     const toolLink = document.createElement('a');
                     const toolSlug = encodeURIComponent(String(tool.slug || tool.id || tool.title || tool.name || '').trim());
-                    toolLink.href = `/tools/tool.html?slug=${toolSlug}&gate=${gateId}&painPoint=${painPointId}`;
+                    // Link to /gates/:gateSlug/:toolSlug route
+                    toolLink.href = `/gates/${gateId}/${painPointId}/${toolSlug}`;
                     toolLink.className = 'btn';
                     toolLink.textContent = 'View Tool';
                     card.appendChild(toolLink);
@@ -247,6 +254,30 @@
                 });
 
                 toolsListEl.appendChild(toolsContainer);
+
+                // If toolSlug exists in URL, render tool detail and hide grid
+                if (toolSlug) {
+                    const decodedToolSlug = decodeURIComponent(toolSlug);
+                    const tool = toolMap.get(decodedToolSlug) || 
+                                tools.find(t => (t.slug === decodedToolSlug) || (t.id === decodedToolSlug));
+                    
+                    if (tool) {
+                        // Hide tool grid
+                        toolsListEl.style.display = 'none';
+                        
+                        // Show and render tool detail
+                        toolDetailView.style.display = 'block';
+                        renderToolDetail(toolDetailContent, tool, gate, painPoint, gateId, painPointId);
+                        
+                        // Dev logging (guarded for localhost)
+                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                            console.log('[RYD] Tool detail render:', tool.slug || tool.id);
+                        }
+                    } else {
+                        toolDetailView.style.display = 'block';
+                        toolDetailContent.innerHTML = '<p style="color: #666; padding: 1rem;">Tool not found.</p>';
+                    }
+                }
 
                 if (gate) {
                     const related = new Set();
@@ -281,6 +312,179 @@
                 }
             } catch (err) {
                 contentEl.innerHTML = `<p>Error: ${err.message}</p>`;
+            }
+
+            /**
+             * Render tool detail view
+             */
+            function renderToolDetail(container, tool, gate, painPoint, gateId, painPointId) {
+                if (!container || !tool) return;
+                
+                container.innerHTML = '';
+                
+                // Breadcrumb
+                const breadcrumb = document.createElement('nav');
+                breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+                breadcrumb.style.cssText = 'margin-bottom: 20px;';
+                breadcrumb.innerHTML = `
+                    <a href="/">Home</a> › 
+                    <a href="/gates/${gateId}">${gate ? gate.title : 'Gate'}</a> › 
+                    <a href="/gates/${gateId}/${painPointId}">${painPoint ? painPoint.title : 'Pain Point'}</a> › 
+                    <span>${tool.title || tool.name || tool.slug || tool.id}</span>
+                `;
+                container.appendChild(breadcrumb);
+                
+                // Tool title
+                const h1 = document.createElement('h1');
+                h1.textContent = tool.title || tool.name || tool.slug || tool.id;
+                container.appendChild(h1);
+                
+                // Purpose / Summary
+                const rawDescription = tool.description || tool.summary || '';
+                const safeDescription = window.RYD_UI && window.RYD_UI.sanitizeDescription
+                    ? window.RYD_UI.sanitizeDescription(rawDescription, tool.title || tool.name)
+                    : rawDescription;
+                
+                if (safeDescription) {
+                    const purposeSection = renderSection('What this is', safeDescription);
+                    container.appendChild(purposeSection);
+                }
+                
+                // Who it is for
+                if (tool.whoFor) {
+                    container.appendChild(renderSection('Who it is for', tool.whoFor));
+                }
+                
+                // When it helps
+                if (tool.whenHelps) {
+                    container.appendChild(renderSection('When it helps', tool.whenHelps));
+                }
+                
+                // How to use / Steps
+                const walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+                if (walkthroughs.length > 0 && Array.isArray(walkthroughs[0].steps)) {
+                    const howSection = document.createElement('div');
+                    howSection.style.cssText = 'margin-bottom: 20px;';
+                    const h4 = document.createElement('h4');
+                    h4.textContent = 'How it works';
+                    h4.style.cssText = 'margin-bottom: 12px; font-size: 1.2em;';
+                    howSection.appendChild(h4);
+                    const ol = document.createElement('ol');
+                    ol.style.cssText = 'margin: 0; padding-left: 25px; color: var(--color-text, #1a1a1a); line-height: 1.7;';
+                    walkthroughs[0].steps.forEach(step => {
+                        const li = document.createElement('li');
+                        li.textContent = step;
+                        li.style.cssText = 'margin: 8px 0;';
+                        ol.appendChild(li);
+                    });
+                    howSection.appendChild(ol);
+                    container.appendChild(howSection);
+                } else if (tool.how_it_works) {
+                    container.appendChild(renderSection('How it works', tool.how_it_works));
+                } else if (tool.steps && Array.isArray(tool.steps)) {
+                    const howSection = document.createElement('div');
+                    howSection.style.cssText = 'margin-bottom: 20px;';
+                    const h4 = document.createElement('h4');
+                    h4.textContent = 'How it works';
+                    h4.style.cssText = 'margin-bottom: 12px; font-size: 1.2em;';
+                    howSection.appendChild(h4);
+                    const ol = document.createElement('ol');
+                    ol.style.cssText = 'margin: 0; padding-left: 25px; color: var(--color-text, #1a1a1a); line-height: 1.7;';
+                    tool.steps.forEach(step => {
+                        const li = document.createElement('li');
+                        li.textContent = step;
+                        li.style.cssText = 'margin: 8px 0;';
+                        ol.appendChild(li);
+                    });
+                    howSection.appendChild(ol);
+                    container.appendChild(howSection);
+                }
+                
+                // Why it works
+                if (tool.howWhyWorks || tool.why_it_works) {
+                    container.appendChild(renderSection('Why it works', tool.howWhyWorks || tool.why_it_works));
+                }
+                
+                // Where it came from
+                const citations = Array.isArray(tool.citations) ? tool.citations : [];
+                const whereSection = document.createElement('div');
+                whereSection.style.cssText = 'margin-bottom: 20px;';
+                const whereTitle = document.createElement('h4');
+                whereTitle.textContent = 'Where it came from';
+                whereTitle.style.cssText = 'margin-bottom: 12px; font-size: 1.2em;';
+                whereSection.appendChild(whereTitle);
+                if (citations.length > 0) {
+                    const ul = document.createElement('ul');
+                    ul.style.cssText = 'margin: 0; padding-left: 25px; color: var(--color-text, #1a1a1a); line-height: 1.7;';
+                    citations.forEach(citation => {
+                        const li = document.createElement('li');
+                        li.style.cssText = 'margin: 8px 0;';
+                        const text = citation.title || citation.source || 'Citation';
+                        li.textContent = citation.year ? `${text} (${citation.year})` : text;
+                        const directUrl = citation.url || '';
+                        const searchSeed = citation.title || citation.source || '';
+                        const searchUrl = searchSeed
+                            ? `https://scholar.google.com/scholar?q=${encodeURIComponent(searchSeed)}`
+                            : '';
+                        const finalUrl = directUrl || searchUrl;
+                        if (finalUrl) {
+                            const link = document.createElement('a');
+                            link.href = finalUrl;
+                            link.target = '_blank';
+                            link.rel = 'noopener noreferrer';
+                            link.textContent = directUrl ? ' Source' : ' Find source';
+                            link.style.cssText = 'color: var(--color-accent, #667eea); text-decoration: none; margin-left: 8px;';
+                            li.appendChild(link);
+                        }
+                        ul.appendChild(li);
+                    });
+                    whereSection.appendChild(ul);
+                } else if (tool.where_it_came_from) {
+                    const whereText = typeof tool.where_it_came_from === 'string' 
+                        ? tool.where_it_came_from 
+                        : (tool.where_it_came_from.description || tool.where_it_came_from.basis || 'Not yet available.');
+                    const p = document.createElement('p');
+                    p.textContent = whereText;
+                    p.style.cssText = 'margin: 0; color: var(--color-text-secondary, #666); line-height: 1.7;';
+                    whereSection.appendChild(p);
+                } else {
+                    const p = document.createElement('p');
+                    p.textContent = 'Not yet available. Content pending import.';
+                    p.style.cssText = 'margin: 0; color: var(--color-text-secondary, #666);';
+                    whereSection.appendChild(p);
+                }
+                container.appendChild(whereSection);
+                
+                // Warnings / Disclaimer
+                if (tool.disclaimer || tool.warnings) {
+                    const disclaimerSection = document.createElement('div');
+                    disclaimerSection.className = 'card';
+                    disclaimerSection.style.cssText = 'margin-top: 20px; padding: 16px; background: var(--color-bg, #f5f5f5); border-left: 4px solid var(--color-accent, #667eea);';
+                    const disclaimerText = tool.disclaimer || tool.warnings;
+                    const p = document.createElement('p');
+                    p.textContent = disclaimerText;
+                    p.style.cssText = 'margin: 0; color: var(--color-text, #1a1a1a); line-height: 1.7;';
+                    disclaimerSection.appendChild(p);
+                    container.appendChild(disclaimerSection);
+                }
+                
+                // Gate association
+                if (gate) {
+                    const gateSection = document.createElement('div');
+                    gateSection.style.cssText = 'margin-top: 20px; padding: 16px; background: var(--color-bg-secondary, #ffffff); border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px;';
+                    const p = document.createElement('p');
+                    p.style.cssText = 'margin: 0; color: var(--color-text-secondary, #666);';
+                    p.innerHTML = `Part of <a href="/gates/${gateId}" style="color: var(--color-accent, #667eea); text-decoration: none;">${gate.title}</a>`;
+                    gateSection.appendChild(p);
+                    container.appendChild(gateSection);
+                }
+                
+                // Back link
+                const backLink = document.createElement('a');
+                backLink.href = `/gates/${gateId}/${painPointId}`;
+                backLink.textContent = '← Back to pain point';
+                backLink.style.cssText = 'display: inline-block; margin-top: 20px; color: var(--color-accent, #667eea); text-decoration: none; font-weight: 500;';
+                container.appendChild(backLink);
             }
         });
     </script>
