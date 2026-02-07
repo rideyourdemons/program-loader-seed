@@ -1,27 +1,80 @@
 {
-  "pillar": "Men's Mental Health",
-  "domain": "Burnout & Resilience",
+  "pillar": "mens-mental-health",
+  "domain": "burnout-and-overload",
   "state_id": "MMH-BR-01",
   "tools": [
     {
       "id": "S1",
+      "state_id": "S1",
       "name": "Tactical Physiological Sigh",
-      "action": "Grounding: Inhale deeply through nose, add a second short sharp inhale, then a long slow exhale through mouth. Repeat 3 times."
+      "action": "Grounding: Inhale deeply through nose, add a second short sharp inhale, then a long slow exhale through mouth. Repeat 3 times. This breathing technique works by activating your body's natural calming response. When you're in a state of stress, your nervous system is in fight-or-flight mode. The double inhale followed by a long exhale triggers the parasympathetic nervous system, which helps slow your heart rate and calm your body. It's a quick way to interrupt the stress response and create space for clearer thinking.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "s1",
+      "description": "Grounding: Inhale deeply through nose, add a second short sharp inhale, then a long slow exhale through mouth. Repeat 3 times. This breathing technique works by activating your body's natural calming response. When you're in a state of stress, your nervous system is in fight-or-flight mode. The double inhale followed by a long exhale triggers the parasympathetic nervous system, which helps slow your heart rate and calm your body. It's a quick way to interrupt the stress response and create space for clearer thinking."
     },
     {
       "id": "S2",
+      "state_id": "S2",
       "name": "Energy Leak Audit",
-      "action": "Audit: List 5 tasks from your last 48 hours. Label each as 'Charging' (+) or 'Draining' (-). Identify one (-) to delegate or delete."
+      "action": "Audit: List 5 tasks from your last 48 hours. Label each as 'Charging' (+) or 'Draining' (-). Identify one (-) to delegate or delete. When you're running on fumes, it's often because you're spending energy on things that drain rather than sustain you. This technique helps you identify energy leaks by reviewing your last 48 hours and labeling tasks as either charging or draining. By identifying what's depleting you, you can make conscious choices about what to delegate, delete, or restructure.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Uses cognitive load mapping to identify 'parasitic drains' on mental bandwidth, allowing for a strategic reallocation of focus. When you're running on fumes, your system is often being depleted by tasks and commitments that don't serve your core objectives. This tactic works by forcing you to audit where your energy actually goes, then making conscious decisions about what to eliminate. The cognitive load mapping creates visibility into patterns you might not notice when you're in autopilot mode. By identifying zero-ROI drains and executing blackouts on non-essential inputs, you're creating space for your system to recover and redirect energy toward what actually matters.",
+      "where_it_came_from": "Adapted from industrial organizational psychology and simplified for high-stakes individual endurance. This approach draws from workload analysis frameworks used in high-performance environments where mental bandwidth is a critical resource. The specific mechanics have been tested in both corporate settings dealing with burnout and individual contexts where people need to maintain performance under sustained pressure. Rather than requiring complex systems or extensive tracking, this has been distilled down to a tactical audit you can run in real-time when you notice your energy reserves depleting.",
+      "steps": [
+        "Map every current commitment to a 1-10 drain scale.",
+        "Identify the 'Zero-ROI' drains that can be cut immediately.",
+        "Execute a 48-hour blackout on non-essential inputs."
+      ],
+      "slug": "s2",
+      "description": "Audit: List 5 tasks from your last 48 hours. Label each as 'Charging' (+) or 'Draining' (-). Identify one (-) to delegate or delete. When you're running on fumes, it's often because you're spending energy on things that drain rather than sustain you. This technique helps you identify energy leaks by reviewing your last 48 hours and labeling tasks as either charging or draining. By identifying what's depleting you, you can make conscious choices about what to delegate, delete, or restructure."
     },
     {
       "id": "S3",
+      "state_id": "S3",
       "name": "Boundary Drafting",
-      "action": "Drafting: Write one 'No' script for a recurring work request. Example: 'I can't take that on right now without dropping [Project X]. Which is the priority?'"
+      "action": "Drafting: Write one 'No' script for a recurring work request. Use a specific situation from your own work context. When you're overwhelmed, it's often because you're saying yes to things you don't have capacity for. This technique helps you practice saying no by writing a script for a recurring work request. Having the words ready makes it easier to set boundaries in the moment, and the practice of drafting helps clarify what you actually have capacity for.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "s3",
+      "description": "Drafting: Write one 'No' script for a recurring work request. Use a specific situation from your own work context. When you're overwhelmed, it's often because you're saying yes to things you don't have capacity for. This technique helps you practice saying no by writing a script for a recurring work request. Having the words ready makes it easier to set boundaries in the moment, and the practice of drafting helps clarify what you actually have capacity for."
     },
     {
       "id": "S4",
+      "state_id": "S4",
       "name": "Non-Sleep Deep Rest (NSDR)",
-      "action": "Output: Set a timer for 10 minutes. Lay flat, eyes closed, focus on slowing your heart rate with belly breathing. No screens."
+      "action": "Output: Set a timer for 10 minutes. Lay flat, eyes closed, focus on slowing your heart rate with belly breathing. No screens. When you're exhausted but can't sleep, or when you need to reset your nervous system, this technique provides deep rest without sleep. By lying flat with eyes closed and focusing on slowing your heart rate through belly breathing, you activate the body's rest-and-digest response. The absence of screens and external input allows your system to truly rest and recover.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "s4",
+      "description": "Output: Set a timer for 10 minutes. Lay flat, eyes closed, focus on slowing your heart rate with belly breathing. No screens. When you're exhausted but can't sleep, or when you need to reset your nervous system, this technique provides deep rest without sleep. By lying flat with eyes closed and focusing on slowing your heart rate through belly breathing, you activate the body's rest-and-digest response. The absence of screens and external input allows your system to truly rest and recover."
     }
-  ]
+  ],
+  "disclaimer": "Tactical intel for mental endurance. This is a field guide for the ride, not a clinical substitute.",
+  "pillar_slug": "mens-mental-health",
+  "domain_slug": "burnout-and-overload"
 }

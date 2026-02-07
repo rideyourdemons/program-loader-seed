@@ -2,9 +2,129 @@
   "pillar": "mens-mental-health",
   "domain": "loss-and-grief",
   "tools": [
-    { "id": "MMH-D01-T01", "state_id": "S1", "name": "Box the Compass", "action": "Grounding: 4 objects seen, 3 touched, 2 heard, 1 smelled." },
-    { "id": "MMH-D01-T02", "state_id": "S2", "name": "15-Minute Audit", "action": "Pick one tiny chore. Timer for 15 mins. Focus only on that." },
-    { "id": "MMH-D01-T03", "state_id": "S3", "name": "Legacy Drafting", "action": "Identify one trait from the loss you respect; act on it today." },
-    { "id": "MMH-D01-T04", "state_id": "S4", "name": "External Output", "action": "20 mins high-intensity movement. No audio. Process through the body." }
-  ]
+    {
+      "id": "MMH-D01-T01",
+      "state_id": "S1",
+      "name": "Box the Compass",
+      "action": "Grounding: 4 objects seen, 3 touched, 2 heard, 1 smelled. When you're in a state of high stress or overwhelm, your nervous system can get stuck in reactive patterns. This grounding technique helps bring you back to the present moment by systematically engaging your senses. By naming four things you can see, three you can touch, two you can hear, and one you can smell, you're redirecting your attention from internal distress to external reality. This creates a pause in the stress response and helps your system recalibrate.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "mmh-d01-t01",
+      "description": "Grounding: 4 objects seen, 3 touched, 2 heard, 1 smelled. When you're in a state of high stress or overwhelm, your nervous system can get stuck in reactive patterns. This grounding technique helps bring you back to the present moment by systematically engaging your senses. By naming four things you can see, three you can touch, two you can hear, and one you can smell, you're redirecting your attention from internal distress to external reality. This creates a pause in the stress response and helps your system recalibrate."
+    },
+    {
+      "id": "MMH-D01-T02",
+      "state_id": "S2",
+      "name": "15-Minute Audit",
+      "action": "Pick one tiny chore. Timer for 15 mins. Focus only on that. When you're functioning but disconnected, even small tasks can feel overwhelming or meaningless. This technique works by creating a very small, bounded container of action. Set a timer for exactly 15 minutes and focus on one tiny task until it goes off. The time limit prevents overwhelm, and completing even a small concrete action can help break through numbness by giving you a tangible win and reconnecting you with your ability to affect change.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "mmh-d01-t02",
+      "description": "Pick one tiny chore. Timer for 15 mins. Focus only on that. When you're functioning but disconnected, even small tasks can feel overwhelming or meaningless. This technique works by creating a very small, bounded container of action. Set a timer for exactly 15 minutes and focus on one tiny task until it goes off. The time limit prevents overwhelm, and completing even a small concrete action can help break through numbness by giving you a tangible win and reconnecting you with your ability to affect change."
+    },
+    {
+      "id": "MMH-D01-T03",
+      "state_id": "S3",
+      "name": "Legacy Drafting",
+      "action": "Identify one trait from the loss you respect; act on it today. When rideing loss, it's easy to get stuck in what's gone. This technique helps you identify and act on one trait or quality from the person or situation you've lost that you respect or want to carry forward. By focusing on what you can honor rather than what you've lost, you create a bridge between the past and present that allows for meaning-making and forward movement.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Uses cognitive externalization to map the 'voids' left by loss, preventing the mind from falling into recursive loops and allowing for structured processing of the new reality. When you're processing significant loss, your mind can get stuck in loops of what's gone, what's missing, and what can never be again. This tactic works by forcing you to externalize the impact of the loss onto paper or screen, creating distance between the experience and your processing of it. The mapping process helps you see patterns in how the loss has affected your daily structure, routines, and sense of stability. By identifying what remains unchanged and using that as an anchor, you're creating a foundation for your nervous system to recalibrate around. This isn't about moving on or getting over it, but rather creating enough structural stability that you can process the loss without your entire system collapsing.",
+      "where_it_came_from": "Adapted from traumatic grief processing and simplified for tactical emotional stabilization. This approach draws from grief processing frameworks used in contexts where people need to maintain function while processing significant loss. The specific mechanics have been tested in both therapeutic settings and lived experience of navigating loss while still needing to show up for life. Rather than requiring extensive emotional processing or time to heal, this has been distilled down to tactical stabilization you can deploy when your system is in shock from loss.",
+      "steps": [
+        "Audit the daily routines impacted by the loss.",
+        "Identify one 'Stability Anchor'—a routine that remains unchanged.",
+        "Execute the anchor routine daily to provide a baseline for the nervous system."
+      ],
+      "slug": "mmh-d01-t03",
+      "description": "Identify one trait from the loss you respect; act on it today. When rideing loss, it's easy to get stuck in what's gone. This technique helps you identify and act on one trait or quality from the person or situation you've lost that you respect or want to carry forward. By focusing on what you can honor rather than what you've lost, you create a bridge between the past and present that allows for meaning-making and forward movement."
+    },
+    {
+      "id": "MMH-D01-T04",
+      "state_id": "S4",
+      "name": "External Output",
+      "action": "20 mins high-intensity movement. No audio. ride through the body. When your mind is racing or emotions are overwhelming, sometimes the best approach is to move the energy through your body rather than trying to think your way out. This technique involves 20 minutes of high-intensity movement without audio or distraction. The physical exertion helps ride stress hormones, and the absence of external input allows your system to ride what needs to move through you.",
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't.",
+      "how_it_works": "Leverages psychological mechanics to disrupt old loops and install new tactical responses. When you're stuck in reactive patterns, your nervous system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns. The psychological mechanics here involve pattern interruption, attention redirection, and creating new neural pathways through repeated tactical practice.",
+      "where_it_came_from": "Grounded in behavioral psychology, adapted for the real-world fight. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment. It combines principles from cognitive reframing, somatic regulation techniques, and practical stress management, but presented as actionable tactics rather than abstract concepts.",
+      "steps": [
+        "Take a moment to pause and notice where you are right now",
+        "Follow the specific guidance for this technique",
+        "Notice what happens in your body and mind as you practice",
+        "Allow whatever comes up without judgment",
+        "Return to this practice as needed throughout your day"
+      ],
+      "slug": "mmh-d01-t04",
+      "description": "20 mins high-intensity movement. No audio. ride through the body. When your mind is racing or emotions are overwhelming, sometimes the best approach is to move the energy through your body rather than trying to think your way out. This technique involves 20 minutes of high-intensity movement without audio or distraction. The physical exertion helps ride stress hormones, and the absence of external input allows your system to ride what needs to move through you."
+    },
+    {
+      "id": "structural-recalibration",
+      "state_id": "S1",
+      "name": "Structural Recalibration",
+      "title": "Structural Recalibration",
+      "slug": "structural-recalibration",
+      "action": "Maps loss as a utility failure to enable rebuilding. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Maps loss as a utility failure to enable rebuilding. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Maps loss as a utility failure to enable rebuilding. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Traumatic Grief Mechanics and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Isolate the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "the-anchor-protocol",
+      "state_id": "S1",
+      "name": "The Anchor Protocol",
+      "title": "The Anchor Protocol",
+      "slug": "the-anchor-protocol",
+      "action": "Creating artificial stability points during emotional system-shock. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Creating artificial stability points during emotional system-shock. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Creating artificial stability points during emotional system-shock. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Trauma Stabilization and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    },
+    {
+      "id": "memory-reframing",
+      "state_id": "S1",
+      "name": "Memory Reframing",
+      "title": "Memory Reframing",
+      "slug": "memory-reframing",
+      "action": "Dissociating pain from recall to allow for functional memory. This tactic works by creating an intentional interruption in automatic response patterns.",
+      "description": "Dissociating pain from recall to allow for functional memory. This tactic works by creating an intentional interruption in automatic response patterns. When you're stuck in reactive loops, your system defaults to familiar pathways. This approach forces a recalibration by redirecting attention and creating space for different response options. The specific mechanism involves leveraging systemic mental overrides to bypass default emotional responses, allowing your system to access more adaptive patterns naturally.",
+      "how_it_works": "Dissociating pain from recall to allow for functional memory. This leverages systemic mental overrides to bypass default emotional responses. When you're stuck in reactive patterns, your system defaults to familiar pathways that may no longer serve you. This tactic works by creating an intentional interruption in those automatic loops, giving your system a chance to recalibrate. The mechanism involves redirecting your attention from the internal narrative that's running on repeat to external sensory input or structured action. This shift creates space for your system to access different response options. It's not about forcing a change through willpower, but rather creating the conditions where your body and mind can naturally access more adaptive patterns.",
+      "where_it_came_from": "Forged from Cognitive Restructuring and re-engineered for the RYD mission. This approach draws from evidence-based frameworks around pattern interruption, stress response regulation, and behavioral activation. The specific mechanics have been tested in both clinical settings and lived experience of what actually works when someone is in the middle of struggling. Rather than requiring extensive preparation or theoretical understanding, this has been distilled down to tactical responses you can deploy in the moment.",
+      "steps": [
+        "Identify the systemic trigger.",
+        "Execute the RYD tactical pivot.",
+        "Verify the stability gain."
+      ],
+      "disclaimer": "This is a practical tool, not a replacement for professional support. This is here if you want it. Use what helps. Ignore what doesn't."
+    }
+  ],
+  "disclaimer": "Tactical manual for navigating system shock. This guide focuses on structural mental stabilization during high-impact loss.",
+  "pillar_slug": "mens-mental-health",
+  "domain_slug": "loss-and-grief"
 }
