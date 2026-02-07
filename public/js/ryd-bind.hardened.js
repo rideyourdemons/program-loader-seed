@@ -59,7 +59,16 @@
    */
   const renderToolOfDay = withErrorBoundary(null, function(tool) {
     if (!tool || typeof tool !== 'object') {
-      showFallback('No tool available');
+      // Silently show fallback without console.error
+      const container = document.getElementById('tool-of-the-day') ||
+                       document.querySelector('[data-tool-of-day]') ||
+                       document.querySelector('.tool-of-day');
+      if (container) {
+        const titleEl = container.querySelector('.tool-title') || container.querySelector('h3') || container.querySelector('#toolTitle');
+        if (titleEl) titleEl.textContent = 'Tool of the Day';
+        const descEl = container.querySelector('.tool-description') || container.querySelector('p') || container.querySelector('#toolDescription');
+        if (descEl) descEl.textContent = 'Check back soon for today\'s featured tool.';
+      }
       return;
     }
 
@@ -113,7 +122,7 @@
     if (descEl) {
       const raw = validatedTool.description || validatedTool.summary || '';
       const cleaned = sanitizeDescription(raw, validatedTool.title || validatedTool.name);
-      descEl.textContent = cleaned || 'Description coming soon.';
+      descEl.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
     }
 
     if (durationEl) {
@@ -150,6 +159,7 @@
    * Fallback rendering with error boundary
    */
   function showFallback(message) {
+    // Silently show fallback without console.error
     const container = document.getElementById('tool-of-the-day') ||
                      document.querySelector('[data-tool-of-day]') ||
                      document.querySelector('.tool-of-day');
@@ -366,46 +376,110 @@
   });
 
   /**
-   * Main bind function
+   * Timeout helper for non-blocking operations
    */
-  function bind() {
+  function withTimeout(promise, ms, onTimeout) {
+    let timeoutId;
+    const timeout = new Promise((resolve) => {
+      timeoutId = setTimeout(() => {
+        resolve(onTimeout?.());
+      }, ms);
+    });
+    return Promise.race([
+      promise.finally(() => clearTimeout(timeoutId)),
+      timeout
+    ]);
+  }
+
+  /**
+   * Initialize Tool of the Day non-blocking
+   */
+  async function initToolOfTheDayNonBlocking() {
+    const start = performance.now();
+    const TOOL_OF_DAY_TIMEOUT_MS = 5000; // 5 second timeout
+    
+    console.debug('[RYD] boot: tool-of-day start');
+    
     try {
+      // Wait for RYD to be ready, but with timeout
+      const waitForReady = new Promise((resolve) => {
+        if (window.RYD?.status === 'ready') {
+          resolve();
+          return;
+        }
+        
+        const readyHandler = () => {
+          window.removeEventListener('ryd:ready', readyHandler);
+          window.removeEventListener('ryd:error', errorHandler);
+          resolve();
+        };
+        
+        const errorHandler = () => {
+          window.removeEventListener('ryd:ready', readyHandler);
+          window.removeEventListener('ryd:error', errorHandler);
+          resolve(); // Resolve anyway to show fallback
+        };
+        
+        window.addEventListener('ryd:ready', readyHandler);
+        window.addEventListener('ryd:error', errorHandler);
+      });
+      
+      await withTimeout(waitForReady, TOOL_OF_DAY_TIMEOUT_MS, () => {
+        console.warn('[RYD] Tool of the Day timed out; using fallback');
+        return null;
+      });
+      
+      // Try to render tool
       if (window.RYD?.status === 'ready') {
         const tool = window.RYD.pickToolOfDay?.();
-        renderToolOfDay(tool);
-        hydrateInsights();
-      } else if (window.RYD?.status === 'error') {
-        showFallback(window.RYD.error || 'Unable to load data');
+        if (tool) {
+          renderToolOfDay(tool);
+          console.debug(`[RYD] tool-of-day finished in ${Math.round(performance.now() - start)}ms`);
+          return;
+        }
       }
-
-      // Always bind search (works even without matrix)
-      bindSearch();
-    } catch (bindError) {
-      console.error('[RYD Bind] Bind error:', bindError);
-      showFallback('Unable to initialize');
+      
+      // Show fallback if no tool available
+      showFallback('Unable to load tool data');
+      console.debug(`[RYD] tool-of-day fallback after ${Math.round(performance.now() - start)}ms`);
+    } catch (err) {
+      console.warn('[RYD] Tool of the Day failed; using fallback', err);
+      try {
+        showFallback('Unable to load tool data');
+      } catch (fallbackError) {
+        console.error('[RYD Bind] Fallback render error:', fallbackError);
+      }
+      console.debug(`[RYD] tool-of-day error after ${Math.round(performance.now() - start)}ms`);
     }
   }
 
-  // Listen for ready/error events
-  window.addEventListener('ryd:ready', (e) => {
+  /**
+   * Main bind function - non-blocking for Tool of the Day
+   */
+  function bind() {
     try {
-      console.log('[RYD] bind: ready event received');
-      const tool = window.RYD?.pickToolOfDay?.();
-      renderToolOfDay(tool);
-      hydrateInsights();
-    } catch (readyError) {
-      console.error('[RYD Bind] Ready event error:', readyError);
+      // Always bind search immediately (works even without matrix)
+      bindSearch();
+      
+      // Start Tool of the Day async (non-blocking)
+      initToolOfTheDayNonBlocking();
+      
+      // Hydrate insights if ready, otherwise wait
+      if (window.RYD?.status === 'ready') {
+        hydrateInsights();
+      } else {
+        // Listen for ready event to hydrate insights
+        const readyHandler = () => {
+          window.removeEventListener('ryd:ready', readyHandler);
+          hydrateInsights();
+        };
+        window.addEventListener('ryd:ready', readyHandler);
+      }
+    } catch (bindError) {
+      console.error('[RYD Bind] Bind error:', bindError);
+      // Don't block - just log error
     }
-  });
-
-  window.addEventListener('ryd:error', (e) => {
-    try {
-      console.log('[RYD] bind: error event received');
-      showFallback(window.RYD?.error || 'Unable to load data');
-    } catch (errorEventError) {
-      console.error('[RYD Bind] Error event handler error:', errorEventError);
-    }
-  });
+  }
 
   // Bind on DOM ready
   if (document.readyState === 'loading') {
@@ -413,7 +487,5 @@
   } else {
     bind();
   }
-
-  // Also bind after a short delay (in case boot finishes first)
-  setTimeout(bind, 100);
 })();
+

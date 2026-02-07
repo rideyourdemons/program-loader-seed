@@ -59,7 +59,7 @@
     if (descEl) {
       const raw = tool.description || tool.summary || '';
       const cleaned = sanitizeDescription(raw, tool.title || tool.name);
-      descEl.textContent = cleaned || 'Description coming soon.';
+      descEl.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
     }
     
     if (durationEl) {

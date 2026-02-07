@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://rideyourdemons.com/">
+    <link rel="icon" href="data:,">
   <script src="/js/matrix-expander.js" defer></script>
     <title>Ride Your Demons - Free Mental Health Tools</title>
     <link rel="stylesheet" href="/css/main.css">
@@ -523,49 +524,16 @@
                     }
                 });
             }
-            // Set timeout to prevent infinite "Loading..." (ryd-bind.js handles this, but keep as safety)
-            const timeoutId = setTimeout(() => {
-                const titleEl = document.getElementById('toolTitle');
-                const descEl = document.getElementById('toolDescription');
-                const durationEl = document.getElementById('toolDuration');
-                const difficultyEl = document.getElementById('toolDifficulty');
-                const errorEl = document.getElementById('toolError');
-                if (titleEl && titleEl.textContent === 'Loading...') {
-                    console.error('Tool of the Day failed to load within timeout - showing fallback');
-                    titleEl.textContent = 'Grounding Reset';
-                    if (descEl) descEl.textContent = 'A short reset to calm your nervous system and regain focus.';
-                    if (durationEl) durationEl.textContent = '5 minutes';
-                    if (difficultyEl) {
-                        difficultyEl.textContent = 'beginner';
-                        difficultyEl.className = 'badge badge-beginner';
-                    }
-                    if (errorEl) {
-                        errorEl.textContent = 'Unable to load tool data. Showing default tool.';
-                        errorEl.style.display = 'block';
-                    }
-                }
-            }, 3000); // 3 second timeout
-            
-            // ryd-boot.js and ryd-bind.js handle everything now
-            // This timeout is just a safety net
-            if (window.RYD && window.RYD.status === 'ready') {
-                clearTimeout(timeoutId);
-            } else if (window.RYD && window.RYD.status === 'error') {
-                clearTimeout(timeoutId);
-                // ryd-bind.js will show fallback, but ensure "Loading..." is removed
-                const titleEl = document.getElementById('toolTitle');
-                if (titleEl && titleEl.textContent === 'Loading...') {
-                    titleEl.textContent = 'Grounding Reset';
-                }
-            }
+            // Tool of the Day is now handled non-blocking by ryd-bind.hardened.js
+            // No timeout needed here - gates/anchor initialization happens independently
         });
     </script>
     <script src="/js/ryd-boot.js" defer></script>
-    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-bind.hardened.js" defer></script>
     <script src="/js/ryd-navigation.js" defer></script>
     <script src="/js/ryd-router.js" defer></script>
     <script src="/js/encoding-guard.js" defer></script>
-    <script src="/js/gates-renderer.js" defer></script>
+    <script src="/js/gates-renderer.hardened.js" defer></script>
     </div>
 </body>
 </html>

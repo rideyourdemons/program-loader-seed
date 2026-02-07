@@ -40,20 +40,27 @@
   async function loadData() {
     try {
       if (!window.MatrixExpander || typeof window.MatrixExpander.init !== 'function') {
-        throw new Error('MatrixExpander is not available');
+        console.warn('[RYD] router: MatrixExpander not available, using empty data');
+        gates = [];
+        painPoints = {};
+        tools = [];
+        return;
       }
 
       await window.MatrixExpander.init();
 
-      gates = window.MatrixExpander.getGates();
-      painPoints = window.MatrixExpander.getPainPointsByGate();
-      tools = window.MatrixExpander.getBaseTools();
+      gates = window.MatrixExpander.getGates() || [];
+      painPoints = window.MatrixExpander.getPainPointsByGate() || {};
+      tools = window.MatrixExpander.getBaseTools() || [];
 
       console.log('[RYD] router: gates loaded', gates.length);
       console.log('[RYD] router: pain points loaded', Object.keys(painPoints).length, 'gates');
       console.log(`[RYD] base tools loaded: ${tools.length}`);
     } catch (err) {
-      console.error('[RYD] router: failed to load data', err);
+      console.warn('[RYD] router: failed to load data, using empty fallback', err.message);
+      gates = [];
+      painPoints = {};
+      tools = [];
     }
   }
 
@@ -400,6 +407,13 @@
             window.location.href = buildToolUrl(toolSlug);
           };
           toolCard.appendChild(cta);
+          
+          // Make entire card clickable
+          toolCard.addEventListener('click', (e) => {
+            // Don't trigger if clicking the CTA link
+            if (e.target === cta || cta.contains(e.target)) return;
+            window.location.href = buildToolUrl(toolSlug);
+          });
           
           toolsGrid.appendChild(toolCard);
         });

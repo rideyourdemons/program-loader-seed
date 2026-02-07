@@ -38,7 +38,7 @@
       const desc = document.createElement('p');
       desc.className = 'tool-description';
       const cleaned = sanitizeDescription(tool.description || tool.summary || '', tool.title || tool.name);
-      desc.textContent = cleaned || 'Description coming soon.';
+      desc.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
       card.appendChild(desc);
 
       const meta = document.createElement('div');

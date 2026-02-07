@@ -1,0 +1,107 @@
+{
+  "mustKeep": [
+    {
+      "file": ".firebaserc",
+      "reason": "Standard file"
+    },
+    {
+      "file": "package-lock.json",
+      "reason": "Standard file"
+    },
+    {
+      "file": "public/js/ryd-bind.hardened.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/ryd-bind.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/ryd-router.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/ryd-tools.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/tools.html",
+      "reason": "Standard file"
+    },
+    {
+      "file": "docs/PRODUCTION_READINESS.md",
+      "reason": "Documentation"
+    },
+    {
+      "file": "docs/SOCIAL_IMPLEMENTATION.md",
+      "reason": "Documentation"
+    },
+    {
+      "file": "docs/local-dev.md",
+      "reason": "Documentation"
+    },
+    {
+      "file": "public/js/config/social-config.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/utils/footer-social.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/utils/social-share.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "public/js/utils/tool-about-modal.js",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/apply-copyright.mjs",
+      "reason": "Standard file"
+    },
+    {
+      "file": "scripts/deploy-clean.mjs",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/final-production-check.mjs",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/production-guardrails.mjs",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/production-sweep.mjs",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/site-audit.mjs",
+      "reason": "Standard file"
+    },
+    {
+      "file": "scripts/triage-pending-files.mjs",
+      "reason": "Standard file"
+    },
+    {
+      "file": "scripts/ui-audit.mjs",
+      "reason": "Standard file"
+    },
+    {
+      "file": "scripts/upload-cedar-matrix.mjs",
+      "reason": "Standard file"
+    },
+    {
+      "file": "scripts/validate-social-links.mjs",
+      "reason": "Critical runtime file"
+    },
+    {
+      "file": "scripts/verify-live.mjs",
+      "reason": "Standard file"
+    }
+  ],
+  "mustRevert": [],
+  "needsMerge": [],
+  "generated": []
+}

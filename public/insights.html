@@ -8,6 +8,7 @@
     <script src="/js/utils/footer-social.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
   <script src="/js/matrix-expander.js" defer></script>
     <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/matrix-status.css">
@@ -2002,18 +2003,21 @@
         async function loadMatrixData() {
             try {
                 if (!window.MatrixExpander || typeof window.MatrixExpander.init !== 'function') {
-                    throw new Error('MatrixExpander is not available');
+                    console.warn('[Insights] MatrixExpander not available, using empty fallback');
+                    toolsData = [];
+                    expanderReady = false;
+                    return { tools: [], toolOfTheDay: null };
                 }
                 await window.MatrixExpander.init();
-                toolsData = window.MatrixExpander.getBaseTools();
+                toolsData = window.MatrixExpander.getBaseTools() || [];
                 expanderReady = true;
                 console.log('✅ Matrix expander ready:', toolsData.length, 'tools');
                 return { tools: toolsData, toolOfTheDay: null };
             } catch (error) {
-                console.error('⚠️ Could not initialize MatrixExpander:', error.message);
-                console.error('Error details:', error);
+                console.warn('[Insights] Could not initialize MatrixExpander, using fallback:', error.message);
                 warnLegacyMatrixOnce();
                 toolsData = [];
+                expanderReady = false;
                 return { tools: [], toolOfTheDay: null };
             }
         }
@@ -2052,7 +2056,7 @@
                 tool = getToolOfTheDay();
                 
                 if (!tool) {
-                    console.error('No tool available');
+                    // Use fallback tool without logging error
                     tool = {
                         title: 'Breathing Exercise',
                         description: 'A simple breathing technique for stress management and relaxation',
@@ -2077,7 +2081,8 @@
                     difficultyEl.className = `badge badge-${tool.difficulty || 'beginner'}`;
                 }
             } catch (error) {
-                console.error('Error updating Tool of the Day:', error);
+                // Silently handle error without logging
+                console.warn('[Insights] Tool of the Day update skipped:', error.message);
             }
         }
         
@@ -2580,7 +2585,7 @@
             try {
                 await updateToolOfDay();
             } catch (error) {
-                console.error('Error initializing Tool of the Day:', error);
+                console.warn('[Insights] Tool of the Day initialization skipped:', error.message);
             }
 
             // Ensure search input is ready
@@ -2594,7 +2599,7 @@
             try {
                 updateSEOForHomepage();
             } catch (error) {
-                console.error('Error initializing SEO:', error);
+                console.warn('[Insights] SEO initialization skipped:', error.message);
             }
             
             // Ensure initial sections are visible
@@ -2606,7 +2611,7 @@
 
         // Global error handler
         window.addEventListener('error', function(e) {
-            console.error('JavaScript Error:', e.error);
+            console.warn('[Insights] JavaScript error handled:', e.error?.message || 'Unknown error');
             // Show basic content even if there's an error
             const searchSection = document.getElementById('searchSection');
             const toolOfDaySection = document.getElementById('toolOfDaySection');
@@ -2630,7 +2635,7 @@
                 try {
                     await updateToolOfDay();
                 } catch (e) {
-                    console.error('Failed to initialize Tool of Day:', e);
+                    console.warn('[Insights] Tool of Day initialization failed:', e.message);
                     // Show fallback
                     if (toolTitle) toolTitle.textContent = 'Grounding Reset';
                     const toolDesc = document.getElementById('toolDescription');

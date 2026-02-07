@@ -610,10 +610,14 @@
     }
   }
 
-  // Initialize on DOM ready
+  // Initialize on DOM ready (non-blocking, independent of Tool of the Day)
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+      console.debug('[RYD] boot: anchors start');
+      init();
+    });
   } else {
+    console.debug('[RYD] boot: anchors start');
     init();
   }
 

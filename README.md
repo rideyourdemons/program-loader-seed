@@ -47,6 +47,25 @@ cd program-loader-seed
 
 # Install dependencies
 npm install
+```
+
+## 🧪 Smoke Testing
+
+Quick local validation workflow:
+
+```bash
+# Start dev server and open browser
+npm run smoke:dev
+
+# Run full smoke test (lint + endpoints + routes)
+npm run smoke
+
+# Individual commands
+npm run smoke:checks  # Lint/typecheck only
+npm run smoke:run     # Endpoint/route validation only
+```
+
+See [docs/SMOKE_TEST.md](./docs/SMOKE_TEST.md) for full documentation.
 
 # Verify installation
 npm run status

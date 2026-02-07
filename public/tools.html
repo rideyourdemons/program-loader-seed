@@ -9,6 +9,7 @@
     <script src="/js/utils/footer-social.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
   <script src="/js/matrix-expander.js" defer></script>
     <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/matrix-status.css">
@@ -206,7 +207,7 @@
                     
                     const p = document.createElement('p');
                     const cleaned = extractDescription(tool);
-                    p.textContent = cleaned || 'Description coming soon.';
+                    p.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
                     p.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
                     card.appendChild(p);
                     
@@ -316,7 +317,7 @@
     </main>
 
     <script src="/js/ryd-boot.js" defer></script>
-    <script src="/js/ryd-bind.js" defer></script>
+    <script src="/js/ryd-bind.hardened.js" defer></script>
     <script src="/js/ryd-tools.js" defer></script>
 
     <footer>

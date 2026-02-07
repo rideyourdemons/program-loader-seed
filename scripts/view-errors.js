@@ -99,9 +99,10 @@ async function viewErrors() {
 }
 
 // Run if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/')) || 
+    import.meta.url.includes('view-errors.js')) {
   viewErrors().catch(error => {
-    logger.error('Error viewing errors:', error);
+    console.error('Error viewing errors:', error);
     process.exit(1);
   });
 }

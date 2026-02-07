@@ -58,7 +58,14 @@
 
     try {
       if (!window.MatrixExpander || typeof window.MatrixExpander.init !== 'function') {
-        throw new Error('MatrixExpander is not available');
+        console.warn('[RYD] MatrixExpander not available, using fallback');
+        clearTimeout(timeoutId);
+        state.tools = [];
+        state.status = 'ready';
+        window.dispatchEvent(new CustomEvent('ryd:ready', {
+          detail: { tools: [] }
+        }));
+        return;
       }
 
       await window.MatrixExpander.init();
@@ -134,7 +141,8 @@
     updateGlobal();
   });
   
-  // Start boot
+  // Start boot (non-blocking - gates/anchor init happens independently)
+  console.debug('[RYD] boot: rotation start');
   boot();
   
   // Legacy compatibility
