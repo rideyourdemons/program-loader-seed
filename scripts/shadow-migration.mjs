@@ -7,11 +7,16 @@
  * - ID: from existing 'id' field
  * - ParentID: from 'cluster' field (gate/anchor reference)
  * - RiskWeight: calculated from resonanceScore + decayScore
+ * 
+ * CLI Arguments:
+ * --dry-run: Skip file writes, only validate and report
+ * --limit=N: Process only first N nodes (for canary testing)
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { performance } from 'perf_hooks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,6 +35,55 @@ const FILES = {
 // Output path for migration data
 const OUTPUT_DIR = path.join(ROOT_DIR, 'scripts', 'migration-output');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'migration-ready.json');
+const CANARY_LOG_FILE = path.join(OUTPUT_DIR, 'canary-test-log.jsonl');
+
+// Safety limits
+const RAM_TARGET_BASELINE = 56; // MB
+const RAM_HARD_KILL = 150; // MB
+const HEARTBEAT_INTERVAL = 1000; // nodes
+
+// Gold Standard Anchors (for validation)
+const GOLD_STANDARD_ANCHORS = [
+  'fathers-sons', 'mothers-daughters', 'the-patriarch', 'the-matriarch',
+  'young-lions', 'young-women', 'the-professional', 'the-griever',
+  'the-addict', 'the-protector', 'men-solo', 'women-solo'
+];
+
+// Parse CLI arguments
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const config = {
+    dryRun: false,
+    limit: null
+  };
+  
+  args.forEach(arg => {
+    if (arg === '--dry-run') {
+      config.dryRun = true;
+    } else if (arg.startsWith('--limit=')) {
+      const limit = parseInt(arg.split('=')[1], 10);
+      if (!isNaN(limit) && limit > 0) {
+        config.limit = limit;
+      }
+    }
+  });
+  
+  return config;
+}
+
+function getMemoryUsage() {
+  const usage = process.memoryUsage();
+  return Math.round(usage.heapUsed / 1024 / 1024);
+}
+
+function logHeartbeat(data) {
+  ensureDir(path.dirname(CANARY_LOG_FILE));
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    ...data
+  };
+  fs.appendFileSync(CANARY_LOG_FILE, JSON.stringify(logEntry) + '\n');
+}
 
 function readJson(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -157,10 +211,20 @@ function buildConnectionMap(linkMapData) {
 /**
  * Main migration function
  */
-function prepareMigration() {
+function prepareMigration(config = {}) {
+  const { dryRun = false, limit = null } = config;
+  const startTime = performance.now();
+  const initialMemory = getMemoryUsage();
+  
   console.log('\n' + '='.repeat(70));
   console.log('🔄 SHADOW MIGRATION PREPARATION');
+  if (dryRun) console.log('   [DRY RUN MODE - No files will be written]');
+  if (limit) console.log(`   [CANARY TEST - Limited to ${limit.toLocaleString()} nodes]`);
   console.log('='.repeat(70) + '\n');
+  
+  console.log(`📊 Initial RAM: ${initialMemory} MB`);
+  console.log(`   Target Baseline: ${RAM_TARGET_BASELINE} MB`);
+  console.log(`   Hard Kill Limit: ${RAM_HARD_KILL} MB\n`);
   
   // 1. Load all data sources
   console.log('📂 Loading data sources...');
@@ -182,18 +246,82 @@ function prepareMigration() {
   
   // 3. Use registry data (most complete) or resonance data
   const sourceData = registryData || resonanceData;
-  const nodes = sourceData.nodes || [];
+  let nodes = sourceData.nodes || [];
+  const totalNodes = nodes.length;
+  
+  // Apply limit if specified (canary test)
+  if (limit && limit > 0) {
+    nodes = nodes.slice(0, limit);
+    console.log(`\n⚠️  CANARY MODE: Processing ${nodes.length.toLocaleString()} of ${totalNodes.toLocaleString()} nodes`);
+  }
   
   console.log(`\n📊 Transforming ${nodes.length.toLocaleString()} nodes...`);
   
-  // 4. Transform nodes
-  const transformedNodes = nodes.map(node => {
-    const connections = {
-      inbound: connectionMap.inbound[node.id] || [],
-      outbound: connectionMap.outbound[node.id] || []
-    };
-    return transformNode(node, connections);
-  });
+  // 4. Transform nodes with heartbeat and RAM monitoring
+  const transformedNodes = [];
+  let processedCount = 0;
+  let lastSuccessfulNodeId = null;
+  let peakMemory = initialMemory;
+  
+  for (const node of nodes) {
+    // RAM check before processing
+    const currentMemory = getMemoryUsage();
+    if (currentMemory > peakMemory) {
+      peakMemory = currentMemory;
+    }
+    
+    // HARD KILL CHECK
+    if (currentMemory > RAM_HARD_KILL) {
+      console.log(`\n🚨 HARD KILL TRIGGERED:`);
+      console.log(`   RAM: ${currentMemory} MB > ${RAM_HARD_KILL} MB`);
+      console.log(`   Last successful node: ${lastSuccessfulNodeId}`);
+      console.log(`   Nodes processed: ${processedCount.toLocaleString()}`);
+      console.log(`\n⚠️  Migration stopped to prevent memory overflow.`);
+      break;
+    }
+    
+    try {
+      const connections = {
+        inbound: connectionMap.inbound[node.id] || [],
+        outbound: connectionMap.outbound[node.id] || []
+      };
+      const transformed = transformNode(node, connections);
+      transformedNodes.push(transformed);
+      lastSuccessfulNodeId = node.id;
+      processedCount++;
+      
+      // Heartbeat every 1,000 nodes
+      if (processedCount % HEARTBEAT_INTERVAL === 0) {
+        const elapsed = (performance.now() - startTime) / 1000;
+        const nodesPerSecond = processedCount / elapsed;
+        const memoryDelta = currentMemory - initialMemory;
+        
+        console.log(
+          `❤️ Heartbeat: Nodes: ${processedCount.toLocaleString()} | ` +
+          `RAM: ${currentMemory}MB (Δ${memoryDelta > 0 ? '+' : ''}${memoryDelta}MB) | ` +
+          `Peak: ${peakMemory}MB | ` +
+          `Speed: ${nodesPerSecond.toFixed(0)} nodes/sec`
+        );
+        
+        // Log to file
+        logHeartbeat({
+          nodesProcessed: processedCount,
+          ramMB: currentMemory,
+          peakRamMB: peakMemory,
+          memoryDeltaMB: memoryDelta,
+          nodesPerSecond: nodesPerSecond,
+          lastNodeId: lastSuccessfulNodeId
+        });
+      }
+    } catch (error) {
+      console.error(`❌ Error transforming node ${node.id}:`, error.message);
+      // Continue processing other nodes
+    }
+  }
+  
+  if (processedCount < nodes.length) {
+    console.log(`\n⚠️  Processed ${processedCount.toLocaleString()} of ${nodes.length.toLocaleString()} nodes`);
+  }
   
   // 5. Group by type for database collections
   const grouped = {
@@ -269,32 +397,82 @@ function prepareMigration() {
     }
   };
   
-  // 8. Write output
-  ensureDir(OUTPUT_DIR);
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(migrationPayload, null, 2));
+  // 8. Write output (unless dry-run)
+  const finalMemory = getMemoryUsage();
+  const totalTime = (performance.now() - startTime) / 1000;
+  const memoryDelta = finalMemory - initialMemory;
   
-  console.log('\n✅ Migration data prepared!');
-  console.log(`📁 Output: ${OUTPUT_FILE}`);
+  if (!dryRun) {
+    ensureDir(OUTPUT_DIR);
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(migrationPayload, null, 2));
+    console.log('\n✅ Migration data prepared!');
+    console.log(`📁 Output: ${OUTPUT_FILE}`);
+  } else {
+    console.log('\n✅ Migration data validated (DRY RUN)');
+    console.log(`   Output file would be: ${OUTPUT_FILE}`);
+  }
+  
+  // Final statistics
+  console.log('\n📈 Final Statistics:');
+  console.log(`   Nodes Processed: ${processedCount.toLocaleString()}`);
+  console.log(`   Total Time: ${totalTime.toFixed(2)}s`);
+  console.log(`   Nodes/Second: ${(processedCount / totalTime).toFixed(0)}`);
+  console.log(`   Initial RAM: ${initialMemory} MB`);
+  console.log(`   Final RAM: ${finalMemory} MB`);
+  console.log(`   Peak RAM: ${peakMemory} MB`);
+  console.log(`   Memory Delta: ${memoryDelta} MB`);
+  
+  // Safety validation
+  if (peakMemory > RAM_HARD_KILL) {
+    console.log(`\n⚠️  WARNING: Peak RAM (${peakMemory} MB) exceeded hard kill limit (${RAM_HARD_KILL} MB)`);
+  } else if (peakMemory > RAM_TARGET_BASELINE * 2) {
+    console.log(`\n⚠️  WARNING: Peak RAM (${peakMemory} MB) is above 2x baseline (${RAM_TARGET_BASELINE * 2} MB)`);
+  } else {
+    console.log(`\n✅ RAM Usage: Within safe limits`);
+  }
+  
   console.log('\n⚠️  NOTE: This is a PREPARATION script only.');
   console.log('   No database writes have been executed.');
-  console.log('   Review the output file before proceeding with actual migration.');
+  if (!dryRun) {
+    console.log('   Review the output file before proceeding with actual migration.');
+  }
   
   console.log('\n' + '='.repeat(70));
   console.log('✅ PREPARATION COMPLETE');
   console.log('='.repeat(70) + '\n');
   
-  return migrationPayload;
+  return {
+    ...migrationPayload,
+    runtime: {
+      nodesProcessed: processedCount,
+      totalTime,
+      nodesPerSecond: processedCount / totalTime,
+      initialMemory,
+      finalMemory,
+      peakMemory,
+      memoryDelta,
+      lastSuccessfulNodeId
+    }
+  };
 }
 
 // Execute
 try {
-  const result = prepareMigration();
-  console.log('🎯 Next Steps:');
-  console.log('1. Review the migration output file');
-  console.log('2. Compare schema with rideryourdemons.com database');
-  console.log('3. Create database connection script');
-  console.log('4. Test on staging environment');
-  console.log('5. Execute migration after validation\n');
+  const config = parseArgs();
+  const result = prepareMigration(config);
+  
+  if (config.limit) {
+    console.log('🎯 Canary Test Complete!');
+    console.log('   Review the results above before proceeding with full migration.');
+    console.log('   If all checks pass, run without --limit to process all nodes.\n');
+  } else {
+    console.log('🎯 Next Steps:');
+    console.log('1. Review the migration output file');
+    console.log('2. Compare schema with rideryourdemons.com database');
+    console.log('3. Create database connection script');
+    console.log('4. Test on staging environment');
+    console.log('5. Execute migration after validation\n');
+  }
 } catch (error) {
   console.error('❌ Migration preparation failed:', error);
   process.exit(1);
