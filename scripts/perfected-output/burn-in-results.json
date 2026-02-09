@@ -1,0 +1,20 @@
+{
+  "flawless": false,
+  "stats": {
+    "processedCount": 1000000,
+    "peakMemory": 167,
+    "maxMemory": 45,
+    "withinLimit": false,
+    "cpuTemp": 0,
+    "throttled": false,
+    "emergencyBrake": false,
+    "pinnedAnchors": 12
+  },
+  "initialMemory": 139,
+  "finalMemory": 167,
+  "peakMemory": 167,
+  "initialTemp": 0,
+  "finalTemp": 0,
+  "maxResonanceDepth": 1,
+  "pinnedAnchors": 12
+}

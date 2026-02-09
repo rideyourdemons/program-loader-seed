@@ -283,6 +283,7 @@ function validateToolFile(filePath) {
  */
 function validateAllTools() {
   console.log('[VALIDATE] Production guardrails validation...\n');
+  console.log('Scanning all tool files recursively, including tools/mens-mental-health/ folder...\n');
   
   const toolFiles = findAllToolFiles(TOOLS_DIR);
   const allErrors = [];
@@ -291,6 +292,12 @@ function validateAllTools() {
   if (toolFiles.length === 0) {
     console.warn('⚠️  No tool JSON files found in', TOOLS_DIR);
     return { success: true, errors: [], warnings: [] };
+  }
+  
+  // Count files in mens-mental-health folder specifically
+  const mensMentalHealthFiles = toolFiles.filter(f => f.includes('mens-mental-health'));
+  if (mensMentalHealthFiles.length > 0) {
+    console.log(`Found ${mensMentalHealthFiles.length} file(s) in tools/mens-mental-health/`);
   }
   
   console.log(`Found ${toolFiles.length} tool JSON file(s) to validate\n`);
