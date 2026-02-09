@@ -323,6 +323,47 @@ function prepareMigration(config = {}) {
     console.log(`\n⚠️  Processed ${processedCount.toLocaleString()} of ${nodes.length.toLocaleString()} nodes`);
   }
   
+  // 4.5. Inject Gold Standard Anchors (if missing)
+  const existingNodeIds = new Set(transformedNodes.map(n => n.ID));
+  const anchorNames = {
+    'fathers-sons': 'Fathers & Sons',
+    'mothers-daughters': 'Mothers & Daughters',
+    'the-patriarch': 'The Patriarch',
+    'the-matriarch': 'The Matriarch',
+    'young-lions': 'Young Lions',
+    'young-women': 'Young Women',
+    'the-professional': 'The Professional',
+    'the-griever': 'The Griever',
+    'the-addict': 'The Addict',
+    'the-protector': 'The Protector',
+    'men-solo': 'Men (Solo)',
+    'women-solo': 'Women (Solo)'
+  };
+  
+  let anchorsInjected = 0;
+  GOLD_STANDARD_ANCHORS.forEach(anchorId => {
+    if (!existingNodeIds.has(anchorId)) {
+      transformedNodes.push({
+        ID: anchorId,
+        ParentID: null,
+        RiskWeight: 1.0,
+        type: 'gate',
+        name: anchorNames[anchorId] || anchorId,
+        inboundLinks: [],
+        outboundLinks: [],
+        metadata: {
+          isGoldStandardAnchor: true,
+          pinned: true
+        }
+      });
+      anchorsInjected++;
+    }
+  });
+  
+  if (anchorsInjected > 0) {
+    console.log(`\n⚓ Injected ${anchorsInjected} Gold Standard Anchors`);
+  }
+  
   // 5. Group by type for database collections
   const grouped = {
     gates: [],
