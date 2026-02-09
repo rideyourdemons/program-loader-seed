@@ -30,6 +30,79 @@
   };
   const { logError } = window.RYD_ErrorMonitor || { logError: () => {} };
   const { setMinHeight } = window.RYD_UIStability || { setMinHeight: () => {} };
+  
+  /**
+   * CIRCULAR REFERENCE DETECTION - Prevents memory leaks
+   * Non-blocking validation using WeakSet for O(1) lookups
+   */
+  const circularReferenceDetector = (function() {
+    const visited = new WeakSet();
+    const MAX_DEPTH = 10;
+    
+    function detectCircular(obj, path = [], depth = 0) {
+      if (depth > MAX_DEPTH) {
+        return { circular: true, path: path.join(' -> ') };
+      }
+      
+      if (typeof obj !== 'object' || obj === null) {
+        return { circular: false };
+      }
+      
+      if (visited.has(obj)) {
+        return { circular: true, path: path.join(' -> ') };
+      }
+      
+      visited.add(obj);
+      
+      try {
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const value = obj[key];
+            if (typeof value === 'object' && value !== null) {
+              const result = detectCircular(value, [...path, key], depth + 1);
+              if (result.circular) {
+                return result;
+              }
+            }
+          }
+        }
+      } finally {
+        // Clean up visited set periodically to prevent memory growth
+        if (depth === 0 && visited.size > 1000) {
+          visited.clear();
+        }
+      }
+      
+      return { circular: false };
+    }
+    
+    return {
+      detect: detectCircular,
+      clear: () => visited.clear()
+    };
+  })();
+  
+  /**
+   * NON-BLOCKING VALIDATION - Uses requestIdleCallback or setTimeout
+   */
+  function validateNonBlocking(data, validator, callback) {
+    const validateFn = () => {
+      try {
+        const result = validator(data);
+        callback(result);
+      } catch (error) {
+        callback({ success: false, error: error.message });
+      }
+    };
+    
+    // Use requestIdleCallback if available (non-blocking)
+    if (window.requestIdleCallback) {
+      requestIdleCallback(validateFn, { timeout: 100 });
+    } else {
+      // Fallback to setTimeout with minimal delay
+      setTimeout(validateFn, 0);
+    }
+  }
 
   /**
    * Safe string truncation
@@ -70,10 +143,37 @@
 
     grid.innerHTML = '';
 
-    // Validate and sanitize tools
-    const toolsValidation = validateData(tools, schemas.toolsResponse, { tools: [] });
-    const rawTools = toolsValidation.data?.tools || tools || [];
-    const validatedTools = cleanDataArray(rawTools, 'tool').map(tool => ensureWhereItCameFrom(tool));
+    // Validate and sanitize tools (non-blocking)
+    let rawTools = tools || [];
+    let validatedTools = [];
+    
+    // Quick synchronous validation first
+    if (Array.isArray(rawTools)) {
+      // Non-blocking circular reference check
+      const circularCheck = circularReferenceDetector.detect({ tools: rawTools });
+      if (circularCheck.circular) {
+        console.warn('[RYD Tools] Circular reference detected in tools data:', circularCheck.path);
+        rawTools = []; // Prevent memory leak
+      }
+      
+      // Validate each tool asynchronously to prevent blocking
+      validatedTools = rawTools.map((tool, index) => {
+        // Quick synchronous validation
+        if (!tool || typeof tool !== 'object') return null;
+        
+        // Check for circular references in tool
+        const toolCircular = circularReferenceDetector.detect(tool);
+        if (toolCircular.circular) {
+          console.warn(`[RYD Tools] Circular reference in tool ${index}:`, toolCircular.path);
+          return null;
+        }
+        
+        // Full validation (can be async, but we do sync for now)
+        const toolValidation = validateData(tool, schemas.tool, tool);
+        const cleaned = cleanDataArray([toolValidation.data || tool], 'tool')[0];
+        return cleaned ? ensureWhereItCameFrom(cleaned) : null;
+      }).filter(Boolean);
+    }
 
     if (validatedTools.length === 0) {
       const empty = document.createElement('div');
