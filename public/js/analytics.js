@@ -10,9 +10,36 @@
 (function() {
   'use strict';
 
-  // Configuration
-  const GTM_CONTAINER_ID = 'GTM-M8KF4XF';
-  const GTM_TEST_ID = 'GTM-TEST'; // Test container for local dev (optional)
+  // Configuration - Load from environment or config file
+  // Priority: window.RYD_ANALYTICS_CONFIG > process.env > fallback
+  const getConfig = () => {
+    // Check window config (injected by server or loaded from config file)
+    if (window.RYD_ANALYTICS_CONFIG) {
+      return window.RYD_ANALYTICS_CONFIG;
+    }
+    
+    // Check process.env (server-side only)
+    if (typeof process !== 'undefined' && process.env) {
+      return {
+        GTM_CONTAINER_ID: process.env.GTM_CONTAINER_ID || '',
+        GTM_TEST_ID: process.env.GTM_TEST_ID || '',
+        GA4_MEASUREMENT_ID: process.env.GA4_MEASUREMENT_ID || ''
+      };
+    }
+    
+    // Fallback: Return empty (analytics will be disabled)
+    console.warn('[RYD Analytics] No analytics configuration found. Analytics disabled.');
+    return {
+      GTM_CONTAINER_ID: '',
+      GTM_TEST_ID: '',
+      GA4_MEASUREMENT_ID: ''
+    };
+  };
+  
+  const config = getConfig();
+  const GTM_CONTAINER_ID = config.GTM_CONTAINER_ID || '';
+  const GTM_TEST_ID = config.GTM_TEST_ID || '';
+  const GA4_MEASUREMENT_ID = config.GA4_MEASUREMENT_ID || '';
   
   // Environment detection
   const isLocal = window.location.hostname === 'localhost' || 

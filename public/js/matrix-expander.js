@@ -280,14 +280,31 @@
         return;
       }
 
-      instances.push({
+      // Apply temporal weighting if available
+      let enhancedTool = {
         instanceId: `${gateId}::${painPointId}::${toolId}`,
         gateId,
         painPointId,
         toolId,
         baseTool,
         contextLabel
-      });
+      };
+
+      // 1. Variable Temporal Weighting: Apply time blocks based on cluster size and depth
+      if (window.TemporalWeighting && typeof window.TemporalWeighting.applyTemporalWeighting === 'function') {
+        try {
+          enhancedTool = window.TemporalWeighting.applyTemporalWeighting(enhancedTool, {
+            gateId,
+            painPointId,
+            painPointIds: baseTool.painPointIds || [],
+            gateIds: baseTool.gateIds || []
+          });
+        } catch (e) {
+          console.warn('[MatrixExpander] Temporal weighting failed:', e);
+        }
+      }
+
+      instances.push(enhancedTool);
     });
 
     return instances;

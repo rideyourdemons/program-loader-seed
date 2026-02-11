@@ -1,9 +1,68 @@
-node_modules
-logs/*
-!.keep
-.env
-.DS_Store
-*.log
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
 
-# Private legal/provenance evidence (optional - remove if you want to track it)
+# Environment variables (CRITICAL - contains secrets)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env
+!env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Local config files (may contain secrets)
+config.local.js
+config.local.json
+public/js/config.local.js
+public/js/config/analytics-config.local.js
+
+# Archive files (may contain local paths)
+_archive/
+
+# Private legal/provenance evidence (optional)
 # LEGAL/PROVENANCE_EVIDENCE.txt

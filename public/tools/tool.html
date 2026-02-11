@@ -38,7 +38,23 @@
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--color-border, #e0e0e0);
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            min-height: 20px !important;
+            overflow: visible !important;
         }
+        
+        .tool-details[hidden] {
+            display: none !important;
+        }
+        
+        .tool-details > * {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
         .tool-toggle:hover {
             opacity: 0.9;
         }
@@ -69,9 +85,12 @@
             </nav>
             <h1 id="toolTitle">Tool</h1>
             
-            <div class="card" style="margin-bottom: 20px;">
-                <p><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. This tool is meant to help you understand what may help and why it works.</p>
-                <p>If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. In Canada, you can call or text <strong>988</strong> for the Suicide Crisis Helpline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
+            <!-- Standardized Disclaimer Component -->
+            <div id="toolDisclaimer" class="tool-disclaimer" style="display: none;">
+                <div class="card" style="margin-bottom: 20px; border-left: 4px solid #667eea; background: #f8f9fa;">
+                    <p style="margin-bottom: 10px;"><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. This tool is meant to help you understand what may help and why it works.</p>
+                    <p style="margin: 0; font-size: 0.95em;">If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. In Canada, you can call or text <strong>988</strong> for the Suicide Crisis Helpline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
+                </div>
             </div>
             
             <div id="toolContent" class="card tool-card" style="margin-bottom: 30px;">
@@ -135,6 +154,14 @@
                 : slugParam;
             const slug = decodeURIComponent(rawSlug || '').trim();
             
+            console.log('[Tool Page] URL slug extraction:', {
+                pathParts,
+                pathSlug,
+                slugParam,
+                rawSlug,
+                finalSlug: slug
+            });
+            
             if (!slug) {
                 const contentEl = document.getElementById('toolContent');
                 contentEl.innerHTML = '';
@@ -145,14 +172,127 @@
             }
             
             try {
-                const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now()).catch(() => null);
-                const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now()).catch(() => null);
-
-                const canonicalData = toolsRes && toolsRes.ok ? await toolsRes.json() : { tools: [] };
-                const fallbackData = fallbackRes && fallbackRes.ok ? await fallbackRes.json() : { tools: [] };
-
-                const canonicalTools = Array.isArray(canonicalData.tools) ? canonicalData.tools : [];
-                const fallbackTools = Array.isArray(fallbackData.tools) ? fallbackData.tools : [];
+                console.log('[Tool Page] Fetching tools data...');
+                // Data Integrity Audit: Use SafeMapper.safeFetch for UTF-8 encoding enforcement
+                const SafeMapper = window.SafeMapper || {
+                    safeFetch: async (url) => {
+                        const res = await fetch(url, {
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8',
+                                'Accept': 'application/json; charset=utf-8'
+                            }
+                        });
+                        return res.json();
+                    }
+                };
+                
+                // Data Integrity Audit: Use SafeMapper.safeFetch for UTF-8 encoding enforcement
+                let canonicalDataRaw = null;
+                let fallbackDataRaw = null;
+                
+                if (SafeMapper.safeFetch) {
+                    // safeFetch returns data directly (already parsed and sanitized)
+                    try {
+                        canonicalDataRaw = await SafeMapper.safeFetch('/data/tools-canonical.json?ts=' + Date.now());
+                    } catch (e) {
+                        console.warn('[Tool Page] Canonical fetch failed, using fallback');
+                    }
+                    try {
+                        fallbackDataRaw = await SafeMapper.safeFetch('/data/tools.json?ts=' + Date.now());
+                    } catch (e) {
+                        console.warn('[Tool Page] Fallback fetch failed');
+                    }
+                } else {
+                    // Fallback to standard fetch with UTF-8 headers
+                    const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now(), {
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Accept': 'application/json; charset=utf-8'
+                        }
+                    }).catch(() => null);
+                    const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now(), {
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Accept': 'application/json; charset=utf-8'
+                        }
+                    }).catch(() => null);
+                    
+                    console.log('[Tool Page] Fetch results:', {
+                        canonicalStatus: toolsRes?.status,
+                        fallbackStatus: fallbackRes?.status,
+                        canonicalOk: toolsRes?.ok,
+                        fallbackOk: fallbackRes?.ok
+                    });
+                    
+                    if (toolsRes && toolsRes.ok) {
+                        canonicalDataRaw = await toolsRes.json();
+                    }
+                    if (fallbackRes && fallbackRes.ok) {
+                        fallbackDataRaw = await fallbackRes.json();
+                    }
+                }
+                
+                // Handle both structures: {tools: []} or flat array []
+                const canonicalData = canonicalDataRaw || {};
+                const fallbackData = fallbackDataRaw || {};
+                
+                // Check if data is a flat array or has a tools property
+                const canonicalIsArray = Array.isArray(canonicalData);
+                const fallbackIsArray = Array.isArray(fallbackData);
+                
+                console.log('[Tool Page] Raw fetched data structure audit:', {
+                    canonicalIsArray,
+                    fallbackIsArray,
+                    canonicalTopLevelKeys: canonicalIsArray ? 'ARRAY' : Object.keys(canonicalData),
+                    fallbackTopLevelKeys: fallbackIsArray ? 'ARRAY' : Object.keys(fallbackData),
+                    canonicalHasToolsProp: !canonicalIsArray && 'tools' in canonicalData,
+                    fallbackHasToolsProp: !fallbackIsArray && 'tools' in fallbackData
+                });
+                
+                // Use console.table for better data inspection
+                if (canonicalDataRaw) {
+                    console.table({
+                        'Data Source': 'Canonical',
+                        'Is Array': canonicalIsArray,
+                        'Has Tools Prop': !canonicalIsArray && 'tools' in canonicalData,
+                        'Tools Count': canonicalIsArray 
+                            ? canonicalData.length 
+                            : (Array.isArray(canonicalData.tools) ? canonicalData.tools.length : 0)
+                    });
+                }
+                if (fallbackDataRaw) {
+                    console.table({
+                        'Data Source': 'Fallback',
+                        'Is Array': fallbackIsArray,
+                        'Has Tools Prop': !fallbackIsArray && 'tools' in fallbackData,
+                        'Tools Count': fallbackIsArray 
+                            ? fallbackData.length 
+                            : (Array.isArray(fallbackData.tools) ? fallbackData.tools.length : 0)
+                    });
+                }
+                
+                // Extract tools array - handle both structures
+                const canonicalTools = canonicalIsArray 
+                    ? canonicalData 
+                    : (Array.isArray(canonicalData.tools) ? canonicalData.tools : []);
+                const fallbackTools = fallbackIsArray 
+                    ? fallbackData 
+                    : (Array.isArray(fallbackData.tools) ? fallbackData.tools : []);
+                
+                console.log('[Tool Page] Extracted tools arrays:', {
+                    canonicalToolsCount: canonicalTools.length,
+                    fallbackToolsCount: fallbackTools.length,
+                    sampleCanonicalTool: canonicalTools[0] ? {
+                        id: canonicalTools[0].id,
+                        slug: canonicalTools[0].slug,
+                        title: canonicalTools[0].title || canonicalTools[0].name
+                    } : null,
+                    sampleFallbackTool: fallbackTools[0] ? {
+                        id: fallbackTools[0].id,
+                        slug: fallbackTools[0].slug,
+                        title: fallbackTools[0].title || fallbackTools[0].name
+                    } : null
+                });
 
                 if (canonicalTools.length === 0 && fallbackTools.length === 0) {
                     throw new Error('Tools data not available.');
@@ -202,20 +342,82 @@
                 };
 
                 const allTools = Array.from(toolMap.values());
+                const normalizedSlug = normalizeSlug(slug);
+                
+                console.log('[Tool Page] Tool map created:', {
+                    toolMapSize: toolMap.size,
+                    sampleToolKeys: Array.from(toolMap.keys()).slice(0, 10)
+                });
+                
+                // Use console.table for tool lookup audit
+                console.table(
+                    Array.from(toolMap.entries())
+                        .slice(0, 10)
+                        .map(([key, tool]) => ({
+                            'Normalized Key': key,
+                            'Tool ID': tool.id,
+                            'Tool Slug': tool.slug || 'N/A',
+                            'Tool Title': (tool.title || tool.name || '').substring(0, 30)
+                        }))
+                );
+                
+                console.log('[Tool Page] Looking up tool:', {
+                    originalSlug: slug,
+                    normalizedSlug: normalizedSlug,
+                    searchingInMap: toolMap.has(normalizedSlug)
+                });
+                
                 const tool = lookup(slug);
                 
+                // Deep audit of filtered tool object
+                if (tool) {
+                    console.table({
+                        'Property': ['Found', 'ID', 'Slug', 'Title', 'Has Description', 'Has HowWhyWorks', 'Has Walkthroughs', 'Has Citations'],
+                        'Value': [
+                            'YES',
+                            tool.id || 'N/A',
+                            tool.slug || 'N/A',
+                            (tool.title || tool.name || '').substring(0, 30),
+                            !!(tool.description || tool.summary),
+                            !!tool.howWhyWorks,
+                            Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0,
+                            Array.isArray(tool.citations) && tool.citations.length > 0
+                        ]
+                    });
+                } else {
+                    console.error('[Tool Page] Tool NOT FOUND after lookup');
+                    console.table({
+                        'Issue': ['Slug Not Found'],
+                        'Original Slug': [slug],
+                        'Normalized Slug': [normalizedSlug],
+                        'In Map': [toolMap.has(normalizedSlug) ? 'YES' : 'NO']
+                    });
+                }
+                
                 if (!tool) {
+                    console.error('[Tool Page] Tool not found for slug:', slug, 'Normalized:', normalizedSlug);
                     const contentEl = document.getElementById('toolContent');
                     contentEl.innerHTML = '';
                     const p1 = document.createElement('p');
                     p1.textContent = `Tool not found: ${slug}`;
                     contentEl.appendChild(p1);
+                    const p2 = document.createElement('p');
+                    p2.style.cssText = 'font-size: 0.9em; color: #666; margin-top: 10px;';
+                    p2.textContent = `Available tool keys (first 10): ${Array.from(toolMap.keys()).slice(0, 10).join(', ')}`;
+                    contentEl.appendChild(p2);
                     return;
                 }
                 
                 // Render tool content
                 document.getElementById('toolTitle').textContent = tool.title || tool.name;
                 document.getElementById('toolTitleBreadcrumb').textContent = tool.title || tool.name;
+                
+                // Show standardized disclaimer
+                const disclaimerEl = document.getElementById('toolDisclaimer');
+                if (disclaimerEl) {
+                    disclaimerEl.style.display = 'block';
+                    console.log('[Tool Page] Disclaimer displayed');
+                }
                 
                 const contentEl = document.getElementById('toolContent');
                 contentEl.innerHTML = '';
@@ -250,18 +452,120 @@
                     contentEl.appendChild(p);
                 }
                 
-                // Toggle button
+                // Wrap long content in collapsible section
+                const detailsWrapper = document.createElement('div');
+                detailsWrapper.className = 'tool-details';
+                detailsWrapper.setAttribute('hidden', '');
+                detailsWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+                
+                console.log('[Tool Page] Details wrapper created:', {
+                    hasHidden: detailsWrapper.hasAttribute('hidden'),
+                    className: detailsWrapper.className
+                });
+                
+                // LIFECYCLE FIX: Create toggle button but don't attach listener until DOM is ready
                 const toggleBtn = document.createElement('button');
                 toggleBtn.className = 'tool-toggle';
                 toggleBtn.setAttribute('aria-expanded', 'false');
                 toggleBtn.textContent = 'Show details';
                 toggleBtn.style.cssText = 'margin: 15px 0; padding: 10px 20px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500;';
+                toggleBtn.setAttribute('data-tool-toggle', 'true'); // Marker for identification
+                
+                // Append button to DOM FIRST
                 contentEl.appendChild(toggleBtn);
                 
-                // Wrap long content in collapsible section
-                const detailsWrapper = document.createElement('div');
-                detailsWrapper.className = 'tool-details';
-                detailsWrapper.setAttribute('hidden', '');
+                // LIFECYCLE FIX: Attach event listener AFTER DOM injection
+                // Use setTimeout to ensure DOM is fully updated
+                setTimeout(() => {
+                    const buttonInDOM = document.querySelector('[data-tool-toggle="true"]');
+                    if (!buttonInDOM) {
+                        console.error('[Tool Page] Toggle button not found in DOM after injection');
+                        return;
+                    }
+                    
+                    console.log('[Tool Page] Attaching event listener to toggle button (after DOM injection)');
+                    
+                    // Remove old listener if any and attach new one
+                    const newToggleBtn = buttonInDOM;
+                    newToggleBtn.addEventListener('click', function handleToggleClick(event) {
+                        console.log('[Tool Page] Toggle button clicked - Event:', {
+                            type: event.type,
+                            target: event.target,
+                            currentTarget: event.currentTarget,
+                            buttonText: this.textContent,
+                            buttonInDOM: document.body.contains(this)
+                        });
+                        
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        const detailsEl = document.querySelector('.tool-details');
+                        
+                        if (!detailsEl) {
+                            console.error('[Tool Page] Details element not found in DOM');
+                            return;
+                        }
+                        
+                        // GA4 Event Tracking: Show Details button clicked
+                        const SafeMapper = window.SafeMapper || {
+                            sanitizeString: (str) => str == null ? '' : String(str).trim()
+                        };
+                        const toolSlug = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.slug || tool.id || '') : String(tool.slug || tool.id || '').trim();
+                        const toolCategory = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.category || '') : String(tool.category || '').trim();
+                        
+                        // Track the event with cluster metrics
+                        if (typeof window.gtag === 'function') {
+                            try {
+                                window.gtag('event', 'show_details_clicked', {
+                                    tool_slug: toolSlug,
+                                    category: toolCategory,
+                                    action: isExpanded ? 'hide' : 'show',
+                                    page_path: window.location.pathname
+                                });
+                            } catch (e) {
+                                console.warn('[GA4] Event tracking error:', e);
+                            }
+                        }
+                        
+                        // Fallback to RYD_ANALYTICS
+                        if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
+                            try {
+                                window.RYD_ANALYTICS.pushEvent('show_details_clicked', {
+                                    tool_slug: toolSlug,
+                                    category: toolCategory,
+                                    action: isExpanded ? 'hide' : 'show'
+                                });
+                            } catch (e) {
+                                console.warn('[GA4] RYD_ANALYTICS error:', e);
+                            }
+                        }
+                        
+                        console.log('[Tool Page] Toggle state before change:', {
+                            isExpanded,
+                            detailsExists: !!detailsEl,
+                            detailsHidden: detailsEl.hasAttribute('hidden'),
+                            detailsChildren: detailsEl.children.length,
+                            detailsDisplay: window.getComputedStyle(detailsEl).display
+                        });
+                        
+                        if (isExpanded) {
+                            detailsEl.setAttribute('hidden', '');
+                            this.setAttribute('aria-expanded', 'false');
+                            this.textContent = 'Show details';
+                            console.log('[Tool Page] Details HIDDEN - State updated');
+                        } else {
+                            detailsEl.removeAttribute('hidden');
+                            this.setAttribute('aria-expanded', 'true');
+                            this.textContent = 'Hide details';
+                            const computedDisplay = window.getComputedStyle(detailsEl).display;
+                            console.log('[Tool Page] Details SHOWN - Computed display:', computedDisplay);
+                            
+                            if (computedDisplay === 'none') {
+                                console.error('[Tool Page] WARNING: Details element display is still "none" after removing hidden attribute');
+                            }
+                        }
+                    });
+                    
+                    console.log('[Tool Page] Event listener attached successfully');
+                }, 0);
                 
                 // Meta info
                 const meta = document.createElement('div');
@@ -286,7 +590,16 @@
                 }
                 
                 detailsWrapper.appendChild(meta);
+                
+                console.log('[Tool Page] Details wrapper populated:', {
+                    childrenCount: detailsWrapper.children.length,
+                    hasMeta: meta.children.length > 0,
+                    metaContent: meta.innerHTML.substring(0, 100)
+                });
+                
                 contentEl.appendChild(detailsWrapper);
+                
+                console.log('[Tool Page] Details wrapper appended to contentEl');
                 
                 // How & Why It Works
                 if (tool.howWhyWorks) {
@@ -492,6 +805,22 @@
                     workthroughsSection.parentNode.removeChild(workthroughsSection);
                     detailsWrapper.appendChild(workthroughsSection);
                 }
+                
+                // Add standardized disclaimer to bottom of details wrapper
+                const disclaimerInDetails = document.createElement('div');
+                disclaimerInDetails.className = 'tool-disclaimer-footer';
+                disclaimerInDetails.style.cssText = 'margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--color-border, #e0e0e0); font-size: 0.9em; color: var(--color-text-secondary, #666);';
+                disclaimerInDetails.innerHTML = `
+                    <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> This tool is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                    <p style="margin: 0;">If you are in crisis, call <strong>988</strong> (U.S./Canada) or your local emergency number. See <a href="/disclosures/" style="color: var(--color-accent, #667eea);">Disclosures</a> for more help options.</p>
+                `;
+                detailsWrapper.appendChild(disclaimerInDetails);
+                
+                console.log('[Tool Page] Tool content fully rendered:', {
+                    contentElChildren: contentEl.children.length,
+                    detailsWrapperChildren: detailsWrapper.children.length,
+                    disclaimerDisplayed: disclaimerEl?.style.display === 'block'
+                });
 
                 // Related tools from same gate/pain point (if available)
                 if (gateId && painPointId) {
@@ -569,13 +898,27 @@
                 }
                 
             } catch (err) {
-                console.error('[RYD] tool page error:', err);
+                console.error('[Tool Page] ERROR - Full error object:', err);
+                console.error('[Tool Page] ERROR - Error message:', err.message);
+                console.error('[Tool Page] ERROR - Error stack:', err.stack);
+                console.table({
+                    'Error Type': [err.constructor.name],
+                    'Error Message': [err.message],
+                    'Has Stack': [!!err.stack]
+                });
+                
                 const contentEl = document.getElementById('toolContent');
                 contentEl.innerHTML = '';
                 const p = document.createElement('p');
                 p.style.cssText = 'color: #d32f2f;';
                 p.textContent = 'Error loading tool. Please try again later.';
                 contentEl.appendChild(p);
+                
+                // Show disclaimer even on error
+                const disclaimerEl = document.getElementById('toolDisclaimer');
+                if (disclaimerEl) {
+                    disclaimerEl.style.display = 'block';
+                }
             }
         });
     </script>

@@ -15,6 +15,7 @@
     <script src="/js/utils/search-encoder.js"></script>
     <script src="/js/utils/shard-search.js"></script>
     <script src="/js/utils/gate-state-manager.js"></script>
+    <script src="/js/utils/temporal-weighting.js"></script>
     <script src="/js/utils/safe-data-mapper.js"></script>
     <script src="/js/utils/xss-sanitizer.js"></script>
     <script src="/js/utils/performance-debounce.js"></script>
@@ -1534,7 +1535,7 @@
     <div class="tour-tooltip" id="tourTooltip">
         <div class="tour-tooltip-header">
             <h3 id="tourTitle">Welcome</h3>
-            <button class="tour-close" onclick="skipTour()" aria-label="Skip tour">Ã—</button>
+            <button class="tour-close" onclick="skipTour()" aria-label="Skip tour">×</button>
         </div>
         <div class="tour-tooltip-content" id="tourContent"></div>
         <div class="tour-progress">
@@ -2594,7 +2595,7 @@
                         <div class="research-meta">
                             ${research.authors} (${research.year})
                         </div>
-                        <a href="${research.url}" target="_blank" rel="noopener noreferrer">View Research â†’</a>
+                        <a href="${research.url}" target="_blank" rel="noopener noreferrer">View Research →</a>
                     </div>
                 `).join('');
                 researchSection.style.display = 'block';

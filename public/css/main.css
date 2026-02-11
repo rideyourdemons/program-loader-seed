@@ -299,6 +299,13 @@ footer {
     font-size: 0.9em;
 }
 
+/* Tour Guide Box Styling */
+.tour-guide-box {
+    max-height: 90vh; /* Keeps it from being taller than the screen */
+    overflow-y: auto; /* Adds a scrollbar if the content is too long */
+    bottom: 20px !important; /* Forces it up from the floor */
+}
+
 @media (max-width: 768px) {
     .header-nav {
         gap: 15px;
