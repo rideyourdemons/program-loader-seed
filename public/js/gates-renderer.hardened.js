@@ -395,10 +395,54 @@
         meta.textContent = `${painPoints.length} pain point${painPoints.length !== 1 ? 's' : ''} in this gate.`;
         dropdownWrapper.appendChild(meta);
 
+        // 1. Fix Gate Selection Reset: Use event.preventDefault() instead of navigation
         const gateLink = document.createElement('a');
-        gateLink.href = `/gates/${encodeURIComponent(String(gate.id))}`;
+        gateLink.href = `#gate-${encodeURIComponent(String(gate.id))}`;
         gateLink.textContent = 'View all pain points →';
-        gateLink.style.cssText = 'display: inline-block; margin-top: 0.5rem; color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em; font-weight: 500;';
+        gateLink.style.cssText = 'display: inline-block; margin-top: 0.5rem; color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em; font-weight: 500; cursor: pointer;';
+        gateLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // 4. GA4 Tonight Integration: Track Gate Selection
+          if (typeof window.gtag === 'function') {
+            try {
+              window.gtag('event', 'gate_selected', {
+                gate_id: gate.id,
+                gate_title: gate.title || gate.id,
+                page_path: window.location.pathname
+              });
+              console.log('[GA4] Gate selected event tracked:', gate.id);
+            } catch (err) {
+              console.warn('[GA4] Failed to track gate selection:', err);
+            }
+          }
+          
+          // Fallback to RYD_ANALYTICS if available
+          if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
+            try {
+              window.RYD_ANALYTICS.pushEvent('gate_selected', {
+                gate_id: gate.id,
+                gate_title: gate.title || gate.id,
+                page_path: window.location.pathname
+              });
+            } catch (err) {
+              console.warn('[RYD Analytics] Failed to track gate selection:', err);
+            }
+          }
+          
+          // Set active gate (updates internal state without page reload)
+          if (window.GateStateManager && typeof window.GateStateManager.setActiveGate === 'function') {
+            window.GateStateManager.setActiveGate(gate.id);
+          } else if (window.handleGateClick) {
+            // Fallback to global handler if available
+            window.handleGateClick(e, gate.id);
+          } else {
+            // Last resort: navigate (but this shouldn't happen)
+            console.warn('[Gates] GateStateManager not available, falling back to navigation');
+            window.location.href = `/gates/${encodeURIComponent(String(gate.id))}`;
+          }
+        });
         dropdownWrapper.appendChild(gateLink);
         gateCard.appendChild(dropdownWrapper);
 
