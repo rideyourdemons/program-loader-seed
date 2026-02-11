@@ -176,11 +176,35 @@
     }
 
     if (validatedTools.length === 0) {
-      const empty = document.createElement('div');
-      empty.className = 'card tool-card';
-      empty.style.cssText = 'padding: 2rem; text-align: center; color: #666;';
-      empty.textContent = 'No tools available yet.';
-      grid.appendChild(empty);
+      // FAIL-LOUD: Show loading/error state, not empty state
+      const stateCard = document.createElement('div');
+      stateCard.className = 'card tool-card';
+      stateCard.style.cssText = 'padding: 2rem; text-align: center;';
+      
+      // Check if registry is loading or failed
+      if (window.RYD_RegistryLoader) {
+        const status = window.RYD_RegistryLoader.getStatus();
+        if (status.error) {
+          stateCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 2rem; text-align: center;';
+          stateCard.innerHTML = `
+            <h3 style="color: #d32f2f; margin-bottom: 12px;">Tool Registry Failed to Load</h3>
+            <p style="color: #666; margin-bottom: 16px;">${status.error.message || 'Unknown error'}</p>
+            <button onclick="window.location.reload()" style="padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+          `;
+        } else if (!status.loaded) {
+          stateCard.innerHTML = '<p style="color: #666;">Loading tools...</p>';
+        } else {
+          stateCard.style.cssText = 'border-left: 4px solid #ff9800; background: #fff3e0; padding: 2rem; text-align: center;';
+          stateCard.innerHTML = `
+            <h3 style="color: #ff9800; margin-bottom: 12px;">No Valid Tools Available</h3>
+            <p style="color: #666;">Registry loaded (${status.toolCount} tools) but all tools failed validation. Check console for details.</p>
+          `;
+        }
+      } else {
+        stateCard.innerHTML = '<p style="color: #666;">Initializing tool registry...</p>';
+      }
+      
+      grid.appendChild(stateCard);
       return;
     }
 
@@ -217,12 +241,21 @@
 
         const desc = document.createElement('p');
         desc.className = 'tool-description';
-        const cleaned = sanitizeDescription(tool.description || tool.summary || '', toolTitle);
-        // Guardrail: Remove placeholder text
-        const descText = cleaned && !cleaned.toLowerCase().includes('coming soon') && !cleaned.toLowerCase().includes('placeholder')
-          ? cleaned
-          : 'A practical tool for personal growth and well-being.';
-        desc.textContent = descText;
+        // FAIL-LOUD: No fallbacks
+        let cleaned = '';
+        try {
+          if (window.RYD_ToolValidator) {
+            window.RYD_ToolValidator.require(tool, 'tools grid render');
+            cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
+          } else {
+            throw new Error(`[RYD Tools] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+          }
+        } catch (error) {
+          console.error('[RYD Tools] Tool validation failed:', error);
+          // Don't render invalid tool - skip it
+          return;
+        }
+        desc.textContent = sanitizeDescription(cleaned, toolTitle);
         desc.style.cssText = 'margin: 0 0 1rem 0; color: #666; font-size: 0.9em; line-height: 1.5;';
         card.appendChild(desc);
 
@@ -317,13 +350,50 @@
   }
 
   /**
-   * Handle ready event
+   * Handle ready event - Use graph API or registry loader
    */
-  function handleReady() {
+  async function handleReady() {
     try {
+      // Try graph API first (canonical)
+      if (window.RYD_Graph && typeof window.RYD_Graph.init === 'function') {
+        try {
+          await window.RYD_Graph.init();
+          const tools = window.RYD_Graph.graphData?.tools || [];
+          if (tools.length > 0) {
+            renderTools(tools);
+            return;
+          }
+        } catch (graphError) {
+          console.warn('[RYD Tools] Graph API failed, trying registry loader:', graphError.message);
+        }
+      }
+
+      // Try registry loader (fallback)
+      if (window.RYD_RegistryLoader) {
+        try {
+          const registry = await window.RYD_RegistryLoader.load();
+          if (registry.tools && registry.tools.length > 0) {
+            renderTools(registry.tools);
+            return;
+          }
+        } catch (registryError) {
+          console.error('[RYD Tools] Registry load failed:', {
+            error: registryError.message,
+            status: window.RYD_RegistryLoader.getStatus()
+          });
+          renderError(registryError);
+          return;
+        }
+      }
+      
+      // Fallback to RYD.getTools (legacy)
       const tools = (window.RYD && typeof window.RYD.getTools === 'function')
         ? window.RYD.getTools()
         : [];
+      
+      if (tools.length === 0) {
+        throw new Error('No tools available. Ensure graph API or registry loader is initialized.');
+      }
       
       renderTools(tools);
     } catch (error) {
@@ -360,7 +430,11 @@
 
     // Try immediate render if data already available
     if (document.readyState !== 'loading') {
-      setTimeout(handleReady, 100);
+      // Use async handleReady
+      handleReady().catch(err => {
+        console.error('[RYD Tools] Initial load failed:', err);
+        renderError(err);
+      });
     }
   }
 

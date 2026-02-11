@@ -160,11 +160,12 @@
   }
 
   async function fetchToolsData() {
+    // Prefer seed tools.json over tools-canonical.json
     try {
-      return await fetchJson(TOOLS_CANONICAL_URL, DATA_FILES.toolsCanonical);
-    } catch (error) {
-      console.warn('[MatrixExpander] Falling back to tools.json:', error.message || error);
       return await fetchJson(TOOLS_URL, DATA_FILES.tools);
+    } catch (error) {
+      console.warn('[MatrixExpander] Falling back to tools-canonical.json:', error.message || error);
+      return await fetchJson(TOOLS_CANONICAL_URL, DATA_FILES.toolsCanonical);
     }
   }
 

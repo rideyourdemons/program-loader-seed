@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matrix Lens – Substrate Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --matrix-green: #00ff41;
+      --neon-red: #ff1744;
+      --bg-black: #000000;
+      --mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    body {
+      background: var(--bg-black);
+      color: var(--matrix-green);
+      font-family: var(--mono);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      line-height: 1.5;
+    }
+
+    .lens {
+      width: min(900px, 100%);
+      background: var(--bg-black);
+      border: 1px solid var(--matrix-green);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .lens.anchor-flash {
+      border-color: var(--neon-red);
+      box-shadow: 0 0 30px rgba(255, 23, 68, 0.8), 0 0 60px rgba(255, 23, 68, 0.4);
+      animation: anchorFlash 0.6s ease-out;
+    }
+
+    @keyframes anchorFlash {
+      0% { box-shadow: 0 0 30px rgba(255, 23, 68, 0.8), 0 0 60px rgba(255, 23, 68, 0.4); }
+      50% { box-shadow: 0 0 50px rgba(255, 23, 68, 1), 0 0 100px rgba(255, 23, 68, 0.6); }
+      100% { box-shadow: 0 0 30px rgba(255, 23, 68, 0.8), 0 0 60px rgba(255, 23, 68, 0.4); }
+    }
+
+    .lens-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--matrix-green);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lens-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--matrix-green);
+    }
+
+    .status-indicator {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--matrix-green);
+      box-shadow: 0 0 8px var(--matrix-green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .status-dot.offline {
+      background: var(--neon-red);
+      box-shadow: 0 0 8px var(--neon-red);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .status-indicator.connected {
+      color: var(--matrix-green);
+    }
+
+    .status-indicator.offline {
+      color: var(--neon-red);
+    }
+
+    .lens-body {
+      padding: 1.5rem;
+    }
+
+    .control-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .control-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--matrix-green);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    input[type="number"] {
+      flex: 1;
+      background: var(--bg-black);
+      border: 1px solid var(--matrix-green);
+      color: var(--matrix-green);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      padding: 0.6rem 0.75rem;
+      outline: none;
+      transition: box-shadow 0.2s ease;
+    }
+
+    input[type="number"]:focus {
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    button {
+      background: var(--matrix-green);
+      color: var(--bg-black);
+      border: 1px solid var(--matrix-green);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      background: #00cc33;
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+    }
+
+    button:active {
+      background: #00aa2a;
+    }
+
+    .hud {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hud-item {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hud-label {
+      color: rgba(0, 255, 65, 0.7);
+      text-transform: uppercase;
+    }
+
+    .hud-value {
+      color: var(--matrix-green);
+      font-weight: 600;
+    }
+
+    .output-area {
+      background: var(--bg-black);
+      border: 1px solid var(--matrix-green);
+      padding: 1rem;
+      min-height: 200px;
+      max-height: 400px;
+      overflow: auto;
+    }
+
+    pre {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--matrix-green);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .output-area:empty::before {
+      content: "Waiting for recall...";
+      color: rgba(0, 255, 65, 0.5);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .input-row {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lens" id="lens">
+    <header class="lens-header">
+      <div class="lens-title">Matrix Lens · Substrate Interface</div>
+      <div class="status-indicator" id="statusIndicator">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">ENGINE_OFFLINE</span>
+      </div>
+    </header>
+    <div class="lens-body">
+      <div class="control-group">
+        <label class="control-label" for="indexInput">Node Index</label>
+        <div class="input-row">
+          <input
+            type="number"
+            id="indexInput"
+            placeholder="Enter index (0-999999)"
+            min="0"
+            max="999999"
+            step="1"
+          />
+          <button id="executeBtn" type="button">Execute Recall</button>
+        </div>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item">
+          <span class="hud-label">Latency:</span>
+          <span class="hud-value" id="latencyValue">— ms</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Status:</span>
+          <span class="hud-value" id="recallStatus">Idle</span>
+        </div>
+      </div>
+
+      <div class="output-area" id="outputArea">
+        <pre id="output"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ENGINE_BASE = "http://localhost:3001/node";
+    const lens = document.getElementById("lens");
+    const indexInput = document.getElementById("indexInput");
+    const executeBtn = document.getElementById("executeBtn");
+    const outputEl = document.getElementById("output");
+    const latencyValue = document.getElementById("latencyValue");
+    const recallStatus = document.getElementById("recallStatus");
+    const statusIndicator = document.getElementById("statusIndicator");
+    const statusDot = document.getElementById("statusDot");
+    const statusText = document.getElementById("statusText");
+
+    function updateStatus(connected) {
+      if (connected) {
+        statusIndicator.classList.remove("offline");
+        statusIndicator.classList.add("connected");
+        statusDot.classList.remove("offline");
+        statusText.textContent = "SUBSTRATE_CONNECTED";
+      } else {
+        statusIndicator.classList.remove("connected");
+        statusIndicator.classList.add("offline");
+        statusDot.classList.add("offline");
+        statusText.textContent = "ENGINE_OFFLINE";
+      }
+    }
+
+    async function executeRecall() {
+      const raw = indexInput.value.trim();
+      const index = Number.parseInt(raw, 10);
+
+      if (!Number.isInteger(index) || index < 0 || index > 999999) {
+        outputEl.textContent = "Error: Enter a valid index between 0 and 999999.";
+        recallStatus.textContent = "Invalid Input";
+        return;
+      }
+
+      recallStatus.textContent = "Recalling...";
+      lens.classList.remove("anchor-flash");
+
+      const startTime = performance.now();
+
+      try {
+        const url = `${ENGINE_BASE}?index=${index}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const endTime = performance.now();
+        const rttMs = endTime - startTime;
+
+        const data = await response.json();
+
+        // Update latency display
+        latencyValue.textContent = `${rttMs.toFixed(2)} ms`;
+
+        // Visual feedback: Flash Neon Red for ANCHOR_SEATED
+        if (data.node && data.node.status === "⚓ ANCHOR_SEATED") {
+          lens.classList.add("anchor-flash");
+          recallStatus.textContent = "⚓ ANCHOR_SEATED";
+          setTimeout(() => {
+            lens.classList.remove("anchor-flash");
+          }, 600);
+        } else {
+          recallStatus.textContent = "Active";
+        }
+
+        // Display JSON data
+        outputEl.textContent = JSON.stringify(data, null, 2);
+        updateStatus(true);
+
+      } catch (error) {
+        const endTime = performance.now();
+        const rttMs = endTime - startTime;
+        latencyValue.textContent = `${rttMs.toFixed(2)} ms`;
+
+        const isOffline = error.name === "TypeError" || 
+                         error.message.includes("Failed to fetch") || 
+                         error.message.includes("network");
+
+        if (isOffline) {
+          outputEl.textContent = "SUBSTRATE_OFFLINE\n\nEngine not detected at " + ENGINE_BASE + "\n\nEnsure engine.mjs is running: node engine.mjs";
+          recallStatus.textContent = "Offline";
+          updateStatus(false);
+        } else {
+          outputEl.textContent = `Error: ${error.message || String(error)}`;
+          recallStatus.textContent = "Error";
+        }
+
+        lens.classList.remove("anchor-flash");
+        console.error("Recall error:", error);
+      }
+    }
+
+    executeBtn.addEventListener("click", executeRecall);
+    indexInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        executeRecall();
+      }
+    });
+
+    // Initial engine status check
+    (async function checkEngineStatus() {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 500);
+        const response = await fetch(`${ENGINE_BASE}?index=0`, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          updateStatus(true);
+        } else {
+          updateStatus(false);
+        }
+      } catch {
+        updateStatus(false);
+      }
+    })();
+  </script>
+</body>
+</html>

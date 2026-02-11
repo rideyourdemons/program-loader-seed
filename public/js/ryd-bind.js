@@ -57,9 +57,20 @@
     }
     
     if (descEl) {
-      const raw = tool.description || tool.summary || '';
-      const cleaned = sanitizeDescription(raw, tool.title || tool.name);
-      descEl.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
+      // FAIL-LOUD: No fallbacks
+      let cleaned = '';
+      try {
+        if (window.RYD_ToolValidator) {
+          window.RYD_ToolValidator.require(tool, 'tool bind');
+          cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
+        } else {
+          throw new Error(`[RYD Bind] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+        }
+      } catch (error) {
+        console.error('[RYD Bind] Tool validation failed:', error);
+        throw error; // Fail loudly
+      }
+      descEl.textContent = sanitizeDescription(cleaned, tool.title || tool.name);
     }
     
     if (durationEl) {

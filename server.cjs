@@ -166,6 +166,8 @@ app.get('/api/nodes', async (req, res) => {
       }
     }
 
+    // Force UTF-8 encoding to prevent corrupted text (ÃƒÂ... issue)
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.json({
       message: 'Substrate Online. Million-node matrix seated.',
       status,

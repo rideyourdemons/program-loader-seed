@@ -120,9 +120,20 @@
     }
 
     if (descEl) {
-      const raw = validatedTool.description || validatedTool.summary || '';
-      const cleaned = sanitizeDescription(raw, validatedTool.title || validatedTool.name);
-      descEl.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
+      // FAIL-LOUD: No fallbacks
+      let cleaned = '';
+      try {
+        if (window.RYD_ToolValidator) {
+          window.RYD_ToolValidator.require(validatedTool, 'tool bind render');
+          cleaned = window.RYD_ToolValidator.getContent(validatedTool, 'description');
+        } else {
+          throw new Error(`[RYD Bind] Tool "${validatedTool.id || validatedTool.title}" missing description. RYD_ToolValidator required.`);
+        }
+      } catch (error) {
+        console.error('[RYD Bind] Tool validation failed:', error);
+        throw error; // Fail loudly
+      }
+      descEl.textContent = sanitizeDescription(cleaned, validatedTool.title || validatedTool.name);
     }
 
     if (durationEl) {

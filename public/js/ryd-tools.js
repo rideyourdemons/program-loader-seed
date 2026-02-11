@@ -37,8 +37,20 @@
 
       const desc = document.createElement('p');
       desc.className = 'tool-description';
-      const cleaned = sanitizeDescription(tool.description || tool.summary || '', tool.title || tool.name);
-      desc.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
+      // FAIL-LOUD: No fallbacks
+      let cleaned = '';
+      try {
+        if (window.RYD_ToolValidator) {
+          window.RYD_ToolValidator.require(tool, 'tools render');
+          cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
+        } else {
+          throw new Error(`[RYD Tools] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+        }
+      } catch (error) {
+        console.error('[RYD Tools] Tool validation failed:', error);
+        return; // Skip invalid tool
+      }
+      desc.textContent = cleaned;
       card.appendChild(desc);
 
       const meta = document.createElement('div');

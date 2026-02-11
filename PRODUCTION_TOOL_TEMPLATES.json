@@ -1,0 +1,272 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-11T04:37:19.776Z",
+  "note": "These are STRUCTURAL TEMPLATES showing required fields. Actual content must be written by humans with lived experience.",
+  "templates": [
+    {
+      "id": "100year-vision-how-do-i-find-my-purpose",
+      "slug": "100year-vision-how-do-i-find-my-purpose",
+      "title": "100‑Year Vision",
+      "disclaimer": "The information provided is for educational purposes and is not a substitute for professional medical advice.",
+      "theLock": "[REQUIRED: 150-200 words describing the specific behavioral or emotional trap this tool addresses. Must be concrete, not abstract. Example: \"The trap of believing that if you just think harder, you'll solve the problem, when actually the problem is that thinking has become a form of avoidance.\"]",
+      "theTrigger": "[REQUIRED: 100-150 words describing a specific, real scenario where someone would use this tool. Must be concrete and relatable. Example: \"You're sitting at your desk at 3pm, and you realize you've been scrolling social media for 45 minutes instead of working on the project that's due tomorrow. You feel a wave of shame, then immediately start thinking about how you're going to explain this to your boss.\"]",
+      "theCost": "[REQUIRED: 100-150 words describing the real, lived consequences of staying in the lock. Must be specific and concrete. Example: \"When this pattern continues, you end up working until 2am, sleep for 4 hours, show up to work exhausted, make mistakes, get feedback that you're not meeting expectations, feel more shame, and the cycle intensifies. Your relationships suffer because you're too tired to be present. Your health suffers because you're not sleeping. Your career suffers because you're not performing.\"]",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "[REQUIRED: Specific action title]",
+          "instruction": "[REQUIRED: Concrete, executable instruction. Not 'think about' but 'write down' or 'stand up and' or 'set a timer for' - something you can actually do.]",
+          "tips": [
+            "[Optional: Specific tip that helps with this step]"
+          ]
+        }
+      ],
+      "how_it_works": "[REQUIRED: 200-300 words explaining the mechanism. Must be grounded in psychology, neuroscience, or behavioral science. No therapy jargon. Must explain WHY it works, not just that it works. Example: \"This works because when you're stuck in a thinking loop, your prefrontal cortex is overactive and your body is in a state of low-level threat response. The physical action of standing up and moving interrupts the neural pattern, shifts your body state, and gives your prefrontal cortex a break. When you return to the task, your brain has reset and you can access different neural pathways.\"]",
+      "where_it_came_from": {
+        "origin": "[REQUIRED: Real origin. Examples: 'Developed from Acceptance and Commitment Therapy (ACT) principles, specifically the work of Steven Hayes on cognitive defusion.' OR 'Adapted from lived experience of managing anxiety attacks, combined with research on polyvagal theory by Stephen Porges.' OR 'Based on behavioral activation research, specifically the work of Martell, Dimidjian, and Herman-Dunn (2010).']",
+        "basis": "[REQUIRED: What it's based on - research, lived experience, or combination]",
+        "source_type": "[REQUIRED: 'research-based', 'lived-experience', or 'research-and-experience']",
+        "verified": true,
+        "citations": [
+          "[If research-based: Full citation in APA format]"
+        ]
+      },
+      "description": "[REQUIRED: 100-150 word description that doesn't use generic language. Must be specific to this tool.]",
+      "walkthroughs": [
+        {
+          "title": "Quick Workthrough (5 min)",
+          "steps": [
+            "[REQUIRED: 5 concrete, executable steps that can be completed in 5 minutes]"
+          ]
+        },
+        {
+          "title": "Standard Workthrough (15 min)",
+          "steps": [
+            "[REQUIRED: 8-10 concrete, executable steps that can be completed in 15 minutes]"
+          ]
+        },
+        {
+          "title": "Deep Workthrough (30 min)",
+          "steps": [
+            "[REQUIRED: 12-15 concrete, executable steps that can be completed in 30 minutes]"
+          ]
+        }
+      ],
+      "duration": "5-30 minutes",
+      "difficulty": "beginner",
+      "category": "emotional-regulation"
+    },
+    {
+      "id": "30-second-truth-drop-how-do-i-find-my-voice-after-being-silenced-by-shame",
+      "slug": "30-second-truth-drop-how-do-i-find-my-voice-after-being-silenced-by-shame",
+      "title": "30-Second Truth Drop",
+      "disclaimer": "The information provided is for educational purposes and is not a substitute for professional medical advice.",
+      "theLock": "[REQUIRED: 150-200 words describing the specific behavioral or emotional trap this tool addresses. Must be concrete, not abstract. Example: \"The trap of believing that if you just think harder, you'll solve the problem, when actually the problem is that thinking has become a form of avoidance.\"]",
+      "theTrigger": "[REQUIRED: 100-150 words describing a specific, real scenario where someone would use this tool. Must be concrete and relatable. Example: \"You're sitting at your desk at 3pm, and you realize you've been scrolling social media for 45 minutes instead of working on the project that's due tomorrow. You feel a wave of shame, then immediately start thinking about how you're going to explain this to your boss.\"]",
+      "theCost": "[REQUIRED: 100-150 words describing the real, lived consequences of staying in the lock. Must be specific and concrete. Example: \"When this pattern continues, you end up working until 2am, sleep for 4 hours, show up to work exhausted, make mistakes, get feedback that you're not meeting expectations, feel more shame, and the cycle intensifies. Your relationships suffer because you're too tired to be present. Your health suffers because you're not sleeping. Your career suffers because you're not performing.\"]",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "[REQUIRED: Specific action title]",
+          "instruction": "[REQUIRED: Concrete, executable instruction. Not 'think about' but 'write down' or 'stand up and' or 'set a timer for' - something you can actually do.]",
+          "tips": [
+            "[Optional: Specific tip that helps with this step]"
+          ]
+        }
+      ],
+      "how_it_works": "[REQUIRED: 200-300 words explaining the mechanism. Must be grounded in psychology, neuroscience, or behavioral science. No therapy jargon. Must explain WHY it works, not just that it works. Example: \"This works because when you're stuck in a thinking loop, your prefrontal cortex is overactive and your body is in a state of low-level threat response. The physical action of standing up and moving interrupts the neural pattern, shifts your body state, and gives your prefrontal cortex a break. When you return to the task, your brain has reset and you can access different neural pathways.\"]",
+      "where_it_came_from": {
+        "origin": "[REQUIRED: Real origin. Examples: 'Developed from Acceptance and Commitment Therapy (ACT) principles, specifically the work of Steven Hayes on cognitive defusion.' OR 'Adapted from lived experience of managing anxiety attacks, combined with research on polyvagal theory by Stephen Porges.' OR 'Based on behavioral activation research, specifically the work of Martell, Dimidjian, and Herman-Dunn (2010).']",
+        "basis": "[REQUIRED: What it's based on - research, lived experience, or combination]",
+        "source_type": "[REQUIRED: 'research-based', 'lived-experience', or 'research-and-experience']",
+        "verified": true,
+        "citations": [
+          "[If research-based: Full citation in APA format]"
+        ]
+      },
+      "description": "[REQUIRED: 100-150 word description that doesn't use generic language. Must be specific to this tool.]",
+      "walkthroughs": [
+        {
+          "title": "Quick Workthrough (5 min)",
+          "steps": [
+            "[REQUIRED: 5 concrete, executable steps that can be completed in 5 minutes]"
+          ]
+        },
+        {
+          "title": "Standard Workthrough (15 min)",
+          "steps": [
+            "[REQUIRED: 8-10 concrete, executable steps that can be completed in 15 minutes]"
+          ]
+        },
+        {
+          "title": "Deep Workthrough (30 min)",
+          "steps": [
+            "[REQUIRED: 12-15 concrete, executable steps that can be completed in 30 minutes]"
+          ]
+        }
+      ],
+      "duration": "5-30 minutes",
+      "difficulty": "beginner",
+      "category": "emotional-regulation"
+    },
+    {
+      "id": "breathing-exercise",
+      "slug": "breathing-exercise",
+      "title": "Breathing Exercise",
+      "disclaimer": "The information provided is for educational purposes and is not a substitute for professional medical advice.",
+      "theLock": "[REQUIRED: 150-200 words describing the specific behavioral or emotional trap this tool addresses. Must be concrete, not abstract. Example: \"The trap of believing that if you just think harder, you'll solve the problem, when actually the problem is that thinking has become a form of avoidance.\"]",
+      "theTrigger": "[REQUIRED: 100-150 words describing a specific, real scenario where someone would use this tool. Must be concrete and relatable. Example: \"You're sitting at your desk at 3pm, and you realize you've been scrolling social media for 45 minutes instead of working on the project that's due tomorrow. You feel a wave of shame, then immediately start thinking about how you're going to explain this to your boss.\"]",
+      "theCost": "[REQUIRED: 100-150 words describing the real, lived consequences of staying in the lock. Must be specific and concrete. Example: \"When this pattern continues, you end up working until 2am, sleep for 4 hours, show up to work exhausted, make mistakes, get feedback that you're not meeting expectations, feel more shame, and the cycle intensifies. Your relationships suffer because you're too tired to be present. Your health suffers because you're not sleeping. Your career suffers because you're not performing.\"]",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "[REQUIRED: Specific action title]",
+          "instruction": "[REQUIRED: Concrete, executable instruction. Not 'think about' but 'write down' or 'stand up and' or 'set a timer for' - something you can actually do.]",
+          "tips": [
+            "[Optional: Specific tip that helps with this step]"
+          ]
+        }
+      ],
+      "how_it_works": "[REQUIRED: 200-300 words explaining the mechanism. Must be grounded in psychology, neuroscience, or behavioral science. No therapy jargon. Must explain WHY it works, not just that it works. Example: \"This works because when you're stuck in a thinking loop, your prefrontal cortex is overactive and your body is in a state of low-level threat response. The physical action of standing up and moving interrupts the neural pattern, shifts your body state, and gives your prefrontal cortex a break. When you return to the task, your brain has reset and you can access different neural pathways.\"]",
+      "where_it_came_from": {
+        "origin": "[REQUIRED: Real origin. Examples: 'Developed from Acceptance and Commitment Therapy (ACT) principles, specifically the work of Steven Hayes on cognitive defusion.' OR 'Adapted from lived experience of managing anxiety attacks, combined with research on polyvagal theory by Stephen Porges.' OR 'Based on behavioral activation research, specifically the work of Martell, Dimidjian, and Herman-Dunn (2010).']",
+        "basis": "[REQUIRED: What it's based on - research, lived experience, or combination]",
+        "source_type": "[REQUIRED: 'research-based', 'lived-experience', or 'research-and-experience']",
+        "verified": true,
+        "citations": [
+          "[If research-based: Full citation in APA format]"
+        ]
+      },
+      "description": "[REQUIRED: 100-150 word description that doesn't use generic language. Must be specific to this tool.]",
+      "walkthroughs": [
+        {
+          "title": "Quick Workthrough (5 min)",
+          "steps": [
+            "[REQUIRED: 5 concrete, executable steps that can be completed in 5 minutes]"
+          ]
+        },
+        {
+          "title": "Standard Workthrough (15 min)",
+          "steps": [
+            "[REQUIRED: 8-10 concrete, executable steps that can be completed in 15 minutes]"
+          ]
+        },
+        {
+          "title": "Deep Workthrough (30 min)",
+          "steps": [
+            "[REQUIRED: 12-15 concrete, executable steps that can be completed in 30 minutes]"
+          ]
+        }
+      ],
+      "duration": "5-30 minutes",
+      "difficulty": "beginner",
+      "category": "anxiety"
+    },
+    {
+      "id": "action-burn-how-do-i-overcome-anxiety",
+      "slug": "action-burn-how-do-i-overcome-anxiety",
+      "title": "Action Burn",
+      "disclaimer": "The information provided is for educational purposes and is not a substitute for professional medical advice.",
+      "theLock": "[REQUIRED: 150-200 words describing the specific behavioral or emotional trap this tool addresses. Must be concrete, not abstract. Example: \"The trap of believing that if you just think harder, you'll solve the problem, when actually the problem is that thinking has become a form of avoidance.\"]",
+      "theTrigger": "[REQUIRED: 100-150 words describing a specific, real scenario where someone would use this tool. Must be concrete and relatable. Example: \"You're sitting at your desk at 3pm, and you realize you've been scrolling social media for 45 minutes instead of working on the project that's due tomorrow. You feel a wave of shame, then immediately start thinking about how you're going to explain this to your boss.\"]",
+      "theCost": "[REQUIRED: 100-150 words describing the real, lived consequences of staying in the lock. Must be specific and concrete. Example: \"When this pattern continues, you end up working until 2am, sleep for 4 hours, show up to work exhausted, make mistakes, get feedback that you're not meeting expectations, feel more shame, and the cycle intensifies. Your relationships suffer because you're too tired to be present. Your health suffers because you're not sleeping. Your career suffers because you're not performing.\"]",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "[REQUIRED: Specific action title]",
+          "instruction": "[REQUIRED: Concrete, executable instruction. Not 'think about' but 'write down' or 'stand up and' or 'set a timer for' - something you can actually do.]",
+          "tips": [
+            "[Optional: Specific tip that helps with this step]"
+          ]
+        }
+      ],
+      "how_it_works": "[REQUIRED: 200-300 words explaining the mechanism. Must be grounded in psychology, neuroscience, or behavioral science. No therapy jargon. Must explain WHY it works, not just that it works. Example: \"This works because when you're stuck in a thinking loop, your prefrontal cortex is overactive and your body is in a state of low-level threat response. The physical action of standing up and moving interrupts the neural pattern, shifts your body state, and gives your prefrontal cortex a break. When you return to the task, your brain has reset and you can access different neural pathways.\"]",
+      "where_it_came_from": {
+        "origin": "[REQUIRED: Real origin. Examples: 'Developed from Acceptance and Commitment Therapy (ACT) principles, specifically the work of Steven Hayes on cognitive defusion.' OR 'Adapted from lived experience of managing anxiety attacks, combined with research on polyvagal theory by Stephen Porges.' OR 'Based on behavioral activation research, specifically the work of Martell, Dimidjian, and Herman-Dunn (2010).']",
+        "basis": "[REQUIRED: What it's based on - research, lived experience, or combination]",
+        "source_type": "[REQUIRED: 'research-based', 'lived-experience', or 'research-and-experience']",
+        "verified": true,
+        "citations": [
+          "[If research-based: Full citation in APA format]"
+        ]
+      },
+      "description": "[REQUIRED: 100-150 word description that doesn't use generic language. Must be specific to this tool.]",
+      "walkthroughs": [
+        {
+          "title": "Quick Workthrough (5 min)",
+          "steps": [
+            "[REQUIRED: 5 concrete, executable steps that can be completed in 5 minutes]"
+          ]
+        },
+        {
+          "title": "Standard Workthrough (15 min)",
+          "steps": [
+            "[REQUIRED: 8-10 concrete, executable steps that can be completed in 15 minutes]"
+          ]
+        },
+        {
+          "title": "Deep Workthrough (30 min)",
+          "steps": [
+            "[REQUIRED: 12-15 concrete, executable steps that can be completed in 30 minutes]"
+          ]
+        }
+      ],
+      "duration": "5-30 minutes",
+      "difficulty": "beginner",
+      "category": "emotional-regulation"
+    },
+    {
+      "id": "act-values-map-how-do-i-cope-with-postpartum-depression",
+      "slug": "act-values-map-how-do-i-cope-with-postpartum-depression",
+      "title": "ACT Values Map",
+      "disclaimer": "The information provided is for educational purposes and is not a substitute for professional medical advice.",
+      "theLock": "[REQUIRED: 150-200 words describing the specific behavioral or emotional trap this tool addresses. Must be concrete, not abstract. Example: \"The trap of believing that if you just think harder, you'll solve the problem, when actually the problem is that thinking has become a form of avoidance.\"]",
+      "theTrigger": "[REQUIRED: 100-150 words describing a specific, real scenario where someone would use this tool. Must be concrete and relatable. Example: \"You're sitting at your desk at 3pm, and you realize you've been scrolling social media for 45 minutes instead of working on the project that's due tomorrow. You feel a wave of shame, then immediately start thinking about how you're going to explain this to your boss.\"]",
+      "theCost": "[REQUIRED: 100-150 words describing the real, lived consequences of staying in the lock. Must be specific and concrete. Example: \"When this pattern continues, you end up working until 2am, sleep for 4 hours, show up to work exhausted, make mistakes, get feedback that you're not meeting expectations, feel more shame, and the cycle intensifies. Your relationships suffer because you're too tired to be present. Your health suffers because you're not sleeping. Your career suffers because you're not performing.\"]",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "[REQUIRED: Specific action title]",
+          "instruction": "[REQUIRED: Concrete, executable instruction. Not 'think about' but 'write down' or 'stand up and' or 'set a timer for' - something you can actually do.]",
+          "tips": [
+            "[Optional: Specific tip that helps with this step]"
+          ]
+        }
+      ],
+      "how_it_works": "[REQUIRED: 200-300 words explaining the mechanism. Must be grounded in psychology, neuroscience, or behavioral science. No therapy jargon. Must explain WHY it works, not just that it works. Example: \"This works because when you're stuck in a thinking loop, your prefrontal cortex is overactive and your body is in a state of low-level threat response. The physical action of standing up and moving interrupts the neural pattern, shifts your body state, and gives your prefrontal cortex a break. When you return to the task, your brain has reset and you can access different neural pathways.\"]",
+      "where_it_came_from": {
+        "origin": "[REQUIRED: Real origin. Examples: 'Developed from Acceptance and Commitment Therapy (ACT) principles, specifically the work of Steven Hayes on cognitive defusion.' OR 'Adapted from lived experience of managing anxiety attacks, combined with research on polyvagal theory by Stephen Porges.' OR 'Based on behavioral activation research, specifically the work of Martell, Dimidjian, and Herman-Dunn (2010).']",
+        "basis": "[REQUIRED: What it's based on - research, lived experience, or combination]",
+        "source_type": "[REQUIRED: 'research-based', 'lived-experience', or 'research-and-experience']",
+        "verified": true,
+        "citations": [
+          "[If research-based: Full citation in APA format]"
+        ]
+      },
+      "description": "[REQUIRED: 100-150 word description that doesn't use generic language. Must be specific to this tool.]",
+      "walkthroughs": [
+        {
+          "title": "Quick Workthrough (5 min)",
+          "steps": [
+            "[REQUIRED: 5 concrete, executable steps that can be completed in 5 minutes]"
+          ]
+        },
+        {
+          "title": "Standard Workthrough (15 min)",
+          "steps": [
+            "[REQUIRED: 8-10 concrete, executable steps that can be completed in 15 minutes]"
+          ]
+        },
+        {
+          "title": "Deep Workthrough (30 min)",
+          "steps": [
+            "[REQUIRED: 12-15 concrete, executable steps that can be completed in 30 minutes]"
+          ]
+        }
+      ],
+      "duration": "5-30 minutes",
+      "difficulty": "beginner",
+      "category": "emotional-regulation"
+    }
+  ]
+}

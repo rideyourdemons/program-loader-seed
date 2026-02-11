@@ -119,7 +119,11 @@
 
         const gateUrl = `${BASE_URL}/gates/${gateId}`;
         const gateTitle = `${gate.title || gate.gateName} - Ride Your Demons`;
-        const gateDescription = gate.description || 'Mental health tools and resources.';
+        // FAIL-LOUD: No fallback
+        if (!gate.description) {
+          console.warn('[SEO Meta] Gate missing description:', gate.id || gate.gateName);
+        }
+        const gateDescription = gate.description || '';
 
         updateCanonical(gateUrl);
         updateTitle(gateTitle);

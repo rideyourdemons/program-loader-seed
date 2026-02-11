@@ -66,3 +66,13 @@ _archive/
 
 # Private legal/provenance evidence (optional)
 # LEGAL/PROVENANCE_EVIDENCE.txt
+
+# Large JSON data files (160k+ nodes) - "Black Box" approach
+# Keep the engine logic public, hide the data
+*_nodes.json
+*160k*.json
+*_data.json
+public/data/*.json
+public/matrix/*.json
+!public/data/*.example.json
+!public/matrix/*.example.json

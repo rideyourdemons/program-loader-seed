@@ -57,13 +57,33 @@
     }, TIMEOUT_MS);
 
     try {
+      // Try registry loader first (fail-loud)
+      if (window.RYD_RegistryLoader) {
+        try {
+          const registry = await window.RYD_RegistryLoader.load();
+          clearTimeout(timeoutId);
+          state.tools = registry.tools;
+          state.status = 'ready';
+          console.log('[RYD] ready tools=' + registry.tools.length + ' (from registry)');
+          window.dispatchEvent(new CustomEvent('ryd:ready', {
+            detail: { tools: registry.tools }
+          }));
+          return;
+        } catch (registryError) {
+          console.error('[RYD] Registry load failed, trying MatrixExpander:', registryError.message);
+          // Fall through to MatrixExpander
+        }
+      }
+
+      // Fallback to MatrixExpander
       if (!window.MatrixExpander || typeof window.MatrixExpander.init !== 'function') {
-        console.warn('[RYD] MatrixExpander not available, using fallback');
+        console.warn('[RYD] MatrixExpander not available');
         clearTimeout(timeoutId);
         state.tools = [];
-        state.status = 'ready';
-        window.dispatchEvent(new CustomEvent('ryd:ready', {
-          detail: { tools: [] }
+        state.status = 'error';
+        state.error = new Error('No tool registry available');
+        window.dispatchEvent(new CustomEvent('ryd:error', {
+          detail: { error: 'No tool registry available' }
         }));
         return;
       }
@@ -76,7 +96,7 @@
       state.tools = tools;
       state.status = 'ready';
 
-      console.log('[RYD] ready tools=' + tools.length);
+      console.log('[RYD] ready tools=' + tools.length + ' (from MatrixExpander)');
 
       // Dispatch ready event
       window.dispatchEvent(new CustomEvent('ryd:ready', {

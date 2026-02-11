@@ -241,12 +241,26 @@
     toolsList.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
 
     const extractDescription = (tool) => {
-      const raw = (tool && (tool.description || tool.summary)) || '';
-      const title = tool && (tool.title || tool.name);
-      if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-        return window.RYD_UI.sanitizeDescription(raw, title);
+      if (!tool || typeof tool !== 'object') {
+        throw new Error('[Gates Renderer] Tool is missing or invalid');
       }
-      return String(raw || '').trim();
+      // FAIL-LOUD: No fallbacks
+      try {
+        if (window.RYD_ToolValidator) {
+          window.RYD_ToolValidator.require(tool, 'gates renderer');
+          const raw = window.RYD_ToolValidator.getContent(tool, 'description');
+          const title = tool.title || tool.name;
+          if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+            return window.RYD_UI.sanitizeDescription(raw, title);
+          }
+          return String(raw || '').trim();
+        } else {
+          throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+        }
+      } catch (error) {
+        console.error('[Gates Renderer] Tool validation failed:', error);
+        throw error; // Fail loudly
+      }
     };
 
     toolInstances.forEach(instance => {

@@ -59,6 +59,7 @@
             opacity: 0.9;
         }
     </style>
+    <script src="/js/utils/tool-content-validator.js"></script>
     <script src="/js/seo-meta.js" defer></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
@@ -395,17 +396,48 @@
                 }
                 
                 if (!tool) {
-                    console.error('[Tool Page] Tool not found for slug:', slug, 'Normalized:', normalizedSlug);
+                    // FAIL-LOUD: Render proper 404 component, don't redirect
+                    console.error('[Tool Page] Tool not found:', {
+                        slug,
+                        normalizedSlug,
+                        toolMapSize: toolMap.size,
+                        sampleKeys: Array.from(toolMap.keys()).slice(0, 5)
+                    });
+                    
                     const contentEl = document.getElementById('toolContent');
+                    if (!contentEl) return;
+                    
                     contentEl.innerHTML = '';
+                    
+                    // 404 Component
+                    const notFoundCard = document.createElement('div');
+                    notFoundCard.className = 'card tool-card';
+                    notFoundCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 30px; text-align: center;';
+                    
+                    const h2 = document.createElement('h2');
+                    h2.textContent = 'Tool Not Found';
+                    h2.style.cssText = 'margin-bottom: 12px; color: #d32f2f;';
+                    notFoundCard.appendChild(h2);
+                    
                     const p1 = document.createElement('p');
-                    p1.textContent = `Tool not found: ${slug}`;
-                    contentEl.appendChild(p1);
-                    const p2 = document.createElement('p');
-                    p2.style.cssText = 'font-size: 0.9em; color: #666; margin-top: 10px;';
-                    p2.textContent = `Available tool keys (first 10): ${Array.from(toolMap.keys()).slice(0, 10).join(', ')}`;
-                    contentEl.appendChild(p2);
-                    return;
+                    p1.textContent = `The tool "${slug}" could not be found in the registry.`;
+                    p1.style.cssText = 'color: #666; margin-bottom: 20px;';
+                    notFoundCard.appendChild(p1);
+                    
+                    const backLink = document.createElement('a');
+                    backLink.href = '/tools';
+                    backLink.textContent = '← Back to Tools';
+                    backLink.style.cssText = 'display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 4px;';
+                    notFoundCard.appendChild(backLink);
+                    
+                    contentEl.appendChild(notFoundCard);
+                    
+                    // Update page title
+                    if (document.getElementById('toolTitle')) {
+                        document.getElementById('toolTitle').textContent = 'Tool Not Found';
+                    }
+                    
+                    return; // Don't continue rendering
                 }
                 
                 // Render tool content

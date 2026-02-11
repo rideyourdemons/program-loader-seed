@@ -9,6 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
+    <script src="/js/graph/index.js"></script>
+    <script>
+      // Initialize graph API on page load
+      if (window.RYD_Graph && typeof window.RYD_Graph.init === 'function') {
+        window.RYD_Graph.init().catch(err => {
+          console.warn('[Graph] Initialization failed:', err.message);
+        });
+      }
+    </script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/config/analytics-config.js"></script>
     <!-- Load local config if it exists (gitignored, contains actual IDs) -->

@@ -10,7 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
+  <script src="/js/utils/tool-content-validator.js"></script>
+  <script src="/js/utils/tool-registry-loader.js"></script>
   <script src="/js/matrix-expander.js" defer></script>
+  <script src="/js/ryd-tools.hardened.js" defer></script>
+  <script src="/js/ryd-tools.js" defer></script>
     <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/matrix-status.css">
     <link rel="stylesheet" href="/css/integrated.css">
@@ -139,26 +143,29 @@
         
         // Load and render tools
         function extractDescription(tool) {
-            const raw = (tool && (tool.description || tool.summary)) || '';
-            const title = tool && (tool.title || tool.name);
-            if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-                return window.RYD_UI.sanitizeDescription(raw, title);
+            // FAIL-LOUD: No fallbacks
+            if (!tool || typeof tool !== 'object') {
+                throw new Error('[Tools Page] Tool is missing or invalid');
             }
-            return String(raw || '').trim();
+            try {
+                if (window.RYD_ToolValidator) {
+                    window.RYD_ToolValidator.require(tool, 'tools page extractDescription');
+                    const raw = window.RYD_ToolValidator.getContent(tool, 'description');
+                    const title = tool.title || tool.name;
+                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                        return window.RYD_UI.sanitizeDescription(raw, title);
+                    }
+                    return raw;
+                } else {
+                    throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+                }
+            } catch (error) {
+                console.error('[Tools Page] Tool validation failed:', error);
+                throw error; // Fail loudly
+            }
         }
 
-        function extractDescription(tool) {
-            const raw = (tool && (tool.description || tool.summary)) || '';
-            if (!raw) return '';
-            const title = String(tool.title || tool.name || '').trim();
-            const lines = raw
-                .split(/\r?\n/)
-                .map(line => line.trim())
-                .filter(Boolean);
-            const filtered = lines.filter(line => {
-                const lower = line.toLowerCase();
-                if (lower === 'login' || lower === 'log in') return false;
-                if (title && line === title) return false;
+        // Removed duplicate extractDescription - using validator version above
                 if (lower.startsWith('tool •')) return false;
                 return true;
             });
@@ -182,18 +189,20 @@
                 return;
             }
             
+            // Show loading state
+            toolsGrid.innerHTML = '<div class="card tool-card" style="padding: 2rem; text-align: center;"><p>Loading tools...</p></div>';
+            
             try {
-                const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
-                const fallbackRes = toolsRes && toolsRes.ok
-                    ? null
-                    : await fetch('/data/tools.json?ts=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+                // Use registry loader (fail-loud)
+                if (!window.RYD_RegistryLoader) {
+                    throw new Error('Registry loader not available. Ensure tool-registry-loader.js is loaded.');
+                }
 
-                const data = toolsRes && toolsRes.ok
-                    ? await toolsRes.json()
-                    : (fallbackRes && fallbackRes.ok ? await fallbackRes.json() : null);
-
-                if (!data || !Array.isArray(data.tools)) {
-                    throw new Error('Failed to load tools data.');
+                const registry = await window.RYD_RegistryLoader.load();
+                const data = { tools: registry.tools };
+                
+                if (!data || !Array.isArray(data.tools) || data.tools.length === 0) {
+                    throw new Error('Tool registry is empty or invalid.');
                 }
 
                 const normalizeKey = (tool) => {
@@ -219,10 +228,28 @@
                     .sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || '', 'en', { sensitivity: 'base' }));
                 
                 if (tools.length === 0) {
-                    const p = document.createElement('p');
-                    p.textContent = 'No tools available.';
+                    // FAIL-LOUD: Show error state, not empty state
                     toolsGrid.innerHTML = '';
-                    toolsGrid.appendChild(p);
+                    const errorCard = document.createElement('div');
+                    errorCard.className = 'card tool-card';
+                    errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = 'No Tools Available';
+                    errorCard.appendChild(h3);
+                    
+                    const p = document.createElement('p');
+                    p.textContent = 'Tool registry loaded but contains no valid tools. Check console for details.';
+                    p.style.cssText = 'color: #666; margin-top: 8px;';
+                    errorCard.appendChild(p);
+                    
+                    const retryBtn = document.createElement('button');
+                    retryBtn.textContent = 'Retry';
+                    retryBtn.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
+                    retryBtn.addEventListener('click', () => loadAndRenderTools());
+                    errorCard.appendChild(retryBtn);
+                    
+                    toolsGrid.appendChild(errorCard);
                     return;
                 }
                 
@@ -249,8 +276,21 @@
                     card.appendChild(h3);
                     
                     const p = document.createElement('p');
-                    const cleaned = extractDescription(tool);
-                    p.textContent = cleaned || 'A practical self-help tool for personal growth and well-being.';
+                    // FAIL-LOUD: No fallback
+                    let cleaned = '';
+                    try {
+                        if (window.RYD_ToolValidator) {
+                            window.RYD_ToolValidator.require(tool, 'tools page render');
+                            cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
+                        } else {
+                            throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+                        }
+                    } catch (error) {
+                        console.error('[Tools Page] Tool validation failed:', error);
+                        // Skip invalid tool - don't render
+                        return;
+                    }
+                    p.textContent = cleaned;
                     p.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
                     card.appendChild(p);
                     
@@ -391,9 +431,13 @@
                 }
                 
             } catch (error) {
-                console.error('[RYD] Error loading tools from /data/tools.json:', error.message);
-                console.error('[RYD] Full error:', error);
-                console.error('[RYD] Stack:', error.stack);
+                // FAIL-LOUD: Show error with safe telemetry (no content dumps)
+                console.error('[RYD] Registry load failed:', {
+                    error: error.message,
+                    type: error.constructor.name,
+                    status: window.RYD_RegistryLoader?.getStatus() || null
+                });
+                
                 if (toolsGrid) {
                     toolsGrid.innerHTML = '';
                     const errorCard = document.createElement('div');
@@ -401,11 +445,11 @@
                     errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
                     
                     const h3 = document.createElement('h3');
-                    h3.textContent = 'Error Loading Tools';
+                    h3.textContent = 'Tool Registry Failed to Load';
                     errorCard.appendChild(h3);
                     
                     const p1 = document.createElement('p');
-                    p1.textContent = 'Could not load tools data from /data/tools.json.';
+                    p1.textContent = 'Could not load tool registry. This is a system error, not a content issue.';
                     errorCard.appendChild(p1);
                     
                     const p2 = document.createElement('p');
@@ -413,10 +457,11 @@
                     p2.textContent = `Error: ${error.message}`;
                     errorCard.appendChild(p2);
                     
-                    const p3 = document.createElement('p');
-                    p3.style.cssText = 'font-size: 0.85em; color: #999; margin-top: 4px;';
-                    p3.textContent = 'Please check the browser console for details and try refreshing the page.';
-                    errorCard.appendChild(p3);
+                    const retryBtn = document.createElement('button');
+                    retryBtn.textContent = 'Retry Loading';
+                    retryBtn.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
+                    retryBtn.addEventListener('click', () => loadAndRenderTools());
+                    errorCard.appendChild(retryBtn);
                     
                     toolsGrid.appendChild(errorCard);
                 }

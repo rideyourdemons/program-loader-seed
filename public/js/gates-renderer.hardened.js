@@ -112,6 +112,13 @@
             painPointsByGate = {};
           }
 
+          // PHASE 3 FIX: Attach pain points to gates for backward compatibility
+          gates.forEach(gate => {
+            if (gate && gate.id) {
+              gate.painPoints = painPointsByGate[gate.id] || [];
+            }
+          });
+
           const toolsValidation = validateData(toolsRaw, schemas.toolsResponse, { tools: [] });
           tools = safeArray(toolsValidation.data?.tools || toolsRaw || []);
         } catch (matrixError) {
@@ -360,8 +367,22 @@
         defaultOption.textContent = '-- Choose a pain point --';
         dropdown.appendChild(defaultOption);
 
-        // Pain point options (safe)
-        const painPoints = safeArray(gate.painPoints || []);
+        // Pain point options (safe) - Use canonical graph interface
+        let painPoints = [];
+        if (window.RYD_Graph && typeof window.RYD_Graph.getPainPoints === 'function') {
+          try {
+            painPoints = window.RYD_Graph.getPainPoints(gate.id);
+          } catch (error) {
+            console.error('[RYD Gates] Failed to get pain points from graph:', error);
+            // Fallback to gate.painPoints if graph fails
+            painPoints = safeArray(gate.painPoints || []);
+          }
+        } else {
+          // Fallback: Use mappingData if graph not available
+          const painPointsByGate = mappingData?.painPointsByGate || {};
+          painPoints = safeArray(painPointsByGate[gate.id] || []);
+        }
+        
         painPoints.forEach(painPoint => {
           if (!painPoint || typeof painPoint !== 'object' || !painPoint.id) return;
           
@@ -475,9 +496,36 @@
     toolsTitle.style.cssText = 'margin-bottom: 1rem; font-size: 1.1em; color: var(--color-text, #1a1a1a);';
     container.appendChild(toolsTitle);
 
-    // Get tool instances safely
+    // Get tool instances safely - Use canonical graph interface
     let toolInstances = [];
-    if (window.MatrixExpander && typeof window.MatrixExpander.expandToolsForSelection === 'function') {
+    if (window.RYD_Graph && typeof window.RYD_Graph.getTools === 'function') {
+      try {
+        const gateId = gate && gate.id ? String(gate.id) : '';
+        const painPointId = painPoint && painPoint.id ? String(painPoint.id) : '';
+        const tools = window.RYD_Graph.getTools(painPointId, gateId);
+        // Convert to ToolInstance format for compatibility
+        toolInstances = tools.map(tool => ({
+          instanceId: `${gateId}::${painPointId}::${tool.id}`,
+          gateId,
+          painPointId,
+          toolId: tool.id,
+          baseTool: tool,
+          contextLabel: `${gate.title || gateId} — ${painPoint.title || painPointId}`
+        }));
+      } catch (graphError) {
+        console.warn('[RYD Gates] Graph interface failed, falling back to MatrixExpander:', graphError);
+        // Fallback to MatrixExpander
+        if (window.MatrixExpander && typeof window.MatrixExpander.expandToolsForSelection === 'function') {
+          try {
+            const gateId = gate && gate.id ? String(gate.id) : '';
+            const painPointId = painPoint && painPoint.id ? String(painPoint.id) : '';
+            toolInstances = safeArray(window.MatrixExpander.expandToolsForSelection(gateId, painPointId) || []);
+          } catch (matrixError) {
+            console.warn('[RYD Gates] MatrixExpander failed:', matrixError);
+          }
+        }
+      }
+    } else if (window.MatrixExpander && typeof window.MatrixExpander.expandToolsForSelection === 'function') {
       try {
         const gateId = gate && gate.id ? String(gate.id) : '';
         const painPointId = painPoint && painPoint.id ? String(painPoint.id) : '';
@@ -525,12 +573,25 @@
     toolsList.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
 
     const extractDescription = (tool) => {
-      if (!tool || typeof tool !== 'object') return '';
-      const raw = tool.description || tool.summary || '';
-      if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-        return window.RYD_UI.sanitizeDescription(String(raw), tool.title || tool.name);
+      if (!tool || typeof tool !== 'object') {
+        throw new Error('[Gates Renderer] Tool is missing or invalid');
       }
-      return truncateString(String(raw || ''), 200);
+      // FAIL-LOUD: No fallbacks
+      try {
+        if (window.RYD_ToolValidator) {
+          window.RYD_ToolValidator.require(tool, 'gates renderer');
+          const raw = window.RYD_ToolValidator.getContent(tool, 'description');
+          if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+            return window.RYD_UI.sanitizeDescription(String(raw), tool.title || tool.name);
+          }
+          return truncateString(String(raw || ''), 200);
+        } else {
+          throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+        }
+      } catch (error) {
+        console.error('[Gates Renderer] Tool validation failed:', error);
+        throw error; // Fail loudly
+      }
     };
 
     toolInstances.forEach(instance => {
@@ -569,11 +630,21 @@
         toolTitle.style.cssText = 'margin-bottom: 0.5rem; font-size: 1em; color: var(--color-accent, #667eea);';
         toolCard.appendChild(toolTitle);
 
-        const description = extractDescription(tool);
-        // Guardrail: Remove placeholder text
-        const cleanDesc = description && !description.toLowerCase().includes('coming soon') && !description.toLowerCase().includes('placeholder')
-          ? description
-          : 'A practical tool for managing this challenge.';
+        // FAIL-LOUD: No fallbacks
+        let description = '';
+        try {
+          if (window.RYD_ToolValidator) {
+            window.RYD_ToolValidator.require(tool, 'gates renderer');
+            description = window.RYD_ToolValidator.getContent(tool, 'description');
+          } else {
+            throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+          }
+        } catch (error) {
+          console.error('[Gates Renderer] Tool validation failed:', error);
+          // Skip invalid tool - don't render
+          return;
+        }
+        const cleanDesc = description;
         if (cleanDesc) {
           const toolDesc = document.createElement('p');
           toolDesc.textContent = truncateString(cleanDesc, 100);

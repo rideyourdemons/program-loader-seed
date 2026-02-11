@@ -363,12 +363,20 @@
           toolTitle.style.cssText = 'margin: 0 0 12px 0; font-size: 1.1em;';
           toolCard.appendChild(toolTitle);
           
-          // Tool description (ALWAYS show - use summary or description or generate from howWhyWorks)
+          // Tool description - FAIL-LOUD: No fallbacks
           const toolDesc = document.createElement('p');
-          const description = tool.description || 
-                            tool.summary || 
-                            (tool.howWhyWorks ? tool.howWhyWorks.substring(0, 120) + '...' : null) ||
-                            'A practical self-help tool for managing this challenge.';
+          let description = '';
+          try {
+            if (window.RYD_ToolValidator) {
+              description = window.RYD_ToolValidator.getContent(tool, 'description');
+            } else {
+              // Validator not loaded - fail loudly
+              throw new Error(`[RYD ROUTER] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+            }
+          } catch (error) {
+            console.error('[RYD ROUTER] Tool validation failed:', error);
+            throw error; // Fail loudly - don't render invalid tool
+          }
           toolDesc.textContent = sanitizeDescription(description, tool.title || tool.name);
           toolDesc.style.cssText = 'color: var(--color-text-secondary, #666); margin: 0 0 16px 0; font-size: 0.95em; line-height: 1.5;';
           toolCard.appendChild(toolDesc);
@@ -458,11 +466,19 @@
     h1.textContent = tool.title;
     container.appendChild(h1);
     
-    // Description (ALWAYS show - never leave blank)
-    const desc = tool.description || 
-                 tool.summary || 
-                 (tool.howWhyWorks ? tool.howWhyWorks.substring(0, 200) + '...' : null) ||
-                 'A practical self-help tool for personal growth and well-being.';
+    // Description - FAIL-LOUD: No fallbacks
+    let desc = '';
+    try {
+      if (window.RYD_ToolValidator) {
+        window.RYD_ToolValidator.require(tool, 'tool page render');
+        desc = window.RYD_ToolValidator.getContent(tool, 'description');
+      } else {
+        throw new Error(`[RYD ROUTER] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+      }
+    } catch (error) {
+      console.error('[RYD ROUTER] Tool validation failed:', error);
+      throw error; // Fail loudly
+    }
     const p = document.createElement('p');
     p.textContent = sanitizeDescription(desc, tool.title || tool.name);
     p.style.cssText = 'margin-bottom: 20px; line-height: 1.7; color: var(--color-text, #1a1a1a);';
@@ -518,9 +534,8 @@
           });
           content.appendChild(ol);
         } else {
-          const p = document.createElement('p');
-          p.textContent = wt.content || 'Content pending import from live site.';
-          content.appendChild(p);
+          // FAIL-LOUD: No placeholder content
+          throw new Error(`[RYD ROUTER] Walkthrough "${wt.title || 'unknown'}" for tool "${tool.id || tool.title}" has no executable steps.`);
         }
         
         details.appendChild(content);
