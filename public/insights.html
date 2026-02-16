@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google Tag Manager (via analytics.js) -->
@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
   <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/numerology-engine.js" defer></script>
+    <script src="/js/utils/numerology-router.js" defer></script>
     <script src="/js/config/config.js"></script>
     <script src="/js/utils/strict-schema-filter.js"></script>
     <script src="/js/utils/search-encoder.js"></script>
@@ -59,17 +61,17 @@
         }
 
         :root {
-            /* RYD Color Palette */
+            /* RYD Theme - light grey background */
             --color-text: #1a1a1a;
-            --color-text-secondary: #666;
-            --color-border: #e0e0e0;
-            --color-bg: #f5f5f5;
-            --color-bg-secondary: #ffffff;
-            --color-accent: #667eea;
-            --color-accent-dark: #764ba2;
-            --color-header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --color-button: #1a1a1a;
-            --color-button-hover: #333333;
+            --color-text-secondary: #555;
+            --color-border: #bbb;
+            --color-bg: #e5e5e5;
+            --color-bg-secondary: #f5f5f5;
+            --color-accent: #c41e3a;
+            --color-accent-dark: #8b0000;
+            --color-header-gradient: linear-gradient(180deg, #555 0%, #444 50%, #555 100%);
+            --color-button: #c41e3a;
+            --color-button-hover: #e63950;
             
             /* Spacing */
             --spacing-xs: 4px;
@@ -96,7 +98,8 @@
             font-size: 16px; /* Live site body text size */
             line-height: 1.6; /* Live site line height */
             color: var(--color-text);
-            background: var(--color-bg);
+            background: linear-gradient(to bottom, rgba(229,229,229,0.72) 0%, rgba(245,245,245,0.78) 100%), url('/images/ride-your-demon-bg.jpg') center/cover no-repeat fixed;
+            min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             margin: 0;
@@ -478,6 +481,157 @@
             margin: 0;
         }
 
+        /* Gate cards — flame effect for ALL text (RYD style) */
+        /* Selectors: .gate-card (gates-renderer), .gates-grid .card (insights grid) */
+        .gate-card,
+        .gates-grid .card {
+            background: rgba(15,15,15,0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,120,0,0.35);
+        }
+
+        .gate-card *,
+        .gates-grid .card * {
+            color: #ffffff !important;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gate-card *::before,
+        .gates-grid .card *::before {
+            content: "";
+            position: absolute;
+            inset: -4px -8px;
+            background: rgba(0,0,0,0.45);
+            filter: blur(6px);
+            z-index: -1;
+            border-radius: 6px;
+        }
+
+        .gate-card h1,
+        .gate-card h2,
+        .gate-card h3,
+        .gate-card a,
+        .gate-card p,
+        .gate-card span,
+        .gates-grid .card h1,
+        .gates-grid .card h2,
+        .gates-grid .card h3,
+        .gates-grid .card a,
+        .gates-grid .card p,
+        .gates-grid .card span {
+            text-shadow:
+                0 0 4px #ff3c00,
+                0 0 8px #ff6a00,
+                0 0 14px #ff9a00,
+                0 0 22px rgba(255,120,0,0.9);
+        }
+
+        @keyframes emberPulse {
+            0%   { text-shadow: 0 0 4px #ff3c00, 0 0 10px #ff6a00; }
+            50%  { text-shadow: 0 0 6px #ff6a00, 0 0 18px #ffb300; }
+            100% { text-shadow: 0 0 4px #ff3c00, 0 0 10px #ff6a00; }
+        }
+
+        .gate-card h1,
+        .gate-card h2,
+        .gate-card h3,
+        .gates-grid .card h1,
+        .gates-grid .card h2,
+        .gates-grid .card h3 {
+            animation: emberPulse 2.4s ease-in-out infinite;
+        }
+
+        .gate-card a,
+        .gates-grid .card a {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Per-gate flame colors (data-gate from gate.id) */
+        .gate-card[data-gate="men-s-mental-health"] h1,
+        .gate-card[data-gate="men-s-mental-health"] h2,
+        .gate-card[data-gate="men-s-mental-health"] h3,
+        .gate-card[data-gate="fathers-sons"] h1,
+        .gate-card[data-gate="fathers-sons"] h2,
+        .gate-card[data-gate="fathers-sons"] h3,
+        .gates-grid .card[data-gate="men-s-mental-health"] h1,
+        .gates-grid .card[data-gate="men-s-mental-health"] h2,
+        .gates-grid .card[data-gate="men-s-mental-health"] h3,
+        .gates-grid .card[data-gate="fathers-sons"] h1,
+        .gates-grid .card[data-gate="fathers-sons"] h2,
+        .gates-grid .card[data-gate="fathers-sons"] h3 {
+            text-shadow: 0 0 6px #00bcd4, 0 0 18px #2962ff;
+        }
+        .gate-card[data-gate="women-s-mental-health"] h1,
+        .gate-card[data-gate="women-s-mental-health"] h2,
+        .gate-card[data-gate="women-s-mental-health"] h3,
+        .gate-card[data-gate="young-women"] h1,
+        .gate-card[data-gate="young-women"] h2,
+        .gate-card[data-gate="young-women"] h3,
+        .gates-grid .card[data-gate="women-s-mental-health"] h1,
+        .gates-grid .card[data-gate="women-s-mental-health"] h2,
+        .gates-grid .card[data-gate="women-s-mental-health"] h3,
+        .gates-grid .card[data-gate="young-women"] h1,
+        .gates-grid .card[data-gate="young-women"] h2,
+        .gates-grid .card[data-gate="young-women"] h3 {
+            text-shadow: 0 0 6px #d500f9, 0 0 18px #aa00ff;
+        }
+        .gate-card[data-gate="addiction-recovery"] h1,
+        .gate-card[data-gate="addiction-recovery"] h2,
+        .gate-card[data-gate="addiction-recovery"] h3,
+        .gates-grid .card[data-gate="addiction-recovery"] h1,
+        .gates-grid .card[data-gate="addiction-recovery"] h2,
+        .gates-grid .card[data-gate="addiction-recovery"] h3 {
+            text-shadow: 0 0 6px #ffb300, 0 0 22px #ffd54f;
+        }
+        .gate-card[data-gate="grief-loss"] h1,
+        .gate-card[data-gate="grief-loss"] h2,
+        .gate-card[data-gate="grief-loss"] h3,
+        .gate-card[data-gate="trauma-rebuild"] h1,
+        .gate-card[data-gate="trauma-rebuild"] h2,
+        .gate-card[data-gate="trauma-rebuild"] h3,
+        .gate-card[data-gate="heartbreak-loop"] h1,
+        .gate-card[data-gate="heartbreak-loop"] h2,
+        .gate-card[data-gate="heartbreak-loop"] h3,
+        .gate-card[data-gate="loneliness"] h1,
+        .gate-card[data-gate="loneliness"] h2,
+        .gate-card[data-gate="loneliness"] h3,
+        .gates-grid .card[data-gate="grief-loss"] h1,
+        .gates-grid .card[data-gate="grief-loss"] h2,
+        .gates-grid .card[data-gate="grief-loss"] h3,
+        .gates-grid .card[data-gate="trauma-rebuild"] h1,
+        .gates-grid .card[data-gate="trauma-rebuild"] h2,
+        .gates-grid .card[data-gate="trauma-rebuild"] h3,
+        .gates-grid .card[data-gate="heartbreak-loop"] h1,
+        .gates-grid .card[data-gate="heartbreak-loop"] h2,
+        .gates-grid .card[data-gate="heartbreak-loop"] h3,
+        .gates-grid .card[data-gate="loneliness"] h1,
+        .gates-grid .card[data-gate="loneliness"] h2,
+        .gates-grid .card[data-gate="loneliness"] h3 {
+            text-shadow: 0 0 6px #ff3c00, 0 0 18px #8b0000;
+        }
+        .gate-card[data-gate="financial-collapse-purpose"] h1,
+        .gate-card[data-gate="financial-collapse-purpose"] h2,
+        .gate-card[data-gate="financial-collapse-purpose"] h3,
+        .gate-card[data-gate="identity-crisis"] h1,
+        .gate-card[data-gate="identity-crisis"] h2,
+        .gate-card[data-gate="identity-crisis"] h3,
+        .gate-card[data-gate="teen-gen-z"] h1,
+        .gate-card[data-gate="teen-gen-z"] h2,
+        .gate-card[data-gate="teen-gen-z"] h3,
+        .gates-grid .card[data-gate="financial-collapse-purpose"] h1,
+        .gates-grid .card[data-gate="financial-collapse-purpose"] h2,
+        .gates-grid .card[data-gate="financial-collapse-purpose"] h3,
+        .gates-grid .card[data-gate="identity-crisis"] h1,
+        .gates-grid .card[data-gate="identity-crisis"] h2,
+        .gates-grid .card[data-gate="identity-crisis"] h3,
+        .gates-grid .card[data-gate="teen-gen-z"] h1,
+        .gates-grid .card[data-gate="teen-gen-z"] h2,
+        .gates-grid .card[data-gate="teen-gen-z"] h3 {
+            text-shadow: 0 0 6px #ff3c00, 0 0 20px #ff6a00;
+        }
+
         /* Related Sections */
         .related-section,
         .research-section {
@@ -721,6 +875,59 @@
             .tools-grid {
                 grid-template-columns: 1fr;
             }
+        }
+
+        .gates-section {
+            margin-top: var(--spacing-xl);
+            display: block !important;
+            visibility: visible !important;
+        }
+        .gates-section .lead { color: var(--color-text-secondary); }
+        .gates-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+        .gates-grid .card {
+            position: relative;
+            min-height: 120px;
+            padding: 28px 20px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: rgba(20, 20, 20, 0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,100,0,0.35);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: visible;
+        }
+        .gates-grid .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            background: linear-gradient(180deg, #d5d5d5 0%, #c8c8c8 100%);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            border: 2px solid #bbb;
+            border-bottom: none;
+        }
+        .gates-grid .card::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #999, transparent);
+        }
+        .gates-grid .card:hover {
+            border-color: #999;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 6px 20px rgba(196, 30, 58, 0.15);
+            transform: translateY(-2px);
         }
 
         .tool-card {
@@ -1335,13 +1542,16 @@
             <div class="header-content">
                 <h1>Ride Your Demons</h1>
                 <nav class="header-nav">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#tools">Tools</a>
-                    <a href="#resources">Resources</a>
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/tools">Tools</a>
+                    <a href="/insights">Insights</a>
+                    <a href="/gates">Gates</a>
+                    <a href="/search">Search</a>
+                    <a href="/store">Store (Coming Soon)</a>
                 </nav>
                 <div class="header-actions">
-                    <button onclick="startTour()" id="startTourButton" class="tour-button">
+                    <button type="button" id="startTourButton" class="tour-button" aria-label="Start tour">
                         Tour
                     </button>
                 </div>
@@ -1375,10 +1585,39 @@
                         class="search-submit-button"
                         id="searchButton"
                     >
-                        ÃƒÂ°Ã…Â¸"ÂÃ‚Â
+                        Search
                     </button>
                 </form>
                 <ul class="search-suggestions" id="suggestions"></ul>
+            </div>
+        </section>
+
+        <!-- Tool of the Day Section (above gates) -->
+        <section class="tool-of-day" id="toolOfDaySection" data-tour="tool-of-day">
+            <h2>Tool of the Day</h2>
+            <div class="tool-card" id="toolOfDayCard">
+                <div class="tool-title" id="toolTitle">Loading...</div>
+                <div class="tool-description" id="toolDescription">Loading...</div>
+                <div class="tool-meta">
+                    <div class="tool-meta-item">
+                        <span>Duration:</span>
+                        <span id="toolDuration">Loading...</span>
+                    </div>
+                    <div class="tool-meta-item">
+                        <span>Level:</span>
+                        <span class="badge badge-beginner" id="toolDifficulty">Loading...</span>
+                    </div>
+                </div>
+                <button class="start-tool-button" style="margin-top: var(--spacing-md);" onclick="openToolOfDay()">Try This Tool</button>
+            </div>
+        </section>
+
+        <!-- 12 Gates - Explore by Topic -->
+        <section class="section gates-section" id="gatesSection" data-tour="gates">
+            <h2>12 Gates — Explore by Topic</h2>
+            <p class="lead" style="margin-bottom: 1.5rem;">Select a gate to view 40 pain points. Each pain point has 3 tools with 5-, 15-, and 30-minute workthroughs.</p>
+            <div class="grid gates-grid" id="gatesGrid">
+                <p>Loading gates...</p>
             </div>
         </section>
 
@@ -1393,7 +1632,7 @@
                 <span class="breadcrumb-current" id="breadcrumbCurrent"></span>
             </nav>
             
-            <button class="back-button" onclick="showSearchSection()">â†Â Back to Search</button>
+            <button class="back-button" onclick="showSearchSection()">&larr; Back to Search</button>
             
             <!-- Gate Header -->
             <div class="gate-header" id="gateHeader" style="display: none;">
@@ -1413,7 +1652,7 @@
                         <strong>Not Medical Advice:</strong> This platform does NOT provide medical, psychiatric, or psychological diagnosis, treatment, or therapy. Always seek the advice of your physician or qualified mental health provider with any questions regarding a medical or mental health condition.
                     </p>
                     <p class="disclaimer-emergency">
-                        <strong>âš ï¸Â Â Emergency:</strong> If you are experiencing a medical or mental health emergency, please contact your local emergency services immediately or call <strong>911</strong> (or your local emergency number).
+                        <strong>Emergency:</strong> If you are experiencing a medical or mental health emergency, please contact your local emergency services immediately or call <strong>911</strong> (or your local emergency number).
                     </p>
                 </div>
             </div>
@@ -1449,10 +1688,10 @@
                 </p>
                 <div class="matrix-loop-actions">
                     <a href="#" onclick="showSearchSection(); return false;" class="matrix-loop-button">
-                        ÃƒÂ°Ã…Â¸"ÂÃ‚Â Search for More Help
+                        Search for More Help
                     </a>
                     <a href="https://rideyourdemons.com" target="_blank" rel="noopener noreferrer" class="matrix-loop-button">
-                        ðŸ ÂÂ  Visit Ride Your Demons Homepage
+                        Visit Ride Your Demons Homepage
                     </a>
                 </div>
             </div>
@@ -1460,7 +1699,7 @@
 
         <!-- Tool Workthrough Page (hidden by default) -->
         <section class="tool-workthrough-page" id="toolWorkthroughPage" style="display: none;">
-            <button class="back-button" onclick="goBackFromTool()">â†Â Back</button>
+            <button class="back-button" onclick="goBackFromTool()">&larr; Back</button>
             <div class="tool-workthrough-header">
                 <h2 id="toolWorkthroughTitle"></h2>
                 <div class="tool-workthrough-meta" id="toolWorkthroughMeta"></div>
@@ -1472,26 +1711,6 @@
                 <h3>Research & Evidence</h3>
                 <p class="section-intro">This technique is backed by peer-reviewed research:</p>
                 <div class="research-list" id="toolResearchList"></div>
-            </div>
-        </section>
-
-        <!-- Tool of the Day Section -->
-        <section class="tool-of-day" id="toolOfDaySection" data-tour="tool-of-day">
-            <h2>Tool of the Day</h2>
-            <div class="tool-card" id="toolOfDayCard">
-                <div class="tool-title" id="toolTitle">Loading...</div>
-                <div class="tool-description" id="toolDescription">Loading...</div>
-                <div class="tool-meta">
-                    <div class="tool-meta-item">
-                        <span>â±ï¸ÂÃ‚Â±</span>
-                        <span id="toolDuration">Loading...</span>
-                    </div>
-                    <div class="tool-meta-item">
-                        <span>ðŸ“–</span>
-                        <span class="badge badge-beginner" id="toolDifficulty">Loading...</span>
-                    </div>
-                </div>
-                <button class="start-tool-button" style="margin-top: var(--spacing-md);" onclick="openToolOfDay()">Try This Tool</button>
             </div>
         </section>
     </div>
@@ -1512,7 +1731,7 @@
                         <li>Never disregard professional medical advice or delay in seeking it because of information on this platform</li>
                     </ul>
                     
-                    <p class="footer-emergency"><strong>âš ï¸Â Â Emergency Situations:</strong> If you are experiencing a medical or mental health emergency, please contact your local emergency services immediately or call your local emergency hotline (such as <strong>911</strong> in the United States).</p>
+                    <p class="footer-emergency"><strong>Emergency Situations:</strong> If you are experiencing a medical or mental health emergency, please contact your local emergency services immediately or call your local emergency hotline (such as <strong>911</strong> in the United States).</p>
                     
                     <p><strong>Limitation of Liability:</strong> The creators, operators, and contributors to this platform assume no responsibility or liability for any consequence resulting directly or indirectly from any action or inaction taken based on or made in reliance on the information, tools, or techniques available on this platform.</p>
                     
@@ -1531,11 +1750,11 @@
     </footer>
 
     <!-- Tour Guide Overlay -->
-    <div class="tour-overlay-backdrop" id="tourBackdrop" onclick="skipTour()"></div>
+    <div class="tour-overlay-backdrop" id="tourBackdrop" role="button" tabindex="0" aria-label="Close tour"></div>
     <div class="tour-tooltip" id="tourTooltip">
         <div class="tour-tooltip-header">
             <h3 id="tourTitle">Welcome</h3>
-            <button class="tour-close" onclick="skipTour()" aria-label="Skip tour">×</button>
+            <button type="button" class="tour-close" id="tourClose" aria-label="Skip tour">×</button>
         </div>
         <div class="tour-tooltip-content" id="tourContent"></div>
         <div class="tour-progress">
@@ -1545,12 +1764,46 @@
             <span class="tour-progress-text" id="tourProgressText">Step 0 of 0</span>
         </div>
         <div class="tour-controls">
-            <button class="tour-button-secondary" id="tourPrev" onclick="prevTourStep()">Previous</button>
-            <button class="tour-button-primary" id="tourNext" onclick="nextTourStep()">Next</button>
-            <button class="tour-button-link" onclick="skipTour()">Skip Tour</button>
+            <button type="button" class="tour-button-secondary" id="tourPrev">Previous</button>
+            <button type="button" class="tour-button-primary" id="tourNext">Next</button>
+            <button type="button" class="tour-button-link" id="tourSkipLink">Skip Tour</button>
         </div>
     </div>
 
+    <script>
+        // Safe tour stubs (never throw). Real implementation overwrites these below.
+        (function() {
+            function noop() {}
+            function safeSkip() {
+                try {
+                    var b = document.getElementById('tourBackdrop');
+                    var t = document.getElementById('tourTooltip');
+                    var btn = document.getElementById('startTourButton');
+                    if (b) b.classList.remove('active');
+                    if (t) t.classList.remove('active');
+                    if (btn) btn.style.display = 'block';
+                } catch (_) {}
+            }
+            window.startTour = window.startTour || noop;
+            window.skipTour = window.skipTour || safeSkip;
+            window.nextTourStep = window.nextTourStep || noop;
+            window.prevTourStep = window.prevTourStep || noop;
+            document.addEventListener('DOMContentLoaded', function() {
+                var startBtn = document.getElementById('startTourButton');
+                var backdrop = document.getElementById('tourBackdrop');
+                var closeBtn = document.getElementById('tourClose');
+                var prevBtn = document.getElementById('tourPrev');
+                var nextBtn = document.getElementById('tourNext');
+                var skipLink = document.getElementById('tourSkipLink');
+                if (startBtn) startBtn.addEventListener('click', function() { (window.startTour || noop)(); });
+                if (backdrop) { backdrop.addEventListener('click', safeSkip); backdrop.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); safeSkip(); } }); }
+                if (closeBtn) closeBtn.addEventListener('click', safeSkip);
+                if (prevBtn) prevBtn.addEventListener('click', function() { (window.prevTourStep || noop)(); });
+                if (nextBtn) nextBtn.addEventListener('click', function() { (window.nextTourStep || noop)(); });
+                if (skipLink) skipLink.addEventListener('click', safeSkip);
+            });
+        })();
+    </script>
     <script>
         // SEO Optimizer Functions
         function generateSEOTitle(primaryKeyword, secondaryKeyword) {
@@ -1769,21 +2022,87 @@
         detectDevice();
         window.addEventListener('resize', detectDevice);
 
-        // Mock Data (Replace with Firebase in production)
-        
-        // Gates - Entry points that categorize pain points
-        const mockGates = [
-            {
-                id: 'emotional-health-gate',
-                title: 'Emotional Health',
-                description: 'Tools and resources for managing emotional challenges, mood regulation, and psychological well-being.',
-                category: 'emotional-health',
-                subcategories: ['depression', 'anxiety', 'stress', 'mood'],
-                painPointIds: ['depression', 'anxiety', 'anxiety-attacks', 'stress']
+        // Data loaded from gates.json and pain-points.json
+        let allGates = [];
+        let allPainPoints = [];
+
+        async function loadGatesAndPainPoints() {
+            try {
+                const [gatesRes, ppRes] = await Promise.all([
+                    fetch('/data/gates.json?ts=' + Date.now()),
+                    fetch('/data/pain-points.json?ts=' + Date.now())
+                ]);
+                const gatesData = await gatesRes.json();
+                const ppData = await ppRes.json();
+                allGates = gatesData.gates || [];
+                const byGate = ppData.painPoints || {};
+                allPainPoints = [];
+                for (const list of Object.values(byGate)) {
+                    if (Array.isArray(list)) {
+                        for (const pp of list) {
+                            if (pp && !allPainPoints.some(p => p.id === pp.id)) {
+                                allPainPoints.push(pp);
+                            }
+                        }
+                    }
+                }
+                if (window.GateStateManager) {
+                    window.GateStateManager.init(allPainPoints);
+                }
+                renderGatesGrid();
+                // If URL has ?gate=xxx, auto-select that gate
+                const params = new URLSearchParams(window.location.search);
+                const gateId = params.get('gate');
+                if (gateId && allGates.some(g => g.id === gateId)) {
+                    handleGateClick({ preventDefault: () => {}, stopPropagation: () => {} }, gateId);
+                }
+                // If URL has ?q=xxx (e.g. from homepage Search for Help), run search
+                const q = params.get('q');
+                if (q && typeof handleSearch === 'function') {
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.value = q;
+                        handleSearch({ preventDefault: () => {} });
+                    }
+                }
+            } catch (err) {
+                console.warn('[Insights] Failed to load gates/pain-points:', err);
             }
-        ];
-        
-        const mockPainPoints = [
+        }
+
+        function renderGatesGrid() {
+            const grid = document.getElementById('gatesGrid');
+            if (!grid) return;
+            if (allGates.length === 0) {
+                grid.innerHTML = '<p>No gates available.</p>';
+                return;
+            }
+            grid.innerHTML = '';
+            allGates.forEach(gate => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-gate', String(gate.id || 'core'));
+                card.setAttribute('role', 'button');
+                card.tabIndex = 0;
+                card.onclick = (e) => handleGateClick(e, gate.id);
+                card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGateClick(e, gate.id); } };
+                const h3 = document.createElement('h3');
+                h3.textContent = gate.title || gate.id;
+                const p = document.createElement('p');
+                p.textContent = (gate.description || '') + ' 40 pain points, 3 tools each.';
+                p.style.cssText = 'color: var(--color-text-secondary, #666); margin: 0.5rem 0; font-size: 14px;';
+                card.appendChild(h3);
+                card.appendChild(p);
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGatesAndPainPoints();
+        });
+
+        // Fallback mock data (overwritten by loadGatesAndPainPoints; kept for load failure)
+        const _fallbackPainPoints = [
             {
                 id: 'depression',
                 title: 'Depression',
@@ -2056,7 +2375,7 @@
         function warnLegacyMatrixOnce() {
             if (legacyMatrixWarned) return;
             legacyMatrixWarned = true;
-            console.warn('Matrix expander active â€” no static matrix used');
+            console.warn('Matrix expander active - no static matrix used');
         }
 
         function resolveGateIdForPainPoint(painPointId, fallbackGateId) {
@@ -2083,7 +2402,6 @@
         }
 
         async function loadMatrixData() {
-            // Data Integrity Audit: Use SafeMapper for all fetch operations
             const SafeMapper = window.SafeMapper || {
                 safeFetch: async (url) => {
                     const res = await fetch(url);
@@ -2093,17 +2411,25 @@
             };
             
             try {
-                if (!window.MatrixExpander || typeof window.MatrixExpander.init !== 'function') {
-                    console.warn('[Insights] MatrixExpander not available, using empty fallback');
-                    toolsData = [];
-                    expanderReady = false;
-                    return { tools: [], toolOfTheDay: null };
+                if (window.MatrixExpander && typeof window.MatrixExpander.init === 'function') {
+                    await window.MatrixExpander.init();
+                    toolsData = window.MatrixExpander.getBaseTools() || [];
+                    expanderReady = true;
                 }
-                await window.MatrixExpander.init();
-                toolsData = window.MatrixExpander.getBaseTools() || [];
-                
-                // Safe-Render: Ensure no null values in toolsData
-                if (Array.isArray(toolsData)) {
+                // Direct fetch fallback: if no tools from MatrixExpander, load from /data/tools.json
+                if (!Array.isArray(toolsData) || toolsData.length === 0) {
+                    try {
+                        const res = await fetch('/data/tools.json?ts=' + Date.now());
+                        const data = await res.json();
+                        toolsData = data.tools || [];
+                        if (toolsData.length > 0) {
+                            console.log('[Insights] Tool of the Day loaded from tools.json:', toolsData.length, 'tools');
+                        }
+                    } catch (e) {
+                        console.warn('[Insights] Direct tools fetch failed:', e.message);
+                    }
+                }
+                if (Array.isArray(toolsData) && toolsData.length > 0) {
                     toolsData = SafeMapper.safeMap ? SafeMapper.safeMap(toolsData, tool => {
                         if (!tool) return null;
                         return {
@@ -2115,17 +2441,19 @@
                             slug: SafeMapper.safeRender ? SafeMapper.safeRender(tool.slug, tool.id || '') : (tool.slug || tool.id || '')
                         };
                     }) : toolsData;
+                    toolsData = (toolsData || []).filter(Boolean);
                 }
-                
-                expanderReady = true;
-                console.log('✅ Matrix expander ready:', toolsData.length, 'tools');
-                return { tools: toolsData, toolOfTheDay: null };
+                if (!toolsData || toolsData.length === 0) {
+                    expanderReady = false;
+                    warnLegacyMatrixOnce();
+                }
+                return { tools: toolsData || [], toolOfTheDay: null };
             } catch (error) {
                 console.warn('[Insights] Could not initialize MatrixExpander, using fallback:', error.message);
                 warnLegacyMatrixOnce();
-                toolsData = [];
-                expanderReady = false;
-                return { tools: [], toolOfTheDay: null };
+                toolsData = toolsData || [];
+                expanderReady = toolsData.length > 0;
+                return { tools: toolsData, toolOfTheDay: null };
             }
         }
 
@@ -2138,11 +2466,14 @@
         }
 
         // Tool Rotation System (simplified version)
+        // Exclude quick-reset tools: Tool of the Day shows actual tools (Standard Practice / Deep Work), not 5‑min extensions
         function getToolOfTheDay() {
-            const tools = Array.isArray(toolsData) ? toolsData : [];
-            if (tools.length === 0) {
-                return null;
-            }
+            const all = Array.isArray(toolsData) ? toolsData : [];
+            const tools = all.filter(t => {
+                const id = (t && (t.id || t.slug || '')).toLowerCase();
+                return id && !id.endsWith('-quick-reset');
+            });
+            if (tools.length === 0) return null;
             const today = new Date();
             const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
             const index = dayOfYear % tools.length;
@@ -2216,6 +2547,9 @@
 
         function openToolOfDay() {
             if (currentToolOfDay) {
+                if (typeof trackGA4Event === 'function') {
+                    trackGA4Event('tool_of_day_clicked', { tool_id: currentToolOfDay.id, tool_slug: currentToolOfDay.id, duration: currentToolOfDay.duration || '', page_path: window.location.pathname });
+                }
                 const match = findPainPointForTool(currentToolOfDay.id);
                 const painPointId = match ? match.id : null;
                 showToolWorkthrough(currentToolOfDay.id, painPointId);
@@ -2253,7 +2587,7 @@
             }
             
             // 2. Pre-Search Filter: Strip non-printable ASCII before indexing
-            const preFilteredPoints = mockPainPoints.map(pp => {
+            const preFilteredPoints = allPainPoints.map(pp => {
                 if (!pp) return null;
                 const filtered = {
                     id: pp.id,
@@ -2326,7 +2660,7 @@
             if (!query) return;
             
             // 2. Pre-Search Filter: Strip non-printable ASCII before indexing
-            const preFilteredPoints = mockPainPoints.map(pp => {
+            const preFilteredPoints = allPainPoints.map(pp => {
                 if (!pp) return null;
                 const filtered = {
                     id: pp.id,
@@ -2350,30 +2684,16 @@
                 return titleMatch || descMatch || keywordMatch;
             });
             
-            // 3. Search Integration with GA4: Track search terms
-            if (typeof window.gtag === 'function') {
+            // GA4: Track search (unified through trackGA4Event)
+            if (typeof trackGA4Event === 'function') {
                 try {
-                    window.gtag('event', 'search', {
-                        search_term: query,
-                        results_count: results.length,
-                        page_path: window.location.pathname
-                    });
-                    console.log('[GA4] Search event tracked:', query);
-                } catch (e) {
-                    console.warn('[GA4] Failed to track search:', e);
-                }
-            }
-            
-            // Fallback to RYD_ANALYTICS if available
-            if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
-                try {
-                    window.RYD_ANALYTICS.pushEvent('search', {
+                    trackGA4Event('search', {
                         search_term: query,
                         results_count: results.length,
                         page_path: window.location.pathname
                     });
                 } catch (e) {
-                    console.warn('[RYD Analytics] Failed to track search:', e);
+                    console.warn('[Analytics] Search:', e);
                 }
             }
             
@@ -2442,14 +2762,18 @@
         }
 
         function selectPainPoint(painPointId) {
-            const painPoint = mockPainPoints.find(pp => pp.id === painPointId);
+            const painPoint = allPainPoints.find(pp => pp.id === painPointId);
             if (!painPoint) return;
+            if (typeof trackGA4Event === 'function') {
+                trackGA4Event('pain_point_selected', { pain_point_id: painPointId, gate_id: painPoint.gateId || '', page_path: window.location.pathname });
+            }
             showPainPointPage(painPoint);
         }
 
-        function showPainPointPage(painPoint) {
+        async function showPainPointPage(painPoint) {
             document.getElementById('searchSection').style.display = 'none';
             document.getElementById('toolOfDaySection').style.display = 'none';
+            document.getElementById('gatesSection').style.display = 'none';
             document.getElementById('toolWorkthroughPage').style.display = 'none';
             
             const page = document.getElementById('painPointPage');
@@ -2463,7 +2787,7 @@
             const breadcrumbGate = document.getElementById('breadcrumbGate');
             const breadcrumbGateSeparator = document.getElementById('breadcrumbGateSeparator');
             if (painPoint.gateId) {
-                const gate = mockGates.find(g => g.id === painPoint.gateId);
+                const gate = allGates.find(g => g.id === painPoint.gateId);
                 if (gate) {
                     document.getElementById('gateTitle').textContent = gate.title;
                     document.getElementById('gateDescription').textContent = gate.description;
@@ -2499,10 +2823,16 @@
             };
             
             const resolvedGateId = resolveGateIdForPainPoint(painPoint.id, painPoint.gateId);
-            const toolInstances = resolvedGateId
+            let toolInstances = resolvedGateId
                 ? getExpandedTools(resolvedGateId, painPoint.id)
                 : [];
-            
+            // Numerology routing: reorder tools by resonance (internal only, never shown to user)
+            if (window.NumerologyRouter && typeof window.NumerologyRouter.reorderByResonance === 'function') {
+                try {
+                    toolInstances = await window.NumerologyRouter.reorderByResonance(toolInstances, painPoint) || toolInstances;
+                } catch (_) { /* fallback to original order */ }
+            }
+
             // Safe mapping with null filtering - prevents data leakage
             const tools = SafeMapper.safeMap 
                 ? SafeMapper.safeMap(toolInstances, instance => {
@@ -2533,8 +2863,8 @@
                         <div class="tool-title">${tool.title || tool.name || 'Untitled Tool'}</div>
                         <div class="tool-description">${tool.description || tool.summary || 'No description available.'}</div>
                         <div class="tool-meta">
-                            <span>â±ï¸ÂÃ‚Â± ${tool.duration ? String(tool.duration).trim() : ""}</span>
-                            <span>ðŸ“ŠÂ  <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
+                            <span>Duration: ${tool.duration ? String(tool.duration).trim() : ""}</span>
+                            <span>Level: <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
                         </div>
                         <button class="start-tool-button" onclick="showToolWorkthrough('${toolId}', '${painPointId}'); trackGA4Event('action_imperative_clicked', { tool_slug: '${toolId}', category: '${SafeMapper.sanitizeString(painPoint.gateId || '')}', pain_point: '${painPointId}' });">Start Tool</button>
                     </div>
@@ -2546,7 +2876,7 @@
                 const relatedSection = document.getElementById('relatedPainPointsSection');
                 const relatedGrid = document.getElementById('relatedPainPointsGrid');
                 const relatedPPs = painPoint.relatedPainPoints.map(id => 
-                    mockPainPoints.find(pp => pp.id === id)
+                    allPainPoints.find(pp => pp.id === id)
                 ).filter(Boolean);
                 
                 // XSS Hardening: Safe HTML rendering with event delegation
@@ -2674,6 +3004,7 @@
             document.getElementById('painPointPage').classList.remove('show');
             document.getElementById('searchSection').style.display = 'none';
             document.getElementById('toolOfDaySection').style.display = 'none';
+            document.getElementById('gatesSection').style.display = 'none';
             
             // Show workthrough page
             const workthroughPage = document.getElementById('toolWorkthroughPage');
@@ -2681,8 +3012,8 @@
             
             document.getElementById('toolWorkthroughTitle').textContent = tool.title;
             document.getElementById('toolWorkthroughMeta').innerHTML = `
-                <span>â±ï¸ÂÃ‚Â± ${tool.duration ? String(tool.duration).trim() : ""}</span>
-                <span>ðŸ“ŠÂ  <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
+                <span>Duration: ${tool.duration ? String(tool.duration).trim() : ""}</span>
+                <span>Level: <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
             `;
             document.getElementById('toolWorkthroughContent').innerHTML = tool.workthroughContent || tool.description;
             
@@ -2730,7 +3061,7 @@
                     }
                     
                     html += `<div style="margin-top: var(--spacing-md);">
-                        <a href="${research.url}" target="_blank" rel="noopener noreferrer" style="color: var(--color-button); text-decoration: underline;">View Full Research â†’</a>
+                        <a href="${research.url}" target="_blank" rel="noopener noreferrer" style="color: var(--color-button); text-decoration: underline;">View Full Research &rarr;</a>
                     </div>`;
                     
                     html += `</div>`;
@@ -2744,7 +3075,7 @@
         
         function goBackFromTool() {
             if (currentPainPointId) {
-                const painPoint = mockPainPoints.find(pp => pp.id === currentPainPointId);
+                const painPoint = allPainPoints.find(pp => pp.id === currentPainPointId);
                 if (painPoint) {
                     showPainPointPage(painPoint);
                     return;
@@ -2757,6 +3088,7 @@
             document.getElementById('painPointPage').classList.remove('show');
             document.getElementById('toolWorkthroughPage').style.display = 'none';
             document.getElementById('searchSection').style.display = 'block';
+            document.getElementById('gatesSection').style.display = 'block';
             
             // 1. Fix Gate Selection Reset: Hide Tool of Day when Gate is active
             const GateStateManager = window.GateStateManager;
@@ -2782,7 +3114,7 @@
             if (!GateStateManager) return;
             
             const filteredPainPoints = GateStateManager.getFilteredPainPoints();
-            const gate = mockGates.find(g => g.id === gateId);
+            const gate = allGates.find(g => g.id === gateId);
             
             // Create or update gate filter display
             let gateFilterSection = document.getElementById('gateFilterSection');
@@ -2856,32 +3188,17 @@
                 event.stopPropagation();
             }
             
-            // 4. GA4 Tonight Integration: Track Gate Selection
-            if (typeof window.gtag === 'function') {
+            // GA4: Track gate selection (unified through trackGA4Event)
+            if (typeof trackGA4Event === 'function') {
                 try {
-                    const gate = mockGates.find(g => g.id === gateId);
-                    window.gtag('event', 'gate_selected', {
-                        gate_id: gateId,
-                        gate_title: gate ? gate.title : gateId,
-                        page_path: window.location.pathname
-                    });
-                    console.log('[GA4] Gate selected event tracked:', gateId);
-                } catch (e) {
-                    console.warn('[GA4] Failed to track gate selection:', e);
-                }
-            }
-            
-            // Fallback to RYD_ANALYTICS if available
-            if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
-                try {
-                    const gate = mockGates.find(g => g.id === gateId);
-                    window.RYD_ANALYTICS.pushEvent('gate_selected', {
+                    const gate = allGates.find(g => g.id === gateId);
+                    trackGA4Event('gate_selected', {
                         gate_id: gateId,
                         gate_title: gate ? gate.title : gateId,
                         page_path: window.location.pathname
                     });
                 } catch (e) {
-                    console.warn('[RYD Analytics] Failed to track gate selection:', e);
+                    console.warn('[Analytics] Gate selection:', e);
                 }
             }
             
@@ -2932,6 +3249,13 @@
                 title: 'Tool of the Day',
                 content: '<h3>Daily Inspiration</h3><p>We feature a different tool every day to help you discover new resources.</p><p>Come back daily to explore something new!</p>',
                 targetElement: '#toolOfDaySection',
+                position: 'bottom'
+            },
+            {
+                id: 'gates',
+                title: '12 Gates',
+                content: '<h3>Start Here</h3><p>Select one of the 12 gates to browse 40 pain points. Each pain point has 3 tools with 5-, 15-, and 30-minute workthroughs.</p>',
+                targetElement: '#gatesSection',
                 position: 'bottom'
             },
             {
@@ -3081,6 +3405,12 @@
             endTour();
         }
 
+        // Expose tour to window so onclick="startTour()" always works
+        window.startTour = startTour;
+        window.skipTour = skipTour;
+        window.nextTourStep = nextTourStep;
+        window.prevTourStep = prevTourStep;
+
         function endTour() {
             tourActive = false;
             document.getElementById('tourBackdrop').classList.remove('active');
@@ -3119,11 +3449,13 @@
                 console.warn('[Insights] SEO initialization skipped:', error.message);
             }
             
-            // Ensure initial sections are visible
+            // Ensure initial sections are visible (search, tool of day, gates)
             const searchSection = document.getElementById('searchSection');
             const toolOfDaySection = document.getElementById('toolOfDaySection');
+            const gatesSection = document.getElementById('gatesSection');
             if (searchSection) searchSection.style.display = 'block';
             if (toolOfDaySection) toolOfDaySection.style.display = 'block';
+            if (gatesSection) gatesSection.style.display = 'block';
         }
 
         // Global error handler
@@ -3132,8 +3464,10 @@
             // Show basic content even if there's an error
             const searchSection = document.getElementById('searchSection');
             const toolOfDaySection = document.getElementById('toolOfDaySection');
+            const gatesSection = document.getElementById('gatesSection');
             if (searchSection) searchSection.style.display = 'block';
             if (toolOfDaySection) toolOfDaySection.style.display = 'block';
+            if (gatesSection) gatesSection.style.display = 'block';
         });
         
         // Run initialization when DOM is ready
@@ -3153,10 +3487,18 @@
                     await updateToolOfDay();
                 } catch (e) {
                     console.warn('[Insights] Tool of Day initialization failed:', e.message);
-                    // Show fallback
-                    if (toolTitle) toolTitle.textContent = 'Grounding Reset';
-                    const toolDesc = document.getElementById('toolDescription');
-                    if (toolDesc) toolDesc.textContent = 'A short reset to calm your nervous system and regain focus.';
+                    // Show fallback so "Loading..." is replaced
+                    const titleEl = document.getElementById('toolTitle');
+                    const descEl = document.getElementById('toolDescription');
+                    const durationEl = document.getElementById('toolDuration');
+                    const difficultyEl = document.getElementById('toolDifficulty');
+                    if (titleEl) titleEl.textContent = 'Grounding Reset';
+                    if (descEl) descEl.textContent = 'A short reset to calm your nervous system and regain focus.';
+                    if (durationEl) durationEl.textContent = '5 minutes';
+                    if (difficultyEl) {
+                        difficultyEl.textContent = 'beginner';
+                        difficultyEl.className = 'badge badge-beginner';
+                    }
                 }
             }
         }, 500);

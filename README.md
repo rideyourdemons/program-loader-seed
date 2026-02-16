@@ -201,12 +201,19 @@ await navigationController.closeSession(sessionId);
 
 ### Environment Variables
 
-Create a `.env` file (optional):
+Create a `.env` file (optional). Copy `.env.example` and fill in values:
 
 ```env
 LOG_LEVEL=INFO
 WEBSITE_URL=https://rideyourdemons.com
+
+# Analytics (required for production – GTM/GA4)
+GTM_CONTAINER_ID=GTM-XXXXXXX
+GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+GTM_TEST_ID=GTM-XXXXXXX   # optional, for local dev with ?analytics_debug=true
 ```
+
+Analytics events (page views, search, gate/pain point selection, tool clicks) are sent to the dataLayer. GTM processes them in production when `GTM_CONTAINER_ID` is set.
 
 ### Programs Config (`config/programs.config.json`)
 

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "defaults": {
+    "flameGlow": ["#ff3c00", "#ff6a00"],
+    "borderGlow": "rgba(255,120,0,0.35)",
+    "underlineGlow": "rgba(255,120,0,0.65)"
+  },
+  "gates": {
+    "women-s-mental-health": {
+      "flameGlow": ["#d500f9", "#aa00ff"],
+      "borderGlow": "rgba(213,0,249,0.35)",
+      "underlineGlow": "rgba(213,0,249,0.65)"
+    },
+    "addiction-recovery": {
+      "flameGlow": ["#ffb300", "#ffd54f"],
+      "borderGlow": "rgba(255,179,0,0.35)",
+      "underlineGlow": "rgba(255,179,0,0.65)"
+    },
+    "fathers-sons": {
+      "flameGlow": ["#00bcd4", "#2962ff"],
+      "borderGlow": "rgba(0,188,212,0.30)",
+      "underlineGlow": "rgba(0,188,212,0.60)"
+    },
+    "men-s-mental-health": {
+      "flameGlow": ["#00e676", "#69f0ae"],
+      "borderGlow": "rgba(0,230,118,0.35)",
+      "underlineGlow": "rgba(0,230,118,0.65)"
+    },
+    "grief-loss": {
+      "flameGlow": ["#7c4dff", "#b388ff"],
+      "borderGlow": "rgba(124,77,255,0.35)",
+      "underlineGlow": "rgba(124,77,255,0.65)"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "theme": {
+    "backgroundMode": "image",
+    "cardOpacity": 0.55,
+    "textContrast": "high"
+  },
+  "flags": {
+    "enableMatrix": false,
+    "enableToolOfDay": true,
+    "enableNewsletter": false
+  },
+  "operator": {
+    "timezone": "America/Vancouver",
+    "rotationPolicy": "daily"
+  }
+}

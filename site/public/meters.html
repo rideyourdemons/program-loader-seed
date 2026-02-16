@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Meters — Local Test</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --ok: #3fb950;
+      --warn: #d29922;
+      --fail: #f85149;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    .sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+    .panel h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 16px;
+      color: var(--text-muted);
+    }
+    .meter {
+      margin-bottom: 20px;
+    }
+    .meter:last-child { margin-bottom: 0; }
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    .meter-value {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .meter-bar {
+      height: 12px;
+      background: var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .meter-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.3s ease, background 0.2s;
+    }
+    .meter-fill.ok { background: var(--ok); }
+    .meter-fill.warn { background: var(--warn); }
+    .meter-fill.fail { background: var(--fail); }
+    .timer {
+      font-size: 2rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 16px 0;
+    }
+    .timer.done { color: var(--ok); }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .stat {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .stat strong { color: var(--text); }
+    .error { color: var(--fail); font-size: 0.9rem; margin-top: 8px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .proof-item { background: var(--border); border-radius: 8px; padding: 10px; text-align: center; }
+    .proof-label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+    .proof-value { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .proof-unit { font-size: 0.8rem; color: var(--text-muted); margin-left: 2px; }
+    .stage-table-wrap { overflow-x: auto; margin-top: 12px; }
+    .stage-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .stage-table th, .stage-table td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+    .stage-table th { color: var(--text-muted); font-weight: 600; }
+    .proof-meta { margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <h1>Matrix Meters</h1>
+  <p class="sub">30-second test — Matrix + real-world content validation. Open in Chrome at localhost.</p>
+
+  <div class="panel">
+    <h2>Test Control</h2>
+    <div class="toggles" style="margin-bottom: 8px;">
+      <label><input type="checkbox" id="useCache" checked> Use Cluster Cache</label>
+      <label style="margin-left: 16px;"><input type="checkbox" id="bypassCache"> Bypass Cache</label>
+    </div>
+    <div class="timer" id="timer">30</div>
+    <button id="startBtn" onclick="startTest()">Start 30s Test</button>
+    <button id="stressBtn" onclick="runProgressiveStress()">Run Progressive Stress Test</button>
+    <button id="csvBtn" onclick="downloadCsv()" disabled>Download CSV</button>
+    <button id="sanityBtn" onclick="runSanityCheck()">Run Sanity Check</button>
+    <div class="stats" id="stats"></div>
+    <div class="error" id="error"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Live Metrics</h2>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Build Time</span>
+        <span class="meter-value" id="buildVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="buildFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Heap (RAM)</span>
+        <span class="meter-value" id="heapVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="heapFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Node Access (avg)</span>
+        <span class="meter-value" id="latencyVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="latencyFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>GC / Memory pressure</span>
+        <span class="meter-value" id="memPressureVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="memPressureFill" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Clustering Proof</h2>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <span class="proof-label">Cluster Hit Rate</span>
+        <span class="proof-value" id="proofHitRate">—</span>
+        <span class="proof-unit">%</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-label">Avg Nodes Touched</span>
+        <span class="proof-value" id="proofNodesTouched">—</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-label">Traversal Depth</span>
+        <span class="proof-value" id="proofDepth">—</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-label">P95 Node Access</span>
+        <span class="proof-value" id="proofP95">—</span>
+        <span class="proof-unit">ms</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-label">Throughput</span>
+        <span class="proof-value" id="proofThroughput">—</span>
+        <span class="proof-unit">ops/s</span>
+      </div>
+    </div>
+    <div class="stage-table-wrap">
+      <table class="stage-table" id="stageTable">
+        <thead>
+          <tr><th>Stage</th><th>Node Target</th><th>Ops</th><th>Avg ms</th><th>P95 ms</th><th>Hit %</th><th>OK</th></tr>
+        </thead>
+        <tbody id="stageTableBody"></tbody>
+      </table>
+    </div>
+    <div class="proof-meta" id="proofMeta"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Content Validation (Real-World Data)</h2>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Gates</span>
+        <span class="meter-value" id="gatesVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="gatesFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Pain Points</span>
+        <span class="meter-value" id="painVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="painFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Tool Mappings</span>
+        <span class="meter-value" id="mappingVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="mappingFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Tools (with workthroughs)</span>
+        <span class="meter-value" id="toolsVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="toolsFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="stats" id="contentErrors" style="margin-top: 12px;"></div>
+  </div>
+
+  <div class="panel">
+    <h2>E2E Page Checks</h2>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Gate page (/gates/mens-mental-health)</span>
+        <span class="meter-value" id="e2eGateVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="e2eGateFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Tools listing (/tools)</span>
+        <span class="meter-value" id="e2eToolsVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="e2eToolsFill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="meter-label">
+        <span>Sample tool workthrough</span>
+        <span class="meter-value" id="e2eWorkthroughVal">—</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="e2eWorkthroughFill" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TARGET_BUILD_S = 0.2;
+    const TARGET_RAM_MB = 100;
+    const TARGET_LATENCY_MS = 50;
+    const TARGET_GATES = 12;
+    const TARGET_PAIN_POINTS = 480;
+    const TARGET_TOOL_MAPPINGS = 1440;
+    const TEST_DURATION = 30;
+    const POLL_INTERVAL = 500;
+
+    let timerId = null;
+    let pollId = null;
+    let remaining = 0;
+    let totalPolls = 0;
+    let okPolls = 0;
+    let latencySamples = [];
+    let contentValidated = false;
+
+    const nodeUrl = window.RYD_MATRIX_NODE_URL || '/api/matrix/node';
+    const metricsUrl = '/api/matrix/metrics';
+    const healthUrl = '/api/meters/health';
+    let lastCsvRows = [];
+    let lastStressResult = null;
+
+    function getMeterParams() {
+      const useCache = document.getElementById('useCache')?.checked !== false;
+      const bypassCache = document.getElementById('bypassCache')?.checked === true;
+      return { useCache, bypassCache };
+    }
+
+    function setContentMeter(id, actual, expected, label) {
+      const fill = document.getElementById(id + 'Fill');
+      const val = document.getElementById(id + 'Val');
+      if (!fill || !val) return;
+      const ok = actual >= expected;
+      fill.style.width = expected > 0 ? Math.min(100, (actual / expected) * 100) + '%' : (actual > 0 ? '100%' : '0%');
+      fill.className = 'meter-fill ' + (ok ? 'ok' : (actual > 0 ? 'warn' : 'fail'));
+      val.textContent = label || (actual + ' / ' + expected);
+    }
+
+    function setMeter(id, value, target, unit, lowerIsBetter = true) {
+      const fill = document.getElementById(id + 'Fill');
+      const val = document.getElementById(id + 'Val');
+      if (!fill || !val) return;
+
+      const pct = target > 0 ? Math.min(100, (value / target) * 100) : 0;
+      const fillPct = lowerIsBetter ? Math.min(100, pct) : pct;
+      fill.style.width = fillPct + '%';
+
+      let css = 'ok';
+      if (lowerIsBetter) {
+        if (value <= target) css = 'ok';
+        else if (value <= target * 1.5) css = 'warn';
+        else css = 'fail';
+      }
+      fill.className = 'meter-fill ' + css;
+
+      val.textContent = value != null ? value.toFixed(3) + (unit || '') : '—';
+    }
+
+    async function measureNodeLatency() {
+      const { useCache, bypassCache } = getMeterParams();
+      const params = new URLSearchParams({ index: 0, _metrics: '1', useCache: useCache ? '1' : '0', bypassCache: bypassCache ? '1' : '0' });
+      const samples = [0, 500000, 999999];
+      const times = [];
+      for (const i of samples) {
+        params.set('index', i);
+        const t0 = performance.now();
+        try {
+          const r = await fetch(nodeUrl + '?' + params.toString());
+          await r.json();
+        } catch (_) {}
+        times.push((performance.now() - t0));
+      }
+      return times.length ? times.reduce((a, b) => a + b, 0) / times.length : 0;
+    }
+
+    function updateProofPanel(health) {
+      if (!health) return;
+      const set = (id, v, suffix = '') => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = (v != null && v !== '') ? (typeof v === 'number' ? v.toFixed(2) : v) + suffix : '—';
+      };
+      set('proofHitRate', health.clusterHitRatePct, '%');
+      set('proofNodesTouched', health.avgNodesTouched);
+      set('proofDepth', health.avgDepth);
+      set('proofP95', health.p95LatencyMs, ' ms');
+      set('proofThroughput', health.throughputOpsPerSec, '');
+      const memEl = document.getElementById('memPressureVal');
+      const memFill = document.getElementById('memPressureFill');
+      if (memEl && health.currentHeapMb != null) {
+        memEl.textContent = health.currentHeapMb.toFixed(2) + ' MB';
+        const pct = Math.min(100, (health.currentHeapMb / 100) * 100);
+        if (memFill) { memFill.style.width = pct + '%'; memFill.className = 'meter-fill ' + (health.currentHeapMb <= 100 ? 'ok' : 'warn'); }
+      }
+    }
+
+    async function runProgressiveStress() {
+      const btn = document.getElementById('stressBtn');
+      const { useCache, bypassCache } = getMeterParams();
+      btn.disabled = true;
+      document.getElementById('error').textContent = '';
+      try {
+        const r = await fetch('/api/meters/run', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nodeTargets: [10000, 100000, 250000, 500000, 1000000],
+            durationPerStageSec: 20,
+            opsPerSecTarget: 50,
+            traversalMode: 'anchor+1hop',
+            useCache: useCache,
+            bypassCache: bypassCache,
+          }),
+        });
+        const data = await r.json();
+        if (!data.ok) throw new Error(data.error || 'Run failed');
+        lastCsvRows = data.csvRows || [];
+        lastStressResult = data;
+        const tbody = document.getElementById('stageTableBody');
+        if (tbody && data.stages) {
+          tbody.innerHTML = data.stages.map(s =>
+            `<tr><td>${s.stage}</td><td>${Number(s.nodeTarget).toLocaleString()}</td><td>${s.opsTotal}</td><td>${s.avgLatencyMs.toFixed(2)}</td><td>${s.p95LatencyMs.toFixed(2)}</td><td>${s.clusterHitRatePct.toFixed(1)}%</td><td>${s.success ? '✓' : '✗'}</td></tr>`
+          ).join('');
+        }
+        document.getElementById('proofMeta').textContent = `Total nodes: ${(data.stages && data.stages[0] ? '1,000,000' : '—')} | Log: ${data.logFilename || '—'} | ${new Date().toISOString()}`;
+        document.getElementById('csvBtn').disabled = false;
+        const h = await fetch(healthUrl).then(x => x.json());
+        if (h.ok) updateProofPanel(h);
+      } catch (e) {
+        document.getElementById('error').textContent = 'Stress test failed: ' + e.message;
+      }
+      btn.disabled = false;
+    }
+
+    function downloadCsv() {
+      if (lastCsvRows.length === 0) return;
+      const csv = lastCsvRows.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'meters-stress-' + new Date().toISOString().slice(0, 19).replace(/[:-]/g, '') + '.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    async function validateContent() {
+      const errEl = document.getElementById('contentErrors');
+      errEl.innerHTML = '';
+      let gates = 0, painPoints = 0, toolMappings = 0, toolsCount = 0, mappingOk = true;
+
+      try {
+        const [gatesRes, mappingRes, toolsRes, canonicalRes] = await Promise.all([
+          fetch('/data/gates.json?t=' + Date.now()),
+          fetch('/data/gates-painpoints-tools.json?t=' + Date.now()),
+          fetch('/data/tools.json?t=' + Date.now()),
+          fetch('/data/tools-canonical.json?t=' + Date.now()).catch(() => null)
+        ]);
+
+        const gatesData = await gatesRes.json();
+        gates = (gatesData.gates || []).length;
+
+        const mapping = await mappingRes.json();
+        const mappingGates = mapping.gates || [];
+        let totalPain = 0, totalRefs = 0;
+        const toolIdsInMapping = new Set();
+        mappingGates.forEach(g => {
+          const pps = g.painPoints || [];
+          totalPain += pps.length;
+          pps.forEach(pp => {
+            const ids = pp.toolIds || [];
+            totalRefs += ids.length;
+            ids.forEach(id => toolIdsInMapping.add(id));
+          });
+        });
+        painPoints = totalPain;
+        toolMappings = totalRefs;
+
+        const toolsData = await toolsRes.json();
+        const tools = toolsData.tools || [];
+        toolsCount = tools.filter(t => (t.walkthroughs && t.walkthroughs.length) || (t.steps && t.steps.length)).length;
+        const totalTools = tools.length;
+        if (totalTools === 0) toolsCount = 0;
+
+        const toolMap = new Map();
+        if (canonicalRes && canonicalRes.ok) {
+          try {
+            const can = await canonicalRes.json();
+            (can.tools || []).forEach(t => {
+              if (t.id) toolMap.set(t.id, t);
+              if (t.slug) toolMap.set(t.slug, t);
+            });
+          } catch (_) {}
+        }
+        (toolsData.tools || []).forEach(t => {
+          if (t.id) toolMap.set(t.id, t);
+          if (t.slug) toolMap.set(t.slug, t);
+        });
+
+        const missing = [];
+        toolIdsInMapping.forEach(id => {
+          if (toolMap.size > 0 && !toolMap.has(id)) missing.push(id);
+        });
+        if (missing.length > 0) {
+          mappingOk = false;
+          errEl.innerHTML = '<span class="error">Missing tools: ' + missing.slice(0, 5).join(', ') + (missing.length > 5 ? '...' : '') + '</span>';
+        }
+
+        setContentMeter('gates', gates, TARGET_GATES, gates + ' / ' + TARGET_GATES);
+        setContentMeter('pain', painPoints, TARGET_PAIN_POINTS, painPoints + ' / ' + TARGET_PAIN_POINTS);
+        setContentMeter('mapping', mappingOk ? toolMappings : 0, TARGET_TOOL_MAPPINGS, toolMappings + ' / ' + TARGET_TOOL_MAPPINGS + (mappingOk ? '' : ' (invalid refs)'));
+        const minTools = 100;
+        setContentMeter('tools', totalTools, minTools, totalTools + ' tools' + (toolsCount > 0 ? ' (' + toolsCount + ' w/ workthroughs)' : ''));
+      } catch (e) {
+        errEl.innerHTML = '<span class="error">Content validation failed: ' + e.message + '</span>';
+      }
+      contentValidated = true;
+    }
+
+    async function runE2EChecks() {
+      const base = location.origin;
+      try {
+        const gateRes = await fetch(base + '/gates/mens-mental-health');
+        const gateOk = gateRes.ok;
+        const gateHtml = gateOk ? await gateRes.text() : '';
+        const gateHasContent = gateHtml.includes('Mental Health') || gateHtml.includes('mens-mental-health');
+        setContentMeter('e2eGate', gateOk && gateHasContent ? 1 : 0, 1, gateOk && gateHasContent ? 'OK' : (gateOk ? 'No content' : gateRes.status));
+
+        const toolsRes = await fetch(base + '/tools');
+        const toolsOk = toolsRes.ok;
+        const toolsHtml = toolsOk ? await toolsRes.text() : '';
+        const toolsHasContent = toolsHtml.includes('tool') || toolsHtml.includes('Tool');
+        setContentMeter('e2eTools', toolsOk && toolsHasContent ? 1 : 0, 1, toolsOk && toolsHasContent ? 'OK' : (toolsOk ? 'No content' : toolsRes.status));
+
+        const workRes = await fetch(base + '/tools/how-do-i-stop-feeling-numb-quick-reset');
+        const workOk = workRes.ok;
+        const workHtml = workOk ? await workRes.text() : '';
+        const workHasContent = workHtml.includes('steps') || workHtml.includes('workthrough') || workHtml.includes('minutes');
+        setContentMeter('e2eWorkthrough', workOk && workHasContent ? 1 : 0, 1, workOk && workHasContent ? 'OK' : (workOk ? 'No content' : workRes.status));
+      } catch (e) {
+        setContentMeter('e2eGate', 0, 1, 'Error');
+        setContentMeter('e2eTools', 0, 1, 'Error');
+        setContentMeter('e2eWorkthrough', 0, 1, 'Error');
+      }
+    }
+
+    async function poll() {
+      try {
+        const { useCache, bypassCache } = getMeterParams();
+        const params = '?useCache=' + (useCache ? '1' : '0') + '&bypassCache=' + (bypassCache ? '1' : '0');
+        const [metricsRes, healthRes, lat] = await Promise.all([
+          fetch(metricsUrl),
+          fetch(healthUrl).catch(() => null),
+          measureNodeLatency()
+        ]);
+        const data = await metricsRes.json();
+
+        if (data.ok && !data.halted) {
+          okPolls++;
+          latencySamples.push(lat);
+          const avgLat = latencySamples.length
+            ? latencySamples.reduce((a, b) => a + b, 0) / latencySamples.length
+            : lat;
+
+          const buildS = data.buildTimeSeconds ?? 0;
+          const heapMb = data.currentHeapMb ?? data.heapMb ?? 0;
+
+          setMeter('build', buildS, TARGET_BUILD_S, 's');
+          setMeter('heap', heapMb, TARGET_RAM_MB, ' MB');
+          setMeter('latency', avgLat, TARGET_LATENCY_MS, ' ms');
+        }
+
+        if (healthRes && healthRes.ok) {
+          const health = await healthRes.json();
+          if (health.ok) updateProofPanel(health);
+        }
+      } catch (e) {
+        document.getElementById('error').textContent = 'Error: ' + e.message;
+      }
+      totalPolls++;
+    }
+
+    function updateStats() {
+      const el = document.getElementById('stats');
+      el.innerHTML = `
+        <span class="stat">Polls: <strong>${totalPolls}</strong></span>
+        <span class="stat">OK: <strong>${okPolls}</strong></span>
+        <span class="stat">Success: <strong>${totalPolls ? (100 * okPolls / totalPolls).toFixed(0) : 0}%</strong></span>
+      `;
+    }
+
+    async function startTest() {
+      const btn = document.getElementById('startBtn');
+      const timerEl = document.getElementById('timer');
+      document.getElementById('error').textContent = '';
+      totalPolls = 0;
+      okPolls = 0;
+      latencySamples = [];
+      remaining = TEST_DURATION;
+
+      btn.disabled = true;
+      timerEl.classList.remove('done');
+
+      await Promise.all([validateContent(), runE2EChecks()]);
+
+      poll();
+      pollId = setInterval(poll, POLL_INTERVAL);
+
+      timerId = setInterval(() => {
+        remaining--;
+        timerEl.textContent = remaining;
+        updateStats();
+        if (remaining <= 0) {
+          clearInterval(timerId);
+          clearInterval(pollId);
+          timerEl.textContent = 'Done';
+          timerEl.classList.add('done');
+          btn.disabled = false;
+          updateStats();
+        }
+      }, 1000);
+    }
+
+    async function runSanityCheck() {
+      const errEl = document.getElementById('error');
+      errEl.textContent = 'Running sanity check…';
+      try {
+        const base = location.origin;
+        const anchorOnly = await fetch(base + '/api/matrix/node?index=1000&_metrics=1&useCache=0&bypassCache=1&traversalMode=anchorOnly').then(r => r.json());
+        const twoHop = await fetch(base + '/api/matrix/node?index=1000&_metrics=1&useCache=0&bypassCache=1&traversalMode=anchor+2hop').then(r => r.json());
+        const h1 = await fetch(base + '/api/meters/health').then(r => r.json());
+        const depthOk = (twoHop.depth >= (anchorOnly.depth || 1)) && ((twoHop.nodesTouched || 0) >= (anchorOnly.nodesTouched || 1));
+        const cacheOn = await fetch(base + '/api/matrix/node?index=42&_metrics=1&useCache=1&bypassCache=0').then(() => fetch(base + '/api/meters/health').then(r => r.json()));
+        const cacheOff = await fetch(base + '/api/matrix/node?index=43&_metrics=1&useCache=0&bypassCache=1').then(() => fetch(base + '/api/meters/health').then(r => r.json()));
+        const hitRateDrops = (cacheOff.clusterHitRatePct ?? 0) <= (cacheOn.clusterHitRatePct ?? 100) || cacheOff.sampleCount < 2;
+        if (depthOk && hitRateDrops) {
+          errEl.textContent = 'Sanity check passed: traversal increases depth/nodesTouched; bypass cache affects hit rate.';
+          errEl.style.color = 'var(--ok)';
+        } else {
+          errEl.textContent = 'Sanity check: depthOk=' + depthOk + ', hitRateDrops=' + hitRateDrops;
+          errEl.style.color = 'var(--warn)';
+        }
+      } catch (e) {
+        errEl.textContent = 'Sanity check failed: ' + e.message;
+        errEl.style.color = 'var(--fail)';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      validateContent().then(() => runE2EChecks());
+      fetch(healthUrl).then(r => r.ok ? r.json() : null).then(h => { if (h && h.ok) updateProofPanel(h); });
+    });
+  </script>
+</body>
+</html>

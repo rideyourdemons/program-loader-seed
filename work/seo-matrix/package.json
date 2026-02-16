@@ -1,0 +1,13 @@
+{
+  "name": "seo-matrix",
+  "version": "0.1.0",
+  "description": "Matrix generators, node engine, sitemap tools",
+  "private": true,
+  "scripts": {
+    "matrix:dry": "node matrix-dry.mjs",
+    "matrix:build": "node build-matrix.cjs --dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

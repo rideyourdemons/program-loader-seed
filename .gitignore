@@ -67,6 +67,12 @@ _archive/
 # Private legal/provenance evidence (optional)
 # LEGAL/PROVENANCE_EVIDENCE.txt
 
+# Work backup folders (contents ignored; .gitkeep tracked)
+work/backups-snapshots/*
+!work/backups-snapshots/.gitkeep
+work/backups-releases/*
+!work/backups-releases/.gitkeep
+
 # Large JSON data files (160k+ nodes) - "Black Box" approach
 # Keep the engine logic public, hide the data
 *_nodes.json

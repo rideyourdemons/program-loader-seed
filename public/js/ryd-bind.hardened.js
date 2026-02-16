@@ -17,10 +17,9 @@
     ErrorBoundary: class { catch() {} },
     withErrorBoundary: (container, fn) => fn
   };
-  const { schemas, validateData } = window.RYD_Validation || {
-    schemas: {},
-    validateData: (data) => ({ success: true, data })
-  };
+  const RYD_Validation = window.RYD_Validation || {};
+  const { schemas = {}, validateData = (data) => ({ success: true, data }) } = RYD_Validation;
+  const schemaObjectFn = typeof RYD_Validation.object === 'function' ? RYD_Validation.object : null;
   const { cleanData, ensureWhereItCameFrom } = window.RYD_DataSanitizer || {
     cleanData: (data) => data,
     ensureWhereItCameFrom: (data) => data
@@ -72,9 +71,11 @@
       return;
     }
 
-    // Validate and sanitize tool with safe field access
-    const validation = validateData(tool, schemas.tool || schemas.object({}), null);
-    const rawTool = validation.success ? validation.data : tool;
+    // Validate and sanitize tool with safe field access (schemas.object is on RYD_Validation.object, not schemas)
+    const toolSchema = schemas.tool || (schemaObjectFn ? schemaObjectFn({}) : null);
+    const rawTool = toolSchema && typeof validateData === 'function'
+      ? (function() { var v = validateData(tool, toolSchema, null); return v.success ? v.data : tool; })()
+      : tool;
     
     // Clean data with defaults and ensure where_it_came_from
     const validatedTool = ensureWhereItCameFrom(cleanData(rawTool, 'tool'));

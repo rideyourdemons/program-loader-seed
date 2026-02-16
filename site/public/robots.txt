@@ -1,0 +1,22 @@
+# robots.txt for Ride Your Demons
+# https://rideyourdemons.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin/internal paths
+Disallow: /matrix/
+Disallow: /data/
+Disallow: /config/
+Disallow: /store/_archive/
+
+# Allow important pages
+Allow: /
+Allow: /tools
+Allow: /insights
+Allow: /gates
+Allow: /tools/*
+
+# Sitemap location
+Sitemap: https://rideyourdemons.com/sitemap.xml
+

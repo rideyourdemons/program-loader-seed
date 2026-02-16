@@ -17,10 +17,9 @@
   const { resilientFetch, safeJsonParse: resilientSafeParse } = window.RYD_ResilientFetch || {};
   const { fetchWithRetry, safeJsonParse: retrySafeParse } = window.RYD_Fetch || {};
   const { ErrorBoundary } = window.RYD_ErrorBoundary || { ErrorBoundary: class { catch() {} } };
-  const { schemas, validateData } = window.RYD_Validation || { 
-    schemas: {}, 
-    validateData: (data) => ({ success: true, data }) 
-  };
+  const RYD_Validation = window.RYD_Validation || {};
+  const { schemas = {}, validateData = (data) => ({ success: true, data }) } = RYD_Validation;
+  const schemaObjectFn = typeof RYD_Validation.object === 'function' ? RYD_Validation.object : null;
   const { dataCache } = window.RYD_Cache || { dataCache: { get: () => null, set: () => {} } };
   const { cleanData, ensureWhereItCameFrom } = window.RYD_DataSanitizer || {
     cleanData: (data) => data,
@@ -305,13 +304,13 @@
   async function fetchToolsData() {
     try {
       const result = await fetchJson(TOOLS_CANONICAL_URL, DATA_FILES.toolsCanonical);
-      const validation = validateData(result, schemas.toolsResponse || schemas.object({}), { tools: [] });
+      const validation = validateData(result, schemas.toolsResponse || (schemaObjectFn ? schemaObjectFn({})) || null, { tools: [] });
       return validation.data?.tools || validation.data || [];
     } catch (error) {
       console.warn('[MatrixExpander] Falling back to tools.json:', error.message || error);
       try {
         const result = await fetchJson(TOOLS_URL, DATA_FILES.tools);
-        const validation = validateData(result, schemas.toolsResponse || schemas.object({}), { tools: [] });
+        const validation = validateData(result, schemas.toolsResponse || (schemaObjectFn ? schemaObjectFn({})) || null, { tools: [] });
         return validation.data?.tools || validation.data || [];
       } catch (fallbackError) {
         console.error('[MatrixExpander] Both tool sources failed:', fallbackError);
@@ -358,8 +357,8 @@
           fetchToolsData()
         ]);
 
-        const gatesValidation = validateData(gatesResult, schemas.gatesResponse || schemas.object({}), { gates: [] });
-        const painPointsValidation = validateData(painPointsResult, schemas.painPointsResponse || schemas.object({}), { painPoints: {} });
+        const gatesValidation = validateData(gatesResult, schemas.gatesResponse || (schemaObjectFn ? schemaObjectFn({})) || null, { gates: [] });
+        const painPointsValidation = validateData(painPointsResult, schemas.painPointsResponse || (schemaObjectFn ? schemaObjectFn({})) || null, { painPoints: {} });
 
         const result = {
           gatesData: gatesValidation.data?.gates || gatesValidation.data || [],

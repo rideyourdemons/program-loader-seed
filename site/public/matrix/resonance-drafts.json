@@ -1,0 +1,276 @@
+{
+  "generated": "2026-02-04T02:33:24.797Z",
+  "status": "draft",
+  "linkAdjustments": [
+    {
+      "nodeId": "mens-mental-health",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "womens-mental-health",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "addiction-recovery",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "fathers-and-sons",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "teen-and-gen-z",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "grief-and-loss",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "financial-collapse-and-purpose",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "trauma-rebuild",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "heartbreak-loop",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "identity-crisis",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "full-resurrection-system",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "loneliness",
+      "type": "gate",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-stop-feeling-numb",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-become-more-disciplined",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-deal-with-anger-issues",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-stop-procrastinating",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-build-self-confidence",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-overcome-anxiety",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-find-my-purpose",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    },
+    {
+      "nodeId": "mens-mental-health::how-do-i-deal-with-toxic-relationships",
+      "type": "pain-point",
+      "action": "increase-internal-links",
+      "recommendedBoost": 0.095,
+      "reason": "High resonance score",
+      "status": "draft"
+    }
+  ],
+  "expansionCandidates": [
+    {
+      "parentNodeId": "mens-mental-health",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Men's Mental Health",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "womens-mental-health",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Women's Mental Health",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "addiction-recovery",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Addiction Recovery",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "fathers-and-sons",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Fathers & Sons",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "teen-and-gen-z",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Teen & Gen Z",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "grief-and-loss",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Grief & Loss",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "financial-collapse-and-purpose",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Financial Collapse & Purpose",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "trauma-rebuild",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Trauma Rebuild",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "heartbreak-loop",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Heartbreak Loop",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "identity-crisis",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Identity Crisis",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "full-resurrection-system",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Full Resurrection System",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    },
+    {
+      "parentNodeId": "loneliness",
+      "parentType": "gate",
+      "proposal": "derive-adjacent-intent",
+      "intentSeed": "Loneliness & Social Disconnection",
+      "status": "draft",
+      "requiresReview": true,
+      "reason": "High resonance parent; draft-only expansion candidate"
+    }
+  ]
+}

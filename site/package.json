@@ -1,0 +1,14 @@
+{
+  "name": "ryd-site",
+  "version": "0.1.0",
+  "description": "Ride Your Demons — minimal runnable site copy",
+  "private": true,
+  "scripts": {
+    "dev": "node server.cjs",
+    "start": "node server.cjs"
+  },
+  "engines": { "node": ">=18.0.0" },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

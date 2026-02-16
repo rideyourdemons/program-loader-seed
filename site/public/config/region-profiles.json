@@ -1,0 +1,92 @@
+{
+  "version": "1.0",
+  "description": "Regional language + ethics overlays. Meaning and intent remain invariant; only language, tone, spelling, and required disclosures change.",
+  "canonical_meaning": {
+    "note": "All regions share the same core meaning and intent. Only presentation adapts."
+  },
+  "regions": {
+    "US": {
+      "language": "en-US",
+      "spelling": "US",
+      "tone": "direct",
+      "required_disclaimers": [
+        "This platform provides educational self-help tools only, not medical advice, diagnosis, or treatment.",
+        "If you are experiencing a mental health emergency, please contact 988 Suicide & Crisis Lifeline or your local emergency services."
+      ],
+      "commerce_compliance": {
+        "consumer_protection": true,
+        "no_outcome_claims": true,
+        "clear_pricing": true
+      },
+      "cultural_adaptations": {
+        "communication_style": "direct",
+        "formality": "moderate"
+      }
+    },
+    "CA": {
+      "language": "en-CA",
+      "spelling": "CA",
+      "tone": "respectful",
+      "required_disclaimers": [
+        "This platform provides educational self-help tools only, not medical advice, diagnosis, or treatment.",
+        "If you are experiencing a mental health emergency, please contact 9-8-8 Suicide Crisis Helpline or your local emergency services."
+      ],
+      "commerce_compliance": {
+        "consumer_protection": true,
+        "no_outcome_claims": true,
+        "clear_pricing": true,
+        "bilingual_requirements": false
+      },
+      "cultural_adaptations": {
+        "communication_style": "respectful",
+        "formality": "moderate"
+      }
+    },
+    "EU": {
+      "language": "en-GB",
+      "spelling": "GB",
+      "tone": "formal",
+      "required_disclaimers": [
+        "This platform provides educational self-help tools only, not medical advice, diagnosis, or treatment.",
+        "If you are experiencing a mental health emergency, please contact your local emergency services or a mental health helpline."
+      ],
+      "commerce_compliance": {
+        "gdpr_compliant": true,
+        "consumer_protection": true,
+        "no_outcome_claims": true,
+        "clear_pricing": true,
+        "right_of_withdrawal": true
+      },
+      "cultural_adaptations": {
+        "communication_style": "formal",
+        "formality": "high"
+      }
+    },
+    "UK": {
+      "language": "en-GB",
+      "spelling": "GB",
+      "tone": "formal",
+      "required_disclaimers": [
+        "This platform provides educational self-help tools only, not medical advice, diagnosis, or treatment.",
+        "If you are experiencing a mental health emergency, please contact 999 or your local mental health crisis team."
+      ],
+      "commerce_compliance": {
+        "consumer_protection": true,
+        "no_outcome_claims": true,
+        "clear_pricing": true,
+        "distance_selling_regulations": true
+      },
+      "cultural_adaptations": {
+        "communication_style": "formal",
+        "formality": "high"
+      }
+    }
+  },
+  "prohibited_adaptations": {
+    "meaning_changes": "Meaning and intent MUST remain invariant across regions",
+    "manipulation": "No region-specific manipulation or persuasion techniques",
+    "outcome_promises": "No region-specific outcome promises or guarantees",
+    "emotional_leverage": "No region-specific emotional leverage or vulnerability targeting"
+  }
+}
+

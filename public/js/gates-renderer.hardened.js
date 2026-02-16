@@ -332,6 +332,7 @@
       try {
         const gateCard = document.createElement('div');
         gateCard.className = 'gate-card';
+        gateCard.setAttribute('data-gate', String(gate.id || 'core'));
         gateCard.style.cssText = 'border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; padding: 1.5rem; background: var(--color-bg-secondary, #ffffff);';
 
         // Gate title (safe)

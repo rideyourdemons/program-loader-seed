@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-13T22:12:58.615Z",
+  "anchors": [
+    {
+      "id": "mental-health-anchor",
+      "slug": "mental-health-anchor",
+      "title": "Mental Health & Well-Being",
+      "description": "Evidence-based tools and resources for mental health, emotional resilience, and personal growth.",
+      "isPublic": true,
+      "createdAt": "2026-02-13T22:12:58.594Z"
+    }
+  ]
+}

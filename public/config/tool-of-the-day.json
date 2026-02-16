@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "mode": "manual",
+  "manualToolId": "tool-15min-reset",
+  "rotation": {
+    "seed": 164000,
+    "cadence": "daily",
+    "categories": ["anxiety", "stress", "depression", "addiction"]
+  },
+  "display": {
+    "title": "Tool of the Day",
+    "subtitle": "One small rep. Real traction.",
+    "ctaText": "Open Tool",
+    "ctaHref": "/tools"
+  }
+}

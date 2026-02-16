@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager (via analytics.js) -->
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/ui-sanitize.js" defer></script>
+    <script src="/js/config/social-config.js" defer></script>
+    <script src="/js/utils/social-share.js" defer></script>
+    <script src="/js/utils/footer-social.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+  <script src="/js/utils/tool-content-validator.js"></script>
+  <script src="/js/utils/tool-registry-loader.js"></script>
+  <script src="/js/matrix-expander.js" defer></script>
+  <script src="/js/ryd-tools.hardened.js" defer></script>
+  <script src="/js/ryd-tools.js" defer></script>
+    <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/matrix-status.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    
+    <!-- SEO Meta Tags -->
+    <link rel="canonical" href="https://rideyourdemons.com/tools">
+    <title>Tools — Ride Your Demons</title>
+    <meta name="description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth. Educational use only.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tools — Ride Your Demons">
+    <meta property="og:description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth.">
+    <meta property="og:url" content="https://rideyourdemons.com/tools">
+    <meta property="og:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ride Your Demons">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tools — Ride Your Demons">
+    <meta name="twitter:description" content="Free self-help tools and techniques for stress management, emotional well-being, and personal growth.">
+    <meta name="twitter:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    
+    <style>
+        /* Additional page-specific styles if needed */
+        .tools-intro {
+            text-align: center;
+        }
+        
+        .tools-intro h1 {
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+        }
+        
+        .tools-intro p {
+            font-size: 1.2em;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--gap-lg);
+        }
+        
+        .tool-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .tool-card h3 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .tool-card p {
+            color: var(--color-text-secondary);
+        }
+        
+        .tool-card {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .tool-details {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            min-height: 20px !important;
+            overflow: visible !important;
+        }
+        
+        .tool-details[hidden] {
+            display: none !important;
+        }
+        
+        .tool-details > * {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        .tool-toggle {
+            transition: opacity 0.2s;
+        }
+        
+        .tool-toggle:hover {
+            opacity: 0.9;
+        }
+    </style>
+    <script>
+        // CSS Loading Debug (localhost only)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('=== CSS Loading Debug (Localhost) ===');
+                const stylesheetLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+                console.log('Stylesheet links found:', stylesheetLinks.length);
+                stylesheetLinks.forEach((link, index) => {
+                    console.log(`Stylesheet link ${index + 1}:`, link.href);
+                    link.addEventListener('error', () => {
+                        console.error(`Failed to load: ${link.href}`);
+                    });
+                });
+                console.log('document.styleSheets.length:', document.styleSheets.length);
+                Array.from(document.styleSheets).forEach((sheet, index) => {
+                    try {
+                        console.log(`Loaded stylesheet ${index + 1}:`, sheet.href || 'inline');
+                    } catch (e) {
+                        console.log(`Loaded stylesheet ${index + 1}:`, 'cross-origin or inline');
+                    }
+                });
+                console.log('====================================');
+            });
+        }
+        
+        // Load and render tools
+        function extractDescription(tool) {
+            // FAIL-LOUD: No fallbacks
+            if (!tool || typeof tool !== 'object') {
+                throw new Error('[Tools Page] Tool is missing or invalid');
+            }
+            try {
+                if (window.RYD_ToolValidator) {
+                    window.RYD_ToolValidator.require(tool, 'tools page extractDescription');
+                    const raw = window.RYD_ToolValidator.getContent(tool, 'description');
+                    const title = tool.title || tool.name;
+                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                        return window.RYD_UI.sanitizeDescription(raw, title);
+                    }
+                    return raw;
+                } else {
+                    throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+                }
+            } catch (error) {
+                console.error('[Tools Page] Tool validation failed:', error);
+                throw error; // Fail loudly
+            }
+        }
+
+        // Removed duplicate extractDescription - using validator version above
+                if (lower.startsWith('tool •')) return false;
+                return true;
+            });
+            return (filtered[0] || raw).trim();
+        }
+
+        function scoreTool(tool) {
+            let score = 0;
+            if (extractDescription(tool)) score += 3;
+            if (tool.howWhyWorks) score += 2;
+            if (Array.isArray(tool.citations) && tool.citations.length > 0) score += 2;
+            if (Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0) score += 1;
+            if (tool.duration) score += 1;
+            return score;
+        }
+
+        async function loadAndRenderTools() {
+            const toolsGrid = document.getElementById('toolsGrid');
+            if (!toolsGrid) {
+                console.warn('[RYD] tools.html: toolsGrid not found');
+                return;
+            }
+            
+            // Show loading state
+            toolsGrid.innerHTML = '<div class="card tool-card" style="padding: 2rem; text-align: center;"><p>Loading tools...</p></div>';
+            
+            try {
+                // Use registry loader (fail-loud)
+                if (!window.RYD_RegistryLoader) {
+                    throw new Error('Registry loader not available. Ensure tool-registry-loader.js is loaded.');
+                }
+
+                const registry = await window.RYD_RegistryLoader.load();
+                const data = { tools: registry.tools };
+                
+                if (!data || !Array.isArray(data.tools) || data.tools.length === 0) {
+                    throw new Error('Tool registry is empty or invalid.');
+                }
+
+                const normalizeKey = (tool) => {
+                    const raw = tool.title || tool.name || tool.slug || tool.id || '';
+                    return String(raw)
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                };
+
+                const uniqueMap = new Map();
+                data.tools.forEach(tool => {
+                    const key = normalizeKey(tool);
+                    if (!key) return;
+                    const existing = uniqueMap.get(key);
+                    if (!existing || scoreTool(tool) > scoreTool(existing)) {
+                        uniqueMap.set(key, tool);
+                    }
+                });
+
+                const tools = Array.from(uniqueMap.values())
+                    .sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || '', 'en', { sensitivity: 'base' }));
+                
+                if (tools.length === 0) {
+                    // FAIL-LOUD: Show error state, not empty state
+                    toolsGrid.innerHTML = '';
+                    const errorCard = document.createElement('div');
+                    errorCard.className = 'card tool-card';
+                    errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = 'No Tools Available';
+                    errorCard.appendChild(h3);
+                    
+                    const p = document.createElement('p');
+                    p.textContent = 'Tool registry loaded but contains no valid tools. Check console for details.';
+                    p.style.cssText = 'color: #666; margin-top: 8px;';
+                    errorCard.appendChild(p);
+                    
+                    const retryBtn = document.createElement('button');
+                    retryBtn.textContent = 'Retry';
+                    retryBtn.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
+                    retryBtn.addEventListener('click', () => loadAndRenderTools());
+                    errorCard.appendChild(retryBtn);
+                    
+                    toolsGrid.appendChild(errorCard);
+                    return;
+                }
+                
+                toolsGrid.innerHTML = '';
+                tools.forEach((tool, index) => {
+                    // Console audit: Log tool data for debugging
+                    console.log(`[Tool ${index}] Details Data:`, {
+                        id: tool.id,
+                        title: tool.title || tool.name,
+                        hasHowWhyWorks: !!tool.howWhyWorks,
+                        hasWalkthroughs: Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0,
+                        walkthroughsCount: Array.isArray(tool.walkthroughs) ? tool.walkthroughs.length : 0,
+                        howWhyWorksType: typeof tool.howWhyWorks,
+                        walkthroughsType: typeof tool.walkthroughs
+                    });
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card tool-card';
+                    card.style.cssText = 'padding: 20px; margin-bottom: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = tool.title || tool.name || tool.id;
+                    h3.style.cssText = 'margin-bottom: 12px; color: var(--color-text, #1a1a1a);';
+                    card.appendChild(h3);
+                    
+                    const p = document.createElement('p');
+                    // FAIL-LOUD: No fallback
+                    let cleaned = '';
+                    try {
+                        if (window.RYD_ToolValidator) {
+                            window.RYD_ToolValidator.require(tool, 'tools page render');
+                            cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
+                        } else {
+                            throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+                        }
+                    } catch (error) {
+                        console.error('[Tools Page] Tool validation failed:', error);
+                        // Skip invalid tool - don't render
+                        return;
+                    }
+                    p.textContent = cleaned;
+                    p.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
+                    card.appendChild(p);
+                    
+                    // Meta info
+                    const meta = document.createElement('div');
+                    meta.style.cssText = 'display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9em; color: var(--color-text-secondary, #666);';
+                    
+                    if (tool.duration) {
+                        const duration = document.createElement('span');
+                        duration.textContent = `⏱️ ${tool.duration}`;
+                        meta.appendChild(duration);
+                    }
+                    
+                    if (tool.difficulty) {
+                        const difficulty = document.createElement('span');
+                        const badge = document.createElement('span');
+                        badge.className = `badge badge-${tool.difficulty}`;
+                        badge.textContent = tool.difficulty;
+                        difficulty.innerHTML = `📖 `;
+                        difficulty.appendChild(badge);
+                        meta.appendChild(difficulty);
+                    }
+                    
+                    if (meta.children.length > 0) {
+                        card.appendChild(meta);
+                    }
+                    
+                    // Details section (initially hidden)
+                    const details = document.createElement('div');
+                    details.className = 'tool-details';
+                    details.setAttribute('hidden', '');
+                    details.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); display: block; min-height: 20px;';
+                    
+                    let hasDetailsContent = false;
+                    
+                    // Add additional details if available
+                    if (tool.howWhyWorks) {
+                        console.log(`[Tool ${index}] Adding howWhyWorks:`, tool.howWhyWorks.substring(0, 50) + '...');
+                        const howWhy = document.createElement('div');
+                        howWhy.style.cssText = 'margin-bottom: 15px;';
+                        const howWhyTitle = document.createElement('h4');
+                        howWhyTitle.textContent = 'How & Why It Works';
+                        howWhyTitle.style.cssText = 'margin-bottom: 8px; font-size: 1em; color: var(--color-text, #1a1a1a); font-weight: 600;';
+                        howWhy.appendChild(howWhyTitle);
+                        const howWhyText = document.createElement('p');
+                        const howWhyContent = typeof tool.howWhyWorks === 'string' 
+                            ? tool.howWhyWorks 
+                            : (typeof tool.howWhyWorks === 'object' ? JSON.stringify(tool.howWhyWorks) : String(tool.howWhyWorks));
+                        howWhyText.textContent = howWhyContent;
+                        howWhyText.style.cssText = 'color: var(--color-text-secondary, #666); line-height: 1.6; margin: 0;';
+                        howWhy.appendChild(howWhyText);
+                        details.appendChild(howWhy);
+                        hasDetailsContent = true;
+                    }
+                    
+                    if (Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0 && tool.walkthroughs[0].steps) {
+                        console.log(`[Tool ${index}] Adding walkthroughs:`, tool.walkthroughs[0].steps.length, 'steps');
+                        const walkthroughs = document.createElement('div');
+                        walkthroughs.style.cssText = 'margin-bottom: 15px;';
+                        const walkTitle = document.createElement('h4');
+                        walkTitle.textContent = 'Quick Steps';
+                        walkTitle.style.cssText = 'margin-bottom: 8px; font-size: 1em; color: var(--color-text, #1a1a1a); font-weight: 600;';
+                        walkthroughs.appendChild(walkTitle);
+                        const stepsList = document.createElement('ol');
+                        stepsList.style.cssText = 'padding-left: 20px; margin: 0; color: var(--color-text-secondary, #666);';
+                        const stepsToShow = tool.walkthroughs[0].steps.slice(0, 3);
+                        stepsToShow.forEach(step => {
+                            const li = document.createElement('li');
+                            li.textContent = String(step);
+                            li.style.cssText = 'margin-bottom: 6px; line-height: 1.5;';
+                            stepsList.appendChild(li);
+                        });
+                        walkthroughs.appendChild(stepsList);
+                        details.appendChild(walkthroughs);
+                        hasDetailsContent = true;
+                    }
+                    
+                    // If no details content, add a fallback message
+                    if (!hasDetailsContent) {
+                        console.log(`[Tool ${index}] No details content found, adding fallback`);
+                        const fallback = document.createElement('p');
+                        fallback.textContent = 'Additional details available in the full tool view.';
+                        fallback.style.cssText = 'color: var(--color-text-secondary, #666); font-style: italic; margin: 0;';
+                        details.appendChild(fallback);
+                    }
+                    
+                    console.log(`[Tool ${index}] Details section has ${details.children.length} child elements`);
+                    
+                    // Show Details button
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'tool-toggle btn';
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    toggleBtn.textContent = 'Show Details';
+                    toggleBtn.style.cssText = 'display: inline-block; margin-top: 10px; margin-right: 10px; padding: 8px 16px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em;';
+                    toggleBtn.addEventListener('click', function() {
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        console.log('[Toggle] Button clicked, isExpanded:', isExpanded);
+                        console.log('[Toggle] Details element:', details);
+                        console.log('[Toggle] Details children count:', details.children.length);
+                        console.log('[Toggle] Details innerHTML length:', details.innerHTML.length);
+                        
+                        if (isExpanded) {
+                            details.setAttribute('hidden', '');
+                            this.setAttribute('aria-expanded', 'false');
+                            this.textContent = 'Show Details';
+                            console.log('[Toggle] Details hidden');
+                        } else {
+                            details.removeAttribute('hidden');
+                            this.setAttribute('aria-expanded', 'true');
+                            this.textContent = 'Hide Details';
+                            console.log('[Toggle] Details shown');
+                            console.log('[Toggle] Details computed style display:', window.getComputedStyle(details).display);
+                        }
+                    });
+                    card.appendChild(toggleBtn);
+                    
+                    // CTA button
+                    const link = document.createElement('a');
+                    const toolSlug = encodeURIComponent(String(tool.slug || tool.id || tool.title || tool.name || '').trim());
+                    link.href = `/tools/tool.html?slug=${toolSlug}`;
+                    link.className = 'btn';
+                    link.textContent = 'View Full Tool';
+                    link.style.cssText = 'display: inline-block; margin-top: 10px; padding: 8px 16px; background: var(--color-bg-secondary, #fff); color: var(--color-accent, #667eea); border: 1px solid var(--color-accent, #667eea); border-radius: 6px; text-decoration: none; font-size: 0.9em;';
+                    card.appendChild(link);
+                    
+                    // Append details section
+                    card.appendChild(details);
+                    
+                    toolsGrid.appendChild(card);
+                });
+                
+                console.log('✅ Tools loaded:', tools.length, 'tools');
+                
+                // Re-initialize tool collapse handlers after rendering
+                if (typeof window !== 'undefined' && document.querySelectorAll('.tool-toggle').length > 0) {
+                    // Tool collapse is handled by tool-collapse.js, but we can verify it's working
+                    console.log('✅ Tool toggle buttons initialized');
+                }
+                
+            } catch (error) {
+                // FAIL-LOUD: Show error with safe telemetry (no content dumps)
+                console.error('[RYD] Registry load failed:', {
+                    error: error.message,
+                    type: error.constructor.name,
+                    status: window.RYD_RegistryLoader?.getStatus() || null
+                });
+                
+                if (toolsGrid) {
+                    toolsGrid.innerHTML = '';
+                    const errorCard = document.createElement('div');
+                    errorCard.className = 'card tool-card';
+                    errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
+                    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = 'Tool Registry Failed to Load';
+                    errorCard.appendChild(h3);
+                    
+                    const p1 = document.createElement('p');
+                    p1.textContent = 'Could not load tool registry. This is a system error, not a content issue.';
+                    errorCard.appendChild(p1);
+                    
+                    const p2 = document.createElement('p');
+                    p2.style.cssText = 'font-size: 0.9em; color: #666; margin-top: 8px;';
+                    p2.textContent = `Error: ${error.message}`;
+                    errorCard.appendChild(p2);
+                    
+                    const retryBtn = document.createElement('button');
+                    retryBtn.textContent = 'Retry Loading';
+                    retryBtn.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
+                    retryBtn.addEventListener('click', () => loadAndRenderTools());
+                    errorCard.appendChild(retryBtn);
+                    
+                    toolsGrid.appendChild(errorCard);
+                }
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadAndRenderTools);
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager noscript (injected by analytics.js) -->
+    
+    <header>
+        <div class="header-content">
+            <h1>Ride Your Demons</h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section tools-intro">
+            <h1 class="sectionTitle">Self-Help Tools</h1>
+            <p>Educational techniques and practices for stress management, emotional well-being, and personal growth. No signup required.</p>
+        </section>
+
+        <section class="section">
+            <div class="grid tools-grid" id="toolsGrid">
+                <div class="card tool-card">
+                    <p>Loading tools...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.hardened.js" defer></script>
+    <script src="/js/ryd-tools.js" defer></script>
+    <script src="/js/tool-collapse.js" defer></script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

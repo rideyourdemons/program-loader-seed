@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://rideyourdemons.com/tools/">
+    <title>Tool - Ride Your Demons</title>
+    
+    <!-- Google Tag Manager (via analytics.js) -->
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/ui-sanitize.js" defer></script>
+    <script src="/js/data-files.js" defer></script>
+    <script src="/js/config/social-config.js" defer></script>
+    <script src="/js/utils/social-share.js" defer></script>
+    <script src="/js/utils/footer-social.js" defer></script>
+    
+    <!-- SEO Meta Tags (will be updated by seo-meta.js) -->
+    <meta name="description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tool - Ride Your Demons">
+    <meta property="og:description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta property="og:url" content="https://rideyourdemons.com/tools/">
+    <meta property="og:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Ride Your Demons">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tool - Ride Your Demons">
+    <meta name="twitter:description" content="Free self-help tool for mental health and emotional well-being.">
+    <meta name="twitter:image" content="https://rideyourdemons.com/images/og-default.jpg">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">
+    <style>
+        .tool-details {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border, #e0e0e0);
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            min-height: 20px !important;
+            overflow: visible !important;
+        }
+        
+        .tool-details[hidden] {
+            display: none !important;
+        }
+        
+        .tool-details > * {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        .tool-toggle:hover {
+            opacity: 0.9;
+        }
+    </style>
+    <script src="/js/utils/tool-content-validator.js"></script>
+    <script src="/js/seo-meta.js" defer></script>
+    <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/ryd-boot.js" defer></script>
+    <script src="/js/ryd-bind.hardened.js" defer></script>
+    <script src="/js/ryd-navigation.js" defer></script>
+    <script src="/js/tool-collapse.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="/" style="color: white; text-decoration: none;">Ride Your Demons</a></h1>
+            <nav class="header-nav">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
+                <a href="/">Home</a> › <a href="/tools">Tools</a> › <span id="toolTitleBreadcrumb">Tool</span>
+            </nav>
+            <h1 id="toolTitle">Tool</h1>
+            
+            <!-- Standardized Disclaimer Component -->
+            <div id="toolDisclaimer" class="tool-disclaimer" style="display: none;">
+                <div class="card" style="margin-bottom: 20px; border-left: 4px solid #667eea; background: #f8f9fa;">
+                    <p style="margin-bottom: 10px;"><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. This tool is meant to help you understand what may help and why it works.</p>
+                    <p style="margin: 0; font-size: 0.95em;">If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. In Canada, you can call or text <strong>988</strong> for the Suicide Crisis Helpline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
+                </div>
+            </div>
+            
+            <div id="toolContent" class="card tool-card" style="margin-bottom: 30px;">
+                <p>Loading tool...</p>
+            </div>
+            
+            <div id="howWhyWorks" class="card" style="margin-bottom: 30px; display: none;">
+                <h2>How & Why It Works</h2>
+                <div id="howWhyContent"></div>
+            </div>
+            
+            <div id="citations" class="card" style="margin-bottom: 30px; display: none;">
+                <h2>References & Citations</h2>
+                <div id="citationsContent"></div>
+            </div>
+            
+            <div id="workthroughs" class="section">
+                <h2>Self-Help Workthroughs</h2>
+                <div id="workthroughsContent">
+                    <p>Loading workthroughs...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/tools">Tools</a>
+                <a href="/insights">Insights</a>
+                <a href="/store/">Store (Coming Soon)</a>
+                <a href="/about/">About</a>
+            </div>
+            <nav class="footer-links" aria-label="Site links" style="margin-top: var(--spacing-md);">
+                <a href="/about/">About</a> ·
+                <a href="/disclosures/">Disclosures</a> ·
+                <a href="/ethics/">Ethics</a> ·
+                <a href="/analytics/">Analytics & Privacy</a> ·
+                <a href="/terms/">Terms</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Parse URL params for gate/painPoint context
+            const urlParams = new URLSearchParams(window.location.search);
+            const gateId = urlParams.get('gate');
+            const painPointId = urlParams.get('painPoint');
+            
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const toolIndex = pathParts.indexOf('tools');
+            const pathSlug = toolIndex >= 0 ? pathParts[toolIndex + 1] : '';
+            const slugParam = urlParams.get('slug') || urlParams.get('tool') || '';
+            const rawSlug = (pathSlug && pathSlug !== 'tool.html' && pathSlug !== 'tool')
+                ? pathSlug
+                : slugParam;
+            const slug = decodeURIComponent(rawSlug || '').trim();
+            
+            console.log('[Tool Page] URL slug extraction:', {
+                pathParts,
+                pathSlug,
+                slugParam,
+                rawSlug,
+                finalSlug: slug
+            });
+            
+            if (!slug) {
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                const p = document.createElement('p');
+                p.textContent = 'Invalid tool slug.';
+                contentEl.appendChild(p);
+                return;
+            }
+            
+            try {
+                console.log('[Tool Page] Fetching tools data...');
+                // Data Integrity Audit: Use SafeMapper.safeFetch for UTF-8 encoding enforcement
+                const SafeMapper = window.SafeMapper || {
+                    safeFetch: async (url) => {
+                        const res = await fetch(url, {
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8',
+                                'Accept': 'application/json; charset=utf-8'
+                            }
+                        });
+                        return res.json();
+                    }
+                };
+                
+                // Data Integrity Audit: Use SafeMapper.safeFetch for UTF-8 encoding enforcement
+                let canonicalDataRaw = null;
+                let fallbackDataRaw = null;
+                
+                if (SafeMapper.safeFetch) {
+                    // safeFetch returns data directly (already parsed and sanitized)
+                    try {
+                        canonicalDataRaw = await SafeMapper.safeFetch('/data/tools-canonical.json?ts=' + Date.now());
+                    } catch (e) {
+                        console.warn('[Tool Page] Canonical fetch failed, using fallback');
+                    }
+                    try {
+                        fallbackDataRaw = await SafeMapper.safeFetch('/data/tools.json?ts=' + Date.now());
+                    } catch (e) {
+                        console.warn('[Tool Page] Fallback fetch failed');
+                    }
+                } else {
+                    // Fallback to standard fetch with UTF-8 headers
+                    const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now(), {
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Accept': 'application/json; charset=utf-8'
+                        }
+                    }).catch(() => null);
+                    const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now(), {
+                        headers: {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Accept': 'application/json; charset=utf-8'
+                        }
+                    }).catch(() => null);
+                    
+                    console.log('[Tool Page] Fetch results:', {
+                        canonicalStatus: toolsRes?.status,
+                        fallbackStatus: fallbackRes?.status,
+                        canonicalOk: toolsRes?.ok,
+                        fallbackOk: fallbackRes?.ok
+                    });
+                    
+                    if (toolsRes && toolsRes.ok) {
+                        canonicalDataRaw = await toolsRes.json();
+                    }
+                    if (fallbackRes && fallbackRes.ok) {
+                        fallbackDataRaw = await fallbackRes.json();
+                    }
+                }
+                
+                // Handle both structures: {tools: []} or flat array []
+                const canonicalData = canonicalDataRaw || {};
+                const fallbackData = fallbackDataRaw || {};
+                
+                // Check if data is a flat array or has a tools property
+                const canonicalIsArray = Array.isArray(canonicalData);
+                const fallbackIsArray = Array.isArray(fallbackData);
+                
+                console.log('[Tool Page] Raw fetched data structure audit:', {
+                    canonicalIsArray,
+                    fallbackIsArray,
+                    canonicalTopLevelKeys: canonicalIsArray ? 'ARRAY' : Object.keys(canonicalData),
+                    fallbackTopLevelKeys: fallbackIsArray ? 'ARRAY' : Object.keys(fallbackData),
+                    canonicalHasToolsProp: !canonicalIsArray && 'tools' in canonicalData,
+                    fallbackHasToolsProp: !fallbackIsArray && 'tools' in fallbackData
+                });
+                
+                // Use console.table for better data inspection
+                if (canonicalDataRaw) {
+                    console.table({
+                        'Data Source': 'Canonical',
+                        'Is Array': canonicalIsArray,
+                        'Has Tools Prop': !canonicalIsArray && 'tools' in canonicalData,
+                        'Tools Count': canonicalIsArray 
+                            ? canonicalData.length 
+                            : (Array.isArray(canonicalData.tools) ? canonicalData.tools.length : 0)
+                    });
+                }
+                if (fallbackDataRaw) {
+                    console.table({
+                        'Data Source': 'Fallback',
+                        'Is Array': fallbackIsArray,
+                        'Has Tools Prop': !fallbackIsArray && 'tools' in fallbackData,
+                        'Tools Count': fallbackIsArray 
+                            ? fallbackData.length 
+                            : (Array.isArray(fallbackData.tools) ? fallbackData.tools.length : 0)
+                    });
+                }
+                
+                // Extract tools array - handle both structures
+                const canonicalTools = canonicalIsArray 
+                    ? canonicalData 
+                    : (Array.isArray(canonicalData.tools) ? canonicalData.tools : []);
+                const fallbackTools = fallbackIsArray 
+                    ? fallbackData 
+                    : (Array.isArray(fallbackData.tools) ? fallbackData.tools : []);
+                
+                console.log('[Tool Page] Extracted tools arrays:', {
+                    canonicalToolsCount: canonicalTools.length,
+                    fallbackToolsCount: fallbackTools.length,
+                    sampleCanonicalTool: canonicalTools[0] ? {
+                        id: canonicalTools[0].id,
+                        slug: canonicalTools[0].slug,
+                        title: canonicalTools[0].title || canonicalTools[0].name
+                    } : null,
+                    sampleFallbackTool: fallbackTools[0] ? {
+                        id: fallbackTools[0].id,
+                        slug: fallbackTools[0].slug,
+                        title: fallbackTools[0].title || fallbackTools[0].name
+                    } : null
+                });
+
+                if (canonicalTools.length === 0 && fallbackTools.length === 0) {
+                    throw new Error('Tools data not available.');
+                }
+
+                const normalizeSlug = (value) =>
+                    String(value || '')
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+
+                const isEmptyValue = (value) => {
+                    if (value == null) return true;
+                    if (typeof value === 'string') return value.trim() === '';
+                    if (Array.isArray(value)) return value.length === 0;
+                    return false;
+                };
+
+                const mergeTool = (primary, secondary) => {
+                    if (!secondary) return primary;
+                    const merged = { ...secondary, ...primary };
+                    Object.keys(secondary).forEach(key => {
+                        if (isEmptyValue(merged[key]) && !isEmptyValue(secondary[key])) {
+                            merged[key] = secondary[key];
+                        }
+                    });
+                    return merged;
+                };
+
+                const toolMap = new Map();
+                const indexTool = (tool) => {
+                    if (!tool) return;
+                    const key = normalizeSlug(tool.slug || tool.id || tool.title || tool.name);
+                    if (!key) return;
+                    const existing = toolMap.get(key);
+                    toolMap.set(key, existing ? mergeTool(existing, tool) : tool);
+                };
+
+                canonicalTools.forEach(indexTool);
+                fallbackTools.forEach(indexTool);
+
+                const lookup = (value) => {
+                    if (!value) return null;
+                    const key = normalizeSlug(value);
+                    return toolMap.get(key) || null;
+                };
+
+                const allTools = Array.from(toolMap.values());
+                const normalizedSlug = normalizeSlug(slug);
+                
+                console.log('[Tool Page] Tool map created:', {
+                    toolMapSize: toolMap.size,
+                    sampleToolKeys: Array.from(toolMap.keys()).slice(0, 10)
+                });
+                
+                // Use console.table for tool lookup audit
+                console.table(
+                    Array.from(toolMap.entries())
+                        .slice(0, 10)
+                        .map(([key, tool]) => ({
+                            'Normalized Key': key,
+                            'Tool ID': tool.id,
+                            'Tool Slug': tool.slug || 'N/A',
+                            'Tool Title': (tool.title || tool.name || '').substring(0, 30)
+                        }))
+                );
+                
+                console.log('[Tool Page] Looking up tool:', {
+                    originalSlug: slug,
+                    normalizedSlug: normalizedSlug,
+                    searchingInMap: toolMap.has(normalizedSlug)
+                });
+                
+                const tool = lookup(slug);
+                
+                // Deep audit of filtered tool object
+                if (tool) {
+                    console.table({
+                        'Property': ['Found', 'ID', 'Slug', 'Title', 'Has Description', 'Has HowWhyWorks', 'Has Walkthroughs', 'Has Citations'],
+                        'Value': [
+                            'YES',
+                            tool.id || 'N/A',
+                            tool.slug || 'N/A',
+                            (tool.title || tool.name || '').substring(0, 30),
+                            !!(tool.description || tool.summary),
+                            !!tool.howWhyWorks,
+                            Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0,
+                            Array.isArray(tool.citations) && tool.citations.length > 0
+                        ]
+                    });
+                } else {
+                    console.error('[Tool Page] Tool NOT FOUND after lookup');
+                    console.table({
+                        'Issue': ['Slug Not Found'],
+                        'Original Slug': [slug],
+                        'Normalized Slug': [normalizedSlug],
+                        'In Map': [toolMap.has(normalizedSlug) ? 'YES' : 'NO']
+                    });
+                }
+                
+                if (!tool) {
+                    // FAIL-LOUD: Render proper 404 component, don't redirect
+                    console.error('[Tool Page] Tool not found:', {
+                        slug,
+                        normalizedSlug,
+                        toolMapSize: toolMap.size,
+                        sampleKeys: Array.from(toolMap.keys()).slice(0, 5)
+                    });
+                    
+                    const contentEl = document.getElementById('toolContent');
+                    if (!contentEl) return;
+                    
+                    contentEl.innerHTML = '';
+                    
+                    // 404 Component
+                    const notFoundCard = document.createElement('div');
+                    notFoundCard.className = 'card tool-card';
+                    notFoundCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 30px; text-align: center;';
+                    
+                    const h2 = document.createElement('h2');
+                    h2.textContent = 'Tool Not Found';
+                    h2.style.cssText = 'margin-bottom: 12px; color: #d32f2f;';
+                    notFoundCard.appendChild(h2);
+                    
+                    const p1 = document.createElement('p');
+                    p1.textContent = `The tool "${slug}" could not be found in the registry.`;
+                    p1.style.cssText = 'color: #666; margin-bottom: 20px;';
+                    notFoundCard.appendChild(p1);
+                    
+                    const backLink = document.createElement('a');
+                    backLink.href = '/tools';
+                    backLink.textContent = '← Back to Tools';
+                    backLink.style.cssText = 'display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 4px;';
+                    notFoundCard.appendChild(backLink);
+                    
+                    contentEl.appendChild(notFoundCard);
+                    
+                    // Update page title
+                    if (document.getElementById('toolTitle')) {
+                        document.getElementById('toolTitle').textContent = 'Tool Not Found';
+                    }
+                    
+                    return; // Don't continue rendering
+                }
+                
+                // Render tool content
+                document.getElementById('toolTitle').textContent = tool.title || tool.name;
+                document.getElementById('toolTitleBreadcrumb').textContent = tool.title || tool.name;
+                
+                // Show standardized disclaimer
+                const disclaimerEl = document.getElementById('toolDisclaimer');
+                if (disclaimerEl) {
+                    disclaimerEl.style.display = 'block';
+                    console.log('[Tool Page] Disclaimer displayed');
+                }
+                
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                
+                // Add back link if gate/painPoint context exists
+                if (gateId && painPointId) {
+                    const backLink = document.createElement('div');
+                    backLink.style.cssText = 'margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border, #e0e0e0);';
+                    const link = document.createElement('a');
+                    link.href = `/?gate=${gateId}&painPoint=${painPointId}`;
+                    link.textContent = `← Back to ${gateId.replace(/-/g, ' ')} / ${painPointId.replace(/-/g, ' ')}`;
+                    link.style.cssText = 'color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em;';
+                    backLink.appendChild(link);
+                    contentEl.appendChild(backLink);
+                }
+                
+                // Description
+                const extractDescription = (tool) => {
+                    const raw = (tool && (tool.description || tool.summary)) || '';
+                    const title = tool && (tool.title || tool.name);
+                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                        return window.RYD_UI.sanitizeDescription(raw, title);
+                    }
+                    return String(raw || '').trim();
+                };
+
+                const cleanedDescription = extractDescription(tool);
+                if (cleanedDescription) {
+                    const p = document.createElement('p');
+                    p.style.cssText = 'font-size: 1.1em; line-height: 1.7; margin-bottom: 20px;';
+                    p.textContent = cleanedDescription;
+                    contentEl.appendChild(p);
+                }
+                
+                // Wrap long content in collapsible section
+                const detailsWrapper = document.createElement('div');
+                detailsWrapper.className = 'tool-details';
+                detailsWrapper.setAttribute('hidden', '');
+                detailsWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+                
+                console.log('[Tool Page] Details wrapper created:', {
+                    hasHidden: detailsWrapper.hasAttribute('hidden'),
+                    className: detailsWrapper.className
+                });
+                
+                // LIFECYCLE FIX: Create toggle button but don't attach listener until DOM is ready
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'tool-toggle';
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                toggleBtn.textContent = 'Show details';
+                toggleBtn.style.cssText = 'margin: 15px 0; padding: 10px 20px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500;';
+                toggleBtn.setAttribute('data-tool-toggle', 'true'); // Marker for identification
+                
+                // Append button to DOM FIRST
+                contentEl.appendChild(toggleBtn);
+                
+                // LIFECYCLE FIX: Attach event listener AFTER DOM injection
+                // Use setTimeout to ensure DOM is fully updated
+                setTimeout(() => {
+                    const buttonInDOM = document.querySelector('[data-tool-toggle="true"]');
+                    if (!buttonInDOM) {
+                        console.error('[Tool Page] Toggle button not found in DOM after injection');
+                        return;
+                    }
+                    
+                    console.log('[Tool Page] Attaching event listener to toggle button (after DOM injection)');
+                    
+                    // Remove old listener if any and attach new one
+                    const newToggleBtn = buttonInDOM;
+                    newToggleBtn.addEventListener('click', function handleToggleClick(event) {
+                        console.log('[Tool Page] Toggle button clicked - Event:', {
+                            type: event.type,
+                            target: event.target,
+                            currentTarget: event.currentTarget,
+                            buttonText: this.textContent,
+                            buttonInDOM: document.body.contains(this)
+                        });
+                        
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        const detailsEl = document.querySelector('.tool-details');
+                        
+                        if (!detailsEl) {
+                            console.error('[Tool Page] Details element not found in DOM');
+                            return;
+                        }
+                        
+                        // GA4 Event Tracking: Show Details button clicked
+                        const SafeMapper = window.SafeMapper || {
+                            sanitizeString: (str) => str == null ? '' : String(str).trim()
+                        };
+                        const toolSlug = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.slug || tool.id || '') : String(tool.slug || tool.id || '').trim();
+                        const toolCategory = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.category || '') : String(tool.category || '').trim();
+                        
+                        // Track the event with cluster metrics
+                        if (typeof window.gtag === 'function') {
+                            try {
+                                window.gtag('event', 'show_details_clicked', {
+                                    tool_slug: toolSlug,
+                                    category: toolCategory,
+                                    action: isExpanded ? 'hide' : 'show',
+                                    page_path: window.location.pathname
+                                });
+                            } catch (e) {
+                                console.warn('[GA4] Event tracking error:', e);
+                            }
+                        }
+                        
+                        // Fallback to RYD_ANALYTICS
+                        if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
+                            try {
+                                window.RYD_ANALYTICS.pushEvent('show_details_clicked', {
+                                    tool_slug: toolSlug,
+                                    category: toolCategory,
+                                    action: isExpanded ? 'hide' : 'show'
+                                });
+                            } catch (e) {
+                                console.warn('[GA4] RYD_ANALYTICS error:', e);
+                            }
+                        }
+                        
+                        console.log('[Tool Page] Toggle state before change:', {
+                            isExpanded,
+                            detailsExists: !!detailsEl,
+                            detailsHidden: detailsEl.hasAttribute('hidden'),
+                            detailsChildren: detailsEl.children.length,
+                            detailsDisplay: window.getComputedStyle(detailsEl).display
+                        });
+                        
+                        if (isExpanded) {
+                            detailsEl.setAttribute('hidden', '');
+                            this.setAttribute('aria-expanded', 'false');
+                            this.textContent = 'Show details';
+                            console.log('[Tool Page] Details HIDDEN - State updated');
+                        } else {
+                            detailsEl.removeAttribute('hidden');
+                            this.setAttribute('aria-expanded', 'true');
+                            this.textContent = 'Hide details';
+                            const computedDisplay = window.getComputedStyle(detailsEl).display;
+                            console.log('[Tool Page] Details SHOWN - Computed display:', computedDisplay);
+                            
+                            if (computedDisplay === 'none') {
+                                console.error('[Tool Page] WARNING: Details element display is still "none" after removing hidden attribute');
+                            }
+                        }
+                    });
+                    
+                    console.log('[Tool Page] Event listener attached successfully');
+                }, 0);
+                
+                // Meta info
+                const meta = document.createElement('div');
+                meta.style.cssText = 'display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border, #e0e0e0);';
+                
+                if (tool.duration) {
+                    const duration = document.createElement('span');
+                    duration.style.cssText = 'display: flex; align-items: center; gap: 5px;';
+                    duration.innerHTML = `⏱️ <strong>Duration:</strong> ${tool.duration}`;
+                    meta.appendChild(duration);
+                }
+                
+                if (tool.difficulty) {
+                    const difficulty = document.createElement('span');
+                    difficulty.style.cssText = 'display: flex; align-items: center; gap: 5px;';
+                    const badge = document.createElement('span');
+                    badge.className = `badge badge-${tool.difficulty}`;
+                    badge.textContent = tool.difficulty;
+                    difficulty.innerHTML = `📖 <strong>Difficulty:</strong> `;
+                    difficulty.appendChild(badge);
+                    meta.appendChild(difficulty);
+                }
+                
+                detailsWrapper.appendChild(meta);
+                
+                console.log('[Tool Page] Details wrapper populated:', {
+                    childrenCount: detailsWrapper.children.length,
+                    hasMeta: meta.children.length > 0,
+                    metaContent: meta.innerHTML.substring(0, 100)
+                });
+                
+                contentEl.appendChild(detailsWrapper);
+                
+                console.log('[Tool Page] Details wrapper appended to contentEl');
+                
+                // How & Why It Works
+                if (tool.howWhyWorks) {
+                    const howWhyEl = document.getElementById('howWhyWorks');
+                    const howWhyContent = document.getElementById('howWhyContent');
+                    howWhyContent.innerHTML = '';
+                    const p = document.createElement('p');
+                    p.style.cssText = 'line-height: 1.7;';
+                    const safeHowWhy = window.RYD_UI && window.RYD_UI.sanitizeDescription
+                        ? window.RYD_UI.sanitizeDescription(tool.howWhyWorks, tool.title || tool.name)
+                        : tool.howWhyWorks;
+                    p.textContent = safeHowWhy;
+                    howWhyContent.appendChild(p);
+                    howWhyEl.style.display = 'block';
+                }
+                
+                // Citations (move to details wrapper)
+                if (tool.citations && tool.citations.length > 0) {
+                    const citationsEl = document.getElementById('citations');
+                    const citationsContent = document.getElementById('citationsContent');
+                    citationsContent.innerHTML = '';
+                    
+                    const ul = document.createElement('ul');
+                    ul.style.cssText = 'list-style: none; padding: 0;';
+                    
+                    tool.citations.forEach(citation => {
+                        const li = document.createElement('li');
+                        li.style.cssText = 'margin-bottom: 15px; padding-left: 20px; position: relative;';
+                        
+                        if (citation.title && citation.title !== 'Content pending import') {
+                            const strong = document.createElement('strong');
+                            strong.textContent = citation.title;
+                            li.appendChild(strong);
+                            
+                            if (citation.source) {
+                                const br = document.createElement('br');
+                                li.appendChild(br);
+                                const span = document.createElement('span');
+                                span.textContent = citation.source;
+                                li.appendChild(span);
+                            }
+                            
+                            const directUrl = citation.url || '';
+                            const searchSeed = citation.title || citation.source || '';
+                            const searchUrl = searchSeed
+                                ? `https://scholar.google.com/scholar?q=${encodeURIComponent(searchSeed)}`
+                                : '';
+                            const finalUrl = directUrl || searchUrl;
+
+                            if (finalUrl) {
+                                const br2 = document.createElement('br');
+                                li.appendChild(br2);
+                                const a = document.createElement('a');
+                                a.href = finalUrl;
+                                a.target = '_blank';
+                                a.rel = 'noopener noreferrer';
+                                a.textContent = directUrl ? 'View source' : 'Find source';
+                                a.style.cssText = 'color: var(--color-accent, #667eea);';
+                                li.appendChild(a);
+                            }
+                        } else {
+                            const em = document.createElement('em');
+                            em.textContent = 'Citation details are being compiled.';
+                            li.appendChild(em);
+                        }
+                        
+                        ul.appendChild(li);
+                    });
+                    
+                    citationsContent.appendChild(ul);
+                    citationsEl.style.display = 'block';
+                    detailsWrapper.appendChild(citationsEl);
+                }
+                
+                // 3 Expandable Workthroughs (move to details wrapper)
+                const workthroughsSection = document.getElementById('workthroughs');
+                const workthroughsContent = document.getElementById('workthroughsContent');
+                workthroughsContent.innerHTML = '';
+                
+                if (tool.walkthroughs && tool.walkthroughs.length > 0) {
+                    tool.walkthroughs.forEach((wt, index) => {
+                        const details = document.createElement('details');
+                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
+                        
+                        const summary = document.createElement('summary');
+                        summary.textContent = wt.title;
+                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
+                        details.appendChild(summary);
+                        
+                        const content = document.createElement('div');
+                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
+                        
+                        if (wt.steps && wt.steps.length > 0) {
+                            const ol = document.createElement('ol');
+                            ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
+                            wt.steps.forEach(step => {
+                                const li = document.createElement('li');
+                                li.style.cssText = 'margin: 8px 0;';
+                                li.textContent = step;
+                                ol.appendChild(li);
+                            });
+                            content.appendChild(ol);
+                        } else {
+                            // Generate fallback steps if missing
+                            const fallbackSteps = [
+                                'Take a moment to pause and notice what you\'re experiencing.',
+                                'Identify one specific thing you can do right now.',
+                                'Take that action, even if it\'s small.',
+                                'Notice how you feel after taking the step.'
+                            ];
+                            const ol = document.createElement('ol');
+                            ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
+                            fallbackSteps.forEach(step => {
+                                const li = document.createElement('li');
+                                li.style.cssText = 'margin: 8px 0;';
+                                li.textContent = step;
+                                ol.appendChild(li);
+                            });
+                            content.appendChild(ol);
+                        }
+                        
+                        details.appendChild(content);
+                        workthroughsContent.appendChild(details);
+                    });
+                } else {
+                    // Generate default workthroughs if missing
+                    const defaultWorkthroughs = [
+                        {
+                            title: 'Quick Workthrough (5 min)',
+                            steps: [
+                                'Take a moment to pause and notice what you\'re experiencing right now.',
+                                'Identify one specific thing you can do in the next few minutes.',
+                                'Take that action, even if it\'s small.',
+                                'Notice how you feel after taking the step.',
+                                'Acknowledge what you\'ve done, no matter how small it seems.'
+                            ]
+                        },
+                        {
+                            title: 'Standard Workthrough (15 min)',
+                            steps: [
+                                'Find a quiet space where you can focus for about 15 minutes.',
+                                'Take three slow breaths, noticing the air moving in and out.',
+                                'Identify the specific challenge or feeling you\'re working with.',
+                                'Break it down into smaller, manageable pieces.',
+                                'Choose one piece to address right now.',
+                                'Decide on a concrete action you can take.',
+                                'Take that action, paying attention to what happens.',
+                                'Reflect on what you learned from taking the step.',
+                                'Notice any shifts in how you feel.',
+                                'Plan one next step for later today or tomorrow.'
+                            ]
+                        },
+                        {
+                            title: 'Deep Workthrough (30 min)',
+                            steps: [
+                                'Set aside 30 minutes in a space where you won\'t be interrupted.',
+                                'Begin with five minutes of quiet breathing, letting your body settle.',
+                                'Identify the core issue you want to work with today.',
+                                'Explore what this issue means to you personally.',
+                                'Notice any patterns or connections to past experiences.',
+                                'Break the issue into its component parts.',
+                                'Examine each part with curiosity rather than judgment.',
+                                'Identify what\'s within your control and what isn\'t.',
+                                'Choose one aspect you can influence right now.',
+                                'Develop a specific plan of action.',
+                                'Take the first step of your plan.',
+                                'Observe what happens, both internally and externally.',
+                                'Reflect on what you learned from this process.',
+                                'Identify what you\'ll do differently going forward.',
+                                'Acknowledge your effort and commitment to working through this.'
+                            ]
+                        }
+                    ];
+                    
+                    defaultWorkthroughs.forEach(wt => {
+                        const details = document.createElement('details');
+                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
+                        
+                        const summary = document.createElement('summary');
+                        summary.textContent = wt.title;
+                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
+                        details.appendChild(summary);
+                        
+                        const content = document.createElement('div');
+                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
+                        
+                        const ol = document.createElement('ol');
+                        ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
+                        wt.steps.forEach(step => {
+                            const li = document.createElement('li');
+                            li.style.cssText = 'margin: 8px 0;';
+                            li.textContent = step;
+                            ol.appendChild(li);
+                        });
+                        content.appendChild(ol);
+                        details.appendChild(content);
+                        workthroughsContent.appendChild(details);
+                    });
+                }
+                
+                // Move workthroughs section into details wrapper after rendering
+                if (workthroughsSection && workthroughsSection.parentNode) {
+                    workthroughsSection.parentNode.removeChild(workthroughsSection);
+                    detailsWrapper.appendChild(workthroughsSection);
+                }
+                
+                // Add standardized disclaimer to bottom of details wrapper
+                const disclaimerInDetails = document.createElement('div');
+                disclaimerInDetails.className = 'tool-disclaimer-footer';
+                disclaimerInDetails.style.cssText = 'margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--color-border, #e0e0e0); font-size: 0.9em; color: var(--color-text-secondary, #666);';
+                disclaimerInDetails.innerHTML = `
+                    <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> This tool is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                    <p style="margin: 0;">If you are in crisis, call <strong>988</strong> (U.S./Canada) or your local emergency number. See <a href="/disclosures/" style="color: var(--color-accent, #667eea);">Disclosures</a> for more help options.</p>
+                `;
+                detailsWrapper.appendChild(disclaimerInDetails);
+                
+                console.log('[Tool Page] Tool content fully rendered:', {
+                    contentElChildren: contentEl.children.length,
+                    detailsWrapperChildren: detailsWrapper.children.length,
+                    disclaimerDisplayed: disclaimerEl?.style.display === 'block'
+                });
+
+                // Related tools from same gate/pain point (if available)
+                if (gateId && painPointId) {
+                    const mappingRes = await fetch('/data/gates-painpoints-tools.json?ts=' + Date.now()).catch(() => null);
+                    if (mappingRes && mappingRes.ok) {
+                        const mappingData = await mappingRes.json();
+                        const gate = (mappingData.gates || []).find(g => g.id === gateId);
+                        const painPoint = gate ? (gate.painPoints || []).find(pp => pp.id === painPointId) : null;
+                        const relatedIds = painPoint ? (painPoint.toolIds || []) : [];
+                        const relatedTools = relatedIds
+                            .map(id => allTools.find(t => t.id === id || t.slug === id))
+                            .filter(Boolean)
+                            .slice(0, 6);
+
+                        if (relatedTools.length > 0) {
+                            const relatedSection = document.createElement('div');
+                            relatedSection.className = 'card';
+                            relatedSection.style.cssText = 'margin-top: 30px;';
+                            const h2 = document.createElement('h2');
+                            h2.textContent = 'Related Tools';
+                            relatedSection.appendChild(h2);
+                            const ul = document.createElement('ul');
+                            ul.style.cssText = 'list-style: none; padding: 0;';
+                            relatedTools.forEach(rt => {
+                                const li = document.createElement('li');
+                                li.style.cssText = 'margin: 10px 0;';
+                                const link = document.createElement('a');
+                                link.href = `/tools/${rt.slug || rt.id}`;
+                                link.textContent = rt.title || rt.name || rt.id;
+                                link.style.cssText = 'color: var(--color-accent, #667eea); text-decoration: none;';
+                                li.appendChild(link);
+                                ul.appendChild(li);
+                            });
+                            relatedSection.appendChild(ul);
+                            document.querySelector('main .section').appendChild(relatedSection);
+                        }
+                    }
+                }
+                
+                // Show share section and bind handlers
+                if (window.RYD_SocialConfig && window.RYD_SocialConfig.ENABLE_SHARE_BUTTONS) {
+                    const shareSection = document.getElementById('shareToolSection');
+                    if (shareSection) {
+                        shareSection.style.display = 'block';
+                        
+                        const shareBtn = document.getElementById('shareToolButton');
+                        const fbShareBtn = document.getElementById('shareFacebookButton');
+                        
+                        if (shareBtn && window.RYD_SocialShare) {
+                            shareBtn.addEventListener('click', () => {
+                                window.RYD_SocialShare.shareTool(tool.title || tool.name, window.location.href);
+                            });
+                        }
+                        
+                        if (fbShareBtn && window.RYD_SocialShare) {
+                            fbShareBtn.addEventListener('click', () => {
+                                window.RYD_SocialShare.shareFacebook(window.location.href);
+                            });
+                        }
+                    }
+                }
+                
+                // Update OG tags for tool
+                if (tool.title || tool.name) {
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    const ogDesc = document.querySelector('meta[property="og:description"]');
+                    const ogUrl = document.querySelector('meta[property="og:url"]');
+                    
+                    if (ogTitle) ogTitle.setAttribute('content', `${tool.title || tool.name} - Ride Your Demons`);
+                    if (ogDesc) {
+                        const desc = tool.description || tool.summary || 'Free self-help tool for mental health and emotional well-being.';
+                        ogDesc.setAttribute('content', desc.substring(0, 200));
+                    }
+                    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
+                }
+                
+            } catch (err) {
+                console.error('[Tool Page] ERROR - Full error object:', err);
+                console.error('[Tool Page] ERROR - Error message:', err.message);
+                console.error('[Tool Page] ERROR - Error stack:', err.stack);
+                console.table({
+                    'Error Type': [err.constructor.name],
+                    'Error Message': [err.message],
+                    'Has Stack': [!!err.stack]
+                });
+                
+                const contentEl = document.getElementById('toolContent');
+                contentEl.innerHTML = '';
+                const p = document.createElement('p');
+                p.style.cssText = 'color: #d32f2f;';
+                p.textContent = 'Error loading tool. Please try again later.';
+                contentEl.appendChild(p);
+                
+                // Show disclaimer even on error
+                const disclaimerEl = document.getElementById('toolDisclaimer');
+                if (disclaimerEl) {
+                    disclaimerEl.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

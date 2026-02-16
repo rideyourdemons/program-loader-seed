@@ -1,0 +1,23 @@
+/**
+ * Analytics Configuration (Local)
+ * 
+ * INSTRUCTIONS:
+ * 1. Copy this file to analytics-config.local.js (it's gitignored)
+ * 2. Fill in your actual GTM/GA4 IDs
+ * 3. Never commit analytics-config.local.js to git
+ * 
+ * This file is loaded AFTER analytics-config.js to override defaults.
+ */
+
+(function() {
+  'use strict';
+
+  // Override with your actual IDs
+  if (window.RYD_ANALYTICS_CONFIG) {
+    window.RYD_ANALYTICS_CONFIG.GTM_CONTAINER_ID = 'GTM-XXXXXXX'; // Replace with your GTM ID
+    window.RYD_ANALYTICS_CONFIG.GTM_TEST_ID = 'GTM-TEST'; // Optional: Test container for local dev
+    window.RYD_ANALYTICS_CONFIG.GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Optional: Direct GA4 ID
+  }
+
+  console.log('[Analytics Config Local] Local configuration loaded');
+})();

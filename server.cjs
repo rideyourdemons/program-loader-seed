@@ -290,6 +290,22 @@ app.get('/search', (req, res, next) => {
   safeSendFile(searchPath, res, fallbackPath);
 });
 
+app.get('/store', (req, res, next) => {
+  const storePath = path.join(publicDir, 'store', 'index.html');
+  const fallbackPath = path.join(publicDir, 'index.html');
+  safeSendFile(storePath, res, fallbackPath);
+});
+app.get('/store/', (req, res, next) => {
+  const storePath = path.join(publicDir, 'store', 'index.html');
+  const fallbackPath = path.join(publicDir, 'index.html');
+  safeSendFile(storePath, res, fallbackPath);
+});
+app.get('/gates', (req, res, next) => {
+  const gatesPath = path.join(publicDir, 'gates', 'index.html');
+  const fallbackPath = path.join(publicDir, 'index.html');
+  safeSendFile(gatesPath, res, fallbackPath);
+});
+
 // 4. MAIN ROUTE
 app.get('/', (req, res) => {
   const indexPath = path.join(publicDir, 'index.html');
