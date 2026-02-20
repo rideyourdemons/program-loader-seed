@@ -159,6 +159,16 @@ SEO is a **by-product**, not the goal.
 
 ## END DIRECTIVE
 
+---
+
+## STYLE LOCKDOWN (NO GLOBAL CSS REWRITES)
+
+- **DO NOT** rewrite layout, colors, or typography in main.css, integrated.css, or matrix-status.css.
+- **ONLY** allow surgical class additions (e.g., one new utility class) when explicitly requested.
+- **ALL** new style changes go into `public/css/theme-overrides.css` unless the user explicitly approves editing a global CSS file.
+- If asked to "improve" or "modernize" styling, add overrides to theme-overrides.css only. Do not flatten, simplify, or change the established visual identity.
+
+---
 
 # SCHEMA ENFORCEMENT PROTOCOL
 - All JSON in tools/ must have a top-level "disclaimer" field.

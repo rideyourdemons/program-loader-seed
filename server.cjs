@@ -264,9 +264,15 @@ app.use(express.static(publicDir, {
 app.use('/js', express.static(path.join(publicDir, 'js')));
 app.use('/data', express.static(path.join(publicDir, 'data'), {
   setHeaders: (res, filePath) => {
-    // Force UTF-8 for data files (JSON)
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('Accept-Charset', 'utf-8');
+  }
+}));
+app.use('/config', express.static(path.join(publicDir, 'config'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.json')) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    }
   }
 }));
 app.use('/matrix', express.static(path.join(publicDir, 'matrix')));
@@ -282,6 +288,13 @@ app.get('/tools', (req, res, next) => {
   const toolsPath = path.join(publicDir, 'tools.html');
   const fallbackPath = path.join(publicDir, 'index.html');
   safeSendFile(toolsPath, res, fallbackPath);
+});
+
+// Tool detail page: /tools/<slug> serves tool.html (client reads slug from pathname)
+app.get('/tools/:slug', (req, res, next) => {
+  const toolPath = path.join(publicDir, 'tools', 'tool.html');
+  const fallbackPath = path.join(publicDir, 'tools.html');
+  safeSendFile(toolPath, res, fallbackPath);
 });
 
 app.get('/search', (req, res, next) => {
@@ -321,6 +334,7 @@ app.use((req, res, next) => {
       !req.path.startsWith('/js') && 
       !req.path.startsWith('/data') && 
       !req.path.startsWith('/matrix') && 
+      !req.path.startsWith('/config') &&
       !req.path.startsWith('/css') &&
       !req.path.match(/\.(js|css|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/i)) {
     const indexPath = path.join(publicDir, 'index.html');

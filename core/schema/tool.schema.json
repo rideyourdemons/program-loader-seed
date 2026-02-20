@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RYD Tool Content Contract",
+  "description": "Gold-standard tool content. Validator (tool-content-validator.js) enforces: disclaimer, 600+ words, specific how/why, steps, no boilerplate.",
+  "type": "object",
+  "required": ["id", "slug", "title", "disclaimer", "how_it_works", "where_it_came_from", "steps"],
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier" },
+    "slug": { "type": "string", "description": "URL-safe id, usually same as id" },
+    "title": { "type": "string", "description": "Human-readable; must NOT start with Action:" },
+    "gateId": { "type": "string" },
+    "painPointId": { "type": "string" },
+    "disclaimer": { "type": "string", "minLength": 20, "description": "Required RYD disclaimer (neutral, not therapist language)" },
+    "summary": { "type": "string" },
+    "description": { "type": "string" },
+    "content": { "type": "string", "description": "Full body; combined content must meet 600-1200 word target" },
+    "how_it_works": { "type": "string", "description": "Specific psychological mechanism; alias howWhyWorks" },
+    "howWhyWorks": { "type": "string" },
+    "mechanism": { "type": "string" },
+    "steps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Executable, time-boxed steps"
+    },
+    "walkthroughs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "steps": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "description": "5/15/30 min variants with different step density"
+    },
+    "variants": {
+      "type": "object",
+      "properties": {
+        "5": { "type": "object" },
+        "15": { "type": "object" },
+        "30": { "type": "object" }
+      },
+      "description": "5/15/30 minute variants tied to ONE tool"
+    },
+    "where_it_came_from": { "type": "string" },
+    "origin": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "duration": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+    "problem": { "type": "string" },
+    "citations": { "type": "array" },
+    "needsContent": { "type": "boolean", "description": "True if draft, not yet meeting pass bar" },
+    "rydCompressed": {
+      "type": "object",
+      "description": "RYD compressed format: ~50% shorter, line-based, max 12-14 words/sentence",
+      "properties": {
+        "outcome": { "type": "string" },
+        "reset5": {
+          "type": "object",
+          "properties": {
+            "goal": { "type": "string" },
+            "do": { "type": "array", "items": { "type": "string" } },
+            "done": { "type": "string" }
+          }
+        },
+        "stabilize15": {
+          "type": "object",
+          "properties": {
+            "goal": { "type": "string" },
+            "do": { "type": "array", "items": { "type": "string" } },
+            "check": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "rebuild30": {
+          "type": "object",
+          "properties": {
+            "goal": { "type": "string" },
+            "do": { "type": "array", "items": { "type": "string" } },
+            "plan": { "type": "array", "items": { "type": "string" } },
+            "save": { "type": "string" }
+          }
+        },
+        "readMore": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

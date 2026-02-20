@@ -33,6 +33,8 @@
     <meta name="twitter:image" content="https://rideyourdemons.com/images/og-default.jpg">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/demon-theme.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
     <style>
         .tool-details {
             margin-top: 20px;
@@ -58,8 +60,50 @@
         .tool-toggle:hover {
             opacity: 0.9;
         }
+        /* RYD compressed: short lines, mobile-friendly */
+        .ryd-outcome,
+        .ryd-section,
+        .ryd-read-more-body {
+            max-width: 42em;
+            word-wrap: break-word;
+        }
+        .ryd-heading {
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+        .ryd-goal,
+        .ryd-do-label,
+        .ryd-do-list,
+        .ryd-check-list,
+        .ryd-plan-list,
+        .ryd-done,
+        .ryd-save {
+            margin: 0.4em 0;
+            padding-left: 0;
+        }
+        .ryd-do-list {
+            padding-left: 1.4em;
+        }
+        .ryd-check-list,
+        .ryd-plan-list {
+            padding-left: 1.4em;
+            list-style: disc;
+        }
+        @media (max-width: 480px) {
+            .ryd-outcome,
+            .ryd-section,
+            .ryd-read-more-body {
+                max-width: 100%;
+            }
+            .ryd-section { padding-top: 0.75em; margin-top: 1em; }
+        }
     </style>
     <script src="/js/utils/tool-content-validator.js"></script>
+    <script src="/js/utils/tool-content-expander.js"></script>
+    <script src="/js/utils/tool-variant-utils.js"></script>
+    <script src="/js/utils/registry-url.js"></script>
+    <script src="/js/utils/tool-registry-loader.js"></script>
+    <script src="/js/components/tool-renderer.js"></script>
     <script src="/js/seo-meta.js" defer></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
@@ -84,15 +128,9 @@
             <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
                 <a href="/">Home</a> › <a href="/tools">Tools</a> › <span id="toolTitleBreadcrumb">Tool</span>
             </nav>
+            <div id="variantSwitcher" style="margin-bottom: 16px; display: none;"></div>
             <h1 id="toolTitle">Tool</h1>
             
-            <!-- Standardized Disclaimer Component -->
-            <div id="toolDisclaimer" class="tool-disclaimer" style="display: none;">
-                <div class="card" style="margin-bottom: 20px; border-left: 4px solid #667eea; background: #f8f9fa;">
-                    <p style="margin-bottom: 10px;"><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. This tool is meant to help you understand what may help and why it works.</p>
-                    <p style="margin: 0; font-size: 0.95em;">If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. In Canada, you can call or text <strong>988</strong> for the Suicide Crisis Helpline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
-                </div>
-            </div>
             
             <div id="toolContent" class="card tool-card" style="margin-bottom: 30px;">
                 <p>Loading tool...</p>
@@ -136,11 +174,23 @@
             <div class="footer-copyright">
                 <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
             </div>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            // Hoist: wait for ToolRenderer so render is never glitchy
+            var attempts = 0;
+            while (!(window.ToolRenderer && typeof window.ToolRenderer.renderToolContent === 'function') && attempts < 50) {
+                await new Promise(function (r) { setTimeout(r, 20); });
+                attempts++;
+            }
+            if (!window.ToolRenderer || typeof window.ToolRenderer.renderToolContent !== 'function') {
+                var el = document.getElementById('toolContent');
+                if (el) el.innerHTML = '<p>Loading scripts… If this persists, refresh the page.</p>';
+                return;
+            }
             // Parse URL params for gate/painPoint context
             const urlParams = new URLSearchParams(window.location.search);
             const gateId = urlParams.get('gate');
@@ -187,49 +237,61 @@
                     }
                 };
                 
-                // Data Integrity Audit: Use SafeMapper.safeFetch for UTF-8 encoding enforcement
+                // Data Integrity Audit: prefer registry loader (primary = tools.structured.json)
                 let canonicalDataRaw = null;
                 let fallbackDataRaw = null;
+                let registryLoaded = false;
                 
-                if (SafeMapper.safeFetch) {
-                    // safeFetch returns data directly (already parsed and sanitized)
-                    try {
-                        canonicalDataRaw = await SafeMapper.safeFetch('/data/tools-canonical.json?ts=' + Date.now());
-                    } catch (e) {
-                        console.warn('[Tool Page] Canonical fetch failed, using fallback');
+                if (window.RYD_RegistryLoader && typeof window.RYD_RegistryLoader.loadRegistry === 'function') {
+                    const reg = await window.RYD_RegistryLoader.loadRegistry({ useCache: false }).catch(() => null);
+                    if (reg && Array.isArray(reg.tools) && reg.tools.length > 0) {
+                        canonicalDataRaw = { tools: reg.tools };
+                        registryLoaded = true;
+                        console.log('[Tool Page] Loaded tools via registry loader:', { count: reg.tools.length, source: reg.source });
                     }
-                    try {
-                        fallbackDataRaw = await SafeMapper.safeFetch('/data/tools.json?ts=' + Date.now());
-                    } catch (e) {
-                        console.warn('[Tool Page] Fallback fetch failed');
-                    }
-                } else {
-                    // Fallback to standard fetch with UTF-8 headers
-                    const toolsRes = await fetch('/data/tools-canonical.json?ts=' + Date.now(), {
-                        headers: {
-                            'Content-Type': 'application/json; charset=utf-8',
-                            'Accept': 'application/json; charset=utf-8'
+                }
+                
+                if (!registryLoaded) {
+                    if (SafeMapper.safeFetch) {
+                        // safeFetch returns data directly (already parsed and sanitized)
+                        try {
+                            canonicalDataRaw = await SafeMapper.safeFetch('/data/tools.pass.json?ts=' + Date.now());
+                        } catch (e) {
+                            console.warn('[Tool Page] Canonical fetch failed, using fallback');
                         }
-                    }).catch(() => null);
-                    const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now(), {
-                        headers: {
-                            'Content-Type': 'application/json; charset=utf-8',
-                            'Accept': 'application/json; charset=utf-8'
+                        try {
+                            fallbackDataRaw = await SafeMapper.safeFetch('/data/tools.json?ts=' + Date.now());
+                        } catch (e) {
+                            console.warn('[Tool Page] Fallback fetch failed');
                         }
-                    }).catch(() => null);
-                    
-                    console.log('[Tool Page] Fetch results:', {
-                        canonicalStatus: toolsRes?.status,
-                        fallbackStatus: fallbackRes?.status,
-                        canonicalOk: toolsRes?.ok,
-                        fallbackOk: fallbackRes?.ok
-                    });
-                    
-                    if (toolsRes && toolsRes.ok) {
-                        canonicalDataRaw = await toolsRes.json();
-                    }
-                    if (fallbackRes && fallbackRes.ok) {
-                        fallbackDataRaw = await fallbackRes.json();
+                    } else {
+                        // Fallback to standard fetch with UTF-8 headers
+                        const toolsRes = await fetch('/data/tools.pass.json?ts=' + Date.now(), {
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8',
+                                'Accept': 'application/json; charset=utf-8'
+                            }
+                        }).catch(() => null);
+                        const fallbackRes = await fetch('/data/tools.json?ts=' + Date.now(), {
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8',
+                                'Accept': 'application/json; charset=utf-8'
+                            }
+                        }).catch(() => null);
+                        
+                        console.log('[Tool Page] Fetch results:', {
+                            canonicalStatus: toolsRes?.status,
+                            fallbackStatus: fallbackRes?.status,
+                            canonicalOk: toolsRes?.ok,
+                            fallbackOk: fallbackRes?.ok
+                        });
+                        
+                        if (toolsRes && toolsRes.ok) {
+                            canonicalDataRaw = await toolsRes.json();
+                        }
+                        if (fallbackRes && fallbackRes.ok) {
+                            fallbackDataRaw = await fallbackRes.json();
+                        }
                     }
                 }
                 
@@ -439,16 +501,50 @@
                     
                     return; // Don't continue rendering
                 }
+
+                // DEV: auto-expand draft tools into production-grade content
+                const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const validator = window.RYD_ToolValidator;
+                const expander = window.RYD_ToolExpander;
+                const quality = validator && validator.validateToolQuality ? validator.validateToolQuality(tool, allTools) : { ok: true };
+                if (!quality.ok && isDev && expander && typeof expander.expandToolContent === 'function') {
+                    try {
+                        tool = expander.expandToolContent(tool);
+                    } catch (e) {
+                        console.warn('[Tool Page] Expand failed for', tool.id || tool.slug, e.message);
+                    }
+                }
                 
                 // Render tool content
                 document.getElementById('toolTitle').textContent = tool.title || tool.name;
                 document.getElementById('toolTitleBreadcrumb').textContent = tool.title || tool.name;
-                
-                // Show standardized disclaimer
-                const disclaimerEl = document.getElementById('toolDisclaimer');
-                if (disclaimerEl) {
-                    disclaimerEl.style.display = 'block';
-                    console.log('[Tool Page] Disclaimer displayed');
+
+                // Variant switcher: [5 min] [15 min] [30 min]
+                const variantSwitcher = document.getElementById('variantSwitcher');
+                if (variantSwitcher && window.RYD_ToolVariant && window.RYD_ToolVariant.getVariantsByPrimaryId) {
+                    const primaryId = window.RYD_ToolVariant.getPrimaryToolId(tool);
+                    const allTools = Array.from(toolMap.values());
+                    const variants = window.RYD_ToolVariant.getVariantsByPrimaryId(allTools, primaryId);
+                    const labels = { '5min': '5 min', '15min': '15 min', '30min': '30 min' };
+                    const hasVariants = variants['5min'] || variants['15min'] || variants['30min'];
+                    if (hasVariants) {
+                        variantSwitcher.style.display = 'flex';
+                        variantSwitcher.style.gap = '8px';
+                        variantSwitcher.style.flexWrap = 'wrap';
+                        variantSwitcher.innerHTML = '';
+                        ['5min', '15min', '30min'].forEach(type => {
+                            const v = variants[type];
+                            if (!v) return;
+                            const btn = document.createElement('a');
+                            btn.href = `/tools/${encodeURIComponent(v.id || v.slug || '')}`;
+                            btn.textContent = labels[type];
+                            btn.style.cssText = 'padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9em;';
+                            const isCurrent = (v.id || v.slug) === (tool.id || tool.slug);
+                            btn.style.background = isCurrent ? 'var(--color-accent, #667eea)' : 'rgba(0,0,0,0.06)';
+                            btn.style.color = isCurrent ? '#fff' : 'inherit';
+                            variantSwitcher.appendChild(btn);
+                        });
+                    }
                 }
                 
                 const contentEl = document.getElementById('toolContent');
@@ -466,7 +562,82 @@
                     contentEl.appendChild(backLink);
                 }
                 
-                // Description
+                // ToolRenderer (data-driven). Fallback: legacy in-file renderers.
+                if (window.ToolRenderer && typeof window.ToolRenderer.renderToolContent === 'function') {
+                    window.ToolRenderer.renderToolContent(contentEl, tool, { gateId, painPointId });
+                } else if (tool.rydCompressed) {
+                    const r = tool.rydCompressed;
+                    const wrapStyle = 'max-width: 42em; line-height: 1.5; margin-bottom: 1.25em;';
+                    if (r.outcome) {
+                        const outcomeP = document.createElement('p');
+                        outcomeP.className = 'ryd-outcome';
+                        outcomeP.style.cssText = wrapStyle + ' font-size: 1.05em; font-weight: 500;';
+                        outcomeP.textContent = r.outcome;
+                        contentEl.appendChild(outcomeP);
+                    }
+                    if (r.reset5) {
+                        const sec = document.createElement('section');
+                        sec.className = 'ryd-section ryd-reset';
+                        sec.style.cssText = 'margin-top: 1.5em; padding-top: 1em; border-top: 1px solid var(--color-border, #e0e0e0);';
+                        sec.innerHTML = '<h2 class="ryd-heading">5 MIN — RESET</h2>' +
+                            (r.reset5.goal ? '<p class="ryd-goal"><strong>Goal:</strong> ' + escapeHtml(r.reset5.goal) + '</p>' : '') +
+                            (r.reset5.do && r.reset5.do.length ? '<p class="ryd-do-label"><strong>Do:</strong></p><ol class="ryd-do-list">' + r.reset5.do.map(s => '<li>' + escapeHtml(s) + '</li>').join('') + '</ol>' : '') +
+                            (r.reset5.done ? '<p class="ryd-done"><strong>Done:</strong> ' + escapeHtml(r.reset5.done) + '</p>' : '');
+                        contentEl.appendChild(sec);
+                    }
+                    if (r.stabilize15) {
+                        const sec = document.createElement('section');
+                        sec.className = 'ryd-section ryd-stabilize';
+                        sec.style.cssText = 'margin-top: 1.5em; padding-top: 1em; border-top: 1px solid var(--color-border, #e0e0e0);';
+                        sec.innerHTML = '<h2 class="ryd-heading">15 MIN — STABILIZE</h2>' +
+                            (r.stabilize15.goal ? '<p class="ryd-goal"><strong>Goal:</strong> ' + escapeHtml(r.stabilize15.goal) + '</p>' : '') +
+                            (r.stabilize15.do && r.stabilize15.do.length ? '<p class="ryd-do-label"><strong>Do:</strong></p><ol class="ryd-do-list">' + r.stabilize15.do.map(s => '<li>' + escapeHtml(s) + '</li>').join('') + '</ol>' : '') +
+                            (r.stabilize15.check && r.stabilize15.check.length ? '<p class="ryd-check-label"><strong>Check:</strong></p><ul class="ryd-check-list">' + r.stabilize15.check.map(s => '<li>' + escapeHtml(s) + '</li>').join('') + '</ul>' : '');
+                        contentEl.appendChild(sec);
+                    }
+                    if (r.rebuild30) {
+                        const sec = document.createElement('section');
+                        sec.className = 'ryd-section ryd-rebuild';
+                        sec.style.cssText = 'margin-top: 1.5em; padding-top: 1em; border-top: 1px solid var(--color-border, #e0e0e0);';
+                        sec.innerHTML = '<h2 class="ryd-heading">30 MIN — REBUILD</h2>' +
+                            (r.rebuild30.goal ? '<p class="ryd-goal"><strong>Goal:</strong> ' + escapeHtml(r.rebuild30.goal) + '</p>' : '') +
+                            (r.rebuild30.do && r.rebuild30.do.length ? '<p class="ryd-do-label"><strong>Do:</strong></p><ol class="ryd-do-list">' + r.rebuild30.do.map(s => '<li>' + escapeHtml(s) + '</li>').join('') + '</ol>' : '') +
+                            (r.rebuild30.plan && r.rebuild30.plan.length ? '<p class="ryd-plan-label"><strong>Plan:</strong></p><ul class="ryd-plan-list">' + r.rebuild30.plan.map(s => '<li>' + escapeHtml(s) + '</li>').join('') + '</ul>' : '') +
+                            (r.rebuild30.save ? '<p class="ryd-save"><strong>Save:</strong> ' + escapeHtml(r.rebuild30.save) + '</p>' : '');
+                        contentEl.appendChild(sec);
+                    }
+                    if (r.readMore) {
+                        const readMoreWrap = document.createElement('div');
+                        readMoreWrap.className = 'ryd-read-more-wrap';
+                        readMoreWrap.style.cssText = 'margin-top: 1.5em;';
+                        const readMoreBtn = document.createElement('button');
+                        readMoreBtn.className = 'ryd-read-more-btn tool-toggle';
+                        readMoreBtn.setAttribute('aria-expanded', 'false');
+                        readMoreBtn.textContent = 'Read more';
+                        readMoreBtn.style.cssText = 'padding: 10px 20px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em;';
+                        const readMoreBody = document.createElement('div');
+                        readMoreBody.className = 'ryd-read-more-body tool-details';
+                        readMoreBody.setAttribute('hidden', '');
+                        readMoreBody.style.cssText = 'margin-top: 12px; padding: 16px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; white-space: pre-wrap; font-size: 0.95em; line-height: 1.6; max-width: 42em;';
+                        readMoreBody.textContent = r.readMore;
+                        readMoreBtn.addEventListener('click', function() {
+                            const open = this.getAttribute('aria-expanded') === 'true';
+                            readMoreBody.toggleAttribute('hidden', open);
+                            this.setAttribute('aria-expanded', !open);
+                            this.textContent = open ? 'Read more' : 'Read less';
+                        });
+                        readMoreWrap.appendChild(readMoreBtn);
+                        readMoreWrap.appendChild(readMoreBody);
+                        contentEl.appendChild(readMoreWrap);
+                    }
+                    function escapeHtml(s) {
+                        if (s == null) return '';
+                        const div = document.createElement('div');
+                        div.textContent = s;
+                        return div.innerHTML;
+                    }
+                } else {
+                // Description (legacy)
                 const extractDescription = (tool) => {
                     const raw = (tool && (tool.description || tool.summary)) || '';
                     const title = tool && (tool.title || tool.name);
@@ -838,21 +1009,22 @@
                     detailsWrapper.appendChild(workthroughsSection);
                 }
                 
-                // Add standardized disclaimer to bottom of details wrapper
+                // Add RYD tool-page disclaimer to bottom of details wrapper
                 const disclaimerInDetails = document.createElement('div');
-                disclaimerInDetails.className = 'tool-disclaimer-footer';
-                disclaimerInDetails.style.cssText = 'margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--color-border, #e0e0e0); font-size: 0.9em; color: var(--color-text-secondary, #666);';
+                disclaimerInDetails.className = 'ryd-tool-disclaimer';
                 disclaimerInDetails.innerHTML = `
-                    <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> This tool is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</p>
-                    <p style="margin: 0;">If you are in crisis, call <strong>988</strong> (U.S./Canada) or your local emergency number. See <a href="/disclosures/" style="color: var(--color-accent, #667eea);">Disclosures</a> for more help options.</p>
+                    <h4>If things feel too heavy right now</h4>
+                    <p>You don't have to handle it alone.</p>
+                    <p>In Canada, call 911 if you're in immediate danger. You can also reach Talk Suicide Canada — 1-833-456-4566 or text 45645.</p>
+                    <p>If you're somewhere else, use your local crisis support.</p>
                 `;
                 detailsWrapper.appendChild(disclaimerInDetails);
                 
                 console.log('[Tool Page] Tool content fully rendered:', {
                     contentElChildren: contentEl.children.length,
-                    detailsWrapperChildren: detailsWrapper.children.length,
-                    disclaimerDisplayed: disclaimerEl?.style.display === 'block'
+                    detailsWrapperChildren: detailsWrapper.children.length
                 });
+                }
 
                 // Related tools from same gate/pain point (if available)
                 if (gateId && painPointId) {

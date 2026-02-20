@@ -69,7 +69,7 @@
     GATES_URL: buildDataUrl('gates.json'),
     PAIN_POINTS_URL: buildDataUrl('pain-points.json'),
     TOOLS_URL: buildDataUrl('tools.json'),
-    TOOLS_CANONICAL_URL: buildDataUrl('tools-canonical.json'),
+    TOOLS_CANONICAL_URL: buildDataUrl('tools.pass.json'),
     
     // API settings
     BASE_URL: getApiBaseUrl(),

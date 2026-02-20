@@ -14,6 +14,6 @@
     gates: 'gates.json',
     painPoints: 'pain-points.json',
     tools: 'tools.json',
-    toolsCanonical: 'tools-canonical.json'
+    toolsCanonical: 'tools.pass.json'
   };
 })();

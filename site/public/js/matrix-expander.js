@@ -11,12 +11,12 @@
   const GATES_URL = '/data/gates.json';
   const PAIN_POINTS_URL = '/data/pain-points.json';
   const TOOLS_URL = '/data/tools.json';
-  const TOOLS_CANONICAL_URL = '/data/tools-canonical.json';
+  const TOOLS_CANONICAL_URL = '/data/tools.pass.json';
   const DATA_FILES = window.RYD_DATA_FILES || {
     gates: 'gates.json',
     painPoints: 'pain-points.json',
     tools: 'tools.json',
-    toolsCanonical: 'tools-canonical.json'
+    toolsCanonical: 'tools.pass.json'
   };
 
   let initPromise = null;
@@ -160,11 +160,11 @@
   }
 
   async function fetchToolsData() {
-    // Prefer seed tools.json over tools-canonical.json
+    // Prefer seed tools.json over tools.pass.json
     try {
       return await fetchJson(TOOLS_URL, DATA_FILES.tools);
     } catch (error) {
-      console.warn('[MatrixExpander] Falling back to tools-canonical.json:', error.message || error);
+      console.warn('[MatrixExpander] Falling back to tools.pass.json:', error.message || error);
       return await fetchJson(TOOLS_CANONICAL_URL, DATA_FILES.toolsCanonical);
     }
   }

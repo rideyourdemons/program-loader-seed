@@ -92,7 +92,7 @@
             try {
                 const [mappingRes, toolsCanonicalRes, toolsRes] = await Promise.all([
                     fetch('/data/gates-painpoints-tools.json?ts=' + Date.now()),
-                    fetch('/data/tools-canonical.json?ts=' + Date.now()).catch(() => null),
+                    fetch('/data/tools.pass.json?ts=' + Date.now()).catch(() => null),
                     fetch('/data/tools.json?ts=' + Date.now()).catch(() => null)
                 ]);
 

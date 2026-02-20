@@ -466,18 +466,18 @@
     h1.textContent = tool.title;
     container.appendChild(h1);
     
-    // Description - FAIL-LOUD: No fallbacks
+    // Description - use validateTool + getContentSafe so init doesn't break on invalid tools
     let desc = '';
-    try {
-      if (window.RYD_ToolValidator) {
-        window.RYD_ToolValidator.require(tool, 'tool page render');
+    if (window.RYD_ToolValidator) {
+      const v = window.RYD_ToolValidator.validateTool(tool);
+      if (v.ok) {
         desc = window.RYD_ToolValidator.getContent(tool, 'description');
       } else {
-        throw new Error(`[RYD ROUTER] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
+        console.warn('[RYD ROUTER] Tool validation failed, using safe content:', v.errors);
+        desc = window.RYD_ToolValidator.getContentSafe(tool, 'description');
       }
-    } catch (error) {
-      console.error('[RYD ROUTER] Tool validation failed:', error);
-      throw error; // Fail loudly
+    } else {
+      desc = tool.description || tool.summary || '';
     }
     const p = document.createElement('p');
     p.textContent = sanitizeDescription(desc, tool.title || tool.name);

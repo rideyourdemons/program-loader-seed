@@ -1,0 +1,276 @@
+{
+  "version": "1.0",
+  "description": "Non-boilerplate technique bank for RYD tool content. Each entry has mechanism, contexts, contraindications, and scaling.",
+  "techniques": [
+    {
+      "id": "thought-record",
+      "name": "Thought Record",
+      "modality": "CBT",
+      "mechanism": "Writing down a thought, the situation, and the feeling creates distance so you can test whether the thought is accurate or helpful. Changing the relationship to the thought (not suppressing it) reduces its grip.",
+      "contexts": ["rumination", "anxiety", "self-criticism", "overwhelm"],
+      "contraindications": "When dissociation or trauma recall is likely; use grounding first.",
+      "scaling": {
+        "5": "Capture one thought, one alternative, one small action.",
+        "15": "Full situation–thought–feeling–evidence–alternative.",
+        "30": "Multiple thoughts, pattern spotting, behavioral experiment."
+      },
+      "microScripts": [
+        "What exactly went through your mind in that moment? Write it word for word.",
+        "What’s one piece of evidence that supports this thought? One that doesn’t?",
+        "If a friend had this thought, what would you say to them?"
+      ]
+    },
+    {
+      "id": "cognitive-defusion",
+      "name": "Cognitive Defusion",
+      "modality": "ACT",
+      "mechanism": "Noticing thoughts as mental events (not commands or facts) reduces fusion. Saying the thought in a silly voice or labeling 'I'm having the thought that...' creates space so behavior can align with values instead of the thought.",
+      "contexts": ["shame", "intrusive thoughts", "self-doubt", "catastrophizing"],
+      "contraindications": "When the person needs validation of the feeling first; defusion can feel dismissive if used too early.",
+      "scaling": {
+        "5": "Label one thought: 'I'm having the thought that...' and repeat it slowly.",
+        "15": "Defuse 2–3 sticky thoughts; name the story (e.g. 'the not-good-enough story').",
+        "30": "Map which thoughts drive avoidance; choose one value-based action despite them."
+      },
+      "microScripts": [
+        "Say the thought out loud, then add: 'I'm having the thought that...'",
+        "Give this thought a nickname. When it shows up, say: 'There’s [nickname] again.'",
+        "What would you do today if this thought didn’t have to be true?"
+      ]
+    },
+    {
+      "id": "behavioral-activation",
+      "name": "Behavioral Activation",
+      "modality": "CBT",
+      "mechanism": "Low mood reduces activity; reduced activity deepens low mood. Scheduling and doing small, values-aligned actions breaks the cycle. Action often precedes motivation rather than the other way around.",
+      "contexts": ["low mood", "withdrawal", "procrastination", "loss of interest"],
+      "contraindications": "When rest is physiologically needed (e.g. illness, burnout); scale down to 'micro-actions.'",
+      "scaling": {
+        "5": "Pick one 2-minute action and do it now.",
+        "15": "List 3 activities that used to give a sense of accomplishment or connection; schedule one today.",
+        "30": "Activity log; identify patterns; plan tomorrow with one mastery and one connection activity."
+      },
+      "microScripts": [
+        "What’s one thing you could do in the next 10 minutes that would make today slightly better?",
+        "What did you used to do before [slump] that you’ve stopped? Pick one to try this week.",
+        "Rate your mood 1–10. Do one small action. Rate again. Did it shift even a little?"
+      ]
+    },
+    {
+      "id": "values-clarification",
+      "name": "Values Clarification",
+      "modality": "ACT",
+      "mechanism": "Knowing what matters (not what you 'should' care about) gives direction when emotions are loud. Values are compass directions, not goals; they inform the next step even when the path is unclear.",
+      "contexts": ["stuck", "identity", "grief", "life transition"],
+      "contraindications": "When in acute crisis; stabilize first.",
+      "scaling": {
+        "5": "Name one value that matters today. One tiny action that points toward it.",
+        "15": "Pick 2–3 life domains; name one value per domain; choose one small step in one domain.",
+        "30": "Values card sort or ranking; identify one value that’s been neglected; plan one concrete step."
+      },
+      "microScripts": [
+        "When you’ve felt at your best, what was present? That’s a clue to a value.",
+        "What would you do with a free afternoon if no one would judge you?",
+        "What’s one thing you could do this week that would make you feel 'I’m living by what matters'?"
+      ]
+    },
+    {
+      "id": "5-4-3-2-1-grounding",
+      "name": "5-4-3-2-1 Grounding",
+      "modality": "Mindfulness/grounding",
+      "mechanism": "Anchoring attention in the present through the five senses interrupts spiraling or dissociation. It engages the here-and-now without requiring cognitive reframe.",
+      "contexts": ["anxiety", "panic", "dissociation", "flashback"],
+      "contraindications": "None for basic use; if trauma, keep to external senses (sight, sound, touch) and optional.",
+      "scaling": {
+        "5": "Name 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste.",
+        "15": "Full 5-4-3-2-1; then 2 minutes of feet on floor, breath; name one safe place.",
+        "30": "Grounding twice; note what triggered the need; plan one preventive action for next time."
+      },
+      "microScripts": [
+        "Look around. Name 5 things you can see out loud.",
+        "Put your feet flat on the floor. Notice the pressure. Say 'I’m here' once.",
+        "Name one thing you can hear right now. One you can touch."
+      ]
+    },
+    {
+      "id": "body-scan",
+      "name": "Body Scan",
+      "modality": "Mindfulness",
+      "mechanism": "Systematic attention through the body increases interoceptive awareness and can reduce tension and rumination. It’s observational, not fixing.",
+      "contexts": ["tension", "stress", "sleeplessness", "disconnection from body"],
+      "contraindications": "When body focus increases distress (trauma); use shorter, external-focus version.",
+      "scaling": {
+        "5": "Notice feet, legs, belly, chest, shoulders; breathe into the tightest spot once.",
+        "15": "Full body scan head to toe; note 3 areas of tension without trying to change them.",
+        "30": "Body scan; then link one area of tension to a situation or thought; gentle stretch or breath."
+      },
+      "microScripts": [
+        "Starting at your feet, notice sensation without changing anything. Move to your legs.",
+        "Where in your body do you feel [stress]? Just notice. Breathe into that area once.",
+        "Scan from head to toe. When your mind wanders, bring it back to the next body part."
+      ]
+    },
+    {
+      "id": "STOP-skill",
+      "name": "STOP Skill",
+      "modality": "DBT",
+      "mechanism": "Stop–Take a breath–Observe–Proceed creates a pause between trigger and reaction, so you can choose a response that fits your goals instead of reacting on autopilot.",
+      "contexts": ["impulse", "anger", "urge", "reactive spiral"],
+      "contraindications": "When in immediate danger; focus on safety first.",
+      "scaling": {
+        "5": "Stop. One breath. What do you notice? One thing you can do next.",
+        "15": "STOP twice; name the urge or emotion; list 2 options; choose one and do it.",
+        "30": "STOP; observe chain (trigger–thought–feeling–urge); plan one alternative response for next time."
+      },
+      "microScripts": [
+        "Stop. Don’t move. Take one breath. What’s happening inside you?",
+        "What’s the urge? What’s one thing you could do instead that wouldn’t make things worse?",
+        "Press pause. Name the emotion. What do you want to do? What would help long-term?"
+      ]
+    },
+    {
+      "id": "opposite-action",
+      "name": "Opposite Action",
+      "modality": "DBT",
+      "mechanism": "When an emotion doesn’t fit the facts or acting on it wouldn’t help, doing the opposite of the action urge can reduce the emotion over time. It’s behavioral, not thought replacement.",
+      "contexts": ["avoidance", "anger", "shame", "sadness withdrawal"],
+      "contraindications": "When the emotion fits the facts (e.g. grief); validate first, then consider if any action still helps.",
+      "scaling": {
+        "5": "Name the urge. Do one small opposite action (e.g. get up if you want to hide).",
+        "15": "Identify emotion and urge; check if emotion fits facts; plan and do one opposite action.",
+        "30": "Full opposite action: name emotion, urge, whether it fits facts; do opposite; repeat as needed."
+      },
+      "microScripts": [
+        "What does [anger/sadness/shame] make you want to do? What’s the opposite of that, in a small way?",
+        "If you didn’t feel this way, what would you do? Do that one thing for 2 minutes.",
+        "The urge is to [withdraw/yell/avoid]. What’s one tiny step in the opposite direction?"
+      ]
+    },
+    {
+      "id": "worry-time",
+      "name": "Worry Time",
+      "modality": "CBT/stress",
+      "mechanism": "Postponing worry to a fixed 15-minute window reduces all-day rumination. When the mind learns worry has a time and place, it often eases outside that window.",
+      "contexts": ["rumination", "generalized anxiety", "sleep disruption from worry"],
+      "contraindications": "When worry is about an unsolved problem; use problem-solving in the worry window.",
+      "scaling": {
+        "5": "Write down the top worry. Set a 15-minute worry time later today. Until then, postpone.",
+        "15": "Use the 15-minute window: list worries; pick one to problem-solve or accept; close the window.",
+        "30": "Schedule worry time; during it, categorize worries (solvable vs not); for one solvable, make a plan."
+      },
+      "microScripts": [
+        "Write the worry in one sentence. Tell yourself: 'I’ll come back to this at [time].'",
+        "When the thought appears, say: 'Not now. I have my worry time at [time].'",
+        "In worry time: Is this something I can fix? If yes, one step. If no, how can I let it be for now?"
+      ]
+    },
+    {
+      "id": "exposure-ladder",
+      "name": "Exposure Ladder",
+      "modality": "CBT",
+      "mechanism": "Facing feared situations in small, repeated steps (not flooding) reduces avoidance and teaches the brain that the situation is manageable. Stay in the situation until anxiety drops a bit.",
+      "contexts": ["avoidance", "phobia", "social anxiety", "PTSD triggers"],
+      "contraindications": "Do not use for active self-harm or unsafe situations; work with a professional for trauma.",
+      "scaling": {
+        "5": "Name one situation you avoid. Rate fear 0–10. Name one step smaller than that.",
+        "15": "Build a 5-rung ladder (easiest to hardest). Choose the first rung and when you’ll do it.",
+        "30": "Full ladder; plan first exposure; rehearse coping (breath, self-talk); schedule and do first rung."
+      },
+      "microScripts": [
+        "What’s one situation you’ve been avoiding? What’s a version that’s a little easier?",
+        "Rate your fear of [situation] 0–10. What would be a 3 or 4? That’s your first step.",
+        "Stay in the situation until your anxiety drops a little, or for 5 minutes. Then leave."
+      ]
+    },
+    {
+      "id": "urge-surfing",
+      "name": "Urge Surfing",
+      "modality": "Mindfulness",
+      "mechanism": "Urges peak and then fall. Noticing the urge as a wave (not fighting or giving in) reduces the belief that you must act. The urge will pass.",
+      "contexts": ["addiction", "impulse", "emotional eating", "self-harm urge"],
+      "contraindications": "When safety is at risk; use crisis plan and support.",
+      "scaling": {
+        "5": "Notice the urge. Where in your body? Breathe. Say 'This will pass.' Wait 2 minutes.",
+        "15": "Sit with the urge; name sensation, thought, emotion; ride the wave until it dips.",
+        "30": "Urge surf; note trigger; plan one alternative (call someone, leave the situation, activity)."
+      },
+      "microScripts": [
+        "Don’t fight the urge. Just notice it like a wave. It will peak and then go down.",
+        "Where do you feel the urge in your body? Describe it. Keep breathing. Watch it change.",
+        "Set a timer for 5 minutes. Don’t act. Just watch the urge. When the timer goes off, decide again."
+      ]
+    },
+    {
+      "id": "wind-down-routine",
+      "name": "Wind-Down Routine",
+      "modality": "Sleep/stress",
+      "mechanism": "A consistent pre-sleep routine (same order, same approximate time) signals the brain that sleep is coming and reduces arousal. It’s the predictability that helps.",
+      "contexts": ["sleeplessness", "racing mind at night", "stress"],
+      "contraindications": "When the routine becomes a demand that increases anxiety; keep it short and flexible.",
+      "scaling": {
+        "5": "Pick one wind-down action (dim lights, no screens, one calm activity) and do it tonight.",
+        "15": "List 3–4 steps for a 20-minute routine; do it tonight; note what helped.",
+        "30": "Design full routine; trial 3 nights; adjust (e.g. if reading keeps you up, try listening)."
+      },
+      "microScripts": [
+        "What’s one thing you could do 20 minutes before bed that says 'sleep is coming'?",
+        "Screens off at [time]. What will you do for the next 15 minutes instead?",
+        "Same order each night: e.g. brush teeth, then 5 minutes of [calm activity], then bed."
+      ]
+    },
+    {
+      "id": "DEAR-MAN",
+      "name": "DEAR MAN (Assertiveness)",
+      "modality": "DBT/communication",
+      "mechanism": "Describe, Express, Assert, Reinforce, stay Mindful, Appear confident, Negotiate—gives a structure for asking or saying no without attacking or folding. Practice in low-stakes situations first.",
+      "contexts": ["boundaries", "saying no", "asking for help", "conflict"],
+      "contraindications": "When the other person is abusive or unsafe; focus on safety and exit.",
+      "scaling": {
+        "5": "Write one sentence: what you want or don’t want. Say it out loud once.",
+        "15": "D-E-A-R for one situation; write script; practice in mirror or with a friend.",
+        "30": "Full DEAR MAN script; role-play; plan when and where you’ll use it; debrief after."
+      },
+      "microScripts": [
+        "Describe the situation in one sentence (just facts). Then: 'I feel... I need...'",
+        "What’s one thing you’ve been avoiding saying? Write it. 'When [situation], I feel [feeling]. I’d like [request].'",
+        "Stay calm. Repeat your request once. You don’t have to convince them; you have to be clear."
+      ]
+    },
+    {
+      "id": "acceptance-breath",
+      "name": "Acceptance / Willingness Breath",
+      "modality": "ACT",
+      "mechanism": "Making room for the feeling (instead of pushing it away) with a breath can reduce the struggle. Willingness is 'allowing' the feeling to be there while still choosing action.",
+      "contexts": ["avoidance of emotion", "anxiety", "grief", "shame"],
+      "contraindications": "When the person needs to express or validate the feeling first.",
+      "scaling": {
+        "5": "One breath. On the in-breath: make room for the feeling. On the out-breath: let it be there.",
+        "15": "Name the feeling. Breathe into the area where you feel it. Say 'I’m making room for this.' Repeat 5 times.",
+        "30": "Acceptance of feeling; link to a value; choose one action you can take even with the feeling present."
+      },
+      "microScripts": [
+        "Where do you feel [emotion] in your body? Breathe into that space. Don’t push the feeling away.",
+        "Say: 'I don’t have to like this. I can make room for it.' One breath.",
+        "What would you do if this feeling could sit in the passenger seat while you drove? Do that."
+      ]
+    },
+    {
+      "id": "stimulus-control",
+      "name": "Stimulus Control (Sleep)",
+      "modality": "Sleep",
+      "mechanism": "Using the bed only for sleep (and sex) strengthens the association between bed and sleep. Getting up when unable to sleep prevents the bed from becoming a place of frustration.",
+      "contexts": ["sleeplessness", "conditioned arousal"],
+      "contraindications": "When getting up would disturb others or increase anxiety; adapt (e.g. sit up, read in dim light).",
+      "scaling": {
+        "5": "If you’re awake 15 minutes, get up. Do something calm in dim light. Return when sleepy.",
+        "15": "List: bed = sleep only. No screens in bed. If awake 20 min, get up. Try one night.",
+        "30": "Full stimulus control rules; sleep log 3 nights; adjust (e.g. no naps after 3 p.m.)."
+      },
+      "microScripts": [
+        "Bed is for sleep. If you’re still awake after 15 minutes, get up. Come back when you’re sleepy.",
+        "No phone or TV in bed. When you get in bed, lights off. That’s the only rule for tonight.",
+        "Don’t lie there frustrated. Get up, do something boring in another room, then try again."
+      ]
+    }
+  ]
+}

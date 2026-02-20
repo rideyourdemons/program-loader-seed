@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "description": "Maps painPointId/keywords to techniques and tone. Used by build-tools-content to select technique and avoid boilerplate.",
+  "byKeyword": {
+    "numb": { "primary": ["behavioral-activation", "5-4-3-2-1-grounding"], "secondary": ["values-clarification"], "tone": "gentle", "avoid": ["snap out of it", "just feel something"] },
+    "procrastination": { "primary": ["behavioral-activation", "thought-record"], "secondary": ["values-clarification"], "tone": "practical", "avoid": ["lazy", "just do it"] },
+    "anxiety": { "primary": ["5-4-3-2-1-grounding", "thought-record", "worry-time"], "secondary": ["cognitive-defusion", "exposure-ladder"], "tone": "calm", "avoid": ["just relax", "don't worry"] },
+    "confidence": { "primary": ["thought-record", "behavioral-activation", "values-clarification"], "secondary": ["cognitive-defusion"], "tone": "encouraging", "avoid": ["fake it till you make it", "just believe in yourself"] },
+    "stress": { "primary": ["worry-time", "wind-down-routine", "body-scan"], "secondary": ["5-4-3-2-1-grounding"], "tone": "steady", "avoid": ["stress-free life", "eliminate stress"] },
+    "purpose": { "primary": ["values-clarification", "behavioral-activation"], "secondary": ["thought-record"], "tone": "exploratory", "avoid": ["find your passion", "one true purpose"] },
+    "overwhelm": { "primary": ["behavioral-activation", "thought-record", "5-4-3-2-1-grounding"], "secondary": ["worry-time"], "tone": "grounded", "avoid": ["do it all", "multitask"] },
+    "relationships": { "primary": ["DEAR-MAN", "opposite-action", "values-clarification"], "secondary": ["thought-record"], "tone": "clear", "avoid": ["they should", "fix them"] },
+    "loss": { "primary": ["acceptance-breath", "values-clarification", "body-scan"], "secondary": ["behavioral-activation"], "tone": "holding", "avoid": ["move on", "get over it"] },
+    "change": { "primary": ["values-clarification", "behavioral-activation", "acceptance-breath"], "secondary": ["thought-record"], "tone": "steady", "avoid": ["embrace change", "comfort zone"] },
+    "anger": { "primary": ["STOP-skill", "opposite-action", "cognitive-defusion"], "secondary": ["5-4-3-2-1-grounding"], "tone": "firm and kind", "avoid": ["anger management", "control your temper"] },
+    "depression": { "primary": ["behavioral-activation", "thought-record", "values-clarification"], "secondary": ["body-scan"], "tone": "warm", "avoid": ["cheer up", "think positive"] },
+    "shame": { "primary": ["cognitive-defusion", "acceptance-breath", "values-clarification"], "secondary": ["thought-record"], "tone": "non-shaming", "avoid": ["you should be ashamed", "get over it"] },
+    "betrayal": { "primary": ["acceptance-breath", "values-clarification", "DEAR-MAN"], "secondary": ["thought-record"], "tone": "steady", "avoid": ["forgive and forget", "trust again"] },
+    "voice": { "primary": ["DEAR-MAN", "cognitive-defusion", "values-clarification"], "secondary": ["opposite-action"], "tone": "clear", "avoid": ["speak up", "just say it"] },
+    "sleep": { "primary": ["wind-down-routine", "stimulus-control", "worry-time"], "secondary": ["body-scan"], "tone": "routine", "avoid": ["get 8 hours", "sleep hygiene"] },
+    "addiction": { "primary": ["urge-surfing", "STOP-skill", "values-clarification"], "secondary": ["opposite-action"], "tone": "direct", "avoid": ["just stop", "willpower"] },
+    "grief": { "primary": ["acceptance-breath", "values-clarification", "body-scan"], "secondary": ["behavioral-activation"], "tone": "holding", "avoid": ["stages of grief", "closure"] },
+    "trauma": { "primary": ["5-4-3-2-1-grounding", "body-scan"], "secondary": ["acceptance-breath"], "tone": "safe", "avoid": ["process the trauma", "get over it"] }
+  },
+  "byPainPointId": {},
+  "defaultTechnique": "thought-record",
+  "avoidBoilerplatePhrases": [
+    "This practice supports emotional regulation",
+    "Use it when you need a clear, structured approach",
+    "helps you. This practice supports",
+    "manage difficult feelings or situations",
+    "coming soon",
+    "placeholder",
+    "to be determined",
+    "TBD"
+  ]
+}

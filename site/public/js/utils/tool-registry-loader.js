@@ -9,7 +9,7 @@
   'use strict';
 
   const REGISTRY_PATHS = {
-    primary: '/data/tools-canonical.json',
+    primary: '/data/tools.pass.json',
     fallback: '/data/tools.json'
   };
 

@@ -57,12 +57,12 @@
   const GATES_URL = API_CONFIG.GATES_URL || '/data/gates.json';
   const PAIN_POINTS_URL = API_CONFIG.PAIN_POINTS_URL || '/data/pain-points.json';
   const TOOLS_URL = API_CONFIG.TOOLS_URL || '/data/tools.json';
-  const TOOLS_CANONICAL_URL = API_CONFIG.TOOLS_CANONICAL_URL || '/data/tools-canonical.json';
+  const TOOLS_CANONICAL_URL = API_CONFIG.TOOLS_CANONICAL_URL || '/data/tools.pass.json';
   const DATA_FILES = window.RYD_DATA_FILES || {
     gates: 'gates.json',
     painPoints: 'pain-points.json',
     tools: 'tools.json',
-    toolsCanonical: 'tools-canonical.json'
+    toolsCanonical: 'tools.pass.json'
   };
 
   let initPromise = null;

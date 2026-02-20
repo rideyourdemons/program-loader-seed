@@ -446,7 +446,7 @@
           fetch('/data/gates.json?t=' + Date.now()),
           fetch('/data/gates-painpoints-tools.json?t=' + Date.now()),
           fetch('/data/tools.json?t=' + Date.now()),
-          fetch('/data/tools-canonical.json?t=' + Date.now()).catch(() => null)
+          fetch('/data/tools.pass.json?t=' + Date.now()).catch(() => null)
         ]);
 
         const gatesData = await gatesRes.json();

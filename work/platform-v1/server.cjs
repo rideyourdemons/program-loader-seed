@@ -1,13 +1,13 @@
 /**
  * Platform v1 — minimal local dev server
- * Serves static files from ./app
+ * Serves static files from ./public
  */
 const express = require('express');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const appDir = path.join(__dirname, 'app');
+const appDir = path.join(__dirname, 'public');
 
 app.use(express.static(appDir));
 

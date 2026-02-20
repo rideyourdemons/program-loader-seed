@@ -70,7 +70,7 @@
     if (!slug) return;
 
     // Load tool data
-    fetch(`/data/tools-canonical.json?ts=${Date.now()}`)
+    fetch(`/data/tools.pass.json?ts=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         const tool = (data.tools || []).find(t => (t.slug === slug || t.id === slug));

@@ -1,0 +1,9 @@
+/**
+ * RYD Demon theme - shared background across home, insights, and tool pages.
+ * Asset: place ride-your-demon-bg.jpg in public/images/ for full effect.
+ * Gradient shows when image is missing (dev or before asset is added).
+ */
+body {
+    background: linear-gradient(to bottom, rgba(229,229,229,0.72) 0%, rgba(245,245,245,0.78) 100%), url('/images/ride-your-demon-bg.jpg') center/cover no-repeat fixed;
+    min-height: 100vh;
+}

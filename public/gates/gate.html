@@ -6,6 +6,7 @@
     <title>Gate - Ride Your Demons</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ui-sanitize.js" defer></script>
     <script src="/js/data-files.js" defer></script>
@@ -64,12 +65,12 @@
             }
             
             try {
-                const mappingRes = await fetch('/data/gates-painpoints-tools.json?ts=' + Date.now());
-                if (!mappingRes.ok) {
-                    throw new Error('Gates mapping not available.');
+                var mappingRes = await fetch('/data/gates-painpoints-tools.json?ts=' + Date.now());
+                var mappingCt = (mappingRes.headers.get('Content-Type') || '').toLowerCase();
+                if (!mappingRes.ok || (mappingCt.indexOf('application/json') === -1 && mappingCt.indexOf('text/json') === -1)) {
+                    throw new Error('Gates mapping not available (check /data/gates-painpoints-tools.json).');
                 }
-
-                const mappingData = await mappingRes.json();
+                var mappingData = await mappingRes.json();
                 const gate = (mappingData.gates || []).find(g => g.id === gateId);
                 const points = gate ? (gate.painPoints || []) : [];
                 

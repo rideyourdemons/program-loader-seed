@@ -70,7 +70,9 @@
             setMinHeight(el, '100px');
           }
         });
-      });
+      } catch (err) {
+        console.warn('[UI STABILITY]', err);
+      }
     });
   }
 

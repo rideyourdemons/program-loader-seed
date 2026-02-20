@@ -7,6 +7,8 @@
     <title>Gates - Ride Your Demons</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
+    <script src="/js/utils/gate-styles-loader.js"></script>
     <script src="/js/graph/index.js"></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
@@ -36,26 +38,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            const listEl = document.getElementById('gatesList');
-            
+            var listEl = document.getElementById('gatesList');
+            if (!listEl) return;
             try {
-                const res = await fetch('/data/gates.json?ts=' + Date.now());
-                const data = await res.json();
-                const gates = data.gates || [];
-                
-                if (gates.length === 0) {
-                    listEl.innerHTML = '';
-                    const p = document.createElement('p');
-                    p.textContent = 'No gates available.';
-                    listEl.appendChild(p);
+                var res = await fetch('/data/gates.json?ts=' + Date.now());
+                var ct = (res.headers.get('Content-Type') || '').toLowerCase();
+                if (!res.ok || (ct.indexOf('application/json') === -1 && ct.indexOf('text/json') === -1)) {
+                    listEl.innerHTML = '<p>Unable to load gates (check /data/gates.json). <a href="/insights">Go to Insights</a></p>';
                     return;
                 }
-                
+                var data = await res.json();
+                var gates = (data && data.gates) ? data.gates : [];
+                if (gates.length === 0) {
+                    listEl.innerHTML = '<p>No gates available.</p>';
+                    return;
+                }
                 listEl.innerHTML = '';
-                
-                gates.forEach(gate => {
+                gates.forEach(function(gate) {
                     const card = document.createElement('div');
-                    card.className = 'card';
+                    card.className = 'card gate-card';
+                    card.setAttribute('data-gate', gate.id || gate.slug || '');
                     
                     const h2 = document.createElement('h2');
                     h2.textContent = gate.title;
@@ -69,11 +71,28 @@
                     
                     listEl.appendChild(card);
                 });
+                if (window.RYD_GateStyles && typeof window.RYD_GateStyles.apply === 'function') {
+                    window.RYD_GateStyles.apply();
+                }
             } catch (err) {
-                listEl.innerHTML = `<p>Error loading gates: ${err.message}</p>`;
+                listEl.innerHTML = '<p>Error loading gates: ' + String(err && err.message || err) + '. <a href="/insights">Go to Insights</a></p>';
             }
         });
     </script>
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="/about">About</a>
+                <a href="/terms">Terms</a>
+                <a href="/disclosures">Disclosures</a>
+                <a href="/ethics">Ethics</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
+        </div>
+    </footer>
 </body>
 </html>
 

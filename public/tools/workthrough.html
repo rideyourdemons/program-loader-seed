@@ -6,6 +6,10 @@
     <title>Work-Through - Ride Your Demons</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
+    <script src="/js/utils/registry-url.js"></script>
+    <script src="/js/utils/tool-registry-loader.js"></script>
+    <script src="/js/components/tool-renderer.js"></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
     <script src="/js/ryd-bind.hardened.js" defer></script>
@@ -40,6 +44,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            // Hoist: wait for ToolRenderer so render is never glitchy
+            var attempts = 0;
+            while (!(window.ToolRenderer && typeof window.ToolRenderer.renderWorkthrough === 'function') && attempts < 50) {
+                await new Promise(function (r) { setTimeout(r, 20); });
+                attempts++;
+            }
+            if (!window.ToolRenderer) {
+                document.getElementById('workthroughContent').innerHTML = '<p>Loading… If this persists, refresh the page.</p>';
+                return;
+            }
             const pathParts = window.location.pathname.split('/').filter(p => p);
             const toolIndex = pathParts.indexOf('tools');
             const slug = pathParts[toolIndex + 1];
@@ -61,13 +75,32 @@
             document.getElementById('backLink').href = `/tools/${slug}`;
             
             try {
-                const res = await fetch('/data/tools.json?ts=' + Date.now());
-                if (!res.ok) {
-                    throw new Error('Tools data not available.');
+                // Prefer registry loader (primary = tools.structured.json)
+                let tool = null;
+                if (window.RYD_RegistryLoader && typeof window.RYD_RegistryLoader.loadRegistry === 'function') {
+                    const reg = await window.RYD_RegistryLoader.loadRegistry({ useCache: false }).catch(() => null);
+                    const tools = reg && reg.tools ? reg.tools : [];
+                    tool = tools.find(t => (t.slug === slug || t.id === slug));
                 }
                 
-                const data = await res.json();
-                const tool = data.tools.find(t => (t.slug === slug || t.id === slug));
+                // Fallback: direct fetch (structured → pass → seed)
+                if (!tool) {
+                    const urls = [
+                        '/data/tools.structured.json?ts=' + Date.now(),
+                        '/data/tools.pass.json?ts=' + Date.now(),
+                        '/data/tools.json?ts=' + Date.now()
+                    ];
+                    for (const url of urls) {
+                        const res = await fetch(url, { cache: 'no-store' }).catch(() => null);
+                        if (!res || !res.ok) continue;
+                        const ct = (res.headers.get('Content-Type') || '').toLowerCase();
+                        if (ct.includes('text/html')) continue;
+                        const data = await res.json().catch(() => null);
+                        const tools = data && (Array.isArray(data) ? data : (data.tools || []));
+                        tool = (tools || []).find(t => (t.slug === slug || t.id === slug));
+                        if (tool) break;
+                    }
+                }
                 
                 if (!tool) {
                     const contentEl = document.getElementById('workthroughContent');
@@ -86,59 +119,22 @@
                 document.getElementById('toolLink').textContent = tool.title;
                 document.getElementById('toolLink').href = `/tools/${slug}`;
                 
-                // Render work-through steps (TRUTH ONLY)
                 const contentEl = document.getElementById('workthroughContent');
-                contentEl.innerHTML = '';
-                
-                const h2 = document.createElement('h2');
-                h2.textContent = `${tool.title} - ${typeLabels[type]}`;
-                contentEl.appendChild(h2);
-                
-                if (tool.steps) {
-                    // If steps exist, render them (may contain HTML, so use innerHTML carefully)
-                    const div = document.createElement('div');
-                    div.style.marginTop = '20px';
-                    div.innerHTML = tool.steps; // Steps may contain formatting
-                    contentEl.appendChild(div);
+                if (window.ToolRenderer && typeof window.ToolRenderer.renderWorkthrough === 'function') {
+                    window.ToolRenderer.renderWorkthrough(contentEl, tool, type, { includeDeep: false });
                 } else {
-                    // If no steps, show minimal guidance
-                    const div = document.createElement('div');
-                    div.style.marginTop = '20px';
-                    
-                    const p1 = document.createElement('p');
-                    const em1 = document.createElement('em');
-                    em1.textContent = 'Work-through steps not yet extracted from live site.';
-                    p1.appendChild(em1);
-                    div.appendChild(p1);
-                    
-                    const p2 = document.createElement('p');
-                    const strong1 = document.createElement('strong');
-                    strong1.textContent = 'Note: ';
-                    p2.appendChild(strong1);
-                    p2.appendChild(document.createTextNode('Steps must be extracted from the live RYD site. No placeholder content generated.'));
-                    div.appendChild(p2);
-                    
-                    if (tool.howWhyWorks) {
-                        const p3 = document.createElement('p');
-                        const strong2 = document.createElement('strong');
-                        strong2.textContent = 'Methodology: ';
-                        p3.appendChild(strong2);
-                        p3.appendChild(document.createTextNode(tool.howWhyWorks.substring(0, 200) + '...'));
-                        div.appendChild(p3);
-                    }
-                    
-                    contentEl.appendChild(div);
+                    contentEl.innerHTML = '<p>Renderer not available.</p>';
                 }
                 
-                // Add limits/disclaimers
+                // Add RYD tool-page disclaimer
                 const disclaimerDiv = document.createElement('div');
-                disclaimerDiv.style.cssText = 'margin-top: 30px; padding: 15px; background: #f5f5f5; border-left: 4px solid var(--color-accent, #667eea);';
-                const p = document.createElement('p');
-                const strong = document.createElement('strong');
-                strong.textContent = 'Limits: ';
-                p.appendChild(strong);
-                p.appendChild(document.createTextNode('This is a self-help tool, not therapy. Results vary. If you need professional support, consult a qualified professional.'));
-                disclaimerDiv.appendChild(p);
+                disclaimerDiv.className = 'ryd-tool-disclaimer';
+                disclaimerDiv.innerHTML = `
+                    <h4>If things feel too heavy right now</h4>
+                    <p>You don't have to handle it alone.</p>
+                    <p>In Canada, call 911 if you're in immediate danger. You can also reach Talk Suicide Canada — 1-833-456-4566 or text 45645.</p>
+                    <p>If you're somewhere else, use your local crisis support.</p>
+                `;
                 contentEl.appendChild(disclaimerDiv);
             } catch (err) {
                 const contentEl = document.getElementById('workthroughContent');
@@ -154,6 +150,20 @@
             }
         });
     </script>
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="/about">About</a>
+                <a href="/terms">Terms</a>
+                <a href="/disclosures">Disclosures</a>
+                <a href="/ethics">Ethics</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
+        </div>
+    </footer>
 </body>
 </html>
 

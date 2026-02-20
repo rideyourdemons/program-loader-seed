@@ -6,6 +6,11 @@
 
 (function() {
   'use strict';
+
+  if (typeof window !== 'undefined' && window.__RYD_BOOTED__) {
+    return;
+  }
+  window.__RYD_BOOTED__ = true;
   
   console.log('[RYD] boot starting on', location.pathname);
   
@@ -25,10 +30,22 @@
     console.warn('Matrix expander active — no static matrix used');
   }
   
-  // Deterministic tool selection
+  // Deterministic tool selection (primary + quality-filtered, avoid repeat)
   function pickToolOfDay(tools, dateSeed) {
-    if (!tools || tools.length === 0) {
-      // Fallback tool if none available
+    const primaryTools = (typeof window !== 'undefined' && window.RYD_ToolVariant && window.RYD_ToolVariant.filterPrimaryTools)
+      ? window.RYD_ToolVariant.filterPrimaryTools(tools || [])
+      : (tools || []);
+    const basePool = primaryTools.length > 0 ? primaryTools : (tools || []);
+    const isProd = typeof window !== 'undefined' && window.location &&
+      window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    let pool = (typeof window !== 'undefined' && window.RYD_ToolValidator && window.RYD_ToolValidator.filterToolsForToolOfDay)
+      ? window.RYD_ToolValidator.filterToolsForToolOfDay(basePool, isProd)
+      : basePool;
+    if (typeof window !== 'undefined' && window.RYD_ToolVariant && window.RYD_ToolVariant.isVariant) {
+      pool = pool.filter(t => !window.RYD_ToolVariant.isVariant(t));
+    }
+    
+    if (pool.length === 0) {
       return {
         id: 'grounding-reset',
         title: 'Grounding Reset',
@@ -39,10 +56,25 @@
       };
     }
     
-    // Deterministic selection based on date seed
-    const seed = dateSeed || new Date().getTime();
-    const index = seed % tools.length;
-    return tools[index] || tools[0];
+    const seed = dateSeed || (new Date().getFullYear() * 10000 + new Date().getMonth() * 100 + new Date().getDate());
+    let index = seed % pool.length;
+    
+    try {
+      const lastId = localStorage.getItem('ryd:lastToolOfDay');
+      if (lastId && pool.length > 1) {
+        const lastIdx = pool.findIndex(t => (t.id || t.slug) === lastId);
+        if (lastIdx >= 0 && index === lastIdx) {
+          index = (index + 1) % pool.length;
+        }
+      }
+    } catch (_) {}
+    
+    const tool = pool[index] || pool[0];
+    try {
+      localStorage.setItem('ryd:lastToolOfDay', tool.id || tool.slug || '');
+    } catch (_) {}
+    
+    return tool;
   }
   
   // Main boot function
@@ -58,6 +90,21 @@
 
     try {
       // Try registry loader first (fail-loud)
+      // Wait a bit for registry loader to initialize if it's not immediately available
+      if (!window.RYD_RegistryLoader) {
+        // Give scripts a moment to load (registry loader is loaded synchronously in head)
+        await new Promise(resolve => {
+          let attempts = 0;
+          const checkInterval = setInterval(() => {
+            attempts++;
+            if (window.RYD_RegistryLoader || attempts > 10) {
+              clearInterval(checkInterval);
+              resolve();
+            }
+          }, 50);
+        });
+      }
+      
       if (window.RYD_RegistryLoader) {
         try {
           const registry = await window.RYD_RegistryLoader.load();
@@ -73,6 +120,8 @@
           console.error('[RYD] Registry load failed, trying MatrixExpander:', registryError.message);
           // Fall through to MatrixExpander
         }
+      } else {
+        console.warn('[RYD] Registry loader not available, trying MatrixExpander fallback');
       }
 
       // Fallback to MatrixExpander

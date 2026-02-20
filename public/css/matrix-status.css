@@ -1,3 +1,4 @@
+/* LOCKED: Do not rewrite layout/colors globally. Only allow surgical class additions. */
 /* matrix-status.css - optional helper styles */
 #matrix-status, #tool-of-day-status, #tod-status, #status {
   padding: 10px 12px;

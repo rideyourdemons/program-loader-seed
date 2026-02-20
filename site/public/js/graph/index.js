@@ -78,7 +78,7 @@
           return graphData;
         }
 
-        // Fallback: Direct fetch (prefer seed tools.json over tools-canonical.json)
+        // Fallback: Direct fetch (prefer seed tools.json over tools.pass.json)
         const [anchorsRes, gatesRes, painPointsRes, toolsRes] = await Promise.all([
           fetch('/data/anchors.json').catch(() => null),
           fetch('/data/gates.json').catch(() => null),
@@ -93,10 +93,10 @@
           throw new Error('Failed to load pain-points.json');
         }
         if (!toolsRes || !toolsRes.ok) {
-          // Try fallback to tools-canonical.json
-          const fallbackRes = await fetch('/data/tools-canonical.json').catch(() => null);
+          // Try fallback to tools.pass.json
+          const fallbackRes = await fetch('/data/tools.pass.json').catch(() => null);
           if (!fallbackRes || !fallbackRes.ok) {
-            throw new Error('Failed to load tools.json or tools-canonical.json');
+            throw new Error('Failed to load tools.json or tools.pass.json');
           }
           const fallbackData = await fallbackRes.json();
           const tools = Array.isArray(fallbackData.tools) ? fallbackData.tools : fallbackData;

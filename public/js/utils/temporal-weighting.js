@@ -124,18 +124,17 @@
   function generateDynamicDescription(tool, context = {}) {
     // 2. Dynamic Content Generation
     
-    // FAIL-LOUD: No fallbacks
     let baseDescription = '';
     if (window.RYD_ToolValidator) {
-      try {
-        window.RYD_ToolValidator.require(tool, 'temporal weighting');
+      const v = window.RYD_ToolValidator.validateTool(tool);
+      if (v.ok) {
         baseDescription = window.RYD_ToolValidator.getContent(tool, 'description');
-      } catch (error) {
-        console.error('[Temporal Weighting] Tool validation failed:', error);
-        throw error; // Fail loudly
+      } else {
+        console.warn('[Temporal Weighting] Tool validation failed, using safe content:', v.errors);
+        baseDescription = window.RYD_ToolValidator.getContentSafe(tool, 'description');
       }
     } else {
-      throw new Error('[Temporal Weighting] RYD_ToolValidator required');
+      baseDescription = tool.description || tool.summary || '';
     }
     
     // If tool is linked to specific pain points, customize description
