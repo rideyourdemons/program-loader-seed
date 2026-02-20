@@ -11,6 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
   <script src="/js/utils/tool-content-validator.js"></script>
+  <script src="/js/utils/tool-text.js"></script>
+  <script src="/js/utils/tool-content-expander.js"></script>
+  <script src="/js/utils/tool-variant-utils.js"></script>
+  <script src="/js/utils/registry-url.js"></script>
   <script src="/js/utils/tool-registry-loader.js"></script>
   <script src="/js/matrix-expander.js" defer></script>
   <script src="/js/ryd-tools.hardened.js" defer></script>
@@ -18,6 +22,8 @@
     <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/matrix-status.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
+    <link rel="stylesheet" href="/css/demon-theme.css">
     
     <!-- SEO Meta Tags -->
     <link rel="canonical" href="https://rideyourdemons.com/tools">
@@ -141,40 +147,25 @@
             });
         }
         
-        // Load and render tools
-        function extractDescription(tool) {
-            // FAIL-LOUD: No fallbacks
-            if (!tool || typeof tool !== 'object') {
-                throw new Error('[Tools Page] Tool is missing or invalid');
-            }
-            try {
-                if (window.RYD_ToolValidator) {
-                    window.RYD_ToolValidator.require(tool, 'tools page extractDescription');
-                    const raw = window.RYD_ToolValidator.getContent(tool, 'description');
-                    const title = tool.title || tool.name;
-                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-                        return window.RYD_UI.sanitizeDescription(raw, title);
-                    }
-                    return raw;
-                } else {
-                    throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-                }
-            } catch (error) {
-                console.error('[Tools Page] Tool validation failed:', error);
-                throw error; // Fail loudly
-            }
-        }
+        // DEV vs PROD: use hostname (matches project convention)
+        const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-        // Removed duplicate extractDescription - using validator version above
-                if (lower.startsWith('tool •')) return false;
-                return true;
-            });
-            return (filtered[0] || raw).trim();
+        // Safe description for scoring/dedup (never throws)
+        function getDescriptionSafe(tool) {
+            if (!tool || typeof tool !== 'object') return '';
+            const raw = window.RYD_ToolValidator && window.RYD_ToolValidator.getContentSafe
+                ? window.RYD_ToolValidator.getContentSafe(tool, 'description')
+                : (tool.description || tool.summary || '');
+            const title = tool.title || tool.name;
+            if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
+                return window.RYD_UI.sanitizeDescription(raw, title);
+            }
+            return String(raw || '').trim();
         }
 
         function scoreTool(tool) {
             let score = 0;
-            if (extractDescription(tool)) score += 3;
+            if (getDescriptionSafe(tool)) score += 3;
             if (tool.howWhyWorks) score += 2;
             if (Array.isArray(tool.citations) && tool.citations.length > 0) score += 2;
             if (Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0) score += 1;
@@ -189,16 +180,47 @@
                 return;
             }
             
-            // Show loading state
-            toolsGrid.innerHTML = '<div class="card tool-card" style="padding: 2rem; text-align: center;"><p>Loading tools...</p></div>';
+            function setLoading(show) {
+                if (!toolsGrid) return;
+                if (show) {
+                    toolsGrid.innerHTML = '<div class="card tool-card" style="padding: 2rem; text-align: center; pointer-events: none;"><p>Loading tools...</p></div>';
+                }
+            }
             
+            function renderToolsErrorPanel(err, details) {
+                if (!toolsGrid) return;
+                toolsGrid.innerHTML = '';
+                const card = document.createElement('div');
+                card.className = 'card tool-card';
+                card.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
+                const d = details || {};
+                card.innerHTML = '<h3>Tool Registry Failed to Load</h3>' +
+                    '<p style="color: #666; margin-top: 8px;">' + (err && err.message ? String(err.message) : 'Unknown error') + '</p>' +
+                    (d.url ? '<p style="font-size: 0.85em; color: #666;">URL: ' + String(d.url).substring(0, 80) + '</p>' : '') +
+                    (d.status ? '<p style="font-size: 0.85em; color: #666;">Status: ' + d.status + '</p>' : '') +
+                    (d.contentType ? '<p style="font-size: 0.85em; color: #666;">Content-Type: ' + String(d.contentType).substring(0, 60) + '</p>' : '') +
+                    (d.preview ? '<p style="font-size: 0.8em; color: #888; margin-top: 8px;">Response preview: ' + String(d.preview).substring(0, 120) + '</p>' : '') +
+                    '<button style="margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>';
+                card.querySelector('button').addEventListener('click', () => loadAndRenderTools());
+                toolsGrid.appendChild(card);
+            }
+            
+            setLoading(true);
+            let loadingCleared = false;
             try {
-                // Use registry loader (fail-loud)
                 if (!window.RYD_RegistryLoader) {
                     throw new Error('Registry loader not available. Ensure tool-registry-loader.js is loaded.');
                 }
-
-                const registry = await window.RYD_RegistryLoader.load();
+                if (isDev) {
+                    console.log('[RYD Tools] Starting registry load on localhost...');
+                }
+                const LOAD_TIMEOUT_MS = 15000;
+                const loadPromise = window.RYD_RegistryLoader.load();
+                const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Tool registry load timed out after ' + (LOAD_TIMEOUT_MS/1000) + 's')), LOAD_TIMEOUT_MS));
+                const registry = await Promise.race([loadPromise, timeoutPromise]);
+                if (isDev) {
+                    console.log('[RYD Tools] Registry loaded successfully:', registry.tools?.length || 0, 'tools');
+                }
                 const data = { tools: registry.tools };
                 
                 if (!data || !Array.isArray(data.tools) || data.tools.length === 0) {
@@ -214,8 +236,11 @@
                         .replace(/^-+|-+$/g, '');
                 };
 
+                const primaryTools = window.RYD_ToolVariant && window.RYD_ToolVariant.filterPrimaryTools
+                    ? window.RYD_ToolVariant.filterPrimaryTools(data.tools)
+                    : data.tools;
                 const uniqueMap = new Map();
-                data.tools.forEach(tool => {
+                primaryTools.forEach(tool => {
                     const key = normalizeKey(tool);
                     if (!key) return;
                     const existing = uniqueMap.get(key);
@@ -224,8 +249,12 @@
                     }
                 });
 
-                const tools = Array.from(uniqueMap.values())
+                let tools = Array.from(uniqueMap.values())
                     .sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || '', 'en', { sensitivity: 'base' }));
+                
+                if (window.RYD_ToolValidator && window.RYD_ToolValidator.filterToolsForList) {
+                    tools = window.RYD_ToolValidator.filterToolsForList(tools, !isDev);
+                }
                 
                 if (tools.length === 0) {
                     // FAIL-LOUD: Show error state, not empty state
@@ -254,17 +283,25 @@
                 }
                 
                 toolsGrid.innerHTML = '';
+                const expander = window.RYD_ToolExpander;
                 tools.forEach((tool, index) => {
-                    // Console audit: Log tool data for debugging
-                    console.log(`[Tool ${index}] Details Data:`, {
-                        id: tool.id,
-                        title: tool.title || tool.name,
-                        hasHowWhyWorks: !!tool.howWhyWorks,
-                        hasWalkthroughs: Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0,
-                        walkthroughsCount: Array.isArray(tool.walkthroughs) ? tool.walkthroughs.length : 0,
-                        howWhyWorksType: typeof tool.howWhyWorks,
-                        walkthroughsType: typeof tool.walkthroughs
-                    });
+                    const validator = window.RYD_ToolValidator;
+                    let quality = validator && validator.validateToolQuality ? validator.validateToolQuality(tool, tools) : { ok: true, severity: 'ok', reasons: [] };
+                    if (!quality.ok && isDev && expander && typeof expander.expandToolContent === 'function') {
+                        try {
+                            tool = expander.expandToolContent(tool);
+                            quality = validator && validator.validateToolQuality ? validator.validateToolQuality(tool, tools) : quality;
+                        } catch (e) {
+                            console.warn('[RYD Tools] Expand failed for', tool.id || tool.slug, e.message);
+                        }
+                    }
+                    const validation = validator && validator.validateTool ? validator.validateTool(tool) : { ok: false, errors: ['Validator unavailable'] };
+                    if (!validation.ok) {
+                        if (validator && validator.logValidationOnce) {
+                            validator.logValidationOnce(tool.id || tool.slug || tool.title || index, validation.errors);
+                        }
+                        if (!isDev) return;
+                    }
                     
                     const card = document.createElement('div');
                     card.className = 'card tool-card';
@@ -275,22 +312,29 @@
                     h3.style.cssText = 'margin-bottom: 12px; color: var(--color-text, #1a1a1a);';
                     card.appendChild(h3);
                     
-                    const p = document.createElement('p');
-                    // FAIL-LOUD: No fallback
-                    let cleaned = '';
-                    try {
-                        if (window.RYD_ToolValidator) {
-                            window.RYD_ToolValidator.require(tool, 'tools page render');
-                            cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
-                        } else {
-                            throw new Error(`[Tools Page] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-                        }
-                    } catch (error) {
-                        console.error('[Tools Page] Tool validation failed:', error);
-                        // Skip invalid tool - don't render
-                        return;
+                    const eligible = validator && validator.isEligibleForLists ? validator.isEligibleForLists(tool, tools) : true;
+                    const needsBadge = isDev && (!validation.ok || !eligible);
+                    const allReasons = [...(validation.errors || []), ...(quality.reasons || [])];
+                    if (needsBadge && allReasons.length > 0) {
+                        const badge = document.createElement('span');
+                        badge.className = 'badge';
+                        badge.textContent = eligible ? 'NEEDS CONTENT' : 'DRAFT';
+                        badge.style.cssText = 'display: inline-block; margin-left: 8px; padding: 2px 8px; background: #ff9800; color: #fff; font-size: 0.7em; border-radius: 4px; font-weight: 600;';
+                        h3.appendChild(badge);
+                        const reasons = document.createElement('ul');
+                        reasons.style.cssText = 'margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85em; color: #d32f2f;';
+                        [...new Set(allReasons)].slice(0, 5).forEach(err => {
+                            const li = document.createElement('li');
+                            li.textContent = err;
+                            reasons.appendChild(li);
+                        });
+                        card.appendChild(reasons);
                     }
-                    p.textContent = cleaned;
+                    
+                    const p = document.createElement('p');
+                    const getPreview = window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function';
+                    const preview = getPreview ? window.RYD_ToolPreview.getToolPreview(tool) : (validator && validator.getContentSafe ? validator.getContentSafe(tool, 'description') : (tool.description || tool.summary || ''));
+                    p.textContent = (typeof preview === 'string' ? preview : '').trim() || 'Description unavailable.';
                     p.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
                     card.appendChild(p);
                     
@@ -318,17 +362,57 @@
                         card.appendChild(meta);
                     }
                     
-                    // Details section (initially hidden)
                     const details = document.createElement('div');
                     details.className = 'tool-details';
                     details.setAttribute('hidden', '');
                     details.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); display: block; min-height: 20px;';
                     
                     let hasDetailsContent = false;
+                    const fullDesc = (tool.description || tool.summary || '').trim();
+                    if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
+                        const descWrap = document.createElement('div');
+                        descWrap.className = 'tool-full-description';
+                        descWrap.style.cssText = 'margin-bottom: 15px; color: var(--color-text-secondary, #666); line-height: 1.6;';
+                        descWrap.innerHTML = window.RYD_ToolPreview.renderMarkdownSafe(fullDesc);
+                        details.appendChild(descWrap);
+                        hasDetailsContent = true;
+                    }
+                    const walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+                    if (walkthroughs.length >= 3) {
+                        const variantTabs = document.createElement('div');
+                        variantTabs.style.cssText = 'display: flex; gap: 8px; margin-bottom: 10px;';
+                        [5, 15, 30].forEach(function (d) {
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.textContent = d + ' min';
+                            btn.dataset.dur = String(d);
+                            btn.style.cssText = 'padding: 6px 12px; font-size: 0.9em;';
+                            variantTabs.appendChild(btn);
+                        });
+                        const variantContent = document.createElement('div');
+                        variantContent.className = 'variant-content';
+                        variantContent.style.cssText = 'min-height: 40px;';
+                        function showVariant(d) {
+                            variantContent.innerHTML = '';
+                            const idx = d === 5 ? 0 : d === 15 ? 1 : 2;
+                            const w = walkthroughs[idx];
+                            if (w && Array.isArray(w.steps)) {
+                                const ol = document.createElement('ol');
+                                ol.style.cssText = 'padding-left: 20px; margin: 0;';
+                                w.steps.forEach(function (s) { const li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+                                variantContent.appendChild(ol);
+                            } else variantContent.textContent = 'No steps for this duration.';
+                        }
+                        showVariant(5);
+                        variantTabs.querySelectorAll('button').forEach(function (b) {
+                            b.addEventListener('click', function () { showVariant(Number(b.dataset.dur)); });
+                        });
+                        details.appendChild(variantTabs);
+                        details.appendChild(variantContent);
+                        hasDetailsContent = true;
+                    }
                     
-                    // Add additional details if available
                     if (tool.howWhyWorks) {
-                        console.log(`[Tool ${index}] Adding howWhyWorks:`, tool.howWhyWorks.substring(0, 50) + '...');
                         const howWhy = document.createElement('div');
                         howWhy.style.cssText = 'margin-bottom: 15px;';
                         const howWhyTitle = document.createElement('h4');
@@ -346,38 +430,22 @@
                         hasDetailsContent = true;
                     }
                     
-                    if (Array.isArray(tool.walkthroughs) && tool.walkthroughs.length > 0 && tool.walkthroughs[0].steps) {
-                        console.log(`[Tool ${index}] Adding walkthroughs:`, tool.walkthroughs[0].steps.length, 'steps');
-                        const walkthroughs = document.createElement('div');
-                        walkthroughs.style.cssText = 'margin-bottom: 15px;';
-                        const walkTitle = document.createElement('h4');
-                        walkTitle.textContent = 'Quick Steps';
-                        walkTitle.style.cssText = 'margin-bottom: 8px; font-size: 1em; color: var(--color-text, #1a1a1a); font-weight: 600;';
-                        walkthroughs.appendChild(walkTitle);
-                        const stepsList = document.createElement('ol');
-                        stepsList.style.cssText = 'padding-left: 20px; margin: 0; color: var(--color-text-secondary, #666);';
-                        const stepsToShow = tool.walkthroughs[0].steps.slice(0, 3);
-                        stepsToShow.forEach(step => {
-                            const li = document.createElement('li');
-                            li.textContent = String(step);
-                            li.style.cssText = 'margin-bottom: 6px; line-height: 1.5;';
-                            stepsList.appendChild(li);
-                        });
-                        walkthroughs.appendChild(stepsList);
-                        details.appendChild(walkthroughs);
+                    if (walkthroughs.length < 3) {
+                        const fallback = document.createElement('p');
+                        fallback.className = 'tool-variants-fallback';
+                        fallback.textContent = 'Variants coming soon.';
+                        fallback.style.cssText = 'color: var(--color-text-secondary, #666); font-style: italic; margin: 0 0 10px 0;';
+                        details.appendChild(fallback);
                         hasDetailsContent = true;
                     }
                     
                     // If no details content, add a fallback message
                     if (!hasDetailsContent) {
-                        console.log(`[Tool ${index}] No details content found, adding fallback`);
                         const fallback = document.createElement('p');
                         fallback.textContent = 'Additional details available in the full tool view.';
                         fallback.style.cssText = 'color: var(--color-text-secondary, #666); font-style: italic; margin: 0;';
                         details.appendChild(fallback);
                     }
-                    
-                    console.log(`[Tool ${index}] Details section has ${details.children.length} child elements`);
                     
                     // Show Details button
                     const toggleBtn = document.createElement('button');
@@ -387,22 +455,14 @@
                     toggleBtn.style.cssText = 'display: inline-block; margin-top: 10px; margin-right: 10px; padding: 8px 16px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em;';
                     toggleBtn.addEventListener('click', function() {
                         const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                        console.log('[Toggle] Button clicked, isExpanded:', isExpanded);
-                        console.log('[Toggle] Details element:', details);
-                        console.log('[Toggle] Details children count:', details.children.length);
-                        console.log('[Toggle] Details innerHTML length:', details.innerHTML.length);
-                        
                         if (isExpanded) {
                             details.setAttribute('hidden', '');
                             this.setAttribute('aria-expanded', 'false');
                             this.textContent = 'Show Details';
-                            console.log('[Toggle] Details hidden');
                         } else {
                             details.removeAttribute('hidden');
                             this.setAttribute('aria-expanded', 'true');
                             this.textContent = 'Hide Details';
-                            console.log('[Toggle] Details shown');
-                            console.log('[Toggle] Details computed style display:', window.getComputedStyle(details).display);
                         }
                     });
                     card.appendChild(toggleBtn);
@@ -422,48 +482,23 @@
                     toolsGrid.appendChild(card);
                 });
                 
-                console.log('✅ Tools loaded:', tools.length, 'tools');
-                
                 // Re-initialize tool collapse handlers after rendering
-                if (typeof window !== 'undefined' && document.querySelectorAll('.tool-toggle').length > 0) {
-                    // Tool collapse is handled by tool-collapse.js, but we can verify it's working
-                    console.log('✅ Tool toggle buttons initialized');
-                }
+                loadingCleared = true;
                 
             } catch (error) {
-                // FAIL-LOUD: Show error with safe telemetry (no content dumps)
-                console.error('[RYD] Registry load failed:', {
-                    error: error.message,
-                    type: error.constructor.name,
-                    status: window.RYD_RegistryLoader?.getStatus() || null
-                });
-                
-                if (toolsGrid) {
-                    toolsGrid.innerHTML = '';
-                    const errorCard = document.createElement('div');
-                    errorCard.className = 'card tool-card';
-                    errorCard.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px;';
-                    
-                    const h3 = document.createElement('h3');
-                    h3.textContent = 'Tool Registry Failed to Load';
-                    errorCard.appendChild(h3);
-                    
-                    const p1 = document.createElement('p');
-                    p1.textContent = 'Could not load tool registry. This is a system error, not a content issue.';
-                    errorCard.appendChild(p1);
-                    
-                    const p2 = document.createElement('p');
-                    p2.style.cssText = 'font-size: 0.9em; color: #666; margin-top: 8px;';
-                    p2.textContent = `Error: ${error.message}`;
-                    errorCard.appendChild(p2);
-                    
-                    const retryBtn = document.createElement('button');
-                    retryBtn.textContent = 'Retry Loading';
-                    retryBtn.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
-                    retryBtn.addEventListener('click', () => loadAndRenderTools());
-                    errorCard.appendChild(retryBtn);
-                    
-                    toolsGrid.appendChild(errorCard);
+                console.error('[RYD] Registry load failed:', { error: error.message, type: error.constructor.name });
+                const d = error.rydDetails || {};
+                const status = window.RYD_RegistryLoader?.getStatus?.() || {};
+                const err = status.error || {};
+                const details = { url: d.url || err.url || '/data/tools.pass.json', status: d.status ?? err.status ?? 'error', contentType: d.contentType || err.contentType || null, preview: d.preview || err.preview || null };
+                renderToolsErrorPanel(error, details);
+                loadingCleared = true;
+            } finally {
+                if (!loadingCleared && toolsGrid) {
+                    const current = toolsGrid.innerHTML.trim();
+                    if (current.includes('Loading tools') || current.includes('ryd-loading')) {
+                        renderToolsErrorPanel(new Error('Tools load did not complete'), { url: '/data/tools.pass.json' });
+                    }
                 }
             }
         }
@@ -505,8 +540,10 @@
 
     <script src="/js/ryd-boot.js" defer></script>
     <script src="/js/ryd-bind.hardened.js" defer></script>
-    <script src="/js/ryd-tools.js" defer></script>
     <script src="/js/tool-collapse.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { console.info('[NAV] bound'); });
+    </script>
 
     <footer>
         <div class="footer-content">
@@ -527,6 +564,7 @@
             <div class="footer-copyright">
                 <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
             </div>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
         </div>
     </footer>
 </body>

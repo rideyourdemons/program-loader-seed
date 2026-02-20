@@ -59,7 +59,20 @@
       }
 
       await window.MatrixExpander.init();
-      dispatchReady({ tools: window.MatrixExpander.getBaseTools() });
+      var tools = window.MatrixExpander.getBaseTools() || [];
+      var payload = { tools: tools };
+
+      window.__RYD_TOOLS = tools;
+      try {
+        var configRes = await fetch("/config/tool-of-the-day.json?ts=" + Date.now());
+        if (configRes.ok) {
+          var config = await configRes.json();
+          window.__RYD_TOD_CONFIG = config;
+          payload.config = config;
+        }
+      } catch (_) {}
+
+      dispatchReady(payload);
       return true;
     } catch (e) {
       const msg = e.name === "AbortError"
@@ -77,8 +90,8 @@
             source_type: "system-utility",
             verified: true
           },
-          get tools() { warnLegacyMatrix(); return []; },
-          get toolOfTheDay() { warnLegacyMatrix(); return null; }
+          get tools() { return window.__RYD_TOOLS || []; },
+          get toolOfTheDay() { return (window.__RYD_TOOLS && window.__RYD_TOOLS[0]) || null; }
         };
       }
     }

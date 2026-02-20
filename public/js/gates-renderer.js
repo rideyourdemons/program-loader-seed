@@ -9,7 +9,7 @@
 
   const GATES_URL = '/data/gates.json';
   const PAIN_POINTS_URL = '/data/pain-points.json';
-  const TOOLS_URL = '/data/tools.json';
+  const TOOLS_URL = '/data/tools.pass.json';
 
   let mappingData = null;
   let toolsData = null;
@@ -37,14 +37,18 @@
           fetch(`${TOOLS_URL}?ts=${Date.now()}`)
         ]);
 
-        if (!gatesRes.ok) {
-          throw new Error(`Failed to load gates: ${gatesRes.status}`);
+        function isJson(res) {
+          var ct = (res.headers.get('Content-Type') || '').toLowerCase();
+          return res.ok && (ct.indexOf('application/json') !== -1 || ct.indexOf('text/json') !== -1);
         }
-        if (!painPointsRes.ok) {
-          throw new Error(`Failed to load pain points: ${painPointsRes.status}`);
+        if (!isJson(gatesRes)) {
+          throw new Error('Failed to load gates (status ' + gatesRes.status + '). Ensure /data/gates.json is served as JSON.');
         }
-        if (!toolsRes.ok) {
-          throw new Error(`Failed to load tools: ${toolsRes.status}`);
+        if (!isJson(painPointsRes)) {
+          throw new Error('Failed to load pain points (status ' + painPointsRes.status + ').');
+        }
+        if (!isJson(toolsRes)) {
+          throw new Error('Failed to load tools (status ' + toolsRes.status + '). Ensure /data/tools.json or tools.pass.json is served.');
         }
 
         const gatesJson = await gatesRes.json();
@@ -240,31 +244,17 @@
     toolsList.className = 'tools-list';
     toolsList.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
 
-    const extractDescription = (tool) => {
-      if (!tool || typeof tool !== 'object') {
-        throw new Error('[Gates Renderer] Tool is missing or invalid');
+    const getPreview = (t) => {
+      if (!t || typeof t !== 'object') return '';
+      if (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function') {
+        return window.RYD_ToolPreview.getToolPreview(t);
       }
-      // FAIL-LOUD: No fallbacks
-      try {
-        if (window.RYD_ToolValidator) {
-          window.RYD_ToolValidator.require(tool, 'gates renderer');
-          const raw = window.RYD_ToolValidator.getContent(tool, 'description');
-          const title = tool.title || tool.name;
-          if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-            return window.RYD_UI.sanitizeDescription(raw, title);
-          }
-          return String(raw || '').trim();
-        } else {
-          throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-        }
-      } catch (error) {
-        console.error('[Gates Renderer] Tool validation failed:', error);
-        throw error; // Fail loudly
-      }
+      var raw = String(t.description || t.summary || '').trim();
+      return raw ? raw.replace(/\s+/g, ' ').slice(0, 240) + (raw.length > 240 ? '\u2026' : '') : '';
     };
 
     toolInstances.forEach(instance => {
-      const tool = instance.baseTool || instance.base; // Direct reference to base tool
+      const tool = instance.baseTool || instance.base;
       if (!tool) return;
 
       const toolCard = document.createElement('div');
@@ -286,30 +276,92 @@
       toolTitle.style.cssText = 'margin-bottom: 0.5rem; font-size: 1em; color: var(--color-accent, #667eea);';
       toolCard.appendChild(toolTitle);
 
-      const description = extractDescription(tool);
-      if (description) {
+      const preview = getPreview(tool);
+      if (preview) {
         const toolDesc = document.createElement('p');
-        toolDesc.textContent = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+        toolDesc.textContent = preview;
         toolDesc.style.cssText = 'font-size: 0.85em; color: var(--color-text-secondary, #666); margin-bottom: 0.5rem;';
         toolCard.appendChild(toolDesc);
       }
 
-      // Link to tool page with context
+      const expandBtn = document.createElement('button');
+      expandBtn.type = 'button';
+      expandBtn.className = 'btn';
+      expandBtn.textContent = 'Read more';
+      expandBtn.style.cssText = 'margin-right: 8px; margin-bottom: 4px; padding: 6px 12px; font-size: 0.85em;';
+      expandBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var panel = toolCard.querySelector('.tool-expand-panel');
+        if (!panel) {
+          panel = document.createElement('div');
+          panel.className = 'tool-expand-panel';
+          panel.style.cssText = 'margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border, #e0e0e0);';
+          var fullDesc = (tool.description || tool.summary || '').trim();
+          if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
+            var div = document.createElement('div');
+            div.className = 'tool-full-description';
+            div.style.cssText = 'margin-bottom: 10px; color: var(--color-text-secondary, #666); line-height: 1.5; font-size: 0.9em;';
+            div.innerHTML = window.RYD_ToolPreview.renderMarkdownSafe(fullDesc);
+            panel.appendChild(div);
+          }
+          var walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+          var variants = { 5: walkthroughs[0] || null, 15: walkthroughs[1] || null, 30: walkthroughs[2] || null };
+          if (walkthroughs.length > 0) {
+            var tabs = document.createElement('div');
+            tabs.style.cssText = 'display: flex; gap: 8px; margin-bottom: 8px;';
+            [5, 15, 30].forEach(function (d) {
+              var btn = document.createElement('button');
+              btn.type = 'button';
+              btn.textContent = d + ' min';
+              btn.dataset.dur = String(d);
+              btn.style.cssText = 'padding: 4px 10px; font-size: 0.85em;';
+              tabs.appendChild(btn);
+            });
+            var content = document.createElement('div');
+            content.className = 'variant-content';
+            content.style.cssText = 'min-height: 40px;';
+            function showDur(d) {
+              content.innerHTML = '';
+              var w = variants[d];
+              if (w && Array.isArray(w.steps)) {
+                var ol = document.createElement('ol');
+                ol.style.cssText = 'margin: 0; padding-left: 20px;';
+                w.steps.forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+                content.appendChild(ol);
+              } else content.textContent = walkthroughs.length ? 'No steps for this duration.' : 'Variants coming soon.';
+            }
+            showDur(5);
+            tabs.querySelectorAll('button').forEach(function (b) {
+              b.addEventListener('click', function () { showDur(Number(b.dataset.dur)); });
+            });
+            panel.appendChild(tabs);
+            panel.appendChild(content);
+          } else {
+            var msg = document.createElement('p');
+            msg.textContent = 'Variants coming soon.';
+            msg.style.cssText = 'font-size: 0.9em; color: var(--color-text-secondary, #666); margin: 0;';
+            panel.appendChild(msg);
+          }
+          toolCard.appendChild(panel);
+          expandBtn.textContent = 'Collapse';
+        } else {
+          panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+          expandBtn.textContent = panel.style.display === 'none' ? 'Read more' : 'Collapse';
+        }
+      });
+      toolCard.appendChild(expandBtn);
+
       const toolLink = document.createElement('a');
       const rawSlug = tool.slug || tool.id || instance.toolId || tool.title || tool.name;
       const toolSlug = encodeURIComponent(String(rawSlug || '').trim());
       toolLink.href = `/tools/tool.html?slug=${toolSlug}&gate=${gate.id}&painPoint=${painPoint.id}`;
       toolLink.textContent = 'Open Tool →';
       toolLink.style.cssText = 'display: inline-block; color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em; font-weight: 500;';
-      toolLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = toolLink.href;
-      });
+      toolLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = toolLink.href; });
       toolCard.appendChild(toolLink);
 
-      // Make entire card clickable
-      toolCard.addEventListener('click', () => {
-        window.location.href = toolLink.href;
+      toolCard.addEventListener('click', (e) => {
+        if (e.target !== toolLink && !toolLink.contains(e.target) && e.target !== expandBtn && !expandBtn.contains(e.target)) window.location.href = toolLink.href;
       });
 
       toolsList.appendChild(toolCard);

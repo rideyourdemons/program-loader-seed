@@ -573,26 +573,13 @@
     toolsList.className = 'tools-list';
     toolsList.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
 
-    const extractDescription = (tool) => {
-      if (!tool || typeof tool !== 'object') {
-        throw new Error('[Gates Renderer] Tool is missing or invalid');
+    const getPreview = (t) => {
+      if (!t || typeof t !== 'object') return '';
+      if (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function') {
+        return window.RYD_ToolPreview.getToolPreview(t);
       }
-      // FAIL-LOUD: No fallbacks
-      try {
-        if (window.RYD_ToolValidator) {
-          window.RYD_ToolValidator.require(tool, 'gates renderer');
-          const raw = window.RYD_ToolValidator.getContent(tool, 'description');
-          if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-            return window.RYD_UI.sanitizeDescription(String(raw), tool.title || tool.name);
-          }
-          return truncateString(String(raw || ''), 200);
-        } else {
-          throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-        }
-      } catch (error) {
-        console.error('[Gates Renderer] Tool validation failed:', error);
-        throw error; // Fail loudly
-      }
+      var raw = String(t.description || t.summary || '').trim();
+      return raw ? truncateString(raw.replace(/\s+/g, ' '), 240) : '';
     };
 
     toolInstances.forEach(instance => {
@@ -602,8 +589,13 @@
         const tool = instance.baseTool || instance.base;
         if (!tool || typeof tool !== 'object') return;
 
-        // Force-fix: Safe access to where_it_came_from
         tool.where_it_came_from = tool?.where_it_came_from ?? 'hardened_stable_fallback';
+
+        const toolTitleText = tool.name || tool.title || instance.toolId;
+        if (!toolTitleText || String(toolTitleText).trim() === '') {
+          console.warn('[RYD Gates] Skipping tool with missing title/id:', tool);
+          return;
+        }
 
         const toolCard = document.createElement('div');
         toolCard.className = 'tool-card';
@@ -619,63 +611,104 @@
           toolCard.style.boxShadow = 'none';
         });
 
-        // Guardrail: Ensure tool has title/id
-        const toolTitleText = tool.name || tool.title || instance.toolId;
-        if (!toolTitleText || String(toolTitleText).trim() === '') {
-          console.warn('[RYD Gates] Skipping tool with missing title/id:', tool);
-          return;
-        }
-
         const toolTitle = document.createElement('h5');
         toolTitle.textContent = truncateString(String(toolTitleText), 60);
         toolTitle.style.cssText = 'margin-bottom: 0.5rem; font-size: 1em; color: var(--color-accent, #667eea);';
         toolCard.appendChild(toolTitle);
 
-        // FAIL-LOUD: No fallbacks
-        let description = '';
-        try {
-          if (window.RYD_ToolValidator) {
-            window.RYD_ToolValidator.require(tool, 'gates renderer');
-            description = window.RYD_ToolValidator.getContent(tool, 'description');
-          } else {
-            throw new Error(`[Gates Renderer] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-          }
-        } catch (error) {
-          console.error('[Gates Renderer] Tool validation failed:', error);
-          // Skip invalid tool - don't render
-          return;
-        }
-        const cleanDesc = description;
-        if (cleanDesc) {
+        const preview = getPreview(tool);
+        if (preview) {
           const toolDesc = document.createElement('p');
-          toolDesc.textContent = truncateString(cleanDesc, 100);
+          toolDesc.textContent = preview;
           toolDesc.style.cssText = 'font-size: 0.85em; color: var(--color-text-secondary, #666); margin-bottom: 0.5rem;';
           toolCard.appendChild(toolDesc);
         }
 
+        const expandBtn = document.createElement('button');
+        expandBtn.type = 'button';
+        expandBtn.className = 'btn';
+        expandBtn.textContent = 'Read more';
+        expandBtn.style.cssText = 'margin-right: 8px; margin-bottom: 4px; padding: 6px 12px; font-size: 0.85em;';
+        expandBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var panel = toolCard.querySelector('.tool-expand-panel');
+          if (!panel) {
+            panel = document.createElement('div');
+            panel.className = 'tool-expand-panel';
+            panel.style.cssText = 'margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border, #e0e0e0);';
+            var fullDesc = (window.RYD_ToolValidator && window.RYD_ToolValidator.getContentSafe) ? window.RYD_ToolValidator.getContentSafe(tool, 'description') : (tool.description || tool.summary || '');
+            if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
+              var div = document.createElement('div');
+              div.className = 'tool-full-description';
+              div.style.cssText = 'margin-bottom: 10px; color: var(--color-text-secondary, #666); line-height: 1.5; font-size: 0.9em;';
+              div.innerHTML = window.RYD_ToolPreview.renderMarkdownSafe(fullDesc);
+              panel.appendChild(div);
+            }
+            var walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+            var variants = { 5: walkthroughs[0] || null, 15: walkthroughs[1] || null, 30: walkthroughs[2] || null };
+            if (walkthroughs.length > 0) {
+              var tabs = document.createElement('div');
+              tabs.style.cssText = 'display: flex; gap: 8px; margin-bottom: 8px;';
+              [5, 15, 30].forEach(function (d) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = d + ' min';
+                btn.dataset.dur = String(d);
+                btn.style.cssText = 'padding: 4px 10px; font-size: 0.85em;';
+                tabs.appendChild(btn);
+              });
+              var content = document.createElement('div');
+              content.className = 'variant-content';
+              content.style.cssText = 'min-height: 40px;';
+              function showDur(d) {
+                content.innerHTML = '';
+                var w = variants[d];
+                if (w && Array.isArray(w.steps)) {
+                  var ol = document.createElement('ol');
+                  ol.style.cssText = 'margin: 0; padding-left: 20px;';
+                  w.steps.forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+                  content.appendChild(ol);
+                } else content.textContent = walkthroughs.length ? 'No steps for this duration.' : 'Variants coming soon.';
+              }
+              showDur(5);
+              tabs.querySelectorAll('button').forEach(function (b) {
+                b.addEventListener('click', function () { showDur(Number(b.dataset.dur)); });
+              });
+              panel.appendChild(tabs);
+              panel.appendChild(content);
+            } else {
+              var msg = document.createElement('p');
+              msg.textContent = 'Variants coming soon.';
+              msg.style.cssText = 'font-size: 0.9em; color: var(--color-text-secondary, #666); margin: 0;';
+              panel.appendChild(msg);
+            }
+            toolCard.appendChild(panel);
+            expandBtn.textContent = 'Collapse';
+          } else {
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            expandBtn.textContent = panel.style.display === 'none' ? 'Read more' : 'Collapse';
+          }
+        });
+        toolCard.appendChild(expandBtn);
+
         const toolLink = document.createElement('a');
         const rawSlug = tool.slug || tool.id || instance.toolId || tool.title || tool.name || '';
         const toolSlug = encodeURIComponent(truncateString(String(rawSlug), 100));
-        // Link to /gates/:gateSlug/:painPointSlug/:toolSlug route
         const gateId = gate && gate.id ? encodeURIComponent(String(gate.id)) : '';
         const painPointId = painPoint && painPoint.id ? encodeURIComponent(String(painPoint.id)) : '';
         toolLink.href = `/gates/${gateId}/${painPointId}/${toolSlug}`;
         toolLink.textContent = 'Open Tool →';
         toolLink.style.cssText = 'display: inline-block; color: var(--color-accent, #667eea); text-decoration: none; font-size: 0.9em; font-weight: 500;';
-        toolLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.location.href = toolLink.href;
-        });
+        toolLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = toolLink.href; });
         toolCard.appendChild(toolLink);
 
         toolCard.addEventListener('click', (e) => {
-          // Don't trigger if clicking the link or About button
           if (e.target === toolLink || toolLink.contains(e.target)) return;
+          if (e.target === expandBtn || expandBtn.contains(e.target)) return;
           if (e.target.classList.contains('ryd-about-button') || e.target.closest('.ryd-about-button')) return;
           window.location.href = toolLink.href;
         });
 
-        // Add "About This Tool" button
         if (window.RYD_ToolAbout && typeof window.RYD_ToolAbout.addAboutButton === 'function') {
           window.RYD_ToolAbout.addAboutButton(toolCard, tool);
         }
@@ -683,7 +716,6 @@
         toolsList.appendChild(toolCard);
       } catch (toolError) {
         console.error('[RYD Gates] Error rendering tool:', toolError);
-        // Continue with next tool
       }
     });
 

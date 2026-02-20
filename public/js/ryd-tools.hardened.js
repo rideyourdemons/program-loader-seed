@@ -81,6 +81,37 @@
       clear: () => visited.clear()
     };
   })();
+
+  /**
+   * Safe clone that strips circular refs and non-serializable refs (parent/children/related).
+   * Use before validation/stringify so circular reference never breaks the page.
+   */
+  function safeCloneTool(tool) {
+    if (!tool || typeof tool !== 'object') return null;
+    const seen = new WeakSet();
+    const BACKREF_KEYS = ['parent', 'children', 'related', 'parentTool', 'childTools', '_parent', '_children'];
+    function clone(obj, depth) {
+      if (depth > 15) return null;
+      if (obj === null || typeof obj !== 'object') return obj;
+      if (seen.has(obj)) return undefined;
+      if (Array.isArray(obj)) {
+        seen.add(obj);
+        return obj.map(item => clone(item, depth + 1)).filter(item => item !== undefined);
+      }
+      seen.add(obj);
+      const out = {};
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+        if (BACKREF_KEYS.indexOf(key) >= 0) continue;
+        try {
+          const v = clone(obj[key], depth + 1);
+          if (v !== undefined) out[key] = v;
+        } catch (_) { /* skip bad refs */ }
+      }
+      return out;
+    }
+    return clone(tool, 0);
+  }
   
   /**
    * NON-BLOCKING VALIDATION - Uses requestIdleCallback or setTimeout
@@ -143,17 +174,31 @@
 
     grid.innerHTML = '';
 
-    // Validate and sanitize tools (non-blocking)
+    // Filter to primary tools only; PROD = EligibleForLists only, DEV = all (mark drafts)
     let rawTools = tools || [];
+    const totalTools = rawTools.length;
+    if (window.RYD_ToolVariant && window.RYD_ToolVariant.filterPrimaryTools) {
+      rawTools = window.RYD_ToolVariant.filterPrimaryTools(rawTools);
+    }
+    const primaryCount = rawTools.length;
+    const isProd = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const eligibleTools = window.RYD_ToolValidator && window.RYD_ToolValidator.getEligibleForLists
+      ? window.RYD_ToolValidator.getEligibleForLists(rawTools)
+      : rawTools;
+    if (window.RYD_ToolValidator && window.RYD_ToolValidator.filterToolsForList) {
+      rawTools = window.RYD_ToolValidator.filterToolsForList(rawTools, isProd);
+    }
+    const hiddenDrafts = isProd ? primaryCount - rawTools.length : 0;
+    console.log('[RYD Tools] Publish gate:', { total: totalTools, primary: primaryCount, eligible: eligibleTools.length, hiddenDrafts: isProd ? hiddenDrafts : 0 });
     let validatedTools = [];
     
     // Quick synchronous validation first
     if (Array.isArray(rawTools)) {
-      // Non-blocking circular reference check
+      // Non-blocking circular reference check: sanitize instead of dropping all tools
       const circularCheck = circularReferenceDetector.detect({ tools: rawTools });
       if (circularCheck.circular) {
         console.warn('[RYD Tools] Circular reference detected in tools data:', circularCheck.path);
-        rawTools = []; // Prevent memory leak
+        rawTools = rawTools.map(t => safeCloneTool(t)).filter(Boolean);
       }
       
       // Validate each tool asynchronously to prevent blocking
@@ -161,11 +206,12 @@
         // Quick synchronous validation
         if (!tool || typeof tool !== 'object') return null;
         
-        // Check for circular references in tool
+        // If circular in this tool, use safe clone so we don't block rendering
         const toolCircular = circularReferenceDetector.detect(tool);
         if (toolCircular.circular) {
           console.warn(`[RYD Tools] Circular reference in tool ${index}:`, toolCircular.path);
-          return null;
+          tool = safeCloneTool(tool);
+          if (!tool) return null;
         }
         
         // Full validation (can be async, but we do sync for now)
@@ -208,14 +254,34 @@
       return;
     }
 
+    const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const validator = window.RYD_ToolValidator;
+    const expander = window.RYD_ToolExpander;
+
     validatedTools.forEach(tool => {
       if (!tool || typeof tool !== 'object') return;
 
-      // Guardrail: Skip invalid cards (missing title and id)
-      const toolTitle = tool.title || tool.name || tool.id;
-      if (!toolTitle || String(toolTitle).trim() === '') {
-        console.warn('[RYD Tools] Skipping tool with missing title/id:', tool);
-        return;
+      let currentTool = tool;
+      const toolTitle = currentTool.title || currentTool.name || currentTool.id;
+      if (!toolTitle || String(toolTitle).trim() === '') return;
+
+      let quality = validator && validator.validateToolQuality ? validator.validateToolQuality(currentTool, validatedTools) : { ok: true };
+      if (!quality.ok && isDev && expander && typeof expander.expandToolContent === 'function') {
+        try {
+          currentTool = expander.expandToolContent(currentTool);
+          quality = validator && validator.validateToolQuality ? validator.validateToolQuality(currentTool, validatedTools) : quality;
+        } catch (e) {
+          console.warn('[RYD Tools] Expand failed for', currentTool.id || currentTool.slug, e.message);
+        }
+      }
+
+      const validation = validator && validator.validateTool ? validator.validateTool(currentTool) : { ok: false, errors: [] };
+      const eligible = validator && validator.isEligibleForLists ? validator.isEligibleForLists(currentTool, validatedTools) : true;
+      if (!validation.ok) {
+        if (validator && validator.logValidationOnce) {
+          validator.logValidationOnce(currentTool.id || currentTool.slug || currentTool.title, validation.errors);
+        }
+        if (!isDev) return;
       }
 
       try {
@@ -223,7 +289,6 @@
         card.className = 'card tool-card';
         card.style.cssText = 'border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; background: #fff; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;';
         
-        // Make card hoverable
         card.addEventListener('mouseenter', () => {
           card.style.transform = 'translateY(-2px)';
           card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
@@ -235,27 +300,28 @@
 
         const title = document.createElement('h3');
         title.className = 'tool-title';
-        title.textContent = truncateString(String(toolTitle), 60);
+        title.textContent = truncateString(String(currentTool.title || currentTool.name || currentTool.id), 60);
         title.style.cssText = 'margin: 0 0 0.5rem 0; font-size: 1.2em; color: #333;';
+        if ((!validation.ok || !eligible) && isDev) {
+          const badge = document.createElement('span');
+          badge.textContent = eligible ? ' NEEDS CONTENT' : ' DRAFT';
+          badge.style.cssText = 'font-size: 0.65em; color: #ff9800; font-weight: 600;';
+          title.appendChild(badge);
+        }
         card.appendChild(title);
 
         const desc = document.createElement('p');
         desc.className = 'tool-description';
-        // FAIL-LOUD: No fallbacks
-        let cleaned = '';
-        try {
-          if (window.RYD_ToolValidator) {
-            window.RYD_ToolValidator.require(tool, 'tools grid render');
-            cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
-          } else {
-            throw new Error(`[RYD Tools] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-          }
-        } catch (error) {
-          console.error('[RYD Tools] Tool validation failed:', error);
-          // Don't render invalid tool - skip it
-          return;
-        }
-        desc.textContent = sanitizeDescription(cleaned, toolTitle);
+        const preview = window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function'
+          ? window.RYD_ToolPreview.getToolPreview(currentTool)
+          : null;
+        const rawDesc = validator && validator.getContentSafe
+          ? validator.getContentSafe(currentTool, 'description')
+          : (currentTool.description || currentTool.summary || '');
+        const cleaned = (typeof preview === 'string' && preview.trim())
+          ? preview.trim()
+          : (sanitizeDescription(rawDesc, toolTitle) || 'Content needs review.');
+        desc.textContent = cleaned;
         desc.style.cssText = 'margin: 0 0 1rem 0; color: #666; font-size: 0.9em; line-height: 1.5;';
         card.appendChild(desc);
 
@@ -263,17 +329,17 @@
         meta.className = 'tool-meta';
         meta.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.85em; color: #888;';
 
-        if (tool.duration && String(tool.duration).trim()) {
+        if (currentTool.duration && String(currentTool.duration).trim()) {
           const duration = document.createElement('span');
           duration.className = 'tool-meta-item';
-          duration.textContent = `⏱️ ${truncateString(String(tool.duration), 20)}`;
+          duration.textContent = `⏱️ ${truncateString(String(currentTool.duration), 20)}`;
           meta.appendChild(duration);
         }
 
-        if (tool.difficulty && String(tool.difficulty).trim()) {
+        if (currentTool.difficulty && String(currentTool.difficulty).trim()) {
           const difficulty = document.createElement('span');
           difficulty.className = 'tool-meta-item';
-          difficulty.textContent = `📊 ${truncateString(String(tool.difficulty), 20)}`;
+          difficulty.textContent = `📊 ${truncateString(String(currentTool.difficulty), 20)}`;
           meta.appendChild(difficulty);
         }
 
@@ -282,7 +348,7 @@
         }
 
         const cta = document.createElement('a');
-        const slug = encodeURIComponent(truncateString(String(tool.slug || tool.id || toolTitle || ''), 100));
+        const slug = encodeURIComponent(truncateString(String(currentTool.slug || currentTool.id || toolTitle || ''), 100));
         cta.href = `/tools/tool.html?slug=${slug}`;
         cta.textContent = 'Open Tool';
         cta.className = 'tool-cta';
@@ -325,7 +391,7 @@
     setMinHeight(grid, '300px');
     
     grid.innerHTML = `
-      <div class="ryd-loading" style="padding: 2rem; text-align: center; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div class="ryd-loading" style="padding: 2rem; text-align: center; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
         <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite;"></div>
         <p style="margin-top: 1rem; color: #666;">Loading tools...</p>
       </div>
@@ -412,30 +478,35 @@
       return;
     }
 
-    renderLoading();
-
-    // Wait for utils if needed
-    if (!window.RYD_ErrorBoundary) {
-      window.addEventListener('ryd:utils-ready', () => {
-        setTimeout(handleReady, 100);
-      });
+    // Check if inline script already rendered (tools.html has inline loadAndRenderTools)
+    // If grid has content beyond initial "Loading tools...", skip to avoid conflict
+    const currentContent = grid.innerHTML.trim();
+    if (currentContent && !currentContent.includes('Loading tools') && !currentContent.includes('ryd-loading')) {
+      console.log('[RYD Tools] Grid already has content, skipping ryd-tools.hardened init');
       return;
     }
 
-    // Listen for ready event
-    window.addEventListener('ryd:ready', handleReady);
-    window.addEventListener('ryd:error', () => {
-      renderTools([]);
-    });
+    renderLoading();
 
-    // Try immediate render if data already available
-    if (document.readyState !== 'loading') {
-      // Use async handleReady
+    // Do NOT block on RYD_ErrorBoundary or ryd:utils-ready — call handleReady immediately
+    // (ryd:utils-ready may never fire if utils-loader not loaded)
+    const runHandleReady = () => {
       handleReady().catch(err => {
         console.error('[RYD Tools] Initial load failed:', err);
         renderError(err);
       });
+    };
+
+    if (window.RYD_ErrorBoundary) {
+      window.addEventListener('ryd:ready', handleReady);
+      window.addEventListener('ryd:error', (e) => {
+        const err = (e && e.detail && e.detail.error) ? new Error(String(e.detail.error)) : new Error('Tool registry failed');
+        renderError(err);
+      });
     }
+
+    // Always run handleReady (primary path: registry/graph)
+    setTimeout(runHandleReady, 50);
   }
 
   // Initialize

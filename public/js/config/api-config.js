@@ -58,6 +58,17 @@
     return `${dataPath}/${filename}`;
   }
 
+  const TOOLS_URL = buildDataUrl('tools.pass.json');
+  let TOOLS_CACHE = null;
+
+  async function getTools() {
+    if (TOOLS_CACHE) return TOOLS_CACHE;
+    const res = await fetch(TOOLS_URL + '?ts=' + Date.now());
+    const json = await res.json();
+    TOOLS_CACHE = json.tools || json;
+    return TOOLS_CACHE;
+  }
+
   const API_CONFIG = {
     where_it_came_from: {
       origin: "internal",
@@ -68,8 +79,8 @@
     // Data endpoints
     GATES_URL: buildDataUrl('gates.json'),
     PAIN_POINTS_URL: buildDataUrl('pain-points.json'),
-    TOOLS_URL: buildDataUrl('tools.json'),
-    TOOLS_CANONICAL_URL: buildDataUrl('tools-canonical.json'),
+    TOOLS_URL: TOOLS_URL,
+    TOOLS_CANONICAL_URL: TOOLS_URL,
     
     // API settings
     BASE_URL: getApiBaseUrl(),
@@ -92,6 +103,7 @@
     window.RYD_API_CONFIG = API_CONFIG;
     window.RYD_API_CONFIG.getApiBaseUrl = getApiBaseUrl;
     window.RYD_API_CONFIG.buildDataUrl = buildDataUrl;
+    window.RYD_API_CONFIG.getTools = getTools;
   }
 
   // Export for Node.js

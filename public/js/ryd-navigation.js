@@ -16,13 +16,13 @@
   async function loadTruthData() {
     const gatesUrl = '/data/gates.json?ts=' + Date.now();
     const painPointsUrl = '/data/pain-points.json?ts=' + Date.now();
-    const canonicalToolsUrl = '/store/tools.canonical.json?ts=' + Date.now();
+    const canonicalToolsUrl = '/data/tools.pass.json?ts=' + Date.now();
     const fallbackToolsUrl = '/data/tools.json?ts=' + Date.now();
     
     console.log('[RYD] Loading JSON files:');
     console.log('  -', gatesUrl);
     console.log('  -', painPointsUrl);
-    console.log('  -', canonicalToolsUrl, '(canonical)');
+    console.log('  -', canonicalToolsUrl, '(primary)');
     console.log('  -', fallbackToolsUrl, '(fallback)');
     
     try {
@@ -199,7 +199,14 @@
     }
   };
   
-  // Initialize on load
+  window.addEventListener('ryd:matrix-ready', function(ev) {
+    var detail = ev && ev.detail;
+    if (detail && Array.isArray(detail.tools) && detail.tools.length) {
+      tools = detail.tools;
+      console.log('[RYD] Navigation received tools from loader:', tools.length);
+    }
+  });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => window.RYD_NAV.init());
   } else {

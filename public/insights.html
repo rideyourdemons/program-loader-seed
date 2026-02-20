@@ -9,6 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
+  <script src="/js/utils/tool-content-validator.js"></script>
+  <script src="/js/utils/tool-text.js"></script>
+  <script src="/js/utils/tool-variant-utils.js"></script>
+  <script src="/js/utils/gate-styles-loader.js"></script>
   <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/numerology-engine.js" defer></script>
     <script src="/js/utils/numerology-router.js" defer></script>
@@ -24,6 +28,8 @@
     <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/matrix-status.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
+    <link rel="stylesheet" href="/css/demon-theme.css">
     
     <!-- SEO Meta Tags (Dynamic - Updated by JavaScript) -->
     <title id="seoTitle">Ride Your Demons - Free Mental Health Tools</title>
@@ -98,8 +104,7 @@
             font-size: 16px; /* Live site body text size */
             line-height: 1.6; /* Live site line height */
             color: var(--color-text);
-            background: linear-gradient(to bottom, rgba(229,229,229,0.72) 0%, rgba(245,245,245,0.78) 100%), url('/images/ride-your-demon-bg.jpg') center/cover no-repeat fixed;
-            min-height: 100vh;
+            /* background from /css/demon-theme.css (shared across site) */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             margin: 0;
@@ -983,74 +988,63 @@
             display: none;
         }
 
+        .tour-overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+        }
+
         .tour-overlay-backdrop.active {
             display: block;
         }
 
         .tour-tooltip {
-            position: fixed;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: min(560px, 92vw) !important;
+            max-height: 88vh !important;
+            display: none;
+            flex-direction: column !important;
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            width: 400px;
-            max-width: 90vw;
-            display: none;
+            z-index: 99999 !important;
             animation: tourFadeIn 0.3s ease;
             border: 1px solid var(--color-border);
+            overflow: hidden;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .tour-tooltip.active {
-            display: block;
+            display: flex !important;
         }
 
+        /* Legacy tour-guide-box styles - kept for compatibility but tour-tooltip is primary */
         .tour-guide-box {
             position: fixed !important;
-            bottom: 85px !important;
+            top: 8vh !important;
             right: 25px !important;
+            left: auto !important;
+            bottom: auto !important;
             z-index: 9999 !important;
             width: 400px;
             max-width: 90vw;
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            /* Safe Area constraints - ensures visibility on all devices */
             max-width: min(400px, calc(100vw - 50px));
-            max-height: min(70vh, calc(100vh - 200px)); /* 85px bottom + 115px top margin */
-        }
-        
-        .tour-guide-box .tour-tooltip-content {
-            max-height: calc(70vh - 160px); /* Account for header + navigation */
-            overflow-y: auto !important;
-            padding: var(--spacing-lg);
-        }
-        
-        /* Ensure navigation buttons are always in safe area - 100% accessible */
-        .tour-guide-box .tour-navigation {
-            position: sticky !important;
-            bottom: 0 !important;
-            background: white !important;
-            padding: 12px !important;
-            border-top: 1px solid var(--color-border) !important;
-            z-index: 10000 !important;
+            max-height: 84vh !important;
             display: flex !important;
-            justify-content: space-between !important;
-            gap: 10px !important;
-            /* Safe area padding for mobile devices - prevents taskbar overlap */
-            padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
-            margin-bottom: 0 !important;
-        }
-        
-        .tour-guide-box .tour-navigation {
-            position: sticky;
-            bottom: 0;
-            background: white;
-            padding: 10px;
-            border-top: 1px solid var(--color-border);
-            z-index: 10001;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
+            flex-direction: column !important;
+            overflow: hidden !important;
         }
         
         .tour-guide-box .tour-navigation button {
@@ -1087,6 +1081,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0 !important; /* Never shrink header */
         }
 
         .tour-tooltip-header h3 {
@@ -1118,9 +1113,13 @@
         }
 
         .tour-tooltip-content {
+            flex: 1 !important;
+            overflow-y: auto !important;
             padding: var(--spacing-lg);
+            padding-right: 6px;
             color: var(--color-text);
             line-height: 1.6;
+            min-height: 0;
         }
 
         .tour-tooltip-content h3 {
@@ -1137,9 +1136,25 @@
         }
 
         .tour-progress {
+            position: sticky !important;
+            bottom: 0 !important;
+            background: white !important;
             padding: var(--spacing-md) var(--spacing-lg);
-            background: var(--color-bg-secondary);
             border-top: 1px solid var(--color-border);
+            flex-shrink: 0;
+            z-index: 10002;
+        }
+        
+        /* Mobile: adjust modal size */
+        @media (max-width: 768px) {
+            .tour-tooltip {
+                width: 92vw;
+                max-height: 88vh;
+            }
+            
+            .tour-tooltip-content {
+                max-height: calc(88vh - 72px);
+            }
         }
 
         .tour-progress-bar {
@@ -1162,11 +1177,16 @@
         }
 
         .tour-controls {
+            position: sticky !important;
+            bottom: 0 !important;
+            background: white !important;
+            padding: 12px 16px !important;
             display: flex;
             gap: var(--spacing-sm);
-            padding: var(--spacing-md) var(--spacing-lg);
             border-top: 1px solid var(--color-border);
             justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 10001;
         }
 
         .tour-button-primary {
@@ -2028,13 +2048,24 @@
 
         async function loadGatesAndPainPoints() {
             try {
+                const ts = '?ts=' + Date.now();
                 const [gatesRes, ppRes] = await Promise.all([
-                    fetch('/data/gates.json?ts=' + Date.now()),
-                    fetch('/data/pain-points.json?ts=' + Date.now())
+                    fetch('/data/gates.json' + ts),
+                    fetch('/data/pain-points.json' + ts)
                 ]);
+                function isJsonResponse(res) {
+                    const ct = (res.headers.get('Content-Type') || '').toLowerCase();
+                    return res.ok && (ct.includes('application/json') || ct.includes('text/json'));
+                }
+                if (!isJsonResponse(gatesRes)) {
+                    throw new Error('gates.json not available (status ' + gatesRes.status + '). Check /data/ in dev and Firebase rewrites in production.');
+                }
+                if (!isJsonResponse(ppRes)) {
+                    throw new Error('pain-points.json not available (status ' + ppRes.status + '). Check /data/ in dev and Firebase rewrites in production.');
+                }
                 const gatesData = await gatesRes.json();
                 const ppData = await ppRes.json();
-                allGates = gatesData.gates || [];
+                allGates = (gatesData && gatesData.gates) ? gatesData.gates : [];
                 const byGate = ppData.painPoints || {};
                 allPainPoints = [];
                 for (const list of Object.values(byGate)) {
@@ -2066,8 +2097,50 @@
                     }
                 }
             } catch (err) {
-                console.warn('[Insights] Failed to load gates/pain-points:', err);
+                renderErrorPanel(err, 'gates.json / pain-points.json');
             }
+        }
+
+        function renderErrorPanel(err, dataSource) {
+            const grid = document.getElementById('gatesGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            const panel = document.createElement('div');
+            panel.className = 'card';
+            panel.style.cssText = 'border-left: 4px solid #d32f2f; background: #ffebee; padding: 20px; color: #c53030;';
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Data Load Error';
+            h3.style.marginBottom = '12px';
+            panel.appendChild(h3);
+            const p = document.createElement('p');
+            p.textContent = (err && err.message) || String(err);
+            p.style.marginBottom = '8px';
+            panel.appendChild(p);
+            if (dataSource) {
+                const src = document.createElement('p');
+                src.textContent = 'Data source: ' + dataSource;
+                src.style.fontSize = '0.9em';
+                src.style.opacity = '0.9';
+                panel.appendChild(src);
+            }
+            if (err && err.stack) {
+                const details = document.createElement('details');
+                details.style.marginTop = '12px';
+                const summary = document.createElement('summary');
+                summary.textContent = 'Stack trace';
+                details.appendChild(summary);
+                const pre = document.createElement('pre');
+                pre.textContent = err.stack;
+                pre.style.cssText = 'overflow: auto; max-height: 150px; font-size: 0.8em; background: rgba(0,0,0,0.05); padding: 8px; border-radius: 4px;';
+                details.appendChild(pre);
+                panel.appendChild(details);
+            }
+            const retry = document.createElement('button');
+            retry.textContent = 'Retry';
+            retry.style.cssText = 'margin-top: 12px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;';
+            retry.onclick = () => loadGatesAndPainPoints();
+            panel.appendChild(retry);
+            grid.appendChild(panel);
         }
 
         function renderGatesGrid() {
@@ -2080,7 +2153,7 @@
             grid.innerHTML = '';
             allGates.forEach(gate => {
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = 'card gate-card';
                 card.setAttribute('data-gate', String(gate.id || 'core'));
                 card.setAttribute('role', 'button');
                 card.tabIndex = 0;
@@ -2095,6 +2168,9 @@
                 card.appendChild(p);
                 grid.appendChild(card);
             });
+            if (window.RYD_GateStyles && typeof window.RYD_GateStyles.apply === 'function') {
+                window.RYD_GateStyles.apply();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -2465,15 +2541,20 @@
             return window.MatrixExpander.expandToolsForSelection(gateId, painPointId);
         }
 
-        // Tool Rotation System (simplified version)
-        // Exclude quick-reset tools: Tool of the Day shows actual tools (Standard Practice / Deep Work), not 5‑min extensions
+        // Tool Rotation System — primary + quality-filtered (no template-leak tools)
         function getToolOfTheDay() {
             const all = Array.isArray(toolsData) ? toolsData : [];
-            const tools = all.filter(t => {
-                const id = (t && (t.id || t.slug || '')).toLowerCase();
-                return id && !id.endsWith('-quick-reset');
-            });
-            if (tools.length === 0) return null;
+            const primary = window.RYD_ToolVariant && window.RYD_ToolVariant.filterPrimaryTools
+                ? window.RYD_ToolVariant.filterPrimaryTools(all)
+                : all.filter(t => {
+                    const id = (t && (t.id || t.slug || '')).toLowerCase();
+                    return id && !id.endsWith('-quick-reset') && !id.endsWith('-deep-work');
+                });
+            const isProd = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+            const tools = window.RYD_ToolValidator && window.RYD_ToolValidator.filterToolsForToolOfDay
+                ? window.RYD_ToolValidator.filterToolsForToolOfDay(primary, isProd)
+                : primary;
+            if (tools.length === 0) return primary[0] || all[0] || null;
             const today = new Date();
             const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
             const index = dayOfYear % tools.length;
@@ -2511,7 +2592,12 @@
                 const difficultyEl = document.getElementById('toolDifficulty');
 
                 if (titleEl) titleEl.textContent = tool.title || 'Loading...';
-                if (descEl) descEl.textContent = tool.description || 'Loading...';
+                if (descEl) {
+                    const preview = (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function')
+                        ? window.RYD_ToolPreview.getToolPreview(tool)
+                        : (tool.description || 'Loading...');
+                    descEl.textContent = typeof preview === 'string' ? preview : (tool.description || 'Loading...');
+                }
                 if (durationEl) {
                     const duration = tool.duration ? String(tool.duration).trim() : '';
                     durationEl.textContent = duration || 'Not specified';
@@ -2819,9 +2905,10 @@
             const SafeMapper = window.SafeMapper || {
                 safeMap: (arr, fn) => arr ? arr.map(fn).filter(Boolean) : [],
                 safeFilter: (arr, fn) => arr ? arr.filter(fn) : [],
-                isNullish: (val) => val == null || (typeof val === 'string' && val.trim().toLowerCase() === 'null')
+                isNullish: (val) => val == null || (typeof val === 'string' && val.trim().toLowerCase() === 'null'),
+                sanitizeString: (str) => str == null ? '' : String(str).trim()
             };
-            
+
             const resolvedGateId = resolveGateIdForPainPoint(painPoint.id, painPoint.gateId);
             let toolInstances = resolvedGateId
                 ? getExpandedTools(resolvedGateId, painPoint.id)
@@ -2848,9 +2935,11 @@
                 // Skip null tools
                 if (SafeMapper.isNullish(tool)) return '';
                 
-                // Sanitize all string values
+                const preview = (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function')
+                    ? window.RYD_ToolPreview.getToolPreview(tool)
+                    : (tool.description || tool.summary || 'No description available.');
+                const description = SafeMapper.sanitizeString(typeof preview === 'string' ? preview : (tool.description || tool.summary || 'No description available.'));
                 const title = SafeMapper.sanitizeString(tool.title || tool.name || 'Untitled Tool');
-                const description = SafeMapper.sanitizeString(tool.description || tool.summary || 'No description available.');
                 const duration = tool.duration ? SafeMapper.sanitizeString(tool.duration) : '';
                 const difficulty = tool.difficulty ? SafeMapper.sanitizeString(tool.difficulty) : '';
                 const toolId = SafeMapper.sanitizeString(tool.id || '');
@@ -2861,7 +2950,7 @@
                     <span class="tool-number">${index + 1}</span>
                     <div style="display: inline-block; width: calc(100% - 50px); vertical-align: top;">
                         <div class="tool-title">${tool.title || tool.name || 'Untitled Tool'}</div>
-                        <div class="tool-description">${tool.description || tool.summary || 'No description available.'}</div>
+                        <div class="tool-description">${description}</div>
                         <div class="tool-meta">
                             <span>Duration: ${tool.duration ? String(tool.duration).trim() : ""}</span>
                             <span>Level: <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
@@ -2869,7 +2958,17 @@
                         <button class="start-tool-button" onclick="showToolWorkthrough('${toolId}', '${painPointId}'); trackGA4Event('action_imperative_clicked', { tool_slug: '${toolId}', category: '${SafeMapper.sanitizeString(painPoint.gateId || '')}', pain_point: '${painPointId}' });">Start Tool</button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('') : tools.map((tool, index) => {
+                if (!tool) return '';
+                const tid = String(tool.id || tool.slug || '').trim();
+                const pid = String(painPoint.id || '').trim();
+                const preview = (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function')
+                    ? window.RYD_ToolPreview.getToolPreview(tool)
+                    : (tool.description || tool.summary || 'No description available.');
+                const descText = typeof preview === 'string' ? preview : (tool.description || tool.summary || 'No description available.');
+                return `<div class="tool-card"><span class="tool-number">${index + 1}</span><div style="display: inline-block; width: calc(100% - 50px); vertical-align: top;"><div class="tool-title">${tool.title || tool.name || 'Untitled Tool'}</div><div class="tool-description">${String(descText).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</div><div class="tool-meta"><span>Duration: ${tool.duration ? String(tool.duration).trim() : ''}</span><span>Level: <span class="badge badge-${tool.difficulty || 'beginner'}">${tool.difficulty || 'beginner'}</span></span></div><button class="start-tool-button" onclick="showToolWorkthrough('${tid}', '${pid}');">Start Tool</button></div></div>`;
+            }).join('');
             
             // Display related pain points
             if (painPoint.relatedPainPoints && painPoint.relatedPainPoints.length > 0) {
@@ -3015,7 +3114,15 @@
                 <span>Duration: ${tool.duration ? String(tool.duration).trim() : ""}</span>
                 <span>Level: <span class="badge badge-${tool.difficulty}">${tool.difficulty}</span></span>
             `;
-            document.getElementById('toolWorkthroughContent').innerHTML = tool.workthroughContent || tool.description;
+            const fullContent = tool.workthroughContent || tool.description || '';
+            const contentEl = document.getElementById('toolWorkthroughContent');
+            if (contentEl) {
+                if (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.renderMarkdownSafe === 'function' && fullContent) {
+                    contentEl.innerHTML = window.RYD_ToolPreview.renderMarkdownSafe(fullContent);
+                } else {
+                    contentEl.textContent = fullContent;
+                }
+            }
             
             // Display research citations
             const researchSection = document.getElementById('toolResearchSection');
@@ -3110,11 +3217,11 @@
         
         // 3. Connect Gate to Active Pain Search: Display filtered pain points
         function displayFilteredPainPoints(gateId) {
-            const GateStateManager = window.GateStateManager;
-            if (!GateStateManager) return;
-            
-            const filteredPainPoints = GateStateManager.getFilteredPainPoints();
-            const gate = allGates.find(g => g.id === gateId);
+            var GateStateManager = window.GateStateManager;
+            if (!GateStateManager || typeof GateStateManager.getFilteredPainPoints !== 'function') return;
+            var filteredPainPoints = GateStateManager.getFilteredPainPoints() || [];
+            var gates = typeof allGates !== 'undefined' && Array.isArray(allGates) ? allGates : [];
+            var gate = gates.find(function(g) { return g && g.id === gateId; });
             
             // Create or update gate filter display
             let gateFilterSection = document.getElementById('gateFilterSection');
@@ -3182,35 +3289,36 @@
         
         // 1. Fix Gate Selection: Handle Gate clicks without page reload
         function handleGateClick(event, gateId) {
-            // Prevent default navigation
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            
-            // GA4: Track gate selection (unified through trackGA4Event)
-            if (typeof trackGA4Event === 'function') {
-                try {
-                    const gate = allGates.find(g => g.id === gateId);
-                    trackGA4Event('gate_selected', {
-                        gate_id: gateId,
-                        gate_title: gate ? gate.title : gateId,
-                        page_path: window.location.pathname
-                    });
-                } catch (e) {
-                    console.warn('[Analytics] Gate selection:', e);
+            try {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
                 }
+                var gates = typeof allGates !== 'undefined' && Array.isArray(allGates) ? allGates : [];
+                if (typeof trackGA4Event === 'function') {
+                    try {
+                        var gate = gates.find(function(g) { return g && g.id === gateId; });
+                        trackGA4Event('gate_selected', {
+                            gate_id: gateId,
+                            gate_title: gate ? gate.title : gateId,
+                            page_path: window.location.pathname
+                        });
+                    } catch (e) {
+                        console.warn('[Analytics] Gate selection:', e);
+                    }
+                }
+                var gsm = window.GateStateManager;
+                if (gsm && typeof gsm.setActiveGate === 'function') {
+                    gsm.setActiveGate(gateId);
+                    showSearchSection();
+                    displayFilteredPainPoints(gateId);
+                } else {
+                    window.location.href = '/gates/' + encodeURIComponent(String(gateId || ''));
+                }
+            } catch (e) {
+                console.warn('[Insights] handleGateClick:', e);
+                window.location.href = '/gates/' + encodeURIComponent(String(gateId || ''));
             }
-            
-            // Set active gate (updates internal state)
-            const GateStateManager = window.GateStateManager;
-            if (GateStateManager) {
-                GateStateManager.setActiveGate(gateId);
-            }
-            
-            // 3. Connect Gate to Active Pain Search: Filter and display
-            showSearchSection();
-            displayFilteredPainPoints(gateId);
         }
 
         function clearSearch() {
@@ -3270,11 +3378,15 @@
         let currentTourStep = -1;
         let tourActive = false;
         let tourTargetElement = null;
+        // Disable anchoring - always use centered modal
+        const ANCHORED_TOUR = false;
 
         function startTour() {
             tourActive = true;
             currentTourStep = 0;
             document.getElementById('startTourButton').style.display = 'none';
+            // Prevent page scroll while tour is open
+            document.body.style.overflow = 'hidden';
             showTourStep(0);
         }
 
@@ -3284,57 +3396,51 @@
                 return;
             }
 
-            const step = tourSteps[stepIndex];
-            const backdrop = document.getElementById('tourBackdrop');
-            const tooltip = document.getElementById('tourTooltip');
-            const titleEl = document.getElementById('tourTitle');
-            const contentEl = document.getElementById('tourContent');
-            const progressFill = document.getElementById('tourProgressFill');
-            const progressText = document.getElementById('tourProgressText');
-            const prevBtn = document.getElementById('tourPrev');
-            const nextBtn = document.getElementById('tourNext');
+            // Use requestAnimationFrame to prevent layout shifts
+            requestAnimationFrame(() => {
+                const step = tourSteps[stepIndex];
+                const backdrop = document.getElementById('tourBackdrop');
+                const tooltip = document.getElementById('tourTooltip');
+                const titleEl = document.getElementById('tourTitle');
+                const contentEl = document.getElementById('tourContent');
+                const progressFill = document.getElementById('tourProgressFill');
+                const progressText = document.getElementById('tourProgressText');
+                const prevBtn = document.getElementById('tourPrev');
+                const nextBtn = document.getElementById('tourNext');
 
-            // Remove previous highlight
-            if (tourTargetElement) {
-                tourTargetElement.classList.remove('tour-highlight');
-                tourTargetElement = null;
-            }
-
-            backdrop.classList.add('active');
-
-            // Set content
-            titleEl.textContent = step.title;
-            contentEl.innerHTML = step.content;
-
-            // Update progress
-            const progress = ((stepIndex + 1) / tourSteps.length) * 100;
-            progressFill.style.width = progress + '%';
-            progressText.textContent = `Step ${stepIndex + 1} of ${tourSteps.length}`;
-
-            // Update buttons
-            prevBtn.disabled = stepIndex === 0;
-            nextBtn.textContent = stepIndex === tourSteps.length - 1 ? 'Finish' : 'Next';
-
-            // Position tooltip
-            if (step.targetElement) {
-                const element = document.querySelector(step.targetElement);
-                if (element) {
-                    element.classList.add('tour-highlight');
-                    tourTargetElement = element;
-                    const rect = element.getBoundingClientRect();
-                    const positions = calculateTourPosition(rect, step.position);
-                    tooltip.style.top = positions.top + 'px';
-                    tooltip.style.left = positions.left + 'px';
-                    tooltip.style.transform = '';
-                } else {
-                    centerTooltip(tooltip);
+                // Remove previous highlight
+                if (tourTargetElement) {
+                    tourTargetElement.classList.remove('tour-highlight');
+                    tourTargetElement = null;
                 }
-            } else {
-                centerTooltip(tooltip);
-            }
 
-            tooltip.classList.add('active');
-            currentTourStep = stepIndex;
+                backdrop.classList.add('active');
+
+                // Set content
+                titleEl.textContent = step.title;
+                contentEl.innerHTML = step.content;
+
+                // Update progress
+                const progress = ((stepIndex + 1) / tourSteps.length) * 100;
+                progressFill.style.width = progress + '%';
+                progressText.textContent = `Step ${stepIndex + 1} of ${tourSteps.length}`;
+
+                // Update buttons
+                prevBtn.disabled = stepIndex === 0;
+                nextBtn.textContent = stepIndex === tourSteps.length - 1 ? 'Finish' : 'Next';
+
+                // Remove any dynamic positioning - modal is always centered via CSS
+                // Clear any inline styles that might override CSS
+                tooltip.style.top = '';
+                tooltip.style.left = '';
+                tooltip.style.transform = '';
+                tooltip.style.bottom = '';
+                tooltip.style.right = '';
+
+                // Always use centered modal (no anchoring)
+                tooltip.classList.add('active');
+                currentTourStep = stepIndex;
+            });
         }
 
         function calculateTourPosition(rect, position) {
@@ -3416,6 +3522,9 @@
             document.getElementById('tourBackdrop').classList.remove('active');
             document.getElementById('tourTooltip').classList.remove('active');
             document.getElementById('startTourButton').style.display = 'block';
+            
+            // Restore page scroll
+            document.body.style.overflow = '';
             
             if (tourTargetElement) {
                 tourTargetElement.classList.remove('tour-highlight');
@@ -3526,6 +3635,20 @@
     <script src="/js/utils-loader.js"></script>
     <script src="/js/ryd-boot.js" defer></script>
     <script src="/js/ryd-bind.hardened.js" defer></script>
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="/about">About</a>
+                <a href="/terms">Terms</a>
+                <a href="/disclosures">Disclosures</a>
+                <a href="/ethics">Ethics</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Ride Your Demons. All rights reserved.</p>
+            </div>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
+        </div>
+    </footer>
 </body>
 </html>
 

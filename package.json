@@ -48,6 +48,11 @@
     "extract-styles": "node scripts/extract-live-site-styles.js",
     "check-ga4": "node scripts/check-live-site-ga4.js",
     "build:tools": "node scripts/build-tools-canonical.cjs",
+    "tools-canonical": "node scripts/build-tools-canonical.cjs",
+    "tools:build": "node scripts/build-tools-content.mjs",
+    "tools:validate": "node scripts/validate-tools.mjs",
+    "tools:report": "node scripts/tools-report.mjs",
+    "tools:bulk": "node scripts/build-tools-bulk.cjs",
     "build:mapping": "node work/seo-matrix/build-gates-mapping.cjs",
     "validate:mapping": "node scripts/validate-mapping.cjs",
     "validate:tool-mapping": "node scripts/validate-tool-mapping.cjs",
@@ -60,7 +65,8 @@
     "validate:assets": "node scripts/validate-assets.cjs",
     "validate:tools": "node scripts/validate-tools.cjs",
     "validate:truth": "node scripts/validate-truth-integrity.cjs",
-    "validate": "node scripts/validate-graph.mjs && node scripts/validate-content.mjs && node scripts/validate-tools-json.cjs && node scripts/validate-tool-mapping.cjs && node scripts/validate-tools.cjs && node scripts/validate-truth-integrity.cjs",
+    "validate": "node scripts/validate-insights-syntax.cjs && node scripts/validate-graph.mjs && node scripts/validate-content.mjs && node scripts/validate-tools-json.cjs && node scripts/validate-tool-mapping.cjs && node scripts/validate-tools.cjs && node scripts/validate-truth-integrity.cjs",
+    "validate:insights-syntax": "node scripts/validate-insights-syntax.cjs",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:graph": "node scripts/validate-graph.mjs",
     "validate:social": "node scripts/validate-social-links.mjs",
@@ -124,6 +130,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "archiver": "^7.0.1",
     "husky": "^9.1.7"
   }
 }

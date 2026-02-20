@@ -8,17 +8,15 @@
 }
 
 :root {
-    /* RYD Theme - light grey background */
+    /* RYD Color Palette */
     --color-text: #1a1a1a;
-    --color-text-secondary: #555;
-    --color-border: #bbb;
-    --color-bg: #e5e5e5;
-    --color-bg-secondary: #f5f5f5;
-    --color-accent: #c41e3a;
-    --color-accent-dark: #8b0000;
-    --color-header-gradient: linear-gradient(180deg, #555 0%, #444 50%, #555 100%);
-    --color-button: #c41e3a;
-    --color-button-hover: #e63950;
+    --color-text-secondary: #666;
+    --color-border: #e0e0e0;
+    --color-bg: #f5f5f5;
+    --color-bg-secondary: #ffffff;
+    --color-accent: #667eea;
+    --color-accent-dark: #764ba2;
+    --color-header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     
     --spacing-md: 16px;
     --spacing-lg: 24px;
@@ -48,9 +46,8 @@ body {
     line-height: var(--line);
     letter-spacing: 0.2px;
     color: var(--color-text);
-    background: linear-gradient(to bottom, rgba(229,229,229,0.72) 0%, rgba(245,245,245,0.78) 100%), url('/images/ride-your-demon-bg.jpg') center/cover no-repeat fixed;
+    background: var(--color-bg);
     margin: 0;
-    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -87,8 +84,6 @@ h1, h2, h3 {
     border-radius: var(--radius);
     padding: 18px;
     margin: 0 0 var(--gap) 0;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
 }
 
 .card + .card { 
@@ -131,12 +126,12 @@ h1, h2, h3 {
 header {
     background: var(--color-header-gradient);
     color: #ffffff;
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: none;
     padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .header-content {
@@ -209,8 +204,7 @@ main {
 }
 
 .tool-card {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
+    background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
     border-left: 4px solid var(--color-accent);
     /* Padding and border-radius handled by .card class */
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -252,17 +246,17 @@ main {
 }
 
 .badge-beginner {
-    background: rgba(196, 30, 58, 0.2);
-    color: #ff6b6b;
+    background: #d4edda;
+    color: #155724;
 }
 
 .badge-intermediate {
-    background: rgba(196, 30, 58, 0.3);
-    color: #ff8a8a;
+    background: #fff3cd;
+    color: #856404;
 }
 
 .rotation-info {
-    background: rgba(196, 30, 58, 0.1);
+    background: #e7f3ff;
     border-left: 4px solid var(--color-accent);
     padding: var(--spacing-md);
     border-radius: 6px;
@@ -291,7 +285,7 @@ footer {
 }
 
 .footer-links a {
-    color: var(--color-text-secondary);
+    color: var(--color-text);
     text-decoration: none;
     margin: 0 var(--spacing-md);
 }

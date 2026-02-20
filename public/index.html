@@ -19,12 +19,15 @@
       }
     </script>
     <script src="/js/matrix-expander.js" defer></script>
+    <script src="/js/matrix-loader.js" defer></script>
     <script src="/js/config/analytics-config.js"></script>
     <!-- Load local config if it exists (gitignored, contains actual IDs) -->
     <script src="/js/config/analytics-config.local.js" onerror="console.log('[Analytics] Local config not found, using defaults')"></script>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/matrix-status.css">
     <link rel="stylesheet" href="/css/integrated.css">
+    <link rel="stylesheet" href="/css/theme-overrides.css">
+    <link rel="stylesheet" href="/css/demon-theme.css">
     
     <!-- SEO Meta Tags (Dynamic - Updated by JavaScript) -->
     <title id="seoTitle">Ride Your Demons - Free Mental Health Tools</title>
@@ -74,6 +77,7 @@
 
         <section class="section">
             <h2>Tool of the Day</h2>
+            <div id="tool-of-day-status" aria-live="polite" style="display:none; font-size:0.9em; color:var(--color-text-secondary,#666); margin-bottom:0.5em;"></div>
             <div id="toolOfDay" class="card">
                 <p>Loading...</p>
             </div>
@@ -99,6 +103,12 @@
                 </div>
             </div>
         </section>
+
+        <!-- Pain Points Container (for gate clicks) -->
+        <section id="ryd-pain-points" aria-live="polite" class="section" style="display: none;">
+            <h2 id="ryd-pain-points-title"></h2>
+            <div id="ryd-pain-points-list" class="grid"></div>
+        </section>
     </main>
 
     <footer>
@@ -109,43 +119,282 @@
                 <a href="/disclosures">Disclosures</a>
                 <a href="/ethics">Ethics</a>
             </nav>
-            <p class="footer-disclaimer">The information provided is for educational purposes and is not a substitute for professional medical advice.</p>
+            <p class="ryd-footer-disclaimer">Ride Your Demons is built for self-guided growth and real-world practice. It's not medical or clinical care. If you're in immediate danger, contact local emergency support or a qualified professional where you live.</p>
         </div>
     </footer>
 
+    <script src="/js/utils/tool-content-validator.js"></script>
+    <script src="/js/utils/tool-text.js"></script>
+    <script src="/js/utils/tool-variant-utils.js"></script>
+    <script src="/js/utils/gate-state-manager.js"></script>
     <script src="/js/ryd-boot.js" defer></script>
     <script src="/js/ryd-bind.hardened.js" defer></script>
     <script src="/js/ryd-navigation.js" defer></script>
     <script>
-        // Load tool of the day
-        document.addEventListener('DOMContentLoaded', async () => {
-            const toolEl = document.getElementById('toolOfDay');
-            
-            try {
-                const res = await fetch('/data/tools.json?ts=' + Date.now());
-                const data = await res.json();
-                const tools = data.tools || [];
-                
-                if (tools.length > 0) {
-                    // Pick tool of the day (deterministic based on date)
-                    const today = new Date();
-                    const seed = today.getFullYear() * 10000 + today.getMonth() * 100 + today.getDate();
-                    const toolIndex = seed % tools.length;
-                    const tool = tools[toolIndex];
-                    
-                    toolEl.innerHTML = `
-                        <h3><a href="/tools/${tool.id || tool.slug || 'tool'}">${tool.title || tool.name || 'Tool'}</a></h3>
-                        <p>${tool.description || tool.summary || 'A helpful mental health tool.'}</p>
-                        <a href="/tools/${tool.id || tool.slug || 'tool'}" class="btn">Try This Tool</a>
-                    `;
-                } else {
-                    toolEl.innerHTML = '<p>Tools loading...</p>';
+        // Tool of the Day is rendered only by ryd-bind.hardened.js (SCAN MODE: title, purpose, 5-min preview, one CTA).
+        // Do not overwrite #toolOfDay here — the bind script fills it after direct tools load (no MatrixExpander wait).
+
+        // Gate click handler and pain points rendering for homepage
+        (function() {
+            'use strict';
+
+            let allGates = [];
+            let allPainPoints = [];
+
+            // Load gates and pain points data
+            async function loadGatesAndPainPoints() {
+                try {
+                    const ts = '?ts=' + Date.now();
+                    const [gatesRes, painPointsRes] = await Promise.all([
+                        fetch('/data/gates.json' + ts),
+                        fetch('/data/pain-points.json' + ts)
+                    ]);
+
+                    if (!gatesRes.ok || (gatesRes.headers.get('Content-Type') || '').toLowerCase().includes('text/html')) {
+                        console.warn('[Home] Could not load gates.json');
+                        return;
+                    }
+                    if (!painPointsRes.ok || (painPointsRes.headers.get('Content-Type') || '').toLowerCase().includes('text/html')) {
+                        console.warn('[Home] Could not load pain-points.json');
+                        return;
+                    }
+
+                    const gatesData = await gatesRes.json();
+                    const painPointsData = await painPointsRes.json();
+
+                    allGates = gatesData.gates || [];
+                    const byGate = painPointsData.painPoints || {};
+                    allPainPoints = [];
+                    Object.keys(byGate).forEach(gateId => {
+                        const points = byGate[gateId] || [];
+                        points.forEach(pp => {
+                            if (pp && !allPainPoints.some(p => p.id === pp.id)) {
+                                allPainPoints.push(pp);
+                            }
+                        });
+                    });
+
+                    // Initialize GateStateManager
+                    if (window.GateStateManager && typeof window.GateStateManager.init === 'function') {
+                        window.GateStateManager.init(allPainPoints);
+                    }
+
+                    console.log('[Home] Loaded', allGates.length, 'gates and', allPainPoints.length, 'pain points');
+                } catch (err) {
+                    console.warn('[Home] Error loading gates/pain points:', err);
                 }
-            } catch (err) {
-                toolEl.innerHTML = '<p>Tools will be available shortly.</p>';
-                console.warn('Could not load tools:', err);
             }
-        });
+
+            // Render pain points into homepage container
+            function renderPainPointsIntoHome(gateSlug) {
+                const container = document.getElementById('ryd-pain-points');
+                const titleEl = document.getElementById('ryd-pain-points-title');
+                const listEl = document.getElementById('ryd-pain-points-list');
+                
+                if (!container || !titleEl || !listEl) {
+                    console.warn('[Home] Pain points container not found');
+                    return;
+                }
+
+                // Set active gate state (GateStateManager will apply normalization)
+                let filteredPainPoints = [];
+                if (window.GateStateManager && typeof window.GateStateManager.setActiveGate === 'function') {
+                    window.GateStateManager.setActiveGate(gateSlug);
+                    if (typeof window.GateStateManager.getFilteredPainPoints === 'function') {
+                        filteredPainPoints = window.GateStateManager.getFilteredPainPoints() || [];
+                    }
+                } else {
+                    // Fallback: local filtering if GateStateManager not available
+                    filteredPainPoints = allPainPoints.filter(pp => {
+                        if (!pp) return false;
+                        return String(pp.gateId || '') === String(gateSlug);
+                    });
+                }
+
+                // Find gate for title display
+                const gate = allGates.find(g => (g.id === gateSlug || g.slug === gateSlug));
+                const gateTitle = gate ? gate.title : gateSlug;
+
+                // Update title
+                titleEl.textContent = `Pain Points: ${gateTitle}`;
+
+                // Clear and render pain points
+                listEl.innerHTML = '';
+
+                if (filteredPainPoints.length === 0) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'card';
+                    emptyMsg.style.cssText = 'grid-column: 1 / -1; padding: 2rem; text-align: center; color: var(--color-text-secondary, #666);';
+                    emptyMsg.innerHTML = '<p>No pain points available for this gate at the moment.</p>';
+                    listEl.appendChild(emptyMsg);
+                } else {
+                    console.log('[Home] Rendering', filteredPainPoints.length, 'pain points for gate:', gateSlug);
+                    filteredPainPoints.forEach((pp, index) => {
+                        if (!pp) return;
+                        const ppId = pp.id || pp.slug || '';
+                        const ppSlug = pp.slug || pp.id || '';
+                        
+                        if (!ppSlug) {
+                            console.warn('[Home] Pain point missing slug/id:', pp);
+                            return;
+                        }
+                        
+                        const card = document.createElement('div');
+                        card.className = 'card pain-point-card';
+                        card.setAttribute('data-painpoint-slug', ppSlug);
+                        card.setAttribute('data-painpoint-id', ppId);
+                        card.setAttribute('data-gate-slug', gateSlug);
+                        card.setAttribute('role', 'button');
+                        card.setAttribute('tabindex', '0');
+                        card.style.cssText = 'cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;';
+                        
+                        // Debug: verify attributes are set
+                        if (index === 0) {
+                            console.log('[Home] First pain point card attributes:', {
+                                slug: card.getAttribute('data-painpoint-slug'),
+                                id: card.getAttribute('data-painpoint-id'),
+                                gate: card.getAttribute('data-gate-slug'),
+                                className: card.className
+                            });
+                        }
+                        card.addEventListener('mouseenter', () => {
+                            card.style.transform = 'translateY(-2px)';
+                            card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            card.style.transform = 'translateY(0)';
+                            card.style.boxShadow = 'none';
+                        });
+
+                        const h3 = document.createElement('h3');
+                        h3.textContent = pp.title || pp.id || 'Pain Point';
+                        card.appendChild(h3);
+
+                        if (pp.description) {
+                            const p = document.createElement('p');
+                            p.textContent = pp.description.substring(0, 150) + (pp.description.length > 150 ? '...' : '');
+                            p.style.cssText = 'color: var(--color-text-secondary, #666); margin-top: 0.5rem; font-size: 0.9em;';
+                            card.appendChild(p);
+                        }
+
+                        const link = document.createElement('a');
+                        link.href = `/gates/${encodeURIComponent(gateSlug)}/${encodeURIComponent(ppSlug)}`;
+                        link.textContent = 'View Tools →';
+                        link.className = 'btn';
+                        link.style.cssText = 'margin-top: 1rem; display: inline-block;';
+                        link.setAttribute('data-painpoint-slug', ppSlug);
+                        link.setAttribute('data-painpoint-id', ppId);
+                        card.appendChild(link);
+
+                        listEl.appendChild(card);
+                    });
+                }
+
+                // Show container and scroll to it
+                container.style.display = 'block';
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Event delegation for gate card clicks
+            document.addEventListener('click', function(e) {
+                // Check for gate card click (supports both data-gate and data-gate-slug)
+                const gateEl = e.target.closest('[data-gate-slug], [data-gate]');
+                if (!gateEl) return;
+
+                // Don't handle if clicking a link inside the card
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+
+                const slug = gateEl.getAttribute('data-gate-slug') || gateEl.getAttribute('data-gate');
+                if (!slug) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                console.log('[Home Gate Click]', slug);
+
+                // Set active gate state
+                if (window.GateStateManager && typeof window.GateStateManager.setActiveGate === 'function') {
+                    window.GateStateManager.setActiveGate(slug);
+                }
+
+                // Render pain points
+                renderPainPointsIntoHome(slug);
+            });
+
+            // Event delegation for pain point card clicks
+            document.addEventListener('click', function(e) {
+                // Find the closest pain point card (check card itself or any child)
+                const painPointEl = e.target.closest('[data-painpoint-slug], [data-painpoint-id], .pain-point-card');
+                if (!painPointEl) return;
+
+                // Get attributes from the card element (not the clicked child)
+                const card = painPointEl.classList.contains('pain-point-card') 
+                    ? painPointEl 
+                    : painPointEl.closest('.pain-point-card');
+                
+                if (!card) return;
+
+                const painSlug = card.getAttribute('data-painpoint-slug') || card.getAttribute('data-painpoint-id');
+                const gateSlug = card.getAttribute('data-gate-slug') || '';
+                
+                if (!painSlug) {
+                    console.warn('[PainPoint Click] No slug found on card:', card);
+                    return;
+                }
+
+                // If clicking a link, let it navigate naturally (don't preventDefault)
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    // Link will handle navigation, but we can still log
+                    console.log('[PainPoint Click]', { painSlug, gateSlug, via: 'link', target: e.target.tagName });
+                    return;
+                }
+
+                // For card clicks (not links), navigate programmatically
+                e.preventDefault();
+                e.stopPropagation();
+
+                console.log('[PainPoint Click]', { painSlug, gateSlug, via: 'card', target: e.target.tagName });
+
+                // Navigate to pain point page
+                const url = `/gates/${encodeURIComponent(gateSlug)}/${encodeURIComponent(painSlug)}`;
+                console.log('[PainPoint Click] Navigating to:', url);
+                window.location.href = url;
+            });
+
+            // Keyboard support for pain point cards
+            document.addEventListener('keydown', function(e) {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                
+                const painPointEl = e.target.closest('[data-painpoint-slug], [data-painpoint-id], .pain-point-card');
+                if (!painPointEl) return;
+
+                const card = painPointEl.classList.contains('pain-point-card') 
+                    ? painPointEl 
+                    : painPointEl.closest('.pain-point-card');
+                
+                if (!card) return;
+
+                e.preventDefault();
+                
+                const painSlug = card.getAttribute('data-painpoint-slug') || card.getAttribute('data-painpoint-id');
+                const gateSlug = card.getAttribute('data-gate-slug') || '';
+                
+                if (painSlug) {
+                    console.log('[PainPoint Click] Keyboard:', { painSlug, gateSlug, key: e.key });
+                    const url = `/gates/${encodeURIComponent(gateSlug)}/${encodeURIComponent(painSlug)}`;
+                    window.location.href = url;
+                }
+            });
+
+            // Initialize on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadGatesAndPainPoints);
+            } else {
+                loadGatesAndPainPoints();
+            }
+        })();
     </script>
 </body>
 </html>

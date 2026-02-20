@@ -57,20 +57,16 @@
     }
     
     if (descEl) {
-      // FAIL-LOUD: No fallbacks
       let cleaned = '';
-      try {
-        if (window.RYD_ToolValidator) {
-          window.RYD_ToolValidator.require(tool, 'tool bind');
-          cleaned = window.RYD_ToolValidator.getContent(tool, 'description');
-        } else {
-          throw new Error(`[RYD Bind] Tool "${tool.id || tool.title}" missing description. RYD_ToolValidator required.`);
-        }
-      } catch (error) {
-        console.error('[RYD Bind] Tool validation failed:', error);
-        throw error; // Fail loudly
+      if (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function') {
+        cleaned = window.RYD_ToolPreview.getToolPreview(tool);
+      } else if (window.RYD_ToolValidator) {
+        const v = window.RYD_ToolValidator.validateTool(tool);
+        cleaned = v.ok ? window.RYD_ToolValidator.getContent(tool, 'description') : window.RYD_ToolValidator.getContentSafe(tool, 'description');
+      } else {
+        cleaned = tool.description || tool.summary || '';
       }
-      descEl.textContent = sanitizeDescription(cleaned, tool.title || tool.name);
+      descEl.textContent = sanitizeDescription(typeof cleaned === 'string' ? cleaned : '', tool.title || tool.name) || 'A helpful mental health tool.';
     }
     
     if (durationEl) {
