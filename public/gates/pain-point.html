@@ -56,11 +56,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            // Extract gateId and painPointId from URL pathname: /gates/<gateId>/<painPointId>
             const pathParts = window.location.pathname.split('/').filter(p => p);
             const gateIndex = pathParts.indexOf('gates');
-            const gateId = pathParts[gateIndex + 1];
-            const painPointId = pathParts[gateIndex + 2];
-            const toolSlug = pathParts[gateIndex + 3]; // Third segment = tool slug
+            const gateId = gateIndex >= 0 ? pathParts[gateIndex + 1] : null;
+            const painPointId = gateIndex >= 0 ? pathParts[gateIndex + 2] : null;
+            const toolSlug = gateIndex >= 0 ? pathParts[gateIndex + 3] : null;
+            if (typeof window.__RYD_DEBUG_NAV === 'undefined') { window.__RYD_DEBUG_NAV = true; }
+            if (window.__RYD_DEBUG_NAV) {
+                console.log('[RYD pain-point] page=pain-point.html pathname=' + window.location.pathname + ' resolved gateSlug=' + (gateId || '') + ' painPointId=' + (painPointId || ''));
+            }
 
             const contentEl = document.getElementById('painPointContent');
             const toolsListEl = document.getElementById('toolsList');
@@ -70,7 +75,9 @@
             if (!gateId || !painPointId) {
                 contentEl.innerHTML = '';
                 const p = document.createElement('p');
-                p.textContent = 'Invalid pain point ID.';
+                p.setAttribute('role', 'alert');
+                p.style.cssText = 'color: var(--color-text-secondary, #666);';
+                p.textContent = !gateId ? 'Missing gate id.' : 'Missing pain point id.';
                 contentEl.appendChild(p);
                 return;
             }

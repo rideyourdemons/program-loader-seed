@@ -319,6 +319,18 @@ app.get('/gates', (req, res, next) => {
   safeSendFile(gatesPath, res, fallbackPath);
 });
 
+app.get('/gates/:gateId', (req, res, next) => {
+  const gatePath = path.join(publicDir, 'gates', 'gate.html');
+  const fallbackPath = path.join(publicDir, 'gates', 'index.html');
+  safeSendFile(gatePath, res, fallbackPath);
+});
+
+app.get('/gates/:gateId/:painPointId', (req, res, next) => {
+  const painPointPath = path.join(publicDir, 'gates', 'pain-point.html');
+  const fallbackPath = path.join(publicDir, 'gates', 'index.html');
+  safeSendFile(painPointPath, res, fallbackPath);
+});
+
 // 4. MAIN ROUTE
 app.get('/', (req, res) => {
   const indexPath = path.join(publicDir, 'index.html');

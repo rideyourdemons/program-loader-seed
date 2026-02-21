@@ -486,156 +486,37 @@
             margin: 0;
         }
 
-        /* Gate cards — flame effect for ALL text (RYD style) */
-        /* Selectors: .gate-card (gates-renderer), .gates-grid .card (insights grid) */
+        /* Gate cards — glass surface, no text glow (design system: theme-overrides.css) */
         .gate-card,
         .gates-grid .card {
-            background: rgba(15,15,15,0.55);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,120,0,0.35);
+            background: rgba(22, 22, 22, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .gate-card *,
         .gates-grid .card * {
-            color: #ffffff !important;
+            color: #f5f5f5 !important;
             position: relative;
             z-index: 2;
         }
 
         .gate-card *::before,
         .gates-grid .card *::before {
-            content: "";
-            position: absolute;
-            inset: -4px -8px;
-            background: rgba(0,0,0,0.45);
-            filter: blur(6px);
-            z-index: -1;
-            border-radius: 6px;
+            display: none !important;
         }
 
-        .gate-card h1,
-        .gate-card h2,
-        .gate-card h3,
-        .gate-card a,
-        .gate-card p,
-        .gate-card span,
-        .gates-grid .card h1,
-        .gates-grid .card h2,
-        .gates-grid .card h3,
-        .gates-grid .card a,
-        .gates-grid .card p,
-        .gates-grid .card span {
-            text-shadow:
-                0 0 4px #ff3c00,
-                0 0 8px #ff6a00,
-                0 0 14px #ff9a00,
-                0 0 22px rgba(255,120,0,0.9);
+        .gate-card h1, .gate-card h2, .gate-card h3,
+        .gates-grid .card h1, .gates-grid .card h2, .gates-grid .card h3 {
+            text-shadow: none;
+            animation: none;
+            font-weight: 600;
         }
 
-        @keyframes emberPulse {
-            0%   { text-shadow: 0 0 4px #ff3c00, 0 0 10px #ff6a00; }
-            50%  { text-shadow: 0 0 6px #ff6a00, 0 0 18px #ffb300; }
-            100% { text-shadow: 0 0 4px #ff3c00, 0 0 10px #ff6a00; }
-        }
-
-        .gate-card h1,
-        .gate-card h2,
-        .gate-card h3,
-        .gates-grid .card h1,
-        .gates-grid .card h2,
-        .gates-grid .card h3 {
-            animation: emberPulse 2.4s ease-in-out infinite;
-        }
-
-        .gate-card a,
-        .gates-grid .card a {
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        /* Per-gate flame colors (data-gate from gate.id) */
-        .gate-card[data-gate="men-s-mental-health"] h1,
-        .gate-card[data-gate="men-s-mental-health"] h2,
-        .gate-card[data-gate="men-s-mental-health"] h3,
-        .gate-card[data-gate="fathers-sons"] h1,
-        .gate-card[data-gate="fathers-sons"] h2,
-        .gate-card[data-gate="fathers-sons"] h3,
-        .gates-grid .card[data-gate="men-s-mental-health"] h1,
-        .gates-grid .card[data-gate="men-s-mental-health"] h2,
-        .gates-grid .card[data-gate="men-s-mental-health"] h3,
-        .gates-grid .card[data-gate="fathers-sons"] h1,
-        .gates-grid .card[data-gate="fathers-sons"] h2,
-        .gates-grid .card[data-gate="fathers-sons"] h3 {
-            text-shadow: 0 0 6px #00bcd4, 0 0 18px #2962ff;
-        }
-        .gate-card[data-gate="women-s-mental-health"] h1,
-        .gate-card[data-gate="women-s-mental-health"] h2,
-        .gate-card[data-gate="women-s-mental-health"] h3,
-        .gate-card[data-gate="young-women"] h1,
-        .gate-card[data-gate="young-women"] h2,
-        .gate-card[data-gate="young-women"] h3,
-        .gates-grid .card[data-gate="women-s-mental-health"] h1,
-        .gates-grid .card[data-gate="women-s-mental-health"] h2,
-        .gates-grid .card[data-gate="women-s-mental-health"] h3,
-        .gates-grid .card[data-gate="young-women"] h1,
-        .gates-grid .card[data-gate="young-women"] h2,
-        .gates-grid .card[data-gate="young-women"] h3 {
-            text-shadow: 0 0 6px #d500f9, 0 0 18px #aa00ff;
-        }
-        .gate-card[data-gate="addiction-recovery"] h1,
-        .gate-card[data-gate="addiction-recovery"] h2,
-        .gate-card[data-gate="addiction-recovery"] h3,
-        .gates-grid .card[data-gate="addiction-recovery"] h1,
-        .gates-grid .card[data-gate="addiction-recovery"] h2,
-        .gates-grid .card[data-gate="addiction-recovery"] h3 {
-            text-shadow: 0 0 6px #ffb300, 0 0 22px #ffd54f;
-        }
-        .gate-card[data-gate="grief-loss"] h1,
-        .gate-card[data-gate="grief-loss"] h2,
-        .gate-card[data-gate="grief-loss"] h3,
-        .gate-card[data-gate="trauma-rebuild"] h1,
-        .gate-card[data-gate="trauma-rebuild"] h2,
-        .gate-card[data-gate="trauma-rebuild"] h3,
-        .gate-card[data-gate="heartbreak-loop"] h1,
-        .gate-card[data-gate="heartbreak-loop"] h2,
-        .gate-card[data-gate="heartbreak-loop"] h3,
-        .gate-card[data-gate="loneliness"] h1,
-        .gate-card[data-gate="loneliness"] h2,
-        .gate-card[data-gate="loneliness"] h3,
-        .gates-grid .card[data-gate="grief-loss"] h1,
-        .gates-grid .card[data-gate="grief-loss"] h2,
-        .gates-grid .card[data-gate="grief-loss"] h3,
-        .gates-grid .card[data-gate="trauma-rebuild"] h1,
-        .gates-grid .card[data-gate="trauma-rebuild"] h2,
-        .gates-grid .card[data-gate="trauma-rebuild"] h3,
-        .gates-grid .card[data-gate="heartbreak-loop"] h1,
-        .gates-grid .card[data-gate="heartbreak-loop"] h2,
-        .gates-grid .card[data-gate="heartbreak-loop"] h3,
-        .gates-grid .card[data-gate="loneliness"] h1,
-        .gates-grid .card[data-gate="loneliness"] h2,
-        .gates-grid .card[data-gate="loneliness"] h3 {
-            text-shadow: 0 0 6px #ff3c00, 0 0 18px #8b0000;
-        }
-        .gate-card[data-gate="financial-collapse-purpose"] h1,
-        .gate-card[data-gate="financial-collapse-purpose"] h2,
-        .gate-card[data-gate="financial-collapse-purpose"] h3,
-        .gate-card[data-gate="identity-crisis"] h1,
-        .gate-card[data-gate="identity-crisis"] h2,
-        .gate-card[data-gate="identity-crisis"] h3,
-        .gate-card[data-gate="teen-gen-z"] h1,
-        .gate-card[data-gate="teen-gen-z"] h2,
-        .gate-card[data-gate="teen-gen-z"] h3,
-        .gates-grid .card[data-gate="financial-collapse-purpose"] h1,
-        .gates-grid .card[data-gate="financial-collapse-purpose"] h2,
-        .gates-grid .card[data-gate="financial-collapse-purpose"] h3,
-        .gates-grid .card[data-gate="identity-crisis"] h1,
-        .gates-grid .card[data-gate="identity-crisis"] h2,
-        .gates-grid .card[data-gate="identity-crisis"] h3,
-        .gates-grid .card[data-gate="teen-gen-z"] h1,
-        .gates-grid .card[data-gate="teen-gen-z"] h2,
-        .gates-grid .card[data-gate="teen-gen-z"] h3 {
-            text-shadow: 0 0 6px #ff3c00, 0 0 20px #ff6a00;
-        }
+        .gate-card p, .gates-grid .card p,
+        .gate-card .gate-description { color: rgba(255,255,255,0.78) !important; text-shadow: none; animation: none; }
+        .gate-card a, .gates-grid .card a { font-weight: 600; letter-spacing: 0.02em; text-shadow: none; animation: none; }
 
         /* Related Sections */
         .related-section,
@@ -891,47 +772,30 @@
         .gates-grid {
             display: grid !important;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.25rem;
+            gap: var(--space-5, 1.25rem);
             margin-top: 1rem;
         }
         .gates-grid .card {
             position: relative;
             min-height: 120px;
-            padding: 28px 20px 20px;
+            padding: var(--space-5, 24px) var(--space-4, 20px);
             cursor: pointer;
-            transition: all 0.25s ease;
-            background: rgba(20, 20, 20, 0.55);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,100,0,0.35);
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            background: rgba(22, 22, 22, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius, 12px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
             overflow: visible;
         }
-        .gates-grid .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 24px;
-            background: linear-gradient(180deg, #d5d5d5 0%, #c8c8c8 100%);
-            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-            border: 2px solid #bbb;
-            border-bottom: none;
-        }
+        .gates-grid .card::before,
         .gates-grid .card::after {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #999, transparent);
+            display: none;
         }
         .gates-grid .card:hover {
-            border-color: #999;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 6px 20px rgba(196, 30, 58, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
 

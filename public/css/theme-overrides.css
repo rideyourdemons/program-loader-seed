@@ -1,0 +1,190 @@
+/**
+ * RYD Design Tokens (2026) — single source for cards, buttons, spacing.
+ * Use these everywhere; no glow, minimal gradients, readable over background art.
+ */
+
+:root {
+  /* Surfaces (glass-friendly) */
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-2: rgba(248, 249, 250, 0.95);
+  --surface-glass: rgba(22, 22, 22, 0.72);
+  --surface-glass-border: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --text: #1a1a1a;
+  --muted: #5c5c5c;
+  --text-on-dark: #f5f5f5;
+  --muted-on-dark: rgba(255, 255, 255, 0.78);
+
+  /* Border & accent */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --accent: #667eea;
+  --accent-hover: #5a6fd6;
+
+  /* Radius & shadow */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Layout */
+  --max-width: 65ch;
+  --max-width-wide: 42em;
+}
+
+/* One card system: gate cards, tool cards, tool-of-the-day */
+.ryd-card,
+.card.ryd-card,
+.gate-card,
+.gates-grid .card,
+.tool-card,
+.tool-of-day .ryd-tod-scan {
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Gate cards: glass over background, no text glow */
+.gate-card,
+.gates-grid .card {
+  background: var(--surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--surface-glass-border);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gate-card *,
+.gates-grid .card * {
+  color: var(--text-on-dark) !important;
+  position: relative;
+  z-index: 2;
+}
+
+.gate-card h1, .gate-card h2, .gate-card h3,
+.gates-grid .card h1, .gates-grid .card h2, .gates-grid .card h3 {
+  text-shadow: none;
+  animation: none;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.gate-card p, .gates-grid .card p,
+.gate-card .gate-description {
+  color: var(--muted-on-dark) !important;
+  text-shadow: none;
+  animation: none;
+}
+
+.gate-card a, .gates-grid .card a {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-shadow: none;
+  animation: none;
+}
+
+.gate-card:hover,
+.gates-grid .card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Remove any ::before pseudo that added blur/shadow on text */
+.gate-card *::before,
+.gates-grid .card *::before {
+  display: none !important;
+}
+
+/* Tool cards & tool-of-the-day: light surface */
+.tool-card,
+.tool-of-day .ryd-tod-scan {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.tool-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* Buttons: one primary, one secondary */
+.btn,
+.ryd-btn-primary,
+button.tool-toggle,
+.start-tool-button,
+[class*="button"]:not(.ryd-btn-secondary) {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn,
+.ryd-btn-primary,
+button.tool-toggle,
+.start-tool-button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.btn:hover,
+.ryd-btn-primary:hover,
+button.tool-toggle:hover,
+.start-tool-button:hover {
+  background: var(--accent-hover);
+}
+
+.ryd-btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.ryd-btn-secondary:hover {
+  background: rgba(102, 126, 234, 0.08);
+}
+
+/* Reading width for tool content */
+.ryd-tool-read-width,
+.tool-full-description,
+.ryd-outcome,
+.ryd-section,
+.ryd-read-more-body,
+.tool-details {
+  max-width: var(--max-width-wide);
+}
+
+/* Step cards (numbered blocks) */
+.ryd-step-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+  max-width: var(--max-width-wide);
+}
+
+.ryd-step-card .ryd-step-num {
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}

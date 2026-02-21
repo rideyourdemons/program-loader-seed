@@ -599,17 +599,7 @@
 
         const toolCard = document.createElement('div');
         toolCard.className = 'tool-card';
-        toolCard.style.cssText = 'border: 1px solid var(--color-border, #e0e0e0); border-radius: 6px; padding: 1rem; background: var(--color-bg, #f5f5f5); transition: transform 0.2s, box-shadow 0.2s;';
         toolCard.style.cursor = 'pointer';
-
-        toolCard.addEventListener('mouseenter', () => {
-          toolCard.style.transform = 'translateY(-2px)';
-          toolCard.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-        });
-        toolCard.addEventListener('mouseleave', () => {
-          toolCard.style.transform = 'translateY(0)';
-          toolCard.style.boxShadow = 'none';
-        });
 
         const toolTitle = document.createElement('h5');
         toolTitle.textContent = truncateString(String(toolTitleText), 60);

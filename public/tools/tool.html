@@ -97,7 +97,18 @@
             }
             .ryd-section { padding-top: 0.75em; margin-top: 1em; }
         }
+        .ryd-brief { max-width: 42em; font-size: 1.05em; line-height: 1.65; margin-bottom: 1.5em; color: var(--color-text-secondary, #666); }
+        .ryd-details-section { max-width: 42em; margin-bottom: 1rem; }
+        .ryd-details-section summary { font-weight: 600; cursor: pointer; padding: 0.75rem 0; list-style: none; }
+        .ryd-details-section summary::-webkit-details-marker { display: none; }
+        .ryd-details-section[open] summary { margin-bottom: 0.75rem; border-bottom: 1px solid var(--color-border, #e0e0e0); }
+        .ryd-step-cards { max-width: 42em; }
+        .ryd-step-card { background: var(--surface-2, #f8f9fa); border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+        .ryd-step-card .ryd-step-num { font-weight: 700; color: var(--color-accent, #667eea); margin-bottom: 0.25rem; }
+        .ryd-steps-nav { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .ryd-steps-nav .ryd-progress { font-size: 0.9em; color: var(--color-text-secondary, #666); }
     </style>
+    <script src="/js/utils/tool-text.js"></script>
     <script src="/js/utils/tool-content-validator.js"></script>
     <script src="/js/utils/tool-content-expander.js"></script>
     <script src="/js/utils/tool-variant-utils.js"></script>
@@ -637,393 +648,178 @@
                         return div.innerHTML;
                     }
                 } else {
-                // Description (legacy)
-                const extractDescription = (tool) => {
-                    const raw = (tool && (tool.description || tool.summary)) || '';
-                    const title = tool && (tool.title || tool.name);
-                    if (window.RYD_UI && typeof window.RYD_UI.sanitizeDescription === 'function') {
-                        return window.RYD_UI.sanitizeDescription(raw, title);
+                // Legacy: Brief first, then collapsible sections (no wall of text)
+                const getBrief = function() {
+                    if (window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function') {
+                        return window.RYD_ToolPreview.getToolPreview(tool);
                     }
-                    return String(raw || '').trim();
+                    var s = (tool.summary && String(tool.summary).trim()) || '';
+                    if (s) return s;
+                    var d = (tool.description && String(tool.description).trim()) || '';
+                    return d ? d.replace(/\s+/g, ' ').slice(0, 280) + (d.length > 280 ? '\u2026' : '') : '';
                 };
+                const briefEl = document.createElement('p');
+                briefEl.className = 'ryd-brief';
+                briefEl.textContent = getBrief() || 'A helpful practice for mental and emotional well-being.';
+                contentEl.appendChild(briefEl);
 
-                const cleanedDescription = extractDescription(tool);
-                if (cleanedDescription) {
-                    const p = document.createElement('p');
-                    p.style.cssText = 'font-size: 1.1em; line-height: 1.7; margin-bottom: 20px;';
-                    p.textContent = cleanedDescription;
-                    contentEl.appendChild(p);
-                }
-                
-                // Wrap long content in collapsible section
-                const detailsWrapper = document.createElement('div');
-                detailsWrapper.className = 'tool-details';
-                detailsWrapper.setAttribute('hidden', '');
-                detailsWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
-                
-                console.log('[Tool Page] Details wrapper created:', {
-                    hasHidden: detailsWrapper.hasAttribute('hidden'),
-                    className: detailsWrapper.className
-                });
-                
-                // LIFECYCLE FIX: Create toggle button but don't attach listener until DOM is ready
-                const toggleBtn = document.createElement('button');
-                toggleBtn.className = 'tool-toggle';
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                toggleBtn.textContent = 'Show details';
-                toggleBtn.style.cssText = 'margin: 15px 0; padding: 10px 20px; background: var(--color-accent, #667eea); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500;';
-                toggleBtn.setAttribute('data-tool-toggle', 'true'); // Marker for identification
-                
-                // Append button to DOM FIRST
-                contentEl.appendChild(toggleBtn);
-                
-                // LIFECYCLE FIX: Attach event listener AFTER DOM injection
-                // Use setTimeout to ensure DOM is fully updated
-                setTimeout(() => {
-                    const buttonInDOM = document.querySelector('[data-tool-toggle="true"]');
-                    if (!buttonInDOM) {
-                        console.error('[Tool Page] Toggle button not found in DOM after injection');
-                        return;
-                    }
-                    
-                    console.log('[Tool Page] Attaching event listener to toggle button (after DOM injection)');
-                    
-                    // Remove old listener if any and attach new one
-                    const newToggleBtn = buttonInDOM;
-                    newToggleBtn.addEventListener('click', function handleToggleClick(event) {
-                        console.log('[Tool Page] Toggle button clicked - Event:', {
-                            type: event.type,
-                            target: event.target,
-                            currentTarget: event.currentTarget,
-                            buttonText: this.textContent,
-                            buttonInDOM: document.body.contains(this)
-                        });
-                        
-                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                        const detailsEl = document.querySelector('.tool-details');
-                        
-                        if (!detailsEl) {
-                            console.error('[Tool Page] Details element not found in DOM');
-                            return;
-                        }
-                        
-                        // GA4 Event Tracking: Show Details button clicked
-                        const SafeMapper = window.SafeMapper || {
-                            sanitizeString: (str) => str == null ? '' : String(str).trim()
-                        };
-                        const toolSlug = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.slug || tool.id || '') : String(tool.slug || tool.id || '').trim();
-                        const toolCategory = SafeMapper.sanitizeString ? SafeMapper.sanitizeString(tool.category || '') : String(tool.category || '').trim();
-                        
-                        // Track the event with cluster metrics
-                        if (typeof window.gtag === 'function') {
-                            try {
-                                window.gtag('event', 'show_details_clicked', {
-                                    tool_slug: toolSlug,
-                                    category: toolCategory,
-                                    action: isExpanded ? 'hide' : 'show',
-                                    page_path: window.location.pathname
-                                });
-                            } catch (e) {
-                                console.warn('[GA4] Event tracking error:', e);
-                            }
-                        }
-                        
-                        // Fallback to RYD_ANALYTICS
-                        if (window.RYD_ANALYTICS && typeof window.RYD_ANALYTICS.pushEvent === 'function') {
-                            try {
-                                window.RYD_ANALYTICS.pushEvent('show_details_clicked', {
-                                    tool_slug: toolSlug,
-                                    category: toolCategory,
-                                    action: isExpanded ? 'hide' : 'show'
-                                });
-                            } catch (e) {
-                                console.warn('[GA4] RYD_ANALYTICS error:', e);
-                            }
-                        }
-                        
-                        console.log('[Tool Page] Toggle state before change:', {
-                            isExpanded,
-                            detailsExists: !!detailsEl,
-                            detailsHidden: detailsEl.hasAttribute('hidden'),
-                            detailsChildren: detailsEl.children.length,
-                            detailsDisplay: window.getComputedStyle(detailsEl).display
-                        });
-                        
-                        if (isExpanded) {
-                            detailsEl.setAttribute('hidden', '');
-                            this.setAttribute('aria-expanded', 'false');
-                            this.textContent = 'Show details';
-                            console.log('[Tool Page] Details HIDDEN - State updated');
-                        } else {
-                            detailsEl.removeAttribute('hidden');
-                            this.setAttribute('aria-expanded', 'true');
-                            this.textContent = 'Hide details';
-                            const computedDisplay = window.getComputedStyle(detailsEl).display;
-                            console.log('[Tool Page] Details SHOWN - Computed display:', computedDisplay);
-                            
-                            if (computedDisplay === 'none') {
-                                console.error('[Tool Page] WARNING: Details element display is still "none" after removing hidden attribute');
-                            }
-                        }
-                    });
-                    
-                    console.log('[Tool Page] Event listener attached successfully');
-                }, 0);
-                
-                // Meta info
-                const meta = document.createElement('div');
-                meta.style.cssText = 'display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border, #e0e0e0);';
-                
+                const metaRow = document.createElement('div');
+                metaRow.style.cssText = 'display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 1.25rem; font-size: 0.9em; color: var(--color-text-secondary, #666);';
                 if (tool.duration) {
-                    const duration = document.createElement('span');
-                    duration.style.cssText = 'display: flex; align-items: center; gap: 5px;';
-                    duration.innerHTML = `⏱️ <strong>Duration:</strong> ${tool.duration}`;
-                    meta.appendChild(duration);
+                    const d = document.createElement('span');
+                    d.textContent = '\u23F1 ' + (tool.duration || '');
+                    metaRow.appendChild(d);
                 }
-                
                 if (tool.difficulty) {
-                    const difficulty = document.createElement('span');
-                    difficulty.style.cssText = 'display: flex; align-items: center; gap: 5px;';
-                    const badge = document.createElement('span');
-                    badge.className = `badge badge-${tool.difficulty}`;
-                    badge.textContent = tool.difficulty;
-                    difficulty.innerHTML = `📖 <strong>Difficulty:</strong> `;
-                    difficulty.appendChild(badge);
-                    meta.appendChild(difficulty);
+                    const b = document.createElement('span');
+                    b.className = 'badge badge-' + (tool.difficulty || 'beginner');
+                    b.textContent = tool.difficulty || 'beginner';
+                    metaRow.appendChild(b);
                 }
-                
-                detailsWrapper.appendChild(meta);
-                
-                console.log('[Tool Page] Details wrapper populated:', {
-                    childrenCount: detailsWrapper.children.length,
-                    hasMeta: meta.children.length > 0,
-                    metaContent: meta.innerHTML.substring(0, 100)
-                });
-                
-                contentEl.appendChild(detailsWrapper);
-                
-                console.log('[Tool Page] Details wrapper appended to contentEl');
-                
-                // How & Why It Works
-                if (tool.howWhyWorks) {
-                    const howWhyEl = document.getElementById('howWhyWorks');
-                    const howWhyContent = document.getElementById('howWhyContent');
-                    howWhyContent.innerHTML = '';
-                    const p = document.createElement('p');
-                    p.style.cssText = 'line-height: 1.7;';
-                    const safeHowWhy = window.RYD_UI && window.RYD_UI.sanitizeDescription
-                        ? window.RYD_UI.sanitizeDescription(tool.howWhyWorks, tool.title || tool.name)
-                        : tool.howWhyWorks;
-                    p.textContent = safeHowWhy;
-                    howWhyContent.appendChild(p);
-                    howWhyEl.style.display = 'block';
-                }
-                
-                // Citations (move to details wrapper)
-                if (tool.citations && tool.citations.length > 0) {
-                    const citationsEl = document.getElementById('citations');
-                    const citationsContent = document.getElementById('citationsContent');
-                    citationsContent.innerHTML = '';
-                    
-                    const ul = document.createElement('ul');
-                    ul.style.cssText = 'list-style: none; padding: 0;';
-                    
-                    tool.citations.forEach(citation => {
-                        const li = document.createElement('li');
-                        li.style.cssText = 'margin-bottom: 15px; padding-left: 20px; position: relative;';
-                        
-                        if (citation.title && citation.title !== 'Content pending import') {
-                            const strong = document.createElement('strong');
-                            strong.textContent = citation.title;
-                            li.appendChild(strong);
-                            
-                            if (citation.source) {
-                                const br = document.createElement('br');
-                                li.appendChild(br);
-                                const span = document.createElement('span');
-                                span.textContent = citation.source;
-                                li.appendChild(span);
-                            }
-                            
-                            const directUrl = citation.url || '';
-                            const searchSeed = citation.title || citation.source || '';
-                            const searchUrl = searchSeed
-                                ? `https://scholar.google.com/scholar?q=${encodeURIComponent(searchSeed)}`
-                                : '';
-                            const finalUrl = directUrl || searchUrl;
+                contentEl.appendChild(metaRow);
 
-                            if (finalUrl) {
-                                const br2 = document.createElement('br');
-                                li.appendChild(br2);
-                                const a = document.createElement('a');
-                                a.href = finalUrl;
-                                a.target = '_blank';
-                                a.rel = 'noopener noreferrer';
-                                a.textContent = directUrl ? 'View source' : 'Find source';
-                                a.style.cssText = 'color: var(--color-accent, #667eea);';
-                                li.appendChild(a);
-                            }
+                const sectionsWrap = document.createElement('div');
+                sectionsWrap.className = 'ryd-tool-read-width';
+                sectionsWrap.style.cssText = 'max-width: 42em;';
+
+                function addDetails(title, bodyHtmlOrText) {
+                    const details = document.createElement('details');
+                    details.className = 'ryd-details-section';
+                    const summary = document.createElement('summary');
+                    summary.textContent = title;
+                    details.appendChild(summary);
+                    const body = document.createElement('div');
+                    body.style.cssText = 'padding-top: 0.5rem; line-height: 1.6; color: var(--color-text-secondary, #666);';
+                    if (typeof bodyHtmlOrText === 'string' && bodyHtmlOrText.indexOf('<') !== -1) body.innerHTML = bodyHtmlOrText;
+                    else body.textContent = bodyHtmlOrText || '';
+                    details.appendChild(body);
+                    sectionsWrap.appendChild(details);
+                }
+
+                const fullDesc = (tool.description || tool.summary || '').trim();
+                if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
+                    addDetails('What this is', window.RYD_ToolPreview.renderMarkdownSafe(fullDesc));
+                } else if (fullDesc) addDetails('What this is', fullDesc);
+
+                const whenText = (tool.tagline || tool.outcome || tool.purpose || '').trim();
+                if (whenText) addDetails('When to use', whenText);
+
+                const walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+                if (walkthroughs.length > 0) {
+                    const stepsHeading = document.createElement('h3');
+                    stepsHeading.style.cssText = 'margin: 1.25rem 0 0.5rem 0; font-size: 1.1em;';
+                    stepsHeading.textContent = 'Steps';
+                    sectionsWrap.appendChild(stepsHeading);
+                    const tabs = document.createElement('div');
+                    tabs.style.cssText = 'display: flex; gap: 8px; margin-bottom: 10px;';
+                    const labels = { 0: '5 min', 1: '15 min', 2: '30 min' };
+                    [0, 1, 2].forEach(function(i) {
+                        if (!walkthroughs[i]) return;
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'btn';
+                        btn.textContent = labels[i] || (i + 1) + ' min';
+                        btn.dataset.idx = String(i);
+                        tabs.appendChild(btn);
+                    });
+                    sectionsWrap.appendChild(tabs);
+                    const cardsContainer = document.createElement('div');
+                    cardsContainer.className = 'ryd-step-cards';
+                    const progressEl = document.createElement('div');
+                    progressEl.className = 'ryd-progress';
+                    progressEl.style.cssText = 'margin-bottom: 8px;';
+                    const navDiv = document.createElement('div');
+                    navDiv.className = 'ryd-steps-nav';
+                    const backBtn = document.createElement('button');
+                    backBtn.type = 'button';
+                    backBtn.className = 'ryd-btn-secondary';
+                    backBtn.textContent = 'Back';
+                    const nextBtn = document.createElement('button');
+                    nextBtn.type = 'button';
+                    nextBtn.className = 'btn';
+                    nextBtn.textContent = 'Next';
+                    navDiv.appendChild(backBtn);
+                    navDiv.appendChild(progressEl);
+                    navDiv.appendChild(nextBtn);
+                    var currentIdx = 0;
+                    var currentStep = 0;
+                    function renderStepCards() {
+                        cardsContainer.innerHTML = '';
+                        var w = walkthroughs[currentIdx];
+                        var steps = (w && w.steps) ? w.steps : [];
+                        progressEl.textContent = steps.length ? 'Step ' + (currentStep + 1) + ' of ' + steps.length : '';
+                        backBtn.style.display = steps.length ? 'inline-block' : 'none';
+                        nextBtn.style.display = steps.length ? 'inline-block' : 'none';
+                        if (steps.length) {
+                            steps.forEach(function(stepText, i) {
+                                const card = document.createElement('div');
+                                card.className = 'ryd-step-card';
+                                card.dataset.step = String(i);
+                                card.style.display = i === currentStep ? 'block' : 'none';
+                                const num = document.createElement('div');
+                                num.className = 'ryd-step-num';
+                                num.textContent = 'Step ' + (i + 1);
+                                card.appendChild(num);
+                                const p = document.createElement('p');
+                                p.style.cssText = 'margin: 0;';
+                                p.textContent = stepText;
+                                card.appendChild(p);
+                                cardsContainer.appendChild(card);
+                            });
+                            backBtn.onclick = function() { if (currentStep > 0) { currentStep--; renderStepCards(); } };
+                            nextBtn.onclick = function() { if (currentStep < steps.length - 1) { currentStep++; renderStepCards(); } };
                         } else {
-                            const em = document.createElement('em');
-                            em.textContent = 'Citation details are being compiled.';
-                            li.appendChild(em);
+                            const empty = document.createElement('p');
+                            empty.textContent = 'No steps for this duration.';
+                            empty.style.cssText = 'color: var(--color-text-secondary, #666); margin: 0;';
+                            cardsContainer.appendChild(empty);
                         }
-                        
+                    }
+                    tabs.querySelectorAll('button').forEach(function(b) {
+                        b.addEventListener('click', function() {
+                            currentIdx = parseInt(b.dataset.idx, 10) || 0;
+                            currentStep = 0;
+                            renderStepCards();
+                        });
+                    });
+                    sectionsWrap.appendChild(cardsContainer);
+                    sectionsWrap.appendChild(navDiv);
+                    renderStepCards();
+                }
+
+                if (tool.howWhyWorks) {
+                    const safe = window.RYD_UI && window.RYD_UI.sanitizeDescription ? window.RYD_UI.sanitizeDescription(tool.howWhyWorks, tool.title || tool.name) : tool.howWhyWorks;
+                    addDetails('How it works', safe);
+                }
+                addDetails('Why it works', tool.howWhyWorks || 'Understanding the mechanism can deepen practice. See "How it works" when available.');
+
+                if (tool.citations && tool.citations.length > 0) {
+                    const frag = document.createDocumentFragment();
+                    const ul = document.createElement('ul');
+                    ul.style.cssText = 'list-style: none; padding: 0; margin: 0;';
+                    tool.citations.forEach(function(c) {
+                        const li = document.createElement('li');
+                        li.style.cssText = 'margin-bottom: 10px;';
+                        if (c.title && c.title !== 'Content pending import') {
+                            li.appendChild(document.createTextNode(c.title));
+                            if (c.source) { li.appendChild(document.createElement('br')); li.appendChild(document.createTextNode(c.source)); }
+                            if (c.url) { const a = document.createElement('a'); a.href = c.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = 'View source'; a.style.color = 'var(--color-accent, #667eea)'; li.appendChild(document.createElement('br')); li.appendChild(a); }
+                        } else li.appendChild(document.createTextNode('Citation details coming soon.'));
                         ul.appendChild(li);
                     });
-                    
-                    citationsContent.appendChild(ul);
-                    citationsEl.style.display = 'block';
-                    detailsWrapper.appendChild(citationsEl);
+                    frag.appendChild(ul);
+                    const div = document.createElement('div');
+                    div.appendChild(frag);
+                    addDetails('Where it came from', div.innerHTML);
                 }
-                
-                // 3 Expandable Workthroughs (move to details wrapper)
-                const workthroughsSection = document.getElementById('workthroughs');
-                const workthroughsContent = document.getElementById('workthroughsContent');
-                workthroughsContent.innerHTML = '';
-                
-                if (tool.walkthroughs && tool.walkthroughs.length > 0) {
-                    tool.walkthroughs.forEach((wt, index) => {
-                        const details = document.createElement('details');
-                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
-                        
-                        const summary = document.createElement('summary');
-                        summary.textContent = wt.title;
-                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
-                        details.appendChild(summary);
-                        
-                        const content = document.createElement('div');
-                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
-                        
-                        if (wt.steps && wt.steps.length > 0) {
-                            const ol = document.createElement('ol');
-                            ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
-                            wt.steps.forEach(step => {
-                                const li = document.createElement('li');
-                                li.style.cssText = 'margin: 8px 0;';
-                                li.textContent = step;
-                                ol.appendChild(li);
-                            });
-                            content.appendChild(ol);
-                        } else {
-                            // Generate fallback steps if missing
-                            const fallbackSteps = [
-                                'Take a moment to pause and notice what you\'re experiencing.',
-                                'Identify one specific thing you can do right now.',
-                                'Take that action, even if it\'s small.',
-                                'Notice how you feel after taking the step.'
-                            ];
-                            const ol = document.createElement('ol');
-                            ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
-                            fallbackSteps.forEach(step => {
-                                const li = document.createElement('li');
-                                li.style.cssText = 'margin: 8px 0;';
-                                li.textContent = step;
-                                ol.appendChild(li);
-                            });
-                            content.appendChild(ol);
-                        }
-                        
-                        details.appendChild(content);
-                        workthroughsContent.appendChild(details);
-                    });
-                } else {
-                    // Generate default workthroughs if missing
-                    const defaultWorkthroughs = [
-                        {
-                            title: 'Quick Workthrough (5 min)',
-                            steps: [
-                                'Take a moment to pause and notice what you\'re experiencing right now.',
-                                'Identify one specific thing you can do in the next few minutes.',
-                                'Take that action, even if it\'s small.',
-                                'Notice how you feel after taking the step.',
-                                'Acknowledge what you\'ve done, no matter how small it seems.'
-                            ]
-                        },
-                        {
-                            title: 'Standard Workthrough (15 min)',
-                            steps: [
-                                'Find a quiet space where you can focus for about 15 minutes.',
-                                'Take three slow breaths, noticing the air moving in and out.',
-                                'Identify the specific challenge or feeling you\'re working with.',
-                                'Break it down into smaller, manageable pieces.',
-                                'Choose one piece to address right now.',
-                                'Decide on a concrete action you can take.',
-                                'Take that action, paying attention to what happens.',
-                                'Reflect on what you learned from taking the step.',
-                                'Notice any shifts in how you feel.',
-                                'Plan one next step for later today or tomorrow.'
-                            ]
-                        },
-                        {
-                            title: 'Deep Workthrough (30 min)',
-                            steps: [
-                                'Set aside 30 minutes in a space where you won\'t be interrupted.',
-                                'Begin with five minutes of quiet breathing, letting your body settle.',
-                                'Identify the core issue you want to work with today.',
-                                'Explore what this issue means to you personally.',
-                                'Notice any patterns or connections to past experiences.',
-                                'Break the issue into its component parts.',
-                                'Examine each part with curiosity rather than judgment.',
-                                'Identify what\'s within your control and what isn\'t.',
-                                'Choose one aspect you can influence right now.',
-                                'Develop a specific plan of action.',
-                                'Take the first step of your plan.',
-                                'Observe what happens, both internally and externally.',
-                                'Reflect on what you learned from this process.',
-                                'Identify what you\'ll do differently going forward.',
-                                'Acknowledge your effort and commitment to working through this.'
-                            ]
-                        }
-                    ];
-                    
-                    defaultWorkthroughs.forEach(wt => {
-                        const details = document.createElement('details');
-                        details.style.cssText = 'margin: 15px 0; padding: 15px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 8px; background: var(--color-bg-secondary, #ffffff);';
-                        
-                        const summary = document.createElement('summary');
-                        summary.textContent = wt.title;
-                        summary.style.cssText = 'font-weight: 500; cursor: pointer; font-size: 1.1em; padding: 5px 0;';
-                        details.appendChild(summary);
-                        
-                        const content = document.createElement('div');
-                        content.style.cssText = 'margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--color-border, #e0e0e0); line-height: 1.7;';
-                        
-                        const ol = document.createElement('ol');
-                        ol.style.cssText = 'padding-left: 25px; margin: 10px 0;';
-                        wt.steps.forEach(step => {
-                            const li = document.createElement('li');
-                            li.style.cssText = 'margin: 8px 0;';
-                            li.textContent = step;
-                            ol.appendChild(li);
-                        });
-                        content.appendChild(ol);
-                        details.appendChild(content);
-                        workthroughsContent.appendChild(details);
-                    });
-                }
-                
-                // Move workthroughs section into details wrapper after rendering
-                if (workthroughsSection && workthroughsSection.parentNode) {
-                    workthroughsSection.parentNode.removeChild(workthroughsSection);
-                    detailsWrapper.appendChild(workthroughsSection);
-                }
-                
-                // Add RYD tool-page disclaimer to bottom of details wrapper
-                const disclaimerInDetails = document.createElement('div');
-                disclaimerInDetails.className = 'ryd-tool-disclaimer';
-                disclaimerInDetails.innerHTML = `
-                    <h4>If things feel too heavy right now</h4>
-                    <p>You don't have to handle it alone.</p>
-                    <p>In Canada, call 911 if you're in immediate danger. You can also reach Talk Suicide Canada — 1-833-456-4566 or text 45645.</p>
-                    <p>If you're somewhere else, use your local crisis support.</p>
-                `;
-                detailsWrapper.appendChild(disclaimerInDetails);
-                
-                console.log('[Tool Page] Tool content fully rendered:', {
-                    contentElChildren: contentEl.children.length,
-                    detailsWrapperChildren: detailsWrapper.children.length
-                });
+
+                contentEl.appendChild(sectionsWrap);
+
+                const disclaimerEl = document.createElement('div');
+                disclaimerEl.className = 'ryd-tool-disclaimer';
+                disclaimerEl.style.cssText = 'max-width: 42em; margin-top: 2rem;';
+                disclaimerEl.innerHTML = '<h4>If things feel too heavy right now</h4><p>You don\'t have to handle it alone.</p><p>In Canada, call 911 if you\'re in immediate danger. You can also reach Talk Suicide Canada — 1-833-456-4566 or text 45645.</p><p>If you\'re somewhere else, use your local crisis support.</p>';
+                contentEl.appendChild(disclaimerEl);
                 }
 
                 // Related tools from same gate/pain point (if available)

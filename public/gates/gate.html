@@ -51,15 +51,21 @@
                 return String(raw || '').trim();
             };
 
-            // Extract gateId from URL
+            // Extract gateId from URL pathname: /gates/<gateId>
             const pathParts = window.location.pathname.split('/').filter(p => p);
-            const gateId = pathParts[pathParts.indexOf('gates') + 1];
-            
+            const gateIndex = pathParts.indexOf('gates');
+            const gateId = gateIndex >= 0 ? pathParts[gateIndex + 1] : null;
+            if (typeof window.__RYD_DEBUG_NAV === 'undefined') { window.__RYD_DEBUG_NAV = true; }
+            if (window.__RYD_DEBUG_NAV) {
+                console.log('[RYD gate] page=gate.html pathname=' + window.location.pathname + ' resolved gateSlug=' + (gateId || ''));
+            }
             if (!gateId) {
                 const listEl = document.getElementById('painPointsList');
                 listEl.innerHTML = '';
                 const p = document.createElement('p');
-                p.textContent = 'Invalid gate ID.';
+                p.setAttribute('role', 'alert');
+                p.style.cssText = 'color: var(--color-text-secondary, #666);';
+                p.textContent = 'Missing gate id.';
                 listEl.appendChild(p);
                 return;
             }
