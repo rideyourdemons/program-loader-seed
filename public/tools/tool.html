@@ -114,7 +114,6 @@
     <script src="/js/utils/tool-variant-utils.js"></script>
     <script src="/js/utils/registry-url.js"></script>
     <script src="/js/utils/tool-registry-loader.js"></script>
-    <script src="/js/components/tool-renderer.js"></script>
     <script src="/js/seo-meta.js" defer></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
@@ -191,17 +190,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            // Hoist: wait for ToolRenderer so render is never glitchy
-            var attempts = 0;
-            while (!(window.ToolRenderer && typeof window.ToolRenderer.renderToolContent === 'function') && attempts < 50) {
-                await new Promise(function (r) { setTimeout(r, 20); });
-                attempts++;
-            }
-            if (!window.ToolRenderer || typeof window.ToolRenderer.renderToolContent !== 'function') {
-                var el = document.getElementById('toolContent');
-                if (el) el.innerHTML = '<p>Loading scripts… If this persists, refresh the page.</p>';
-                return;
-            }
+            // ToolRenderer is optional; legacy in-page render runs when absent
             // Parse URL params for gate/painPoint context
             const urlParams = new URLSearchParams(window.location.search);
             const gateId = urlParams.get('gate');

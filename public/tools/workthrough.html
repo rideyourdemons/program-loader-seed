@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/theme-overrides.css">
     <script src="/js/utils/registry-url.js"></script>
     <script src="/js/utils/tool-registry-loader.js"></script>
-    <script src="/js/components/tool-renderer.js"></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ryd-boot.js" defer></script>
     <script src="/js/ryd-bind.hardened.js" defer></script>
@@ -44,16 +43,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            // Hoist: wait for ToolRenderer so render is never glitchy
-            var attempts = 0;
-            while (!(window.ToolRenderer && typeof window.ToolRenderer.renderWorkthrough === 'function') && attempts < 50) {
-                await new Promise(function (r) { setTimeout(r, 20); });
-                attempts++;
-            }
-            if (!window.ToolRenderer) {
-                document.getElementById('workthroughContent').innerHTML = '<p>Loading… If this persists, refresh the page.</p>';
-                return;
-            }
+            // ToolRenderer is optional; fallback message when absent
             const pathParts = window.location.pathname.split('/').filter(p => p);
             const toolIndex = pathParts.indexOf('tools');
             const slug = pathParts[toolIndex + 1];
@@ -123,7 +113,18 @@
                 if (window.ToolRenderer && typeof window.ToolRenderer.renderWorkthrough === 'function') {
                     window.ToolRenderer.renderWorkthrough(contentEl, tool, type, { includeDeep: false });
                 } else {
-                    contentEl.innerHTML = '<p>Renderer not available.</p>';
+                    var w = (type === 'quick' || type === 'standard' || type === 'deep') && tool.walkthroughs
+                        ? tool.walkthroughs[type === 'quick' ? 0 : type === 'standard' ? 1 : 2]
+                        : (tool.walkthroughs && tool.walkthroughs[0]) || null;
+                    if (w && w.steps && w.steps.length) {
+                        contentEl.innerHTML = '';
+                        var ol = document.createElement('ol');
+                        ol.style.cssText = 'padding-left: 1.5rem;';
+                        w.steps.forEach(function(s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+                        contentEl.appendChild(ol);
+                    } else {
+                        contentEl.innerHTML = '<p>Work-through steps for this variant are not available.</p>';
+                    }
                 }
                 
                 // Add RYD tool-page disclaimer
