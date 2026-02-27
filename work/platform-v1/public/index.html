@@ -1,16 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Platform v1</title>
-  <style>
-    body { font-family: system-ui; margin: 2rem; background: #111; color: #eee; }
-    h1 { color: #ff6a00; text-shadow: 0 0 8px #ff3c00; }
-  </style>
-</head>
-<body>
-  <h1>PLATFORM V1 RUNNING</h1>
-  <p>Local dev server is up. You are in <code>/work/platform-v1</code>.</p>
+  <head>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/integrated.css">  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ride Your Demons — Platform v1</title>
+
+    <style>
+      body{
+        margin:0;
+        font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background:#0b0f14;
+        color:#e7edf3;
+      }
+      .wrap{ padding:24px; max-width:900px; margin:0 auto; }
+      .card{
+        background:#111826;
+        border:1px solid #1f2a3a;
+        border-radius:14px;
+        padding:20px;
+        margin-bottom:18px;
+      }
+      .badge{
+        display:inline-block;
+        padding:6px 10px;
+        border:1px solid #1f2a3a;
+        border-radius:999px;
+        font-size:12px;
+        opacity:.7;
+        margin-bottom:10px;
+      }
+      .nav button{
+        background:#1f2a3a;
+        color:#fff;
+        border:none;
+        padding:10px 14px;
+        border-radius:10px;
+        margin-right:8px;
+        cursor:pointer;
+      }
+      .nav button:hover{ filter:brightness(1.1); }
+      .muted{ opacity:.85; }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <span class="badge">LOCAL DEV</span>
+      <div class="card">
+        <h1 style="margin:0 0 8px 0;">RYD Platform v1</h1>
+        <div class="muted">
+          If you see this page, <code>/public/index.html</code> is loading correctly.
+          <br />
+          App content loads below:
+        </div>
+      </div>
+
+      <!-- App mounts here -->
+      <div id="app"></div>
+    </div>
+
+    <!-- IMPORTANT: this must exist at work/platform-v1/app/index.js -->
+    <script type="module" src="/app/index.js"></script>
+
+    <a
+  href="/app/#/"
+  id="ryd-v1-launch"
+  style="
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    z-index:9999;
+    padding:12px 16px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    color:#EAF0FF;
+    background:linear-gradient(135deg,#6FE6FF,#A78BFA);
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+  "
+>
+  Open RYD V1
+</a> 
+
+  </body>
+
+  <!-- ADD anywhere inside work/platform-v1/public/index.html (NOT inside any <body>) -->
+
+<script>
+  (function () {
+    function addRYDV1Button() {
+      if (document.getElementById('ryd-v1-launch')) return;
+  
+      const a = document.createElement('a');
+      a.id = 'ryd-v1-launch';
+      a.href = '/app/#/';
+      a.textContent = 'Open RYD V1';
+  
+      Object.assign(a.style, {
+        position: 'fixed',
+        right: '16px',
+        bottom: '16px',
+        zIndex: '9999',
+        padding: '12px 16px',
+        borderRadius: '999px',
+        textDecoration: 'none',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: '#EAF0FF',
+        background: 'linear-gradient(135deg,#6FE6FF,#A78BFA)',
+        boxShadow: '0 10px 25px rgba(0,0,0,.35)'
+      });
+  
+      document.body.appendChild(a);
+    }
+  
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', addRYDV1Button);
+    } else {
+      addRYDV1Button();
+    }
+  })();
+  </script>
+
 </body>
 </html>

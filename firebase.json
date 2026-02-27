@@ -14,6 +14,12 @@
       "**/logs/**"
     ],
     "rewrites": [
+      
+  { "source": "/app", "destination": "/work/platform-v1/public/app/index.html" },
+  { "source": "/app/", "destination": "/work/platform-v1/public/app/index.html" },
+
+  
+
       { "source": "/tools", "destination": "/tools.html" },
       { "source": "/tools/:slug", "destination": "/tools/tool.html" },
       { "source": "/tools/:slug/:type", "destination": "/tools/workthrough.html" },

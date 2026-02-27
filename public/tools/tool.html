@@ -97,7 +97,7 @@
             }
             .ryd-section { padding-top: 0.75em; margin-top: 1em; }
         }
-        .ryd-brief { max-width: 42em; font-size: 1.05em; line-height: 1.65; margin-bottom: 1.5em; color: var(--color-text-secondary, #666); }
+        .ryd-brief { max-width: var(--max-width-wide, 42em); font-size: 1.05em; line-height: 1.65; margin-bottom: var(--space-5); color: var(--muted, var(--color-text-secondary, #666)); }
         .ryd-details-section { max-width: 42em; margin-bottom: 1rem; }
         .ryd-details-section summary { font-weight: 600; cursor: pointer; padding: 0.75rem 0; list-style: none; }
         .ryd-details-section summary::-webkit-details-marker { display: none; }
@@ -667,40 +667,19 @@
                 }
                 contentEl.appendChild(metaRow);
 
-                const sectionsWrap = document.createElement('div');
-                sectionsWrap.className = 'ryd-tool-read-width';
-                sectionsWrap.style.cssText = 'max-width: 42em;';
-
-                function addDetails(title, bodyHtmlOrText) {
-                    const details = document.createElement('details');
-                    details.className = 'ryd-details-section';
-                    const summary = document.createElement('summary');
-                    summary.textContent = title;
-                    details.appendChild(summary);
-                    const body = document.createElement('div');
-                    body.style.cssText = 'padding-top: 0.5rem; line-height: 1.6; color: var(--color-text-secondary, #666);';
-                    if (typeof bodyHtmlOrText === 'string' && bodyHtmlOrText.indexOf('<') !== -1) body.innerHTML = bodyHtmlOrText;
-                    else body.textContent = bodyHtmlOrText || '';
-                    details.appendChild(body);
-                    sectionsWrap.appendChild(details);
-                }
-
-                const fullDesc = (tool.description || tool.summary || '').trim();
-                if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
-                    addDetails('What this is', window.RYD_ToolPreview.renderMarkdownSafe(fullDesc));
-                } else if (fullDesc) addDetails('What this is', fullDesc);
-
-                const whenText = (tool.tagline || tool.outcome || tool.purpose || '').trim();
-                if (whenText) addDetails('When to use', whenText);
-
                 const walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
+
+                // Interactive block: variant selector + steps (right after intro)
+                const interactiveWrap = document.createElement('div');
+                interactiveWrap.className = 'ryd-tool-interactive';
+                interactiveWrap.style.cssText = 'max-width: 42em; margin-bottom: var(--space-6, 2rem);';
                 if (walkthroughs.length > 0) {
                     const stepsHeading = document.createElement('h3');
-                    stepsHeading.style.cssText = 'margin: 1.25rem 0 0.5rem 0; font-size: 1.1em;';
-                    stepsHeading.textContent = 'Steps';
-                    sectionsWrap.appendChild(stepsHeading);
+                    stepsHeading.style.cssText = 'margin: 0 0 var(--space-3, 0.75rem) 0; font-size: 1.1em;';
+                    stepsHeading.textContent = 'Choose duration';
+                    interactiveWrap.appendChild(stepsHeading);
                     const tabs = document.createElement('div');
-                    tabs.style.cssText = 'display: flex; gap: 8px; margin-bottom: 10px;';
+                    tabs.style.cssText = 'display: flex; gap: var(--space-2, 8px); margin-bottom: var(--space-4, 1rem);';
                     const labels = { 0: '5 min', 1: '15 min', 2: '30 min' };
                     [0, 1, 2].forEach(function(i) {
                         if (!walkthroughs[i]) return;
@@ -711,12 +690,12 @@
                         btn.dataset.idx = String(i);
                         tabs.appendChild(btn);
                     });
-                    sectionsWrap.appendChild(tabs);
+                    interactiveWrap.appendChild(tabs);
                     const cardsContainer = document.createElement('div');
                     cardsContainer.className = 'ryd-step-cards';
                     const progressEl = document.createElement('div');
                     progressEl.className = 'ryd-progress';
-                    progressEl.style.cssText = 'margin-bottom: 8px;';
+                    progressEl.style.cssText = 'margin-bottom: var(--space-2, 8px);';
                     const navDiv = document.createElement('div');
                     navDiv.className = 'ryd-steps-nav';
                     const backBtn = document.createElement('button');
@@ -771,10 +750,37 @@
                             renderStepCards();
                         });
                     });
-                    sectionsWrap.appendChild(cardsContainer);
-                    sectionsWrap.appendChild(navDiv);
+                    interactiveWrap.appendChild(cardsContainer);
+                    interactiveWrap.appendChild(navDiv);
                     renderStepCards();
                 }
+                contentEl.appendChild(interactiveWrap);
+
+                const sectionsWrap = document.createElement('div');
+                sectionsWrap.className = 'ryd-tool-read-width';
+                sectionsWrap.style.cssText = 'max-width: 42em;';
+
+                function addDetails(title, bodyHtmlOrText) {
+                    const details = document.createElement('details');
+                    details.className = 'ryd-details-section';
+                    const summary = document.createElement('summary');
+                    summary.textContent = title;
+                    details.appendChild(summary);
+                    const body = document.createElement('div');
+                    body.style.cssText = 'padding-top: 0.5rem; line-height: 1.6; color: var(--color-text-secondary, #666);';
+                    if (typeof bodyHtmlOrText === 'string' && bodyHtmlOrText.indexOf('<') !== -1) body.innerHTML = bodyHtmlOrText;
+                    else body.textContent = bodyHtmlOrText || '';
+                    details.appendChild(body);
+                    sectionsWrap.appendChild(details);
+                }
+
+                const fullDesc = (tool.description || tool.summary || '').trim();
+                if (fullDesc && window.RYD_ToolPreview && window.RYD_ToolPreview.renderMarkdownSafe) {
+                    addDetails('What this is', window.RYD_ToolPreview.renderMarkdownSafe(fullDesc));
+                } else if (fullDesc) addDetails('What this is', fullDesc);
+
+                const whenText = (tool.tagline || tool.outcome || tool.purpose || '').trim();
+                if (whenText) addDetails('When to use', whenText);
 
                 if (tool.howWhyWorks) {
                     const safe = window.RYD_UI && window.RYD_UI.sanitizeDescription ? window.RYD_UI.sanitizeDescription(tool.howWhyWorks, tool.title || tool.name) : tool.howWhyWorks;

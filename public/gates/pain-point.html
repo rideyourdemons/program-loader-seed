@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/theme-overrides.css">
     <script src="/js/config/api-config.js"></script>
     <script src="/js/utils/tool-text.js"></script>
+    <script src="/js/utils/registry-url.js"></script>
+    <script src="/js/utils/tool-registry-loader.js"></script>
     <script src="/js/matrix-expander.js" defer></script>
     <script src="/js/ui-sanitize.js" defer></script>
     <script src="/js/data-files.js" defer></script>
@@ -27,17 +29,19 @@
                 <a href="/">Home</a>
                 <a href="/tools">Tools</a>
                 <a href="/insights">Insights</a>
+                <a href="/gates">Gates</a>
+                <a href="/search">Search</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section class="section">
-            <nav aria-label="Breadcrumb" style="margin-bottom: 20px;">
+            <nav aria-label="Breadcrumb">
                 <a href="/">Home</a> › <span id="gateLink"></span> › <span id="painPointTitle">Pain Point</span>
             </nav>
             <h1 id="painPointTitleH1">Pain Point</h1>
-            <div class="card" style="margin-bottom: 20px;">
+            <div class="card">
                 <p><strong>Important:</strong> Ride Your Demons is educational and not medical or therapy. We do not diagnose, treat, or promise outcomes. These tools are meant to help you understand what may help and why it works.</p>
                 <p>If you are in immediate danger or crisis, call your local emergency number. In the U.S., you can call or text <strong>988</strong> for the Suicide & Crisis Lifeline. See <a href="/disclosures/">Disclosures</a> for more help options.</p>
             </div>
@@ -106,9 +110,24 @@
                 }
                 const mappingData = await mappingRes.json();
 
-                const tools = (window.RYD_API_CONFIG && typeof window.RYD_API_CONFIG.getTools === 'function')
+                let tools = (window.RYD_API_CONFIG && typeof window.RYD_API_CONFIG.getTools === 'function')
                     ? (await window.RYD_API_CONFIG.getTools()) || []
                     : [];
+                if (tools.length === 0 && window.RYD_RegistryLoader && typeof window.RYD_RegistryLoader.load === 'function') {
+                    try {
+                        const reg = await window.RYD_RegistryLoader.load();
+                        tools = (reg && reg.tools) ? reg.tools : [];
+                    } catch (_) {}
+                }
+                if (tools.length === 0) {
+                    try {
+                        const res = await fetch('/data/tools.pass.json?ts=' + Date.now());
+                        if (res.ok) {
+                            const data = await res.json();
+                            tools = Array.isArray(data) ? data : (data.tools || []);
+                        }
+                    } catch (_) {}
+                }
 
                 const toolMap = new Map();
                 (Array.isArray(tools) ? tools : []).forEach(tool => {
@@ -150,114 +169,38 @@
 
                 toolsListEl.innerHTML = '';
                 const h2 = document.createElement('h2');
-                h2.textContent = 'Relevant Tools';
+                h2.textContent = 'Tools';
+                h2.style.cssText = 'margin-bottom: var(--space-4, 1rem);';
                 toolsListEl.appendChild(h2);
 
                 if (relevantTools.length === 0) {
                     const p = document.createElement('p');
                     p.textContent = 'No tools loaded yet for this pain point.';
+                    p.style.cssText = 'color: var(--color-text-secondary, #666);';
                     toolsListEl.appendChild(p);
                     return;
                 }
 
                 const toolsContainer = document.createElement('div');
-                toolsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;';
+                toolsContainer.className = 'ryd-tools-three';
 
+                const getActionCardData = window.RYD_ToolPreview && window.RYD_ToolPreview.getToolActionCardData;
+                const renderActionCard = window.RYD_ToolPreview && window.RYD_ToolPreview.renderActionCard;
                 relevantTools.forEach(tool => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-
-                    const titleEl = document.createElement('h3');
-                    titleEl.textContent = tool.title || tool.name || tool.slug || tool.id;
-                    card.appendChild(titleEl);
-
-                    const getPreview = window.RYD_ToolPreview && typeof window.RYD_ToolPreview.getToolPreview === 'function';
-                    const rawBrief = (tool.summary || tool.description || '').replace(/\s+/g, ' ').trim();
-                    const brief = getPreview ? window.RYD_ToolPreview.getToolPreview(tool) : (rawBrief ? rawBrief.slice(0, 200) + (rawBrief.length > 200 ? '\u2026' : '') : '');
-                    if (brief) {
-                        const pBrief = document.createElement('p');
-                        pBrief.style.cssText = 'color: var(--color-text-secondary, #666); margin: 0.5rem 0 1rem; font-size: 0.95em;';
-                        pBrief.textContent = brief;
-                        card.appendChild(pBrief);
-                    }
-
-                    const expandBtn = document.createElement('button');
-                    expandBtn.className = 'btn';
-                    expandBtn.type = 'button';
-                    expandBtn.textContent = 'Expand';
-                    expandBtn.style.cssText = 'margin-bottom: 0.5rem;';
-                    card.appendChild(expandBtn);
-
-                    const variantPanel = document.createElement('div');
-                    variantPanel.style.cssText = 'display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--color-border, #e0e0e0);';
-                    card.appendChild(variantPanel);
-
-                    const walkthroughs = Array.isArray(tool.walkthroughs) ? tool.walkthroughs : [];
-                    const variants = { 5: walkthroughs[0] || null, 15: walkthroughs[1] || null, 30: walkthroughs[2] || null };
-
-                    expandBtn.addEventListener('click', function () {
-                        if (variantPanel.style.display === 'none') {
-                            variantPanel.style.display = 'block';
-                            if (!variantPanel.querySelector('.duration-tabs')) {
-                                const renderMd = window.RYD_ToolPreview && typeof window.RYD_ToolPreview.renderMarkdownSafe === 'function';
-                                const fullDesc = (tool.description || tool.summary || '').trim();
-                                if (fullDesc) {
-                                    const descWrap = document.createElement('div');
-                                    descWrap.className = 'tool-full-description';
-                                    descWrap.style.cssText = 'margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-border, #e0e0e0); color: var(--color-text-secondary, #666); line-height: 1.6; font-size: 0.95em;';
-                                    if (renderMd) descWrap.innerHTML = window.RYD_ToolPreview.renderMarkdownSafe(fullDesc);
-                                    else descWrap.textContent = fullDesc;
-                                    variantPanel.appendChild(descWrap);
-                                }
-                                const tabs = document.createElement('div');
-                                tabs.className = 'duration-tabs';
-                                tabs.style.cssText = 'margin-bottom: 12px; display: flex; gap: 8px;';
-                                [5, 15, 30].forEach(dur => {
-                                    const btn = document.createElement('button');
-                                    btn.type = 'button';
-                                    btn.textContent = String(dur);
-                                    btn.dataset.duration = String(dur);
-                                    btn.style.cssText = 'padding: 6px 12px; border: 1px solid var(--color-border, #e0e0e0); border-radius: 6px; background: var(--color-bg, #f5f5f5); cursor: pointer;';
-                                    if (dur === 5) btn.style.background = 'var(--color-accent, #667eea); color: white; border-color: var(--color-accent, #667eea);';
-                                    tabs.appendChild(btn);
-                                });
-                                const content = document.createElement('div');
-                                content.className = 'variant-content';
-                                content.style.cssText = 'min-height: 40px; color: var(--color-text-secondary, #666);';
-                                variantPanel.appendChild(tabs);
-                                variantPanel.appendChild(content);
-
-                                function showDuration(dur) {
-                                    variantPanel.querySelectorAll('.duration-tabs button').forEach(b => {
-                                        b.style.background = ''; b.style.color = ''; b.style.borderColor = '';
-                                    });
-                                    const sel = variantPanel.querySelector('.duration-tabs button[data-duration="' + dur + '"]');
-                                    if (sel) { sel.style.background = 'var(--color-accent, #667eea)'; sel.style.color = 'white'; sel.style.borderColor = 'var(--color-accent, #667eea)'; }
-                                    const w = variants[dur];
-                                    content.innerHTML = '';
-                                    if (w && Array.isArray(w.steps)) {
-                                        const ol = document.createElement('ol');
-                                        ol.style.cssText = 'margin: 0; padding-left: 20px;';
-                                        w.steps.forEach(s => { const li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
-                                        content.appendChild(ol);
-                                    } else {
-                                        const p = document.createElement('p');
-                                        p.textContent = 'No steps for this duration.';
-                                        content.appendChild(p);
-                                    }
-                                }
-                                showDuration(5);
-                                tabs.querySelectorAll('button').forEach(b => {
-                                    b.addEventListener('click', () => showDuration(Number(b.dataset.duration)));
-                                });
-                            }
-                            expandBtn.textContent = 'Collapse';
-                        } else {
-                            variantPanel.style.display = 'none';
-                            expandBtn.textContent = 'Expand';
-                        }
-                    });
-
+                    const data = getActionCardData
+                        ? window.RYD_ToolPreview.getToolActionCardData(tool, { gate: gateId, painPoint: painPointId })
+                        : { title: tool.title || tool.name || tool.slug || tool.id, forWhen: (tool.summary || '').slice(0, 120), whyThisWorks: '', toolHref: '/tools/tool.html?slug=' + encodeURIComponent(tool.slug || tool.id) + '&gate=' + encodeURIComponent(gateId) + '&painPoint=' + encodeURIComponent(painPointId) };
+                    const card = renderActionCard ? window.RYD_ToolPreview.renderActionCard(data) : (function() {
+                        const c = document.createElement('div');
+                        c.className = 'card tool-card ryd-action-card';
+                        const h = document.createElement('h3');
+                        h.textContent = data.title;
+                        c.appendChild(h);
+                        if (data.forWhen) { const l = document.createElement('div'); l.className = 'ryd-action-card-label'; l.textContent = 'For when:'; c.appendChild(l); const p = document.createElement('p'); p.className = 'ryd-action-card-for-when'; p.textContent = data.forWhen; c.appendChild(p); }
+                        if (data.whyThisWorks) { const l = document.createElement('div'); l.className = 'ryd-action-card-label'; l.textContent = 'Why this works:'; c.appendChild(l); const p = document.createElement('p'); p.className = 'ryd-action-card-why'; p.textContent = data.whyThisWorks; c.appendChild(p); }
+                        const a = document.createElement('a'); a.href = data.toolHref; a.className = 'btn ryd-action-card-cta'; a.textContent = 'Use this tool'; c.appendChild(a);
+                        return c;
+                    })();
                     toolsContainer.appendChild(card);
                 });
 
@@ -287,37 +230,6 @@
                     }
                 }
 
-                if (gate) {
-                    const related = new Set();
-                    (gate.painPoints || []).forEach(pp => {
-                        (pp.toolIds || []).forEach(id => related.add(id));
-                    });
-                    relevantTools.forEach(tool => related.delete(tool.id));
-                    const relatedTools = Array.from(related)
-                        .map(id => toolMap.get(id))
-                        .filter(Boolean)
-                        .slice(0, 6);
-
-                    if (relatedTools.length > 0) {
-                        const relatedSection = document.createElement('div');
-                        relatedSection.style.cssText = 'margin-top: 20px;';
-                        const h3 = document.createElement('h3');
-                        h3.textContent = 'Related Tools from this Gate';
-                        relatedSection.appendChild(h3);
-                        const ul = document.createElement('ul');
-                        ul.style.cssText = 'margin: 0; padding-left: 20px;';
-                        relatedTools.forEach(tool => {
-                            const li = document.createElement('li');
-                            const link = document.createElement('a');
-                            link.href = `/tools/${tool.slug || tool.id}`;
-                            link.textContent = tool.title || tool.name || tool.slug || tool.id;
-                            li.appendChild(link);
-                            ul.appendChild(li);
-                        });
-                        relatedSection.appendChild(ul);
-                        toolsListEl.appendChild(relatedSection);
-                    }
-                }
             } catch (err) {
                 contentEl.innerHTML = `<p>Error: ${err.message}</p>`;
             }

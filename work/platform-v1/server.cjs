@@ -1,31 +1,25 @@
-/**
- * Platform v1 — minimal local dev server
- * Serves static files from ./public
- */
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-const appDir = path.join(__dirname, 'public');
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(appDir));
+// Absolute path to /public
+const publicPath = path.join(__dirname, "public");
 
-app.get('/', (req, res) => {
-  const indexPath = path.join(appDir, 'index.html');
-  res.sendFile(indexPath, (err) => {
-    if (err) res.status(404).send('<h1>Platform v1 Running</h1><p>Build lane active. index.html not found.</p>');
-  });
+// Serve static files (your shell, app JS, CSS, assets)
+app.use(express.static(publicPath));
+
+/**
+ * SPA fallback
+ * This is the CRITICAL line for Express 5
+ * It replaces app.get("*")
+ */
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[PLATFORM-V1] http://localhost:${PORT}`);
-  console.log(`[PLATFORM-V1] Press Ctrl+C to stop`);
-}).on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`[PLATFORM-V1] Port ${PORT} in use. Try: PORT=3002 npm run dev`);
-  } else {
-    console.error('[PLATFORM-V1]', err.message);
-  }
-  process.exit(1);
+// Start server
+app.listen(PORT, () => {
+  console.log(`🔥 RYD V1 running → http://localhost:${PORT}`);
 });

@@ -188,3 +188,104 @@ button.tool-toggle:hover,
   color: var(--accent);
   margin-bottom: var(--space-2);
 }
+
+/* 3-part RYD action card: title, For when, Why this works, CTA. No glow, flat card, consistent spacing. */
+.ryd-action-card,
+.card.ryd-action-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.ryd-action-card *,
+.card.ryd-action-card * {
+  text-shadow: none;
+  animation: none;
+}
+.ryd-action-card:hover,
+.card.ryd-action-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+.ryd-action-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-3) 0;
+  color: var(--text);
+  line-height: 1.3;
+}
+.ryd-action-card-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0 0 var(--space-1) 0;
+}
+.ryd-action-card-for-when,
+.ryd-action-card-why {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 var(--space-3) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ryd-action-card-why {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.ryd-action-card-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+/* Pain point: exactly 3 tools in a card grid; equal card height */
+.ryd-tools-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.ryd-tools-three .ryd-action-card,
+.ryd-tools-three .card.tool-card {
+  height: 100%;
+  min-height: 200px;
+}
+@media (max-width: 600px) {
+  .ryd-tools-three {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tools listing grid: equal height action cards */
+.tools-grid .ryd-action-card,
+.tools-grid .card.tool-card.ryd-action-card {
+  height: 100%;
+  min-height: 200px;
+}
+
+/* Page sections: consistent spacing */
+.section .card,
+main .section > .card {
+  margin-bottom: var(--space-4);
+}
+nav[aria-label="Breadcrumb"] {
+  margin-bottom: var(--space-5);
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+nav[aria-label="Breadcrumb"] a {
+  color: var(--accent);
+  text-decoration: none;
+}
+nav[aria-label="Breadcrumb"] a:hover {
+  text-decoration: underline;
+}
