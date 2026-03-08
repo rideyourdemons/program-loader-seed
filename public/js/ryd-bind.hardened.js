@@ -27,6 +27,9 @@
   const { logError } = window.RYD_ErrorMonitor || { logError: () => {} };
   const { setMinHeight } = window.RYD_UIStability || { setMinHeight: () => {} };
 
+  /** Tool of the Day section UI disabled; no DOM insertion from this module. */
+  const TOOL_OF_DAY_UI_DISABLED = true;
+
   console.log('[RYD] bind starting (hardened)');
 
   /**
@@ -99,6 +102,7 @@
    * Render Tool of the Day in SCAN MODE: title, short purpose, 3-5 bullets, one CTA. No long text. Optionally show draft badge if needsContent.
    */
   const renderToolOfDay = withErrorBoundary(null, function(tool, opts) {
+    if (TOOL_OF_DAY_UI_DISABLED) return;
     opts = opts || {};
     const needsContent = !!opts.needsContent;
     const reasons = Array.isArray(opts.reasons) ? opts.reasons : [];
@@ -244,6 +248,7 @@
    * Show "needs content" state for tool that fails quality validation (SCAN-style, no full text)
    */
   function showNeedsContentState(tool, reasons) {
+    if (TOOL_OF_DAY_UI_DISABLED) return;
     const container = document.getElementById('tool-of-the-day') ||
                      document.getElementById('toolOfDay') ||
                      document.querySelector('[data-tool-of-day]') ||
@@ -275,6 +280,7 @@
    * Fallback rendering with error boundary (SCAN-style, no full text)
    */
   function showFallback(message) {
+    if (TOOL_OF_DAY_UI_DISABLED) return;
     const container = document.getElementById('tool-of-the-day') ||
                      document.getElementById('toolOfDay') ||
                      document.querySelector('[data-tool-of-day]') ||
@@ -569,6 +575,7 @@
    * Show loading state in Tool-of-Day container (short message, no error)
    */
   function showToolOfDayLoading(message) {
+    if (TOOL_OF_DAY_UI_DISABLED) return;
     const container = document.getElementById('tool-of-the-day') ||
                      document.getElementById('toolOfDay') ||
                      document.querySelector('[data-tool-of-day]') ||
@@ -711,8 +718,8 @@
       // Always bind search immediately (works even without matrix)
       bindSearch();
       
-      // Start Tool of the Day async (non-blocking)
-      initToolOfTheDayNonBlocking();
+      // Tool of the Day auto-start disabled (feature kept; no auto-render on load)
+      // initToolOfTheDayNonBlocking();
       
       // Hydrate insights if ready, otherwise wait
       if (window.RYD?.status === 'ready') {

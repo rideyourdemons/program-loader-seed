@@ -153,6 +153,34 @@
       query: normalized
     };
   }
+
+  function normalizeGateAlias(path) {
+    if (!path) return null;
+    const clean = String(path).replace(/^\/|\/$/g, '').toLowerCase();
+    const segments = clean.split('/').filter(Boolean);
+    const first = segments[0] || '';
+    const second = segments[1] || '';
+
+    // Legacy Men's gate aliases
+    if (
+      first === 'mens' ||
+      first === 'mens-mental-health' ||
+      (first === 'm' && (second === 'mens' || second === 'mens-mental-health'))
+    ) {
+      return 'men-s-mental-health';
+    }
+
+    // Legacy Addiction Recovery aliases
+    if (
+      first === 'addiction' ||
+      first === 'addiction-recovery' ||
+      (first === 'm' && second === 'addiction')
+    ) {
+      return 'addiction-recovery';
+    }
+
+    return null;
+  }
   
   // Route handlers
   window.RYD_NAV = {
@@ -205,6 +233,44 @@
       tools = detail.tools;
       console.log('[RYD] Navigation received tools from loader:', tools.length);
     }
+// URL pain entry system
+(function() {
+
+    const path = window.location.pathname.replace(/^\/|\/$/g, '');
+
+    const legacyGateId = normalizeGateAlias(path);
+    if (legacyGateId) {
+        if (window.RYD_NAV && typeof window.RYD_NAV.goToGate === 'function') {
+            window.RYD_NAV.goToGate(legacyGateId);
+        } else {
+            window.location.href = `/gates/${encodeURIComponent(legacyGateId)}`;
+        }
+        return;
+    }
+
+    if (!path || path.includes('index') || path.includes('tools') || path.includes('gates')) {
+        return;
+    }
+
+    try {
+
+        const result = classifyPain(path);
+
+        if (!result || !result.tools || !result.tools.length) return;
+
+        console.log('[RYD] Pain URL detected:', path);
+
+        // store result for page
+        sessionStorage.setItem('ryd:searchResult', JSON.stringify(result));
+
+        // redirect to results page
+        window.location.href = `/search?q=${encodeURIComponent(path)}`;
+
+    } catch (e) {
+        console.warn('[RYD] Pain routing failed', e);
+    }
+
+});
   });
 
   if (document.readyState === 'loading') {
