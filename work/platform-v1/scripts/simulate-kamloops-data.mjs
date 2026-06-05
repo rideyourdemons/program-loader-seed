@@ -1,5 +1,5 @@
 
-import { MINDWorkspaceEngine } from "../src/industrial/mind/components/WorkspaceViews.ts";
+import { MINDWorkspaceEngine } from "./WorkspaceViewsSimulator.mjs";
 
 async function runMultiLevelSimulation() {
   const engine = new MINDWorkspaceEngine();
@@ -40,7 +40,7 @@ async function runMultiLevelSimulation() {
   const hotshotSession = { username: "Jill Investor-Admin", assignedRole: "exploration_manager" };
 
   console.log("================================================================================");
-  console.log("?? CYCLING ALL 3 INDUSTRIAL MIND BRAINS");
+  console.log("?? CYCLING ALL 3 INDUSTRIAL MIND BRAINS NATIVELY");
   console.log("================================================================================");
 
   engine.routeToWorkspace(helperSession, mockHoleState);
