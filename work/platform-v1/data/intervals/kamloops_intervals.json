@@ -1,0 +1,28 @@
+
+[
+  {
+    "holeId": "KMP-2023-DH-01",
+    "depthStartMeter": 420,
+    "depthEndMeter": 480,
+    "formation": "Silicified Quartzite Fault Zone",
+    "rqdPercentage": 22,
+    "bitUsed": "BIT-V9-MATRIX-STANDARD",
+    "wearRatePercentage": 95,
+    "costPerMeterCAD": 184.50,
+    "incidents": ["LOST_CIRCULATION", "WALL_CAVE_IN"],
+    "lessonLearned": "Standard matrix bits polish and burn instantly. Crew must switch to high-abrasion heavy diamond profile (BIT-X3-QUARTZ-HEAVY) and pump polymer mud gel to prevent wall cave-ins."
+  },
+  {
+    "holeId": "KMP-2024-DH-09",
+    "depthStartMeter": 415,
+    "depthEndMeter": 475,
+    "formation": "Silicified Quartzite Fault Zone",
+    "rqdPercentage": 25,
+    "bitUsed": "BIT-X3-QUARTZ-HEAVY",
+    "wearRatePercentage": 42,
+    "costPerMeterCAD": 112.20,
+    "incidents": ["MINOR_FLUID_DROP"],
+    "lessonLearned": "Successfully used heavy diamond matrix tool line and spiked mud viscosity to 45s using premium LCM polymers. Prevented caving and saved $72.30 per meter over previous program attempts."
+  }
+]
+

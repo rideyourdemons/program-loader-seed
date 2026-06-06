@@ -1,2 +1,1 @@
-﻿export * from './operator/mind-router';
-
+export * from "./operator/mind-router.js";

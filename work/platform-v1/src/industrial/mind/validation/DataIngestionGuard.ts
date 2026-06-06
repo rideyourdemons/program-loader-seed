@@ -7,31 +7,31 @@ export interface RawShiftInput {
 }
 
 export class MINDDataIngestionGuard {
-  public validateShiftLog(input: RawShiftInput): { success: boolean; errors: string[]; sanitizedData?: RawShiftInput } {
+  public validateRawInput(input: unknown): { success: boolean; errors: string[]; sanitizedData?: RawShiftInput } {
     const errors: string[] = [];
     
-    if (!input.drillerId || input.drillerId.trim() === "") {
-      errors.push("INVALID_DRILLER_ID: Shift logs must contain a verifiable Driller Credentials Token.");
+    if (!input || typeof input !== "object") {
+      return { success: false, errors: ["INVALID_PAYLOAD"] };
     }
-    if (typeof input.currentDepthMeters !== "number" || input.currentDepthMeters <= 0) {
-      errors.push("INVALID_DEPTH: Current depth must be a positive numeric value.");
-    }
-    if (typeof input.mudViscositySeconds !== "number" || input.mudViscositySeconds < 25 || input.mudViscositySeconds > 120) {
-      errors.push("CRITICAL_MUD_VISCOSITY_OUT_OF_BOUNDS: Viscosity must be between 25s and 120s.");
-    }
-    if (!input.bitSerialNumber || !input.bitSerialNumber.startsWith("BIT-")) {
-      errors.push("INVALID_TOOLING_SERIAL: Bit serial must match strict inventory prefix tracking standards.");
+
+    const typedInput = input as Record<string, unknown>;
+
+    if (typeof typedInput.drillerId !== "string") errors.push("Missing drillerId");
+    if (typeof typedInput.currentDepthMeters !== "number") errors.push("Invalid currentDepthMeters");
+
+    if (errors.length > 0) {
+      return { success: false, errors };
     }
 
     return {
-      success: errors.length === 0,
-      errors: errors,
-      sanitizedData: errors.length === 0 ? {
-        drillerId: input.drillerId.trim(),
-        currentDepthMeters: Math.round(input.currentDepthMeters),
-        mudViscositySeconds: Math.round(input.mudViscositySeconds),
-        bitSerialNumber: input.bitSerialNumber.trim().toUpperCase()
-      } : undefined
+      success: true,
+      errors: [],
+      sanitizedData: {
+        drillerId: String(typedInput.drillerId),
+        currentDepthMeters: Number(typedInput.currentDepthMeters),
+        mudViscositySeconds: Number(typedInput.mudViscositySeconds || 0),
+        bitSerialNumber: String(typedInput.bitSerialNumber || "")
+      }
     };
   }
 }

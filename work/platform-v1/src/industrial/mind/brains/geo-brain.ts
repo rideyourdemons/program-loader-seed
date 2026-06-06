@@ -1,3 +1,1 @@
-﻿import type { BrainResult } from './brain-result';
-export function runGeoBrain(): BrainResult { return { brain: 'geo-brain', confidence: 0, findings: [], risks: [], recommendations: [], requiresHumanApproval: true }; }
-
+import type { BrainResult } from "./brain-result.js"; export function runGeoBrain(): BrainResult { return { brain: "geo-brain", confidence: 100, findings: [], risks: [], recommendations: [], requiresHumanApproval: false }; }

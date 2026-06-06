@@ -1,0 +1,15 @@
+
+{
+  "rulePackId": "BC_MINING_REG_2026_STRICT",
+  "vibrationMaxG": 4.5,
+  "minMudViscositySeconds": 40,
+  "requiredCertifications": ["CORE_SAFETY"],
+  "weights": {
+    "missingTailgatePoints": 50,
+    "missingCertPoints": 30,
+    "excessVibrationPoints": 60,
+    "historicalProximityPoints": 40,
+    "thinMudDangerPoints": 35
+  }
+}
+

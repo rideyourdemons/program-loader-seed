@@ -1,16 +1,11 @@
+
 {
-  "name": "platform-v1",
-  "version": "0.1.0",
-  "description": "Ride Your Demons — platform v1 dev lane",
-  "private": true,
-  "scripts": {
-    "dev": "node server.cjs",
-    "build": "echo Platform v1 static build; no bundle step required"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "express": "^5.2.1"
+  "name": "industrial-mind-platform",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
+

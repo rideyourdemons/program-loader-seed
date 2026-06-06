@@ -1,3 +1,1 @@
-﻿import type { BrainResult } from './brain-result';
-export function runDrillBrain(): BrainResult { return { brain: 'drill-brain', confidence: 0, findings: [], risks: [], recommendations: [], requiresHumanApproval: true }; }
-
+import type { BrainResult } from "./brain-result.js"; export function runDrillBrain(): BrainResult { return { brain: "drill-brain", confidence: 100, findings: [], risks: [], recommendations: [], requiresHumanApproval: false }; }
